@@ -15,10 +15,7 @@ window.PORTFOLIO = {
     linkedin: "https://www.linkedin.com/in/chennuru-tejith",
     github: "https://github.com/chennuru-tejith",
     cv: "assets/Chennuru_Tejith_CV.pdf",
-    // Greeting avatar shown in the hero arch. Drop an image (transparent PNG/WebP works best)
-    // into assets/ and put its path here, e.g. "assets/avatar-hi.webp". Leave empty for the monogram seal.
-    avatar: "",
-    // The hero greeting cycles through the languages Tejith speaks.
+    // The harbour greeting cycles through the languages Tejith speaks.
     greetings: ["Hi there!", "Namaste!", "నమస్కారం!", "Bonjour!"],
     summary:
       "Business management student with hands-on experience in CSR operations, finance, and project management at a nonprofit trust and leading corporate organizations. Skilled in on-ground project monitoring, budget tracking, financial analysis, and stakeholder/sponsor reporting. Combines operational and analytical rigor with active leadership in institutional governance and student organizations.",
@@ -67,11 +64,6 @@ window.PORTFOLIO = {
           ],
         },
       ],
-      quiz: {
-        q: "At Dr. Reddy's, Tejith analysed employee costs across which period?",
-        options: ["FY2018 – FY2020", "FY2021 – FY2025", "Only FY2024"],
-        answer: 1,
-      },
     },
     {
       id: "blueprint",
@@ -94,11 +86,6 @@ window.PORTFOLIO = {
           ],
         },
       ],
-      quiz: {
-        q: "How many site visits did Tejith make to monitor the ₹4 Cr school construction project?",
-        options: ["7", "23", "40"],
-        answer: 1,
-      },
     },
     {
       id: "summit",
@@ -135,11 +122,6 @@ window.PORTFOLIO = {
           points: ["Represent student interests on food and mess service quality, handling grievance resolution and liaison with campus administration."],
         },
       ],
-      quiz: {
-        q: "How big was the student community Tejith directed at the JGU Entrepreneurship Club?",
-        options: ["50+ members", "100+ members", "200+ members"],
-        answer: 2,
-      },
     },
     {
       id: "signal",
@@ -164,11 +146,6 @@ window.PORTFOLIO = {
           points: ["Coordinated business partner communications and order confirmations, improving accuracy across stakeholder interactions."],
         },
       ],
-      quiz: {
-        q: "How many languages does Tejith speak?",
-        options: ["2", "3", "4"],
-        answer: 2,
-      },
     },
     {
       id: "circuit",
@@ -191,11 +168,6 @@ window.PORTFOLIO = {
           ],
         },
       ],
-      quiz: {
-        q: "Which certification did Tejith earn from Macquarie University (Coursera)?",
-        options: ["Excel Skills for Business: Intermediate I", "Google Data Analytics", "Six Sigma Green Belt"],
-        answer: 0,
-      },
     },
   ],
 
