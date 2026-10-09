@@ -1,0 +1,397 @@
+// ============================================================
+//  ALL PORTFOLIO CONTENT LIVES HERE.
+//  Edit this file to update the site — no other code changes needed.
+// ============================================================
+
+window.PORTFOLIO = {
+  profile: {
+    name: "Chennuru Tejith",
+    shortName: "Tejith",
+    title: "Business Strategist in Training",
+    tagline: "BBA + MBA @ O.P. Jindal Global University · Finance · Operations · Leadership — and a builder of AI tools on the side.",
+    location: "Hyderabad, India",
+    // assembled at runtime so simple scrapers don't harvest the address from the source
+    email: ["ch.tejith", "gmail.com"].join("@"),
+    linkedin: "https://www.linkedin.com/in/chennuru-tejith",
+    github: "https://github.com/chennuru-tejith",
+    cv: "assets/Chennuru_Tejith_CV.pdf",
+    // Greeting avatar shown in the hero arch. Drop an image (transparent PNG/WebP works best)
+    // into assets/ and put its path here, e.g. "assets/avatar-hi.webp". Leave empty for the monogram seal.
+    avatar: "",
+    // The hero greeting cycles through the languages Tejith speaks.
+    greetings: ["Hi there!", "Namaste!", "నమస్కారం!", "Bonjour!"],
+    summary:
+      "Business management student with hands-on experience in CSR operations, finance, and project management at a nonprofit trust and leading corporate organizations. Skilled in on-ground project monitoring, budget tracking, financial analysis, and stakeholder/sponsor reporting. Combines operational and analytical rigor with active leadership in institutional governance and student organizations.",
+    stats: [
+      { label: "Internships", value: "3" },
+      { label: "CSR project monitored", value: "₹4 Cr" },
+      { label: "Member club directed", value: "200+" },
+      { label: "CGPA", value: "7.9/8" },
+    ],
+    // The quote shown between the Gyms and the Journey. Wrap words in *stars* to set them in italic gold.
+    quote: {
+      text: "Loyalty isn't proven when staying is easy. It's proven when *leaving would be easier.*",
+      by: "A rule I work by",
+    },
+    languages: ["English (Full Professional)", "Telugu (Native)", "Hindi (Working)", "French (Elementary)"],
+  },
+
+  // ---------- The 5 Gyms (skill domains) ----------
+  gyms: [
+    {
+      id: "ledger",
+      name: "Ledger Gym",
+      domain: "Finance & Analytics",
+      type: "Finance",
+      color: "#e0a526",
+      icon: "coin", medal: "Ledger Badge",
+      intro: "Numbers tell stories. In this gym, every rupee is tracked and every trend explained.",
+      moves: ["Financial Analysis", "Cost Analysis", "Budgeting", "Bookkeeping", "Financial Reporting", "Data Interpretation"],
+      battles: [
+        {
+          role: "Project Management Intern",
+          org: "Dr. Reddy's Laboratories Ltd.",
+          when: "Jun 2025 – Jul 2025 · Hyderabad",
+          points: [
+            "Conducted employee cost analysis across FY2021–FY2025, tracking trends in salaries, share-based payments, and welfare expenses to support cost-optimization discussions.",
+            "Prepared structured management reports from multi-year workforce data, enabling leadership decisions on headcount budgeting and welfare spending.",
+          ],
+        },
+        {
+          role: "Finance Intern",
+          org: "Ion Exchange India Ltd.",
+          when: "Dec 2024 – Jan 2025 · Hyderabad",
+          points: [
+            "Streamlined daily transaction processing, improving workflow efficiency and reducing documentation backlogs.",
+            "Standardized vendor records and aligned internal financial documentation, enhancing data consistency and audit readiness.",
+          ],
+        },
+      ],
+      quiz: {
+        q: "At Dr. Reddy's, Tejith analysed employee costs across which period?",
+        options: ["FY2018 – FY2020", "FY2021 – FY2025", "Only FY2024"],
+        answer: 1,
+      },
+    },
+    {
+      id: "blueprint",
+      name: "Blueprint Gym",
+      domain: "Operations & Project Management",
+      type: "Operations",
+      color: "#e2603a",
+      icon: "blueprint", medal: "Blueprint Badge",
+      intro: "Plans are easy. Execution on the ground is the real battle.",
+      moves: ["On-ground Monitoring", "Budget Tracking", "Sponsor Reporting", "Vendor Verification", "Cross-functional Coordination"],
+      battles: [
+        {
+          role: "Operations Intern",
+          org: "Round Table India — Hyderabad Titans Round Table Charitable Trust",
+          when: "Jun 2026 – Jul 2026 · Hyderabad",
+          points: [
+            "Monitored on-site execution of a ₹4 Cr CSR-funded government school construction project (MPPS & ZPHS Integrated School, Phase II) across 23 site visits over 7 weeks.",
+            "Tracked CSR fund utilisation against the sanctioned budget and co-drafted progress-and-spend updates for CSR sponsor VST Industries Ltd., including a live sponsor update call.",
+            "Verified contractor-reported material stock and spend against supervisor records — catching and resolving a reporting discrepancy before it reached the sponsor.",
+          ],
+        },
+      ],
+      quiz: {
+        q: "How many site visits did Tejith make to monitor the ₹4 Cr school construction project?",
+        options: ["7", "23", "40"],
+        answer: 1,
+      },
+    },
+    {
+      id: "summit",
+      name: "Summit Gym",
+      domain: "Leadership & Governance",
+      type: "Leadership",
+      color: "#8b5cf6",
+      icon: "crown", medal: "Summit Badge",
+      intro: "Leaders are trained, not born. This gym trains through committees, clubs and communities.",
+      moves: ["Leadership", "Institutional Governance", "Policy Deliberation", "Event Programming", "Mentorship"],
+      battles: [
+        {
+          role: "Director",
+          org: "JGU Entrepreneurship Club",
+          when: "Feb 2026 – May 2026 · Sonipat",
+          points: ["Oversaw entrepreneurial programming, mentorship activities, and startup events for a 200+ member student community."],
+        },
+        {
+          role: "Student Representative, COGSASH",
+          org: "O.P. Jindal Global University",
+          when: "Nov 2025 – Present · Sonipat",
+          points: ["Elected representative on JGU's Gender Sensitisation Committee — policy deliberations, awareness campaigns, and institutional governance."],
+        },
+        {
+          role: "Member, Election Commission",
+          org: "Jindal Global Business School (JGBS)",
+          when: "Apr 2025 – Present · Sonipat",
+          points: ["Administer student election processes ensuring compliance, transparency, and fair representation."],
+        },
+        {
+          role: "Member, Student Grievance Redressal Committee",
+          org: "Food & Mess Committee, JGBS",
+          when: "Aug 2026 – Present · Sonipat",
+          points: ["Represent student interests on food and mess service quality, handling grievance resolution and liaison with campus administration."],
+        },
+      ],
+      quiz: {
+        q: "How big was the student community Tejith directed at the JGU Entrepreneurship Club?",
+        options: ["50+ members", "100+ members", "200+ members"],
+        answer: 2,
+      },
+    },
+    {
+      id: "signal",
+      name: "Signal Gym",
+      domain: "Marketing & Communication",
+      type: "Comms",
+      color: "#ec4899",
+      icon: "signal", medal: "Signal Badge",
+      intro: "A great idea is only as strong as the way you tell it.",
+      moves: ["Strategic Communication", "Stakeholder Management", "Partnership Development", "Report Writing", "Public Outreach"],
+      battles: [
+        {
+          role: "Head of Outreach",
+          org: "ZAMAC — The Marketing Club, JGBS",
+          when: "Feb 2026 – Present · Sonipat (member since Sep 2025)",
+          points: ["Lead external partnership development and outreach strategy, managing stakeholder relationships and event visibility for the university's marketing club."],
+        },
+        {
+          role: "Business Partner Communications",
+          org: "Ion Exchange India Ltd.",
+          when: "Dec 2024 – Jan 2025",
+          points: ["Coordinated business partner communications and order confirmations, improving accuracy across stakeholder interactions."],
+        },
+      ],
+      quiz: {
+        q: "How many languages does Tejith speak?",
+        options: ["2", "3", "4"],
+        answer: 2,
+      },
+    },
+    {
+      id: "circuit",
+      name: "Circuit Gym",
+      domain: "Tech & Automation",
+      type: "Tech",
+      color: "#14b8a6",
+      icon: "chip", medal: "Circuit Badge",
+      intro: "A business mind that can also build. Tools here are forged with AI-assisted development.",
+      moves: ["Microsoft Excel (Certified)", "Tableau", "MS Office Suite", "Python (Foundational)", "AI-assisted Development", "Browser Extensions"],
+      battles: [
+        {
+          role: "Independent Builder",
+          org: "GitHub — chennuru-tejith",
+          when: "2026",
+          points: [
+            "Shipped browser extensions for AI-chat productivity (auto-resume queues, chat recovery) and outreach automation.",
+            "Built a multi-engine stock-screening indicator suite for the Indian market (NSE/BSE) on TradingView.",
+            "See Selected Work for every project.",
+          ],
+        },
+      ],
+      quiz: {
+        q: "Which certification did Tejith earn from Macquarie University (Coursera)?",
+        options: ["Excel Skills for Business: Intermediate I", "Google Data Analytics", "Six Sigma Green Belt"],
+        answer: 0,
+      },
+    },
+  ],
+
+  // ---------- Selected Work (projects) ----------
+  // Add "live" URLs for your Lovable projects when published.
+  projects: [
+    {
+      id: "reachly",
+      name: "Reachly — AI Networking & Outreach Strategist",
+      types: ["Comms", "Tech"],
+      blurb: "Discover the right people, send personalized outreach, and land internships, jobs and referrals without the spam. Built with Lovable.",
+      moves: ["People Discovery", "Personalized Outreach", "Referral Strategy"],
+      stats: { Impact: 85, Complexity: 75, Polish: 85 },
+      repo: "",
+      live: "https://connect-growthapp.lovable.app/",
+    },
+    {
+      id: "queuebit",
+      name: "ChatQueue AI",
+      types: ["Tech", "Productivity"],
+      blurb: "A local-first browser extension that queues prompts, auto-saves drafts, watches AI rate limits and resumes your chat the moment the agent is ready.",
+      moves: ["Auto-Resume", "Draft Autosave", "Composer Sync", "Rate-Limit Watch"],
+      stats: { Impact: 80, Complexity: 70, Polish: 75 },
+      repo: "https://github.com/chennuru-tejith/Chat-Queue-AI",
+      live: "",
+    },
+    {
+      id: "queuebolt",
+      name: "ChatQueue AI — Recycle Hub",
+      types: ["Tech", "Productivity"],
+      blurb: "v2 of ChatQueue AI: adds a recycle bin for deleted AI chats, automatic local chat backups and a multi-platform auto-resume queue (Claude, ChatGPT, Gemini, DeepSeek).",
+      moves: ["Chat Recovery", "Local Backup", "Auto-Submit", "Multi-Platform"],
+      stats: { Impact: 88, Complexity: 82, Polish: 80 },
+      repo: "https://github.com/chennuru-tejith/Claude-Auto-Resume-Recycle-Bot",
+      live: "",
+    },
+    {
+      id: "candlox",
+      name: "Indian Stock Analyzer",
+      types: ["Finance", "Tech"],
+      blurb: "A TradingView indicator & screener suite for NSE/BSE and NIFTY/BANKNIFTY options — 13 confluence engines, a live telemetry dashboard and a backtest companion with ATR-based risk management.",
+      moves: ["Trend Engine", "VWAP Bands", "Smart-Money Scan", "Backtest"],
+      stats: { Impact: 78, Complexity: 92, Polish: 72 },
+      repo: "https://github.com/chennuru-tejith/Indian-Stock-Analyzer",
+      live: "",
+    },
+    {
+      id: "scoutling",
+      name: "Outreach CRM & AI Lead Scout",
+      types: ["Comms", "Tech"],
+      blurb: "An AI-powered outreach CRM and Chrome extension for job seekers — lead tracking, pitch & cover-letter generator, resume ATS optimizer and a mock-interview simulator.",
+      moves: ["Lead Scout", "Pitch Writer", "ATS Check", "Mock Interview"],
+      stats: { Impact: 85, Complexity: 80, Polish: 74 },
+      repo: "https://github.com/chennuru-tejith/Internship-Outreach",
+      live: "",
+    },
+    {
+      id: "notewing",
+      name: "Send-A-Note — LinkedIn AI Smart Writer",
+      types: ["Comms"],
+      blurb: "A Chrome extension spec + build that writes personalized LinkedIn connection notes and messages right inside LinkedIn — no copy-pasting.",
+      moves: ["Profile Parse", "Smart Note", "Inline Inject"],
+      stats: { Impact: 70, Complexity: 65, Polish: 70 },
+      repo: "https://github.com/chennuru-tejith/Send-A-Note",
+      live: "",
+    },
+    {
+      id: "prismo",
+      name: "Personal Portfolio (v1)",
+      types: ["Design", "Tech"],
+      blurb: "My first portfolio — glassmorphism UI, particle canvas, an interactive terminal and live GitHub stats. The first version of my personal site.",
+      moves: ["Glass UI", "Particle Field", "Terminal CLI"],
+      stats: { Impact: 60, Complexity: 60, Polish: 78 },
+      repo: "https://github.com/chennuru-tejith/Personal-Portfolio-Website",
+      live: "",
+    },
+  ],
+
+  // ---------- Used by the Quick View (recruiter résumé) ----------
+  experience: [
+    {
+      role: "Operations Intern",
+      org: "Round Table India — Hyderabad Titans Round Table Charitable Trust",
+      when: "Jun 2026 – Jul 2026 · Hyderabad",
+      points: [
+        "Monitored on-site execution of a ₹4 Cr CSR-funded government school construction project (MPPS & ZPHS Integrated School, Phase II) across 23 site visits over 7 weeks, tracking progress against sanctioned drawings.",
+        "Tracked CSR fund utilisation against the sanctioned budget and co-drafted progress-and-spend updates for CSR sponsor VST Industries Ltd., including a live sponsor update call.",
+        "Verified contractor-reported material stock and spend figures against supervisor records, catching and resolving a reporting discrepancy before it reached the sponsor.",
+      ],
+    },
+    {
+      role: "Project Management Intern",
+      org: "Dr. Reddy's Laboratories Ltd.",
+      when: "Jun 2025 – Jul 2025 · Hyderabad",
+      points: [
+        "Conducted employee cost analysis across FY2021–FY2025, tracking trends in salaries, share-based payments, and welfare expenses to support cost-optimization discussions.",
+        "Prepared structured management reports from multi-year workforce data, enabling leadership decisions on headcount budgeting and welfare spending.",
+        "Strengthened financial data interpretation, cost analysis, and reporting using MS Office Suite.",
+      ],
+    },
+    {
+      role: "Finance Intern",
+      org: "Ion Exchange India Ltd.",
+      when: "Dec 2024 – Jan 2025 · Hyderabad",
+      points: [
+        "Streamlined daily transaction processing, improving departmental workflow efficiency and reducing documentation backlogs.",
+        "Coordinated business partner communications and order confirmations, improving accuracy across stakeholder interactions.",
+        "Standardized vendor records and aligned internal financial documentation, enhancing data consistency and audit readiness.",
+      ],
+    },
+  ],
+
+  leadership: [
+    { role: "Head of Outreach", org: "ZAMAC — The Marketing Club, JGBS", when: "Feb 2026 – Present" },
+    { role: "Member, Student Grievance Redressal Committee", org: "Food & Mess Committee, JGBS", when: "Aug 2026 – Present" },
+    { role: "Student Representative, COGSASH", org: "O.P. Jindal Global University", when: "Nov 2025 – Present" },
+    { role: "Member, Election Commission", org: "Jindal Global Business School", when: "Apr 2025 – Present" },
+    { role: "Director", org: "JGU Entrepreneurship Club (200+ members)", when: "Feb 2026 – May 2026" },
+  ],
+
+  skills: [
+    { group: "Finance & Analytics", icon: "coin", items: ["Financial Analysis", "Cost Analysis", "Budgeting", "Bookkeeping", "Financial Reporting", "Data Interpretation"] },
+    { group: "Technology", icon: "chip", items: ["Microsoft Excel (Certified)", "MS Office Suite", "PowerPoint", "Tableau", "Python (Foundational)", "AI-assisted Development"] },
+    { group: "Core Competencies", icon: "crown", items: ["Strategic Communication", "Stakeholder Management", "Report Writing", "Cross-functional Coordination", "Leadership"] },
+  ],
+
+  education: [
+    {
+      degree: "Integrated BBA (Hons.) + MBA, Business Administration & Management",
+      school: "O.P. Jindal Global University (JGU), Sonipat, Haryana",
+      when: "Aug 2024 – Aug 2029",
+      score: "CGPA 7.9 / 8.00",
+    },
+    { degree: "Class XII, Commerce (MEC)", school: "Avinash College of Commerce, Hyderabad", when: "Apr 2024", score: "88.4%" },
+    { degree: "Class X", school: "Geetanjali Olympiad High School, Hyderabad", when: "May 2022", score: "93.1%" },
+  ],
+
+  achievements: [
+    { year: "2026", icon: "medal", text: "Batch Rank 3 and Certificate of Appreciation for Peer Support & Voluntary Contribution — JGU University Day." },
+    { year: "2025", icon: "trophy", text: "Best Leader, Best All-Rounder and Rank 2 in IBM Batch — JGU University Day." },
+    { year: "2025", icon: "star", text: "Certificate of Appreciation for volunteer leadership — JGU Alumni Day." },
+    { year: "2024", icon: "scroll", text: "Letter of Appreciation for Exemplary Academic Performance." },
+    { year: "2024", icon: "pillar", text: "Letter of Appreciation for the inauguration of India's First Constitution Museum & the National Convention on the Constitution of India." },
+  ],
+
+  certifications: [{ name: "Excel Skills for Business: Intermediate I", issuer: "Coursera · Macquarie University" }],
+
+  // ---------- How I Work: each principle is backed by real evidence ----------
+  principles: [
+    {
+      title: "Verify before you report",
+      text: "Numbers that reach a sponsor or a manager carry my name, so I check them against the source first.",
+      proof: "Caught a contractor's stock-and-spend discrepancy against supervisor records and resolved it before it reached the CSR sponsor.",
+      where: "Round Table India · 2026",
+    },
+    {
+      title: "Be there in person",
+      text: "Progress reports are only as good as the person who checked the site.",
+      proof: "Made 23 site visits in 7 weeks to monitor a ₹4 Cr government-school build against its sanctioned drawings.",
+      where: "Round Table India · 2026",
+    },
+    {
+      title: "Answer to whoever funds the work",
+      text: "Clear, regular updates are how you keep the trust of the people paying for the work.",
+      proof: "Co-drafted progress-and-spend updates for VST Industries and joined the live sponsor update call.",
+      where: "Round Table India · 2026",
+    },
+    {
+      title: "Earn trust, then keep it",
+      text: "Responsibility is given to people who have handled it well before.",
+      proof: "Elected student representative on JGU's Gender Sensitisation Committee, and trusted to run fair, transparent student elections.",
+      where: "O.P. Jindal Global University · 2025–now",
+    },
+  ],
+
+  // ---------- Research & Writing ----------
+  // Add entries like this (newest first). "url" can be an external link or a PDF in assets/papers/.
+  // {
+  //   kind: "Research paper",            // or "Case study", "Essay", "Blog"
+  //   title: "Title of the paper",
+  //   venue: "Course / journal / blog name",
+  //   date: "Nov 2026",
+  //   summary: "Two-line abstract.",
+  //   url: "assets/papers/my-paper.pdf",
+  // },
+  writing: [],
+
+  // ---------- Recommendations ----------
+  // Only add recommendations you've received in writing, with permission to publish.
+  // {
+  //   quote: "What they wrote about you.",
+  //   name: "Dr. Firstname Lastname",
+  //   role: "Professor of Finance",
+  //   org: "Jindal Global Business School",
+  //   relation: "Taught Tejith Corporate Finance, 2025",
+  //   link: "https://www.linkedin.com/in/their-profile",   // lets recruiters verify
+  // },
+  recommendations: [],
+};
