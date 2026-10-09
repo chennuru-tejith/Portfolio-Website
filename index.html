@@ -1,160 +1,193 @@
 <!doctype html>
-<html lang="en" data-theme="day">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <meta name="theme-color" content="#7cc4ff" />
-  <title>Tejith Island — Chennuru Tejith</title>
-  <meta name="description" content="Chennuru Tejith, BBA + MBA at O.P. Jindal Global University. Explore his island: five gyms for finance, operations, leadership, communication and tech." />
-  <meta property="og:title" content="Tejith Island — Chennuru Tejith" />
-  <meta property="og:description" content="Five gyms, one island. Finance, operations and leadership, learned on real projects." />
+  <meta name="theme-color" content="#050b18" />
+  <title>Chennuru Tejith — Finance, Operations & Leadership</title>
+  <meta name="description" content="Chennuru Tejith, BBA + MBA at O.P. Jindal Global University. Finance, operations and leadership, proven on real projects." />
+  <meta property="og:title" content="Chennuru Tejith — Finance, Operations & Leadership" />
+  <meta property="og:description" content="Business student who takes ownership of the numbers and the people behind them." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=DM+Sans:opsz,wght@9..40,400..700&family=Titillium+Web:wght@700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=21" />
-  <script src="js/boot.js?v=21"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css?v=33" />
+  <script src="js/boot.js?v=33"></script>
 </head>
 <body>
-  <!-- ============ LIGHTS OUT (first visit) ============ -->
-  <div class="lights" id="lights" hidden>
-    <div class="lights-row" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-    <p class="lights-text" id="lightsText">Lights out…</p>
-    <button class="lights-skip" id="lightsSkip">Skip</button>
-  </div>
-
-  <!-- ============ TOP BAR ============ -->
-  <header class="bar" id="bar">
-    <a class="brand" href="#top" aria-label="Tejith Island, home">
-      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M4 22c4-7 8-10 12-10s8 3 12 10" /><path d="M2 26h28" /><circle cx="16" cy="8" r="3" /></svg></span>
-      <span class="brand-name">Tejith<span>Island</span></span>
-    </a>
-    <nav class="bar-nav" aria-label="Sections">
-      <a href="#top">Island</a>
-      <a href="#principles">How I work</a>
-      <a href="#journey">Journey</a>
-      <a href="#garage">Garage</a>
-      <a href="#writing">Library</a>
-      <a href="#references">Town Hall</a>
-    </nav>
-    <div class="bar-right">
-      <div class="seg" role="tablist" aria-label="View">
-        <button role="tab" data-go="story" id="segStory">Explore</button>
-        <button role="tab" data-go="resume" id="segRes">Résumé</button>
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <div class="nav-in">
+      <a class="logo" href="#top" aria-label="Chennuru Tejith, home"><span class="logo-mark">CT</span><span class="logo-name">Chennuru Tejith</span></a>
+      <nav class="nav-links" aria-label="Sections">
+        <a href="#disciplines">Disciplines</a>
+        <a href="#approach">Approach</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#writing">Writing</a>
+        <a href="#references">References</a>
+      </nav>
+      <div class="nav-right">
+        <button class="icon-btn" id="themeBtn" aria-label="Switch theme"></button>
+        <button class="btn btn-dark btn-sm" data-go="resume" id="resBtn">Résumé</button>
       </div>
-      <button class="icon-btn" id="themeBtn" aria-label="Switch theme"></button>
     </div>
   </header>
 
-  <!-- ============ ISLAND ============ -->
+  <!-- ============ STORY ============ -->
   <main id="story">
-    <section class="hero" id="top" aria-label="Tejith Island map">
-      <div class="sky" aria-hidden="true">
-        <span class="sun"></span><span class="moon"></span>
-        <span class="cloud c1"></span><span class="cloud c2"></span><span class="cloud c3"></span>
-        <div class="stars"></div>
-      </div>
+    <section class="hero" id="top">
+      <div class="hero-bg" aria-hidden="true"><span class="blob b1"></span><span class="blob b2"></span><span class="grid"></span></div>
+      <div class="hero-in wrap">
+        <div class="hero-copy">
+          <span class="status"><span class="dot"></span>Open to internships · 2027</span>
+          <h1>I take ownership of the numbers <span class="grad">and the people behind them.</span></h1>
+          <p class="lead">I'm <strong>Chennuru Tejith</strong>, a BBA + MBA student at O.P. Jindal Global University, working in finance, operations and leadership. I've monitored a ₹4 Cr build on site, checked every figure before it reached the sponsor, and directed a 200+ member student club.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#disciplines">See my work <span aria-hidden="true">→</span></a>
+            <a class="btn btn-ghost" id="cvHero" download>Download CV</a>
+          </div>
+          <dl class="hero-facts">
+            <div><dt>Based in</dt><dd>Hyderabad · Sonipat</dd></div>
+            <div><dt>Languages</dt><dd>English, Telugu, Hindi, French</dd></div>
+          </dl>
+        </div>
 
-      <div class="hero-copy">
-        <p class="eyebrow">Welcome to Tejith Island</p>
-        <h1>Hi, I'm Tejith. <span class="wave-emoji" aria-hidden="true">👋</span></h1>
-        <p class="lead">Business student at O.P. Jindal Global University. I take ownership of the numbers and the people behind them. <strong>Tap a building to explore</strong>: each gym stamps your Trainer Pass.</p>
-        <div class="hero-cta">
-          <button class="btn btn-primary" id="startTour">Start exploring <span aria-hidden="true">→</span></button>
-          <button class="btn btn-ghost" data-go="resume">60-second résumé</button>
+        <div class="hero-visual" id="heroVisual" aria-label="Highlights from recent work">
+          <article class="card file">
+            <header class="file-head">
+              <span class="file-ic" aria-hidden="true"></span>
+              <div><p class="mono">PROJECT FILE · 2026</p><h3>Government school build, Phase II</h3></div>
+              <span class="pill ok">Reported ✓</span>
+            </header>
+            <div class="file-grid">
+              <div><span>CSR budget</span><b>₹4 Cr</b></div>
+              <div><span>Site visits</span><b>23</b></div>
+              <div><span>Duration</span><b>7 wks</b></div>
+            </div>
+            <div class="weeks" aria-label="Monitored across all 7 weeks">
+              <span>Wk 1</span><span>Wk 2</span><span>Wk 3</span><span>Wk 4</span><span>Wk 5</span><span>Wk 6</span><span>Wk 7</span>
+            </div>
+            <p class="file-foot">Round Table India · CSR sponsor: VST Industries Ltd.</p>
+          </article>
+          <article class="card float-a">
+            <span class="chk" aria-hidden="true">✓</span>
+            <div><b>Discrepancy caught</b><span>Contractor figures checked against supervisor records before they reached the sponsor.</span></div>
+          </article>
+          <article class="card float-b">
+            <p class="mono">COST ANALYSIS</p>
+            <b>FY2021 → FY2025</b>
+            <div class="fy" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+            <span>Dr. Reddy's Laboratories</span>
+          </article>
         </div>
       </div>
 
-      <div class="world-scroll" id="worldScroll">
-        <div class="world" id="world">
-          <svg class="scene" id="scene" role="img" aria-label="Isometric island with five gym buildings, a race track and a harbour"></svg>
-          <div class="pins" id="pins"></div>
-          <div class="bubble" id="bubble" aria-hidden="true"><span id="bubbleText">Hi there!</span></div>
-        </div>
-      </div>
-      <p class="swipe-hint" aria-hidden="true">← swipe to explore the island →</p>
-
-      <div class="pass" id="pass" aria-label="Trainer Pass">
-        <div class="pass-head"><span>Trainer Pass</span><span class="lap" id="lap" title="Time to visit all five gyms">0:00.0</span></div>
-        <div class="stamps" id="stamps"></div>
+      <div class="trust wrap" aria-label="Organisations">
+        <span class="trust-label">Experience with</span>
+        <ul>
+          <li>Round Table India</li>
+          <li>Dr. Reddy's Laboratories</li>
+          <li>Ion Exchange India</li>
+          <li>O.P. Jindal Global University</li>
+        </ul>
       </div>
     </section>
 
-    <section class="guide wrap" aria-label="Island guide">
-      <div class="guide-grid" id="guide"></div>
+    <section class="metrics wrap" aria-label="At a glance"><div class="metric-row" id="stats"></div></section>
+
+    <!-- The five disciplines (the "gyms") -->
+    <section class="sec wrap" id="disciplines">
+      <header class="sec-head">
+        <p class="kicker">Five disciplines</p>
+        <h2>Skills earned on the job, not just listed.</h2>
+        <p class="sub">Each credential below is backed by real work you can check: the role, the organisation and what I delivered.</p>
+      </header>
+      <div class="disc">
+        <div class="disc-tabs" role="tablist" aria-label="Disciplines" id="discTabs"></div>
+        <div class="disc-panel" role="tabpanel" id="discPanel" aria-live="polite"></div>
+      </div>
     </section>
 
-    <section class="stats wrap" aria-label="At a glance"><div class="stat-row" id="stats"></div></section>
-
-    <section class="sec wrap" id="principles">
-      <header class="sec-head"><p class="eyebrow">How I work</p><h2>Four rules, each with proof.</h2><p class="sub">Things I hold myself to, backed by work I've actually done.</p></header>
+    <section class="sec wrap" id="approach">
+      <header class="sec-head">
+        <p class="kicker">How I work</p>
+        <h2>Four rules I hold myself to.</h2>
+        <p class="sub">Each one is backed by something I've actually done.</p>
+      </header>
       <div class="principles" id="principleList"></div>
     </section>
 
     <section class="quote wrap" id="quote" aria-label="On loyalty">
-      <p id="quoteText"></p><span id="quoteBy"></span>
+      <figure><blockquote id="quoteText"></blockquote><figcaption id="quoteBy"></figcaption></figure>
     </section>
 
-    <section class="sec wrap cv-auto" id="journey">
-      <header class="sec-head"><p class="eyebrow">The journey</p><h2>Internships &amp; leadership.</h2><p class="sub">Newest first.</p></header>
-      <div class="journey" id="journeyList"></div>
+    <section class="sec wrap cv-auto" id="experience">
+      <header class="sec-head">
+        <p class="kicker">Experience</p>
+        <h2>Internships &amp; leadership.</h2>
+      </header>
+      <div class="timeline" id="journeyList"></div>
     </section>
 
-    <section class="sec wrap cv-auto" id="garage">
-      <header class="sec-head"><p class="eyebrow">The garage</p><h2>Things I've built.</h2><p class="sub">An outreach platform, AI-chat tools and market analytics, built on the side.</p></header>
-      <div class="garage" id="workList"></div>
+    <section class="sec wrap cv-auto" id="projects">
+      <header class="sec-head">
+        <p class="kicker">Projects</p>
+        <h2>Things I've built.</h2>
+        <p class="sub">An outreach platform, AI-chat tools and market analytics, built alongside my degree.</p>
+      </header>
+      <div class="projects" id="workList"></div>
     </section>
 
     <section class="sec wrap cv-auto" id="writing">
-      <header class="sec-head"><p class="eyebrow">The library</p><h2>Research &amp; writing.</h2><p class="sub">Papers, case studies and essays on business and operations.</p></header>
+      <header class="sec-head">
+        <p class="kicker">Research &amp; writing</p>
+        <h2>Papers, case studies and essays.</h2>
+      </header>
       <div class="filters" id="writingFilters" role="tablist" aria-label="Filter writing" hidden></div>
       <div class="writing" id="writingList"></div>
     </section>
 
     <section class="sec wrap cv-auto" id="references">
-      <header class="sec-head"><p class="eyebrow">Town hall</p><h2>Vouched for.</h2><p class="sub">Recommendations from professors and mentors, published with permission and linked so you can verify them.</p></header>
+      <header class="sec-head">
+        <p class="kicker">References</p>
+        <h2>What people I've worked with say.</h2>
+        <p class="sub">Published with permission and linked to each author's profile so you can verify them.</p>
+      </header>
       <div id="refList"></div>
     </section>
 
     <section class="sec wrap cv-auto" id="honours">
-      <header class="sec-head"><p class="eyebrow">Trophy cabinet</p><h2>Honours &amp; schooling.</h2></header>
+      <header class="sec-head"><p class="kicker">Recognition &amp; education</p><h2>Honours and schooling.</h2></header>
       <div class="honours"><ul class="honour-list" id="honourList"></ul><aside class="school" id="school"></aside></div>
     </section>
 
-    <section class="contact wrap" id="contact">
-      <div class="contact-card">
-        <p class="eyebrow">The lighthouse</p>
+    <section class="cta wrap" id="contact">
+      <div class="cta-card">
+        <div class="cta-bg" aria-hidden="true"></div>
+        <p class="kicker light">Contact</p>
         <h2>Let's work together.</h2>
-        <p class="sub">Internships, projects or a chat about business and the tools behind it.</p>
-        <div class="contact-cta" id="contactCta"></div>
-        <button class="copy" id="copyEmail"><span class="copy-text"></span><span class="copy-tag">Copy</span></button>
+        <p>Internships, projects, or a conversation about business and the tools behind it.</p>
+        <div class="cta-actions" id="contactCta"></div>
+        <button class="copy" id="copyEmail"><span class="copy-text"></span><span class="copy-tag">Copy email</span></button>
       </div>
     </section>
 
     <footer class="foot wrap">
-      <span>© <span id="year"></span> Chennuru Tejith · All artwork original</span>
-      <a href="#top">Back to the island ↑</a>
+      <span>© <span id="year"></span> Chennuru Tejith</span>
+      <a href="#top">Back to top ↑</a>
     </footer>
   </main>
 
   <!-- ============ RÉSUMÉ ============ -->
   <main id="resume" hidden></main>
 
-  <!-- ============ GYM SHEET ============ -->
-  <div class="sheet-wrap" id="sheet" hidden>
-    <div class="sheet-scrim" data-close></div>
-    <aside class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
-      <button class="icon-btn sheet-x" data-close aria-label="Close">✕</button>
-      <div id="sheetBody"></div>
-    </aside>
-  </div>
-
   <div class="toast" id="toast" role="status" hidden></div>
 
-  <script src="js/data.js?v=21"></script>
-  <script src="js/icons.js?v=21"></script>
-  <script src="js/island.js?v=21"></script>
-  <script src="js/app.js?v=21"></script>
+  <script src="js/data.js?v=33"></script>
+  <script src="js/icons.js?v=33"></script>
+  <script src="js/app.js?v=33"></script>
 </body>
 </html>

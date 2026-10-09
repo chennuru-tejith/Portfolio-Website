@@ -42,7 +42,7 @@ window.PORTFOLIO = {
       type: "Finance",
       color: "#e0a526",
       icon: "coin", medal: "Ledger Badge",
-      intro: "Numbers tell stories. In this gym, every rupee is tracked and every trend explained.",
+      intro: "Numbers tell stories. I track every rupee and explain every trend.",
       moves: ["Financial Analysis", "Cost Analysis", "Budgeting", "Bookkeeping", "Financial Reporting", "Data Interpretation"],
       battles: [
         {
@@ -94,7 +94,7 @@ window.PORTFOLIO = {
       type: "Leadership",
       color: "#8b5cf6",
       icon: "crown", medal: "Summit Badge",
-      intro: "Leaders are trained, not born. This gym trains through committees, clubs and communities.",
+      intro: "Leadership is learned by doing: through committees, clubs and communities.",
       moves: ["Leadership", "Institutional Governance", "Policy Deliberation", "Event Programming", "Mentorship"],
       battles: [
         {
@@ -154,7 +154,7 @@ window.PORTFOLIO = {
       type: "Tech",
       color: "#14b8a6",
       icon: "chip", medal: "Circuit Badge",
-      intro: "A business mind that can also build. Tools here are forged with AI-assisted development.",
+      intro: "A business mind that can also build, using AI-assisted development to ship real tools.",
       moves: ["Microsoft Excel (Certified)", "Tableau", "MS Office Suite", "Python (Foundational)", "AI-assisted Development", "Browser Extensions"],
       battles: [
         {

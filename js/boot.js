@@ -3,7 +3,7 @@
   var d = document.documentElement;
   d.classList.add("js");
   try {
-    var s = JSON.parse(localStorage.getItem("tejith-island-v1"));
-    if (s && (s.theme === "day" || s.theme === "night")) d.setAttribute("data-theme", s.theme);
+    var s = JSON.parse(localStorage.getItem("tejith-pro-v1"));
+    if (s && (s.theme === "light" || s.theme === "dark")) d.setAttribute("data-theme", s.theme);
   } catch (e) {}
 })();
