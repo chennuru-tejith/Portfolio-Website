@@ -20,15 +20,15 @@ window.PORTFOLIO = {
     summary:
       "Business management student with hands-on experience in CSR operations, finance, and project management at a nonprofit trust and leading corporate organizations. Skilled in on-ground project monitoring, budget tracking, financial analysis, and stakeholder/sponsor reporting. Combines operational and analytical rigor with active leadership in institutional governance and student organizations.",
     stats: [
-      { label: "Internships", value: "3" },
-      { label: "CSR project monitored", value: "₹4 Cr" },
-      { label: "Member club directed", value: "200+" },
-      { label: "CGPA", value: "7.9/8" },
+      { label: "Internships", value: "3", story: "Round Table India, Dr. Reddy's and Ion Exchange, 2024 to 2026." },
+      { label: "CSR project monitored", value: "₹4 Cr", story: "Monitored on site across 23 visits in 7 weeks." },
+      { label: "Member club directed", value: "200+", story: "JGU Entrepreneurship Club, Feb to May 2026." },
+      { label: "CGPA", value: "7.9/8", story: "BBA + MBA, O.P. Jindal Global University." },
     ],
     // The quote shown between the Gyms and the Journey. Wrap words in *stars* to set them in italic gold.
     quote: {
-      text: "Loyalty isn't proven when staying is easy. It's proven when *leaving would be easier.*",
-      by: "A rule I work by",
+      text: "Loyalty works both ways. *If you ask for it, be ready to give it.*",
+      by: "What I believe",
     },
     languages: ["English (Full Professional)", "Telugu (Native)", "Hindi (Working)", "French (Elementary)"],
   },
@@ -382,6 +382,25 @@ window.PORTFOLIO = {
 
   // ---------- Off the clock ----------
   offClock: "Formula 1 — I follow team strategy and race-day decisions.",
+
+  // ---------- Portrait in the hero: put your photo in assets/ and its path here (empty = placeholder frame) ----------
+  photo: "",
+
+  // ---------- "What's new" strip ----------
+  updates: [{ date: "Oct 2026", text: "Generative Engine Optimization research paper in progress", link: "#writing" }],
+
+  // ---------- Booking link for "Book a 15-minute call" (e.g. a free Calendly link). Empty = email request instead ----------
+  bookingUrl: "",
+
+  // ---------- Visitor counter (optional). Set up a free GoatCounter site and put its code here, e.g. "tejith" ----------
+  goatcounter: "",
+
+  // ---------- Hidden details: hovering these words reveals a fact (all from the CV) ----------
+  details: [
+    { word: "O.P. Jindal Global University", fact: "CGPA 7.9 / 8.00 in the integrated BBA + MBA." },
+    { word: "VST Industries", fact: "The CSR sponsor of the ₹4 Cr school build." },
+    { word: "Hyderabad", fact: "Schooled here: Class X (93.1%) and Class XII (88.4%)." },
+  ],
 
   // ---------- Bookshelf (hidden until books are added) ----------
   // { title: "Book title", author: "Author", note: "One line on what it changed for me." }

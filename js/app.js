@@ -134,12 +134,12 @@
 
   function renderSections() {
     $("#cvHero").href = D.profile.cv;
-    $("#stats").innerHTML = D.profile.stats.map((s) => `<div class="metric"><b>${esc(s.value)}</b><span>${esc(s.label)}</span></div>`).join("");
+    $("#stats").innerHTML = D.profile.stats.map((s) => `<div class="metric" tabindex="0"><b data-v="${esc(s.value)}">${esc(s.value)}</b><span>${esc(s.label)}</span>${s.story ? `<span class="story">${esc(s.story)}</span>` : ""}</div>`).join("");
     $("#principleList").innerHTML = D.principles.map((p, i) => `
       <article class="principle rv"><span class="pr-no">${pad(i + 1)}</span><h3>${esc(p.title)}</h3><p class="pr-text">${esc(p.text)}</p>
       <div class="pr-proof"><b>Proof</b><p>${esc(p.proof)}</p><span class="pr-where">${esc(p.where)}</span></div></article>`).join("");
     const q = D.profile.quote;
-    if (q) { $("#quoteText").innerHTML = esc(q.text).replace(/\*([^*]+)\*/g, "<em>$1</em>"); $("#quoteBy").textContent = "— " + q.by; } else $("#quote").hidden = true;
+    if (q) { $("#quoteText").innerHTML = esc(q.text).replace(/\*([^*]+)\*/g, "<em>$1</em>"); $("#quoteBy").textContent = "— " + q.by; } else $(".pq").hidden = true;
 
     const items = [...D.experience.map((e) => ({ ...e, tag: "Internship" })), ...D.leadership.map((l) => ({ ...l, points: pointsFor(l.role), tag: "Leadership", lead: true }))].sort((a, b) => startOf(b.when) - startOf(a.when));
     $("#journeyList").innerHTML = items.map((s) => `
@@ -451,10 +451,226 @@
     document.addEventListener("pointerenter", () => (c.style.opacity = ""));
   }
 
+
+  // ---------- hero: portrait, what's new, greeting, word-by-word headline ----------
+  function renderHeroExtras() {
+    if (D.photo) {
+      const img = new Image();
+      img.alt = `Portrait of ${D.profile.name}`; img.decoding = "async"; img.src = D.photo;
+      img.addEventListener("load", () => { $(".frame-empty").remove(); });
+      $("#frame").appendChild(img);
+    }
+    const u = (D.updates || [])[0];
+    if (u) { const n = $("#news"); n.href = u.link || "#"; n.innerHTML = `<b>New</b>${esc(u.text)}<i>· ${esc(u.date)}</i>`; n.hidden = false; }
+    const h = new Date().getHours();
+    const g = h < 5 ? "Up late? Welcome." : h < 12 ? "Good morning, and welcome." : h < 17 ? "Good afternoon, and welcome." : h < 22 ? "Good evening, and welcome." : "Up late? Welcome.";
+    $("#greet").textContent = g;
+    if (still) return;
+    const h1 = $(".hero h1"); let i = 0;
+    const walk = (node) => {
+      [...node.childNodes].forEach((c) => {
+        if (c.nodeType === 3) {
+          const frag = document.createDocumentFragment();
+          c.textContent.split(/(\s+)/).forEach((t) => {
+            if (!t) return;
+            if (/^\s+$/.test(t)) { frag.appendChild(document.createTextNode(t)); return; }
+            const sp = document.createElement("span"); sp.className = "w"; sp.textContent = t; sp.style.animationDelay = (0.15 + i++ * 0.07).toFixed(2) + "s"; frag.appendChild(sp);
+          });
+          c.replaceWith(frag);
+        } else if (c.nodeType === 1) walk(c);
+      });
+    };
+    walk(h1); h1.classList.add("split");
+  }
+
+  // ---------- numbers count up when they come into view ----------
+  function countUps() {
+    const els = $$("#stats b[data-v]");
+    const run = (el) => {
+      const raw = el.dataset.v, m = raw.match(/^([^\d]*)([\d.]+)(.*)$/); if (!m) return;
+      const [, pre, num, post] = m, target = parseFloat(num), dec = (num.split(".")[1] || "").length, t0 = performance.now(), dur = 1500;
+      const step = (t) => { const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3); el.textContent = pre + (target * e).toFixed(dec) + post; if (k < 1) requestAnimationFrame(step); };
+      requestAnimationFrame(step);
+    };
+    if (still) return;
+    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { run(e.target); io.unobserve(e.target); } }), { threshold: 0.6 });
+    els.forEach((el) => io.observe(el));
+  }
+
+  // ---------- the ₹4 Cr story, told on scroll ----------
+  function scrollStory() {
+    const steps = $$("#stSteps li"); if (!steps.length) return;
+    const weeks = $$("#stWeeks span"), pill = $("#stPill"), flag = $("#stFlag");
+    const labels = ["Briefed", "On site", "Budget tracked", "Discrepancy caught", "Reported ✓"];
+    const set = (n) => {
+      steps.forEach((li, k) => li.classList.toggle("on", k === n));
+      weeks.forEach((w, k) => setTimeout(() => w.classList.toggle("on", n >= 1), n >= 1 ? k * 90 : 0));
+      flag.classList.toggle("on", n >= 3);
+      pill.textContent = labels[n]; pill.classList.toggle("st-pill-ok", n === 4);
+    };
+    set(0);
+    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) set(+e.target.dataset.step); }), { rootMargin: "-45% 0px -45% 0px" });
+    steps.forEach((li) => io.observe(li));
+  }
+
+  // ---------- journey map draws itself when it comes into view ----------
+  function mapReveal() {
+    const m = $("#map"); if (!m) return;
+    if (still) { m.classList.add("drawn"); return; }
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { m.classList.add("drawn"); io.disconnect(); } }, { threshold: 0.3 });
+    io.observe(m);
+  }
+
+  // ---------- "ask my portfolio": instant answers from the site's own content ----------
+  const SYN = { budget: ["budget", "spend", "fund", "cost", "financ", "rupee", "₹"], lead: ["lead", "direct", "head", "elect", "represent", "team", "club"], data: ["data", "analys", "report", "excel", "tableau", "python"], avail: ["availab", "december", "june", "internship", "when", "start"], build: ["built", "build", "app", "extension", "tool", "project", "github"], verify: ["verif", "check", "discrepan", "audit", "record"], speak: ["language", "telugu", "hindi", "french", "english", "communicat"] };
+  let corpus = null;
+  function buildCorpus() {
+    const c = [];
+    D.experience.forEach((e) => e.points.forEach((t) => c.push({ src: e.org.split(" — ")[0], t })));
+    D.leadership.forEach((l) => c.push({ src: "Leadership", t: `${l.role}, ${l.org} (${l.when})` }));
+    D.principles.forEach((p) => c.push({ src: "How I work", t: p.proof }));
+    (D.abilities || []).forEach((a) => c.push({ src: a.name, t: a.proof }));
+    D.projects.forEach((p) => c.push({ src: "Project", t: `${p.name}: ${p.blurb}` }));
+    D.achievements.forEach((a) => c.push({ src: `Honour ${a.year}`, t: a.text }));
+    D.skills.forEach((s) => c.push({ src: s.group, t: s.items.join(", ") }));
+    c.push({ src: "Languages", t: D.profile.languages.join(", ") });
+    if (D.availability) c.push({ src: "Availability", t: `Available ${D.availability.windows.join(" and ")} for ${D.availability.type}; roles: ${D.availability.roles.join(", ")}; ${D.availability.locations}.` });
+    D.education.forEach((e) => c.push({ src: "Education", t: `${e.degree}, ${e.school} (${e.when}, ${e.score})` }));
+    return c;
+  }
+  function ask(q) {
+    corpus = corpus || buildCorpus();
+    const words = q.toLowerCase().replace(/[^\p{L}\p{N}₹\s]/gu, " ").split(/\s+/).filter((w) => w.length > 2 && !["has", "the", "and", "for", "him", "his", "does", "did", "can", "what", "with", "any", "how", "who", "skills"].includes(w));
+    const keys = new Set();
+    words.forEach((w) => { keys.add(w.slice(0, 5)); Object.values(SYN).forEach((list) => { if (list.some((k) => w.startsWith(k.slice(0, 4)) || k.startsWith(w.slice(0, 4)))) list.forEach((k) => keys.add(k)); }); });
+    const hits = corpus.map((d) => { const low = d.t.toLowerCase(); let sc = 0; keys.forEach((k) => { if (low.includes(k)) sc++; }); return { ...d, sc }; }).filter((d) => d.sc > 0).sort((a, b) => b.sc - a.sc).slice(0, 3);
+    const out = $("#askOut");
+    if (!words.length) { out.innerHTML = ""; return; }
+    if (!hits.length) { out.innerHTML = `<p class="ask-none">Nothing on that yet. Try one of the suggestions, or ask Tejith directly below.</p>`; return; }
+    const mark = (t) => { let h = esc(t); [...keys].filter((k) => k.length > 3).forEach((k) => { h = h.replace(new RegExp("(" + k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "[\\p{L}]*)", "giu"), "<mark>$1</mark>"); }); return h; };
+    out.innerHTML = hits.map((h, i) => `<div class="ask-hit" style="animation-delay:${i * 0.08}s"><span class="mono">${esc(h.src)}</span><p>${mark(h.t)}</p></div>`).join("");
+  }
+  function renderAsk() {
+    const chips = ["Has he handled budgets?", "Can he lead a team?", "When is he available?", "Has he built anything?", "Data and reporting?", "Which languages?"];
+    $("#askChips").innerHTML = chips.map((c) => `<button type="button">${esc(c)}</button>`).join("");
+    $$("#askChips button").forEach((b) => b.addEventListener("click", () => { $("#askInput").value = b.textContent; ask(b.textContent); }));
+    $("#askBtn").addEventListener("click", () => ask($("#askInput").value));
+    $("#askInput").addEventListener("keydown", (e) => { if (e.key === "Enter") ask(e.target.value); });
+  }
+
+  // ---------- smart contact + booking ----------
+  function renderContact() {
+    let type = "internship";
+    $$(".msg-type button").forEach((b) => b.addEventListener("click", () => {
+      type = b.dataset.t; $$(".msg-type button").forEach((x) => x.setAttribute("aria-checked", x === b));
+    }));
+    const err = $("#msgErr");
+    [$("#msgName"), $("#msgBody")].forEach((f) => f.addEventListener("input", () => (err.hidden = true)));
+    $("#msgSend").addEventListener("click", () => {
+      const name = $("#msgName").value.trim(), org = $("#msgOrg").value.trim(), body = $("#msgBody").value.trim();
+      if (!name) { err.textContent = "Add your name first."; err.hidden = false; $("#msgName").focus(); return; }
+      if (type !== "hello" && !body) { err.textContent = "Add a line about the opportunity."; err.hidden = false; $("#msgBody").focus(); return; }
+      const subject = { internship: `Internship opportunity: ${org || name}`, project: `Project collaboration: ${org || name}`, hello: `Hello from ${name}` }[type];
+      const text = [`Hi Tejith,`, ``, body || `Just wanted to say hello. I came across your portfolio.`, ``, `Best,`, name + (org ? `, ${org}` : "")].join("\n");
+      location.href = `mailto:${D.profile.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(text)}`;
+    });
+    $("#bookCall").addEventListener("click", () => {
+      if (D.bookingUrl) { window.open(D.bookingUrl, "_blank", "noopener,noreferrer"); return; }
+      const text = ["Hi Tejith,", "", "Could we set up a 15-minute call?", "Times that work for me (with time zone):", "", "Best,"].join("\n");
+      location.href = `mailto:${D.profile.email}?subject=${encodeURIComponent("Request: 15-minute call")}&body=${encodeURIComponent(text)}`;
+    });
+  }
+
+  // ---------- "Hiring? Let's talk" tab after 60% of the page ----------
+  function hireTab() {
+    const tab = $("#hire"); let contactVis = false;
+    new IntersectionObserver(([e]) => { contactVis = e.isIntersecting; upd(); }).observe($("#contact"));
+    const upd = () => {
+      const max = document.documentElement.scrollHeight - innerHeight;
+      tab.hidden = !(view === "story" && max > 0 && scrollY / max > 0.6 && !contactVis);
+    };
+    addEventListener("scroll", upd, { passive: true });
+    tab.addEventListener("click", () => $("#contact").scrollIntoView({ behavior: still ? "auto" : "smooth" }));
+  }
+
+  // ---------- hidden details ----------
+  function hiddenDetails() {
+    const list = D.details || []; if (!list.length) return;
+    const seen = new Set(), pill = $("#found");
+    const show = () => {
+      pill.innerHTML = seen.size === list.length ? `All <b>${list.length}</b> details found ✓` : `Details found <b>${seen.size}</b> / ${list.length}`;
+      pill.hidden = false;
+      if (seen.size === list.length) setTimeout(() => (pill.hidden = true), 4000);
+    };
+    list.forEach((d, i) => {
+      const walker = document.createTreeWalker($("#story"), NodeFilter.SHOW_TEXT, { acceptNode: (n) => n.parentElement.closest("script, style, svg, .detail, button, input, textarea, .tip") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT });
+      let n;
+      while ((n = walker.nextNode())) {
+        const at = n.textContent.indexOf(d.word);
+        if (at < 0) continue;
+        const after = n.splitText(at); after.splitText(d.word.length);
+        const span = document.createElement("span");
+        span.className = "detail"; span.tabIndex = 0; span.textContent = d.word;
+        span.innerHTML += `<span class="tip" role="tooltip">${esc(d.fact)}</span>`;
+        after.replaceWith(span);
+        const hit = () => { if (!seen.has(i)) { seen.add(i); span.classList.add("seen"); show(); } };
+        span.addEventListener("mouseenter", hit); span.addEventListener("focus", hit);
+        break;
+      }
+    });
+  }
+
+  // ---------- share card with QR ----------
+  const shareUrl = () => location.origin + location.pathname;
+  function openShare() {
+    const qr = qrcode(0, "M"); qr.addData(shareUrl()); qr.make();
+    $("#shareCard").innerHTML = `${$(".logo-svg").outerHTML}
+      <h3 id="shareTitle">${esc(D.profile.name)}</h3>
+      <p>Finance · Operations · Leadership</p>
+      <div class="sc-row"><span>BBA + MBA, O.P. Jindal Global University<br>${esc(D.profile.email)}</span><div class="sc-qr">${qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true })}</div></div>`;
+    $("#share").hidden = false; $(".share-x").focus();
+    $("#shareSave").onclick = () => saveCard(qr);
+  }
+  function closeShare() { $("#share").hidden = true; }
+  function saveCard(qr) {
+    const W = 1080, H = 1350, c = document.createElement("canvas"); c.width = W; c.height = H;
+    const x = c.getContext("2d");
+    x.fillStyle = "#0a1220"; x.fillRect(0, 0, W, H);
+    x.strokeStyle = "rgba(169,189,240,.25)"; x.strokeRect(40, 40, W - 80, H - 80);
+    x.fillStyle = "#d69c77"; x.fillRect(100, 140, 90, 3);
+    x.fillStyle = "#f1ece3"; x.font = "400 110px 'Instrument Serif', Georgia, serif"; x.fillText(D.profile.name.split(" ")[0], 96, 330); x.fillText(D.profile.name.split(" ").slice(1).join(" "), 96, 450);
+    x.fillStyle = "#a9bdf0"; x.font = "italic 400 52px 'Instrument Serif', Georgia, serif"; x.fillText("Finance · Operations · Leadership", 100, 560);
+    x.fillStyle = "#8c95a8"; x.font = "400 30px 'Geist', sans-serif"; x.fillText("BBA + MBA, O.P. Jindal Global University", 100, 640); x.fillText(D.profile.email, 100, 690);
+    const n = qr.getModuleCount(), size = 380, cell = size / n, ox = W - 100 - size, oy = H - 100 - size;
+    x.fillStyle = "#f1ece3"; x.fillRect(ox - 20, oy - 20, size + 40, size + 40);
+    x.fillStyle = "#0a1220";
+    for (let r = 0; r < n; r++) for (let k = 0; k < n; k++) if (qr.isDark(r, k)) x.fillRect(ox + k * cell, oy + r * cell, Math.ceil(cell), Math.ceil(cell));
+    x.fillStyle = "#8c95a8"; x.font = "400 26px 'Geist Mono', monospace"; x.fillText("SCAN TO VIEW PORTFOLIO", 100, H - 110);
+    c.toBlob((b) => { const a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = "Chennuru-Tejith-card.png"; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); }, "image/png");
+  }
+  function wireShare() {
+    $("#shareNative").addEventListener("click", async () => {
+      if (navigator.share) { try { await navigator.share({ title: document.title, url: shareUrl() }); } catch (e) {} }
+      else { try { await navigator.clipboard.writeText(shareUrl()); toast("Link copied ✓"); } catch (e) {} }
+    });
+    $("#shareCopy").addEventListener("click", async () => { try { await navigator.clipboard.writeText(shareUrl()); toast("Link copied ✓"); } catch (e) {} });
+  }
+
+  // ---------- optional visitor counter (GoatCounter, privacy-friendly) ----------
+  function views() {
+    const code = D.goatcounter; if (!code || !/^[a-z0-9-]+$/i.test(code)) return;
+    const base = `https://${code}.goatcounter.com`, path = location.pathname;
+    new Image().src = `${base}/count?p=${encodeURIComponent(path)}&t=${encodeURIComponent(document.title)}&rnd=${Math.random().toString(36).slice(2)}`;
+    fetch(`${base}/counter/${encodeURIComponent(path)}.json`).then((r) => (r.ok ? r.json() : null)).then((j) => {
+      if (j && j.count) { $("#views").innerHTML = `Viewed by <b>${esc(j.count)}</b> people`; $("#views").hidden = false; }
+    }).catch(() => {});
+  }
+
   // ---------- boot ----------
   applyTheme(state.theme);
   $("#year").textContent = new Date().getFullYear();
-  renderDisciplines(); renderSections(); renderProgress(); renderAvail(); renderAbilities(); renderMap(); renderFaq(); renderFilter(); renderNow(); renderExtras(); renderResume(); clock(); cursor(); motion(); reveal();
+  renderDisciplines(); renderSections(); renderProgress(); renderAvail(); renderAbilities(); renderMap(); renderFaq(); renderFilter(); renderNow(); renderExtras(); renderResume(); renderHeroExtras(); renderAsk(); renderContact(); wireShare();
+  clock(); cursor(); motion(); countUps(); scrollStory(); mapReveal(); hireTab(); hiddenDetails(); views(); reveal();
 
   document.addEventListener("click", (e) => {
     const go = e.target.closest("[data-go]"); if (go) setView(go.dataset.go, true, true);
@@ -462,8 +678,11 @@
     if (e.target.closest("[data-close-case]")) closeCase();
     if (e.target.closest("[data-hr]")) copyHR();
     if (e.target.closest("[data-print]")) window.print();
+    if (e.target.closest("[data-share]")) openShare();
+    if (e.target.closest("[data-close-share]")) closeShare();
   });
   window.addEventListener("keydown", (e) => {
+    if (!$("#share").hidden && e.key === "Escape") return closeShare();
     if ($("#reader").hidden) return;
     if (e.key === "Escape") return closeCase();
     if (e.key === "Tab") {

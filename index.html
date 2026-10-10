@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://*.goatcounter.com; connect-src 'self' https://*.goatcounter.com; object-src 'none'; base-uri 'self'; form-action 'none'" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="theme-color" content="#0a1220" />
   <title>Chennuru Tejith — Finance, Operations & Leadership</title>
@@ -19,8 +19,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=70" />
-  <script src="js/boot.js?v=70"></script>
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
+  <link rel="stylesheet" href="css/style.css?v=80" />
+  <script src="js/boot.js?v=80"></script>
 </head>
 <body>
   <div class="progress" id="progress" aria-hidden="true"></div>
@@ -29,7 +30,7 @@
   <!-- ============ NAV ============ -->
   <header class="nav" id="nav">
     <div class="nav-in">
-      <a class="logo" href="#top" aria-label="Chennuru Tejith, home"><span class="logo-mark">CT</span><span class="logo-name">Chennuru Tejith</span></a>
+      <a class="logo" href="#top" aria-label="Chennuru Tejith, home"><svg class="logo-svg" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30.5" fill="none" stroke="currentColor" stroke-opacity=".28" stroke-width="1.2"/><path d="M36.9 22.1 A13 13 0 1 0 36.9 41.9" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M32 21h16M40 21v22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="46" cy="43" r="2.4" fill="var(--clay)"/></svg><span class="logo-name">Chennuru Tejith</span></a>
       <nav class="nav-links" aria-label="Sections">
         <a href="#disciplines">Disciplines</a>
         <a href="#journey">Journey</a>
@@ -51,6 +52,8 @@
       <div class="hero-bg" aria-hidden="true"><span class="blob b1"></span><span class="blob b2"></span><span class="grid"></span></div>
       <div class="hero-in wrap">
         <div class="hero-copy">
+          <a class="news" id="news" hidden></a>
+          <p class="greet" id="greet"></p>
           <p class="now" id="now" hidden></p>
           <span class="status"><span class="dot"></span>Open to internships · Dec–Jan &amp; Jun–Jul</span>
           <h1>I take ownership of the numbers <span class="grad">and the people behind them.</span></h1>
@@ -67,34 +70,15 @@
           <div class="prog" id="prog" aria-label="Programme progress"></div>
         </div>
 
-        <div class="hero-visual" id="heroVisual" aria-label="Highlights from recent work">
-          <article class="card file">
-            <header class="file-head">
-              <span class="file-ic" aria-hidden="true"></span>
-              <div><p class="mono">PROJECT FILE · 2026</p><h3>Government school build, Phase II</h3></div>
-              <span class="pill ok">Reported ✓</span>
-            </header>
-            <div class="file-grid">
-              <div><span>CSR budget</span><b>₹4 Cr</b></div>
-              <div><span>Site visits</span><b>23</b></div>
-              <div><span>Duration</span><b>7 wks</b></div>
-            </div>
-            <div class="weeks" aria-label="Monitored across all 7 weeks">
-              <span>Wk 1</span><span>Wk 2</span><span>Wk 3</span><span>Wk 4</span><span>Wk 5</span><span>Wk 6</span><span>Wk 7</span>
-            </div>
-            <p class="file-foot">Round Table India · CSR sponsor: VST Industries Ltd.</p>
-          </article>
-          <article class="card float-a">
-            <span class="chk" aria-hidden="true">✓</span>
-            <div><b>Discrepancy caught</b><span>Contractor figures checked against supervisor records before they reached the sponsor.</span></div>
-          </article>
-          <article class="card float-b">
-            <p class="mono">COST ANALYSIS</p>
-            <b>FY2021 → FY2025</b>
-            <div class="fy" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-            <span>Dr. Reddy's Laboratories</span>
-          </article>
-        </div>
+        <figure class="portrait" id="portrait">
+          <div class="frame" id="frame">
+            <div class="frame-empty" aria-hidden="true"><svg class="frame-mark" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30.5" fill="none" stroke="currentColor" stroke-opacity=".28" stroke-width="1.2"/><path d="M36.9 22.1 A13 13 0 1 0 36.9 41.9" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M32 21h16M40 21v22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="46" cy="43" r="2.4" fill="var(--clay)"/></svg><span>Portrait</span></div>
+          </div>
+          <figcaption class="pq">
+            <blockquote id="quoteText"></blockquote>
+            <span id="quoteBy"></span>
+          </figcaption>
+        </figure>
       </div>
 
       <div class="trust wrap" aria-label="Organisations">
@@ -113,6 +97,47 @@
     <section class="avail wrap" aria-label="Availability"><div class="avail-card" id="avail"></div></section>
 
     <!-- The five disciplines (the "gyms") -->
+    <section class="sec wrap story" id="story-4cr">
+      <header class="sec-head">
+        <p class="kicker">One project, start to finish</p>
+        <h2>How a <em class="grad">₹4 Cr</em> build was kept honest.</h2>
+        <p class="sub">Scroll through what happened at the Round Table India school project, step by step.</p>
+      </header>
+      <div class="st">
+        <div class="st-visual">
+          <div class="st-sticky">
+          <article class="card file">
+            <header class="file-head">
+              <span class="file-ic" aria-hidden="true"></span>
+              <div><p class="mono">PROJECT FILE · 2026</p><h3>Government school build, Phase II</h3></div>
+              <span class="pill ok" id="stPill">In progress</span>
+            </header>
+            <div class="file-grid">
+              <div><span>CSR budget</span><b>₹4 Cr</b></div>
+              <div><span>Site visits</span><b>23</b></div>
+              <div><span>Duration</span><b>7 wks</b></div>
+            </div>
+            <div class="weeks st-weeks" id="stWeeks" aria-label="Monitored across all 7 weeks">
+              <span>Wk 1</span><span>Wk 2</span><span>Wk 3</span><span>Wk 4</span><span>Wk 5</span><span>Wk 6</span><span>Wk 7</span>
+            </div>
+            <p class="file-foot">Round Table India · CSR sponsor: VST Industries Ltd.</p>
+          </article>
+          <article class="card float-a st-flag" id="stFlag">
+            <span class="chk" aria-hidden="true">✓</span>
+            <div><b>Discrepancy caught</b><span>Contractor figures checked against supervisor records before they reached the sponsor.</span></div>
+          </article>
+          </div>
+        </div>
+        <ol class="st-steps" id="stSteps">
+          <li data-step="0"><span class="mono">01 · The brief</span><h3>A ₹4 Cr government school, funded through CSR.</h3><p>MPPS &amp; ZPHS Integrated School, Phase II, built against sanctioned drawings and a sanctioned budget.</p></li>
+          <li data-step="1"><span class="mono">02 · On the ground</span><h3>23 site visits in 7 weeks.</h3><p>Progress tracked against the sanctioned drawings, in person, every week.</p></li>
+          <li data-step="2"><span class="mono">03 · The money</span><h3>Every rupee tracked against the budget.</h3><p>CSR fund utilisation checked against what was sanctioned.</p></li>
+          <li data-step="3"><span class="mono">04 · The check</span><h3>A discrepancy, caught early.</h3><p>Contractor-reported stock and spend didn't match supervisor records. It was traced and resolved.</p></li>
+          <li data-step="4"><span class="mono">05 · The report</span><h3>Clean figures to the sponsor.</h3><p>Progress-and-spend updates co-drafted for VST Industries, presented on a live sponsor call.</p></li>
+        </ol>
+      </div>
+    </section>
+
     <section class="sec wrap" id="disciplines">
       <header class="sec-head">
         <p class="kicker">Five disciplines</p>
@@ -146,9 +171,6 @@
       <div class="principles" id="principleList"></div>
     </section>
 
-    <section class="quote wrap" id="quote" aria-label="On loyalty">
-      <figure><blockquote id="quoteText"></blockquote><figcaption id="quoteBy"></figcaption></figure>
-    </section>
 
     <section class="sec wrap" id="journey">
       <header class="sec-head">
@@ -185,6 +207,12 @@
         <h2>Questions you'd ask me, answered.</h2>
         <p class="sub">The questions that come up in most first interviews.</p>
       </header>
+      <div class="ask" role="search">
+        <label class="mono" for="askInput">Ask my portfolio</label>
+        <div class="ask-row"><input id="askInput" type="search" autocomplete="off" placeholder="e.g. Has he handled budgets?" /><button class="btn btn-primary btn-sm" id="askBtn">Ask</button></div>
+        <div class="ask-chips" id="askChips"></div>
+        <div class="ask-out" id="askOut" aria-live="polite"></div>
+      </div>
       <div class="faq" id="faqList"></div>
     </section>
 
@@ -231,6 +259,23 @@
         <p class="kicker light">Contact</p>
         <h2>Let&rsquo;s work together<span class="dot-c">.</span></h2>
         <p>Internships, projects, or a conversation about business and the tools behind it.</p>
+        <div class="msg" id="msg">
+          <div class="msg-type" role="radiogroup" aria-label="What is this about?">
+            <button role="radio" aria-checked="true" data-t="internship">Internship</button>
+            <button role="radio" aria-checked="false" data-t="project">Project</button>
+            <button role="radio" aria-checked="false" data-t="hello">Just saying hi</button>
+          </div>
+          <div class="msg-fields">
+            <input id="msgName" placeholder="Your name" autocomplete="name" />
+            <input id="msgOrg" placeholder="Organisation (optional)" autocomplete="organization" />
+          </div>
+          <textarea id="msgBody" rows="3" placeholder="A line or two about the opportunity"></textarea>
+          <div class="msg-actions">
+            <button class="btn btn-primary" id="msgSend">Open in my email <span aria-hidden="true">→</span></button>
+            <button class="btn btn-ghost" id="bookCall">Book a 15-min call</button>
+          </div>
+          <p class="msg-err" id="msgErr" hidden></p>
+        </div>
         <div class="cta-actions" id="contactCta"></div>
         <div class="copy-row">
           <button class="copy" id="copyEmail"><span class="copy-text"></span><span class="copy-tag">Copy email</span></button>
@@ -241,6 +286,8 @@
 
     <footer class="foot wrap">
       <span>© <span id="year"></span> Chennuru Tejith</span>
+      <span class="views" id="views" hidden></span>
+      <button class="foot-share" data-share>Share this profile</button>
       <a href="#top">Back to top ↑</a>
     </footer>
   </main>
@@ -256,6 +303,22 @@
     </article>
   </div>
 
+  <button class="hire" id="hire" hidden><span>Hiring? Let's talk</span><span aria-hidden="true">→</span></button>
+  <div class="found" id="found" hidden></div>
+
+  <div class="share" id="share" hidden>
+    <div class="share-scrim" data-close-share></div>
+    <div class="share-card" role="dialog" aria-modal="true" aria-labelledby="shareTitle">
+      <button class="icon-btn share-x" data-close-share aria-label="Close">✕</button>
+      <div class="sc" id="shareCard"></div>
+      <div class="share-actions">
+        <button class="btn btn-primary btn-sm" id="shareNative">Share</button>
+        <button class="btn btn-ghost btn-sm" id="shareCopy">Copy link</button>
+        <button class="btn btn-ghost btn-sm" id="shareSave">Save image</button>
+      </div>
+    </div>
+  </div>
+
   <div class="filterbar" id="filterbar" role="toolbar" aria-label="Highlight work by skill" hidden>
     <span class="fb-label">Highlight</span>
     <div class="fb-btns" id="fbBtns"></div>
@@ -263,9 +326,10 @@
 
   <div class="toast" id="toast" role="status" hidden></div>
 
-  <script src="js/data.js?v=70"></script>
-  <script src="js/icons.js?v=70"></script>
-  <script src="js/india.js?v=70"></script>
-  <script src="js/app.js?v=70"></script>
+  <script src="js/data.js?v=80"></script>
+  <script src="js/icons.js?v=80"></script>
+  <script src="js/india.js?v=80"></script>
+  <script src="js/vendor/qrcode.js?v=80"></script>
+  <script src="js/app.js?v=80"></script>
 </body>
 </html>
