@@ -578,7 +578,7 @@ body.resume-mode .nav-links { visibility: hidden; }
 
 /* off the clock */
 .offclock { padding-top: clamp(80px, 10vw, 120px); }
-.offclock p { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 28px; padding: 26px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font: italic 400 clamp(22px, 2.4vw, 30px)/1.3 "Libre Caslon Display", "Times New Roman", serif; color: var(--ink-2); }
+.off-in > p { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 28px; padding: 26px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font: italic 400 clamp(22px, 2.4vw, 30px)/1.3 "Libre Caslon Display", "Times New Roman", serif; color: var(--ink-2); }
 .offclock .mono { font-style: normal; color: var(--clay); }
 
 /* copy buttons */
@@ -788,7 +788,7 @@ body.resume-mode .hire { display: none !important; }
 body { font-size: 17px; line-height: 1.7; text-rendering: optimizeLegibility; font-kerning: normal; font-feature-settings: "kern", "liga", "onum"; }
 h1, h2, .cred h3, .principle h3, .step h3, .proj h3, .st-steps h3, .paper h3, .city h3, .faq summary, .empty h3, .books b, .docs b { font-feature-settings: "kern", "liga", "lnum"; letter-spacing: -0.012em; }
 .metric b, .file-grid b, .float-b b { font-feature-settings: "lnum", "tnum"; }
-.logo-name, .greet, .grad, .rot, .dt .no, .pr-no, .step-tag, .proj-no, .edu em, .honour b, .ref-init, .map .km, .map .pin text, .offclock p, .ref-cta h3, .now { font-family: "Libre Caslon Text", "Times New Roman", serif !important; }
+.logo-name, .greet, .grad, .rot, .dt .no, .pr-no, .step-tag, .proj-no, .edu em, .honour b, .ref-init, .map .km, .map .pin text, .off-in > p, .ref-cta h3, .now { font-family: "Libre Caslon Text", "Times New Roman", serif !important; }
 .pq blockquote, .quote blockquote, .cs-take, .ref blockquote, .decide-q { font-family: "Instrument Serif", Georgia, serif !important; }
 .sec-head h2 { line-height: 1.02; }
 .sub, .hero .lead, .pr-text, .step li, .ev li, .cred p, .faq details p { color: var(--ink-2); }
@@ -862,7 +862,7 @@ body { background-color: var(--bg); }
 
 /* off the clock: hairline race car */
 .off-in { display: grid; grid-template-columns: 300px 1fr; gap: 40px; align-items: center; padding: 26px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.offclock p { border: 0; padding: 0; }
+.off-in > p { border: 0; padding: 0; }
 .car { width: 100%; height: auto; color: var(--ink-3); }
 .car path, .car circle { fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linejoin: round; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
 .car .ground { stroke: var(--clay); stroke-dasharray: 0.01 0.012; stroke-width: 1.2; }
@@ -1311,3 +1311,19 @@ body.touring .foot { padding-bottom: 150px; }
 .me .me-lead { font: 400 clamp(22px, 2.2vw, 28px)/1.4 "Libre Caslon Text", "Times New Roman", serif; color: var(--ink); }
 .me-quote { margin-top: 30px !important; padding-left: 18px; border-left: 2px solid var(--clay); font: 400 22px/1.35 "Instrument Serif", Georgia, serif !important; color: var(--ink) !important; }
 .me-quote em { color: var(--clay); }
+
+/* ============================================================
+   Round 12: bug fixes from the visual pass
+   ============================================================ */
+/* source tag sits under its label instead of floating in the corner */
+.src-btn { position: static; display: block; margin-top: 12px; }
+.src-pop { top: auto; bottom: calc(100% - 30px); left: 0; right: auto; }
+.metric:not(:first-child) .src-pop { left: 28px; }
+/* contact page: no empty band above the heading */
+#story[data-page="contact"] .cta { padding-top: 0; }
+#story[data-page="contact"] .cta-card { border-top: 0; padding-top: 20px; }
+/* arena tabs on tablets and phones: drop the number that collided with the next tab */
+@media (max-width: 1100px) { .dt { grid-template-columns: 40px 1fr; padding-right: 28px; } .dt .no { display: none; } }
+/* pit wall headings keep their own type */
+.pit .kicker { font: 400 11.5px/1.4 "Geist Mono", monospace; font-style: normal; }
+.src-pop .src-story { margin: 0 0 12px !important; font-size: 14px !important; color: var(--ink) !important; }

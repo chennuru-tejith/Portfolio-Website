@@ -139,15 +139,15 @@
   function renderSections() {
     $("#cvHero").href = D.profile.cv;
     const SRC = { cv: ["CV (PDF)", D.profile.cv], linkedin: ["LinkedIn: Experience", D.profile.linkedin.replace(/\/$/, "") + "/details/experience/"] };
-    $("#stats").innerHTML = D.profile.stats.map((s, i) => `<div class="metric" tabindex="0"><b data-v="${esc(s.value)}">${esc(s.value)}</b><span>${esc(s.label)}</span>${s.story ? `<span class="story">${esc(s.story)}</span>` : ""}
-      ${s.sources ? `<button class="src-btn" aria-expanded="false" aria-controls="src${i}" title="Where this number comes from">✓ Source</button><div class="src-pop" id="src${i}" hidden><p class="mono">Where this comes from</p><ul>${s.sources.map((k) => SRC[k] ? `<li><a href="${esc(SRC[k][1])}" target="_blank" rel="noopener noreferrer">${esc(SRC[k][0])} ↗</a></li>` : "").join("")}</ul>${s.note ? `<p>${esc(s.note)}</p>` : ""}</div>` : ""}</div>`).join("");
+    $("#stats").innerHTML = D.profile.stats.map((s, i) => `<div class="metric" tabindex="0"><b data-v="${esc(s.value)}">${esc(s.value)}</b><span>${esc(s.label)}</span>
+      ${s.sources ? `<button class="src-btn" aria-expanded="false" aria-controls="src${i}" title="Where this number comes from">✓ Source</button><div class="src-pop" id="src${i}" hidden>${s.story ? `<p class="src-story">${esc(s.story)}</p>` : ""}<p class="mono">Where this comes from</p><ul>${s.sources.map((k) => SRC[k] ? `<li><a href="${esc(SRC[k][1])}" target="_blank" rel="noopener noreferrer">${esc(SRC[k][0])} ↗</a></li>` : "").join("")}</ul>${s.note ? `<p>${esc(s.note)}</p>` : ""}</div>` : ""}</div>`).join("");
     $("#principleList").innerHTML = D.principles.map((p, i) => `
       <article class="principle rv"><span class="pr-no">${pad(i + 1)}</span><h3>${esc(p.title)}</h3><p class="pr-text">${esc(p.text)}</p>
       <span class="pr-where">${esc(p.where)}</span></article>`).join("");
     const q = D.profile.quote;
     if (q) { $("#quoteText").innerHTML = esc(q.text).replace(/\*([^*]+)\*/g, "<em>$1</em>"); $("#quoteBy").textContent = q.by; } else $(".pq").hidden = true;
 
-    const items = [...D.experience.map((e) => ({ ...e, tag: "Internship" })), ...D.leadership.map((l) => ({ ...l, points: pointsFor(l.role), tag: "Leadership", lead: true }))].sort((a, b) => startOf(b.when) - startOf(a.when));
+    const items = [...D.experience.map((e) => ({ ...e, tag: "Internship" })), ...D.leadership.map((l) => ({ ...l, points: pointsFor(l.role), tag: "Leadership", lead: true }))].sort((a, b) => (a.lead ? 1 : 0) - (b.lead ? 1 : 0) || startOf(b.when) - startOf(a.when)); // internships first, then leadership
     $("#journeyList").innerHTML = items.map((s) => `
       <article class="step rv ft ${s.lead ? "lead" : ""}" data-tags="${esc((TAGS[s.role] || []).join(" "))}"><div><div class="step-when">${esc(s.when.split(" · ")[0])}</div><span class="step-tag">${s.tag}</span></div>
       <div><h3>${esc(s.role)}</h3><p class="step-org">${esc(s.org)}</p>${s.points.length ? `<ul>${s.points.map((p) => `<li>${esc(p)}</li>`).join("")}</ul>` : ""}
@@ -676,20 +676,12 @@
     });
   }
 
-  // ---------- "Hiring? Let's talk" tab after 60% of the page ----------
-  function hireTab() {
-    const tab = $("#hire");
-    const upd = () => { tab.hidden = !(view === "story" && page !== "contact" && page !== "ask" && scrollY > 700); };
-    addEventListener("scroll", upd, { passive: true }); addEventListener("hashchange", upd);
-    tab.addEventListener("click", () => { location.hash = "#contact"; });
-  }
-
   // ---------- hidden details ----------
   function hiddenDetails() {
     const list = D.details || []; if (!list.length) return;
     const seen = new Set(), show = () => {};
     list.forEach((d, i) => {
-      const walker = document.createTreeWalker($("#story"), NodeFilter.SHOW_TEXT, { acceptNode: (n) => n.parentElement.closest("script, style, svg, .detail, button, input, textarea, .tip") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT });
+      const walker = document.createTreeWalker($("#story"), NodeFilter.SHOW_TEXT, { acceptNode: (n) => n.parentElement.closest("script, style, svg, .detail, button, input, textarea, .tip, .metric, .src-pop") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT });
       let n;
       while ((n = walker.nextNode())) {
         const at = n.textContent.indexOf(d.word);
@@ -1191,7 +1183,7 @@
   applyTheme(state.theme);
   $("#year").textContent = new Date().getFullYear();
   renderDisciplines(); renderSections(); renderProgress(); renderAvail(); renderMap(); renderFaq(); renderExtras(); renderResume(); renderHeroExtras(); renderAsk(); renderChangelog(); geoBadge(); renderRecon(); renderScrub(); wireSources(); renderBuilding(); renderRefReq(); renderPit(); renderEndorse(); renderPosts(); renderSlots(); renderGuestbook(); wireAmbient(); wireTour(); wireReading(); intro(); renderContact(); wireShare(); renderThinking(); renderBaf(); badgeCase(); docsActions(); soundToggle(); voice(); signature(); season(); carDraw();
-  clock(); cursor(); motion(); countUps(); scrollStory(); mapReveal(); hireTab(); hiddenDetails(); views(); reveal();
+  clock(); cursor(); motion(); countUps(); scrollStory(); mapReveal(); hiddenDetails(); views(); reveal();
 
   document.addEventListener("click", (e) => {
     const go = e.target.closest("[data-go]"); if (go) setView(go.dataset.go, true, true);
