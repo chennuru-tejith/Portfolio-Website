@@ -10,11 +10,12 @@
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const pad = (n) => String(n).padStart(2, "0");
-  const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // "?motion=1" forces full motion (used for testing; real visitors follow their system setting)
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches && !/[?&]motion=1/.test(location.search);
 
   // ---------- saved preferences ----------
   const KEY = "tejith-pro-v1";
-  const state = Object.assign({ theme: "dark" }, (() => { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } })());
+  const state = Object.assign({ theme: "dark", sound: false }, (() => { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } })());
   if (state.theme !== "light" && state.theme !== "dark") state.theme = "dark";
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} };
 
@@ -185,7 +186,7 @@
     box.innerHTML = items.filter((w) => filter === "All" || w.kind === filter).map((w) => {
       const inner = `<div class="paper-top"><span>${esc(w.kind)}</span><span>${esc(w.date)}</span></div>
         <h3>${esc(w.title)}</h3><p>${esc(w.summary)}</p>
-        ${w.status ? `<span class="paper-status">${esc(w.status)}</span>` : `<span class="paper-venue">${esc(w.venue)}${w.url ? " ↗" : ""}</span>`}`;
+        ${w.status ? `<span class="paper-status">${esc(w.status)}</span>${geoTrack()}` : `<span class="paper-venue">${esc(w.venue)}${w.url ? " ↗" : ""}</span>`}`;
       return w.url ? `<a class="paper" href="${esc(w.url)}" target="_blank" rel="noopener noreferrer">${inner}</a>` : `<div class="paper static">${inner}</div>`;
     }).join("");
   }
@@ -278,14 +279,14 @@
     pts.forEach((p, i) => {
       s += `<g class="pin" data-i="${i}" tabindex="0" role="button" aria-label="${esc(p.city)}, ${esc(p.state)}" transform="translate(${p.x.toFixed(1)} ${p.y.toFixed(1)})">
         <circle class="halo" r="14"/><circle class="core" r="7"/>
-        <text x="-16" y="5" text-anchor="end">${esc(p.city)}</text><text class="st" x="-16" y="21" text-anchor="end">${esc(p.state)}</text></g>`;
+        <text x="-16" y="5" text-anchor="end">${esc(p.city)}</text><text class="st" x="-16" y="21" text-anchor="end">${esc(p.state)}</text>${p.city === "Hyderabad" ? `<text class="home-tag" x="16" y="5">HOME</text>` : ""}</g>`;
     });
     svg.innerHTML = s;
     const pick = (i) => {
       $$("#map .pin").forEach((g) => g.classList.toggle("on", +g.dataset.i === i));
       const p = places[i];
       $("#mapSide").innerHTML = `<div class="city-tabs" role="tablist">${places.map((q, k) => `<button role="tab" aria-selected="${k === i}" data-i="${k}">${esc(q.city)}</button>`).join("")}</div>
-        <div class="city"><h3>${esc(p.city)}</h3><p>${esc(p.state)}, India</p><ul>${p.items.map((t) => `<li>${esc(t)}</li>`).join("")}</ul></div>`;
+        <div class="city"><h3>${esc(p.city)}</h3><p>${esc(p.state)}, India${p.city === "Hyderabad" ? " · Home" : ""}</p>${p.city === "Hyderabad" && D.homeNote ? `<p class="home-note">${esc(D.homeNote)}</p>` : ""}<ul>${p.items.map((t) => `<li>${esc(t)}</li>`).join("")}</ul></div>`;
       $$("#mapSide .city-tabs button").forEach((b) => b.addEventListener("click", () => pick(+b.dataset.i)));
     };
     $$("#map .pin").forEach((g) => {
@@ -302,39 +303,14 @@
     $("#faqList").innerHTML = f.map((x, i) => `<details class="rv" ${i === 0 ? "open" : ""}><summary>${esc(x.q)}</summary><p>${esc(x.a)}</p></details>`).join("");
   }
 
-  // ---------- skill filter (highlights matching work across the page) ----------
-  let filter = "all";
-  function renderFilter() {
-    const bar = $("#filterbar");
-    $("#fbBtns").innerHTML = `<button aria-pressed="true" data-f="all">All</button>` + G.map((g) => `<button aria-pressed="false" data-f="${g.id}" style="--c:${g.color}"><i></i>${esc(SHORT[g.id] || g.domain)}</button>`).join("");
-    $$("#fbBtns button").forEach((b) => b.addEventListener("click", () => setFilter(b.dataset.f)));
-    // show the bar only between the hero and the contact section, so it never covers the hero or the contact buttons
-    let heroVis = true, contactVis = false;
-    const sync = () => { bar.hidden = heroVis || contactVis || view !== "story"; };
-    new IntersectionObserver(([e]) => { heroVis = e.isIntersecting; sync(); }, { rootMargin: "0px 0px -40% 0px" }).observe($(".hero"));
-    new IntersectionObserver(([e]) => { contactVis = e.isIntersecting; sync(); }).observe($("#contact"));
-  }
-  function setFilter(id) {
-    filter = filter === id ? "all" : id;
-    $$("#fbBtns button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.f === filter));
-    const on = filter !== "all";
-    document.body.classList.toggle("filtering", on);
-    const g = G.find((x) => x.id === filter);
-    let n = 0;
-    $$(".ft").forEach((el) => {
-      const m = on && (el.dataset.tags || "").split(" ").includes(filter);
-      el.classList.toggle("match", m); if (m) n++;
-      el.style.setProperty("--fc", g ? g.color : "transparent");
-    });
-    if (on) { showDisc(G.indexOf(g)); toast(`${n} items highlighted for ${SHORT[filter]}`); }
-  }
 
   // ---------- motion: hero card tilt, paused off-screen ----------
   function motion() {
     const hero = $(".hero");
     new IntersectionObserver(([e]) => hero.classList.toggle("off", !e.isIntersecting)).observe(hero);
     if (still || !matchMedia("(pointer: fine)").matches) return;
-    const vis = $("#heroVisual"), file = $(".file", vis);
+    const vis = $("#heroVisual"); if (!vis) return;
+    const file = $(".file", vis);
     let raf = 0, rx = 0, ry = 0;
     vis.addEventListener("pointermove", (e) => {
       const r = vis.getBoundingClientRect();
@@ -435,8 +411,8 @@
   // ---------- custom cursor (desktop, motion allowed) ----------
   function cursor() {
     if (still || !matchMedia("(pointer: fine)").matches) return;
-    const c = $("#cursor"); let x = -100, y = -100, cx = -100, cy = -100, raf = 0;
-    document.body.classList.add("has-cursor");
+    const c = $("#cursor"); let x = -100, y = -100, cx = -100, cy = -100, raf = 0, shown = false;
+    c.style.transform = "translate3d(-100px, -100px, 0)";
     const loop = () => {
       cx += (x - cx) * 0.22; cy += (y - cy) * 0.22;
       c.style.transform = `translate3d(${cx.toFixed(1)}px, ${cy.toFixed(1)}px, 0)`;
@@ -444,7 +420,8 @@
     };
     addEventListener("pointermove", (e) => {
       x = e.clientX; y = e.clientY;
-      c.classList.toggle("big", !!e.target.closest("a, button, summary, [role=button], .dt"));
+      if (!shown) { shown = true; cx = x; cy = y; document.body.classList.add("has-cursor"); }
+      c.classList.toggle("big", !!(e.target && e.target.closest && e.target.closest("a, button, summary, [role=button], .dt")));
       if (!raf) raf = requestAnimationFrame(loop);
     }, { passive: true });
     document.addEventListener("pointerleave", () => (c.style.opacity = "0"));
@@ -639,9 +616,16 @@
 
   // ---------- share card with QR ----------
   const shareUrl = () => location.origin + location.pathname;
-  function openShare() {
+  // the QR library is only needed here, so it loads on first use
+  let qrLib = null;
+  function loadQR() {
+    if (window.qrcode) return Promise.resolve();
+    return qrLib || (qrLib = new Promise((ok, fail) => { const sc = document.createElement("script"); sc.src = "js/vendor/qrcode.js?v=112"; sc.onload = ok; sc.onerror = fail; document.head.appendChild(sc); }));
+  }
+  async function openShare() {
+    try { await loadQR(); } catch (e) { toast("Couldn't load the QR code"); return; }
     const qr = qrcode(0, "M"); qr.addData(shareUrl()); qr.make();
-    $("#shareCard").innerHTML = `${$(".logo-svg").outerHTML}
+    $("#shareCard").innerHTML = `<span class="crest"><span>CT</span></span>
       <h3 id="shareTitle">${esc(D.profile.name)}</h3>
       <p>Finance · Operations · Leadership</p>
       <div class="sc-row"><span>BBA + MBA, O.P. Jindal Global University<br>${esc(D.profile.email)}</span><div class="sc-qr">${qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true })}</div></div>`;
@@ -683,10 +667,117 @@
     }).catch(() => {});
   }
 
+
+  // ---------- GEO paper progress ----------
+  function geoTrack() {
+    const stages = ["Research", "Draft", "Review", "Published"], at = stages.indexOf(D.geoStage);
+    if (at < 0) return "";
+    return `<div class="geo" aria-label="Stage: ${esc(D.geoStage)}">${stages.map((st, i) => `<span class="${i < at ? "done" : i === at ? "now" : ""}">${st}</span>`).join("")}</div>`;
+  }
+
+  // ---------- interface sounds (off by default) ----------
+  let actx = null;
+  function click() {
+    if (!state.sound) return;
+    try {
+      actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+      const o = actx.createOscillator(), g = actx.createGain(), t = actx.currentTime;
+      o.type = "sine"; o.frequency.setValueAtTime(880, t); o.frequency.exponentialRampToValueAtTime(520, t + 0.06);
+      g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.05, t + 0.005); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.09);
+      o.connect(g).connect(actx.destination); o.start(t); o.stop(t + 0.1);
+    } catch (e) {}
+  }
+  function soundToggle() {
+    const b = $("#soundBtn");
+    const paint = () => { b.innerHTML = state.sound ? "♪" : "<span style='opacity:.55'>♪</span>"; b.setAttribute("aria-pressed", !!state.sound); b.setAttribute("aria-label", state.sound ? "Turn interface sounds off" : "Turn interface sounds on"); };
+    paint();
+    b.addEventListener("click", () => { state.sound = !state.sound; save(); paint(); click(); });
+    document.addEventListener("click", (e) => { if (e.target.closest("a, button, summary") && !e.target.closest("#soundBtn")) click(); });
+  }
+
+  // ---------- voice clip ----------
+  function voice() {
+    if (!D.voice) return;
+    const btn = $("#voice"), audio = new Audio(D.voice);
+    btn.hidden = false;
+    btn.addEventListener("click", () => { if (audio.paused) { audio.currentTime = 0; audio.play().catch(() => {}); } else audio.pause(); });
+    audio.addEventListener("play", () => btn.classList.add("playing"));
+    ["pause", "ended"].forEach((ev) => audio.addEventListener(ev, () => btn.classList.remove("playing")));
+  }
+
+  // ---------- signature that writes itself ----------
+  function signature() {
+    const box = $("#sig"); if (!box) return;
+    if (D.signature) box.innerHTML = `<img src="${esc(D.signature)}" alt="Signature of ${esc(D.profile.name)}" />`;
+    else box.innerHTML = `<span class="script">${esc(D.profile.shortName || D.profile.name)}</span>`;
+    if (still) { box.classList.add("go"); return; }
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { box.classList.add("go"); io.disconnect(); } }, { threshold: 0.6 });
+    io.observe(box);
+  }
+
+  // ---------- seasonal greeting ----------
+  function season() {
+    const now = new Date(), md = `${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+    const inRange = (a, b) => (a <= b ? md >= a && md <= b : md >= a || md <= b);
+    const s = (D.seasons || []).find((x) => inRange(x.from, x.to));
+    if (!s) return;
+    const g = $("#greet"); g.innerHTML = `<span class="season">${esc(s.greeting)}.</span> ${esc(g.textContent)}`;
+    if (s.accent && document.documentElement.dataset.theme === "dark") document.documentElement.style.setProperty("--clay", s.accent);
+  }
+
+  // ---------- a decision I'd make + notes from the field ----------
+  function renderThinking() {
+    const d = D.decision;
+    if (d) $("#decide").innerHTML = `<p class="decide-q rv">${esc(d.question)}</p><ol class="rv">${d.reasoning.map((r) => `<li>${esc(r)}</li>`).join("")}</ol>`;
+    else $("#decision").hidden = true;
+    $("#noteList").innerHTML = (D.notes || []).map((n) => `<article class="note rv"><span class="mono">Notes from the field · ${esc(n.date)}</span><div><h3>${esc(n.title)}</h3><p>${esc(n.body)}</p></div></article>`).join("");
+  }
+
+  // ---------- documents: download all, vCard, one-pager ----------
+  function docsActions() {
+    const docs = D.documents || [];
+    $("#dlAll").hidden = docs.length < 2;
+    $("#dlAll").addEventListener("click", () => docs.forEach((d, i) => setTimeout(() => { const a = document.createElement("a"); a.href = d.url; a.download = ""; document.body.appendChild(a); a.click(); a.remove(); }, i * 400)));
+  }
+  function vcard() {
+    const p = D.profile, [first, ...rest] = p.name.split(" ");
+    const v = ["BEGIN:VCARD", "VERSION:3.0", `N:${rest.join(" ")};${first};;;`, `FN:${p.name}`, "ORG:O.P. Jindal Global University", `TITLE:${p.title}`, `EMAIL;TYPE=INTERNET:${p.email}`, `URL:${location.origin + location.pathname}`, `X-SOCIALPROFILE;TYPE=linkedin:${p.linkedin}`, "END:VCARD"].join("\r\n");
+    const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([v], { type: "text/vcard" })); a.download = "Chennuru-Tejith.vcf";
+    document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+    toast("Contact card downloaded ✓");
+  }
+  function onePager() {
+    const p = D.profile, a = D.availability || {};
+    $("#onepager").innerHTML = `<h1>${esc(p.name)}</h1><p class="op-role">Why Tejith, in one page · ${esc(p.title)}</p>
+      <p>BBA + MBA, O.P. Jindal Global University (2024–2029), CGPA 7.9 / 8. ${esc(p.email)} · ${esc(p.linkedin)}</p>
+      <h2>Three reasons</h2><ul>${D.principles.slice(0, 3).map((x) => `<li><b>${esc(x.title)}.</b> ${esc(x.proof)}</li>`).join("")}</ul>
+      <h2>Experience</h2><ul>${D.experience.map((e) => `<li><b>${esc(e.role)}</b>, ${esc(e.org.split(" — ")[0])} (${esc(e.when.split(" · ")[0])}): ${esc(e.points[0])}</li>`).join("")}</ul>
+      <h2>Leadership</h2><ul>${D.leadership.slice(0, 3).map((l) => `<li>${esc(l.role)}, ${esc(l.org)}</li>`).join("")}</ul>
+      ${a.windows ? `<h2>Availability</h2><p>${esc(a.windows.join(" & "))} · ${esc(a.type)} · ${esc(a.locations)} · ${esc(a.roles.join(", "))}</p>` : ""}
+      <h2>Portfolio</h2><p>${esc(location.origin + location.pathname)}</p>`;
+    document.body.classList.add("print-one");
+    const done = () => { document.body.classList.remove("print-one"); removeEventListener("afterprint", done); };
+    addEventListener("afterprint", done);
+    window.print();
+  }
+
+  // ---------- footer badge case (one badge per arena) ----------
+  function badgeCase() {
+    $("#badgecase").innerHTML = G.map((g) => emblem(g)).join("") + `<em>${G.length} arenas · ${G.length} badges</em>`;
+  }
+
+  // ---------- race car draws itself ----------
+  function carDraw() {
+    const car = $(".car"); if (!car) return;
+    if (still) { car.classList.add("drawn"); return; }
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { car.classList.add("drawn"); io.disconnect(); } }, { threshold: 0.4 });
+    io.observe(car);
+  }
+
   // ---------- boot ----------
   applyTheme(state.theme);
   $("#year").textContent = new Date().getFullYear();
-  renderDisciplines(); renderSections(); renderProgress(); renderAvail(); renderMap(); renderFaq(); renderFilter(); renderExtras(); renderResume(); renderHeroExtras(); renderAsk(); renderContact(); wireShare();
+  renderDisciplines(); renderSections(); renderProgress(); renderAvail(); renderMap(); renderFaq(); renderExtras(); renderResume(); renderHeroExtras(); renderAsk(); renderContact(); wireShare(); renderThinking(); badgeCase(); docsActions(); soundToggle(); voice(); signature(); season(); carDraw();
   clock(); cursor(); motion(); countUps(); scrollStory(); mapReveal(); hireTab(); hiddenDetails(); views(); reveal();
 
   document.addEventListener("click", (e) => {
@@ -696,6 +787,8 @@
     if (e.target.closest("[data-hr]")) copyHR();
     if (e.target.closest("[data-print]")) window.print();
     if (e.target.closest("[data-share]")) openShare();
+    if (e.target.closest("[data-vcard]")) vcard();
+    if (e.target.closest("[data-onepager]")) onePager();
     if (e.target.closest("[data-close-share]")) closeShare();
   });
   window.addEventListener("keydown", (e) => {

@@ -19,7 +19,16 @@ Everything lives in `js/data.js`:
 | `books` | Bookshelf (section stays hidden until you add a book) |
 | `documents` | Documents vault (CV, certificates…) |
 | `offClock` | The "Off the clock" line |
-| `availability`, `programme`, `places`, `faq`, `abilities`, `moves`, `skillTags` | Availability panel, progress bar, India map, Q&A, abilities & tools, skill filter |
+| `availability`, `programme`, `places`, `faq` | Availability panel, progress bar, India map, Q&A |
+| `photo`, `signature`, `voice`, `homeNote` | Hero portrait, written signature, voice clip, hometown line on the map |
+| `roles`, `updates`, `geoStage`, `decision`, `notes`, `seasons`, `details` | Rotating line, "Now" strip, GEO tracker, decision, field notes, seasonal greetings, hidden details |
+| `bookingUrl`, `goatcounter` | Call booking link, optional visitor counter |
+
+## What I still need
+See [CHECKLIST.md](CHECKLIST.md).
+
+## Testing motion
+Add `?motion=1` to the URL to force full animations even if your system asks for reduced motion.
 
 ## After editing
 Bump the `?v=` number on the css/js links in `index.html` so returning visitors get the new files.

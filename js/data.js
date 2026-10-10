@@ -405,6 +405,51 @@ window.PORTFOLIO = {
     { word: "Hyderabad", fact: "Schooled here: Class X (93.1%) and Class XII (88.4%)." },
   ],
 
+  // ============================================================
+  //  Round 4 features
+  // ============================================================
+
+  // Your handwritten signature as an SVG file in assets/ (e.g. "assets/signature.svg").
+  // Empty = an elegant script placeholder that "writes" itself.
+  signature: "",
+
+  // A short audio clip of you saying "Hi, I'm Tejith" (e.g. "assets/hello.mp3"). Empty = button hidden.
+  voice: "",
+
+  // One line about your hometown, shown on the map ("Home"). Empty = just the "Home" tag.
+  homeNote: "",
+
+  // GEO paper progress: one of "Research", "Draft", "Review", "Published"
+  geoStage: "Research",
+
+  // "A decision I'd make" — DRAFT written from your principles; please review and rewrite in your words
+  decision: {
+    question: "A CSR sponsor asks: should we release the next tranche of funds for Phase III?",
+    reasoning: [
+      "Not on the progress report alone. First, match the reported spend against site records and supervisor logs.",
+      "If they reconcile, release in stages tied to visible milestones, not in one lump.",
+      "Report back to the sponsor on the same schedule, so trust is earned before it is asked for.",
+    ],
+    draft: true,
+  },
+
+  // Notes from the field — DRAFT from your CV; please review before sharing
+  notes: [
+    {
+      title: "What 23 site visits taught me about reports",
+      date: "Aug 2026",
+      body: "A progress report is a claim, not a fact. Over seven weeks on a school construction site, I learned that the useful question is never 'what does the report say?' but 'what is it checked against?'. Drawings, supervisor records and the budget each tell part of the story. When one of them disagrees, that disagreement is the most valuable line in the report, and it is far cheaper to resolve before a sponsor reads it than after.",
+      draft: true,
+    },
+  ],
+
+  // Seasonal touches (month-day ranges, inclusive). Diwali moves every year — please confirm the date.
+  seasons: [
+    { from: "12-30", to: "01-02", greeting: "Happy New Year", accent: "#d8b4a0" },
+    { from: "08-15", to: "08-15", greeting: "Happy Independence Day", accent: "#e0a07a" },
+    { from: "11-07", to: "11-09", greeting: "Happy Diwali", accent: "#e8b06a" },
+  ],
+
   // ---------- Bookshelf (hidden until books are added) ----------
   // { title: "Book title", author: "Author", note: "One line on what it changed for me." }
   books: [],
