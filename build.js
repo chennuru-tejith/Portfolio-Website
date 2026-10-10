@@ -85,14 +85,14 @@ ${base ? `<link rel="canonical" href="${esc(abs("profile.html"))}" />` : ""}
 ${jsonld}
 <style>
 :root { color-scheme: dark; }
-body { margin: 0; background: #0a110e; color: #f2ede2; font: 17px/1.7 "Libre Caslon Text", "Times New Roman", serif; }
+body { margin: 0; background: #071331; color: #f3f1ec; font: 17px/1.7 "Libre Caslon Text", "Times New Roman", serif; }
 main { max-width: 760px; margin: 0 auto; padding: 64px 24px 80px; }
 h1 { font: 400 56px/1 "Libre Caslon Display", "Times New Roman", serif; margin: 0 0 18px; }
-h2 { font: 400 28px/1.15 "Libre Caslon Display", "Times New Roman", serif; margin: 44px 0 12px; padding-top: 22px; border-top: 1px solid rgba(242, 237, 226,.16); }
+h2 { font: 400 28px/1.15 "Libre Caslon Display", "Times New Roman", serif; margin: 44px 0 12px; padding-top: 22px; border-top: 1px solid rgba(214, 226, 255,.16); }
 h3 { font-size: 18px; margin: 18px 0 4px; }
-p, li { color: #c6c8bc; } a { color: #cfab63; }
-.meta { font-size: 13px; color: #979c90; }
-@media (prefers-color-scheme: light) { body { background: #f3eee3; color: #13201a; } p, li { color: #36443c; } a { color: #7c5a17; } .meta { color: #56635a; } h2 { border-color: rgba(19, 32, 26,.15); } }
+p, li { color: #c3cde3; } a { color: #7aa2ff; }
+.meta { font-size: 13px; color: #8e9cc0; }
+@media (prefers-color-scheme: light) { body { background: #f3f6fc; color: #0a1a44; } p, li { color: #2c3d6b; } a { color: #1d47c9; } .meta { color: #4d5d88; } h2 { border-color: rgba(10, 26, 68,.15); } }
 </style>
 </head>
 <body>
@@ -194,8 +194,8 @@ ${base ? `<link rel="canonical" href="${esc(abs("press.html"))}" />` : ""}
 <link rel="icon" type="image/png" href="assets/favicon-64.png" />
 <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital@0;1&display=swap" rel="stylesheet" />
 ${pageStyle(profile).replace("</style>", `.kit { display: grid; grid-template-columns: 160px 1fr; gap: 24px; align-items: center; }
-.kit img { width: 160px; height: 160px; border: 1px solid rgba(242, 237, 226,.2); }
-blockquote, pre { margin: 0; padding: 16px 18px; border-left: 2px solid #d4906c; background: rgba(242, 237, 226,.04); white-space: pre-wrap; font: inherit; }
+.kit img { width: 160px; height: 160px; border: 1px solid rgba(214, 226, 255,.2); }
+blockquote, pre { margin: 0; padding: 16px 18px; border-left: 2px solid #a9c4ff; background: rgba(214, 226, 255,.04); white-space: pre-wrap; font: inherit; }
 @media (max-width: 560px) { .kit { grid-template-columns: 1fr; } }
 </style>`)}
 </head>
@@ -231,7 +231,7 @@ const SHARE = {
   about: ["About", "Where the work happened, a slider through the years, honours and documents."],
   contact: ["Contact", "Internships, projects, or a conversation. Replies within 48 hours."],
 };
-const stubCss = `body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0a110e;color:#f2ede2;font:17px/1.6 Georgia,"Times New Roman",serif}a{color:#cfab63}`;
+const stubCss = `body{margin:0;min-height:100vh;display:grid;place-items:center;background:#071331;color:#f3f1ec;font:17px/1.6 Georgia,"Times New Roman",serif}a{color:#7aa2ff}`;
 for (const [slug, [name, desc]] of Object.entries(SHARE)) {
   const title = `${name} | ${P.name}`;
   fs.writeFileSync(`${slug}.html`, `<!doctype html>
@@ -272,8 +272,8 @@ fs.writeFileSync("404.html", `<!doctype html>
 <link rel="icon" type="image/png" href="/assets/favicon-64.png" />
 <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital@0;1&family=Geist+Mono&display=swap" rel="stylesheet" />
 <style>
-:root { --bg: #0a110e; --ink: #f2ede2; --ink2: #c6c8bc; --ink4: #8b9185; --acc: #cfab63; --clay: #d4906c; --line: rgba(242, 237, 226,.17); color-scheme: dark; }
-@media (prefers-color-scheme: light) { :root { --bg: #f3eee3; --ink: #13201a; --ink2: #36443c; --ink4: #5f6b62; --acc: #7c5a17; --clay: #9a4a2c; --line: rgba(19, 32, 26,.18); color-scheme: light; } }
+:root { --bg: #071331; --ink: #f3f1ec; --ink2: #c3cde3; --ink4: #8593b8; --acc: #7aa2ff; --clay: #a9c4ff; --line: rgba(214, 226, 255,.17); color-scheme: dark; }
+@media (prefers-color-scheme: light) { :root { --bg: #f3f6fc; --ink: #0a1a44; --ink2: #2c3d6b; --ink4: #56668f; --acc: #1d47c9; --clay: #2f5fd0; --line: rgba(10, 26, 68,.18); color-scheme: light; } }
 * { box-sizing: border-box; }
 body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 40px 20px; background: var(--bg); color: var(--ink); font: 17px/1.65 "Libre Caslon Text", "Times New Roman", serif; }
 main { width: min(760px, 100%); }
