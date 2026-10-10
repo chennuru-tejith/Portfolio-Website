@@ -313,7 +313,7 @@ window.PORTFOLIO = {
     { year: "2024", icon: "pillar", text: "Letter of Appreciation for the inauguration of India's First Constitution Museum & the National Convention on the Constitution of India." },
   ],
 
-  certifications: [{ name: "Excel Skills for Business: Intermediate I", issuer: "Coursera · Macquarie University" }],
+  certifications: [{ name: "Excel Skills for Business: Intermediate I", issuer: "Coursera · Macquarie University", verify: "https://www.linkedin.com/in/chennuru-tejith/details/certifications/" }],
 
   // ---------- How I Work: each principle is backed by real evidence ----------
   principles: [
@@ -353,7 +353,17 @@ window.PORTFOLIO = {
   //   summary: "Two-line abstract.",
   //   url: "assets/papers/my-paper.pdf",
   // },
-  writing: [],
+  writing: [
+    {
+      kind: "Research paper",
+      title: "Generative Engine Optimization",
+      venue: "Independent research",
+      date: "2026",
+      summary: "How content gets surfaced and cited by AI answer engines, and what that means for how organisations communicate.",
+      status: "In progress",
+      url: "",
+    },
+  ],
 
   // ---------- Recommendations ----------
   // Only add recommendations you've received in writing, with permission to publish.
@@ -366,6 +376,43 @@ window.PORTFOLIO = {
   //   link: "https://www.linkedin.com/in/their-profile",   // lets recruiters verify
   // },
   recommendations: [],
+
+  // ---------- "Currently" line in the hero (leave a field empty to hide it) ----------
+  currently: { working: "Generative Engine Optimization research paper", reading: "", learning: "" },
+
+  // ---------- Off the clock ----------
+  offClock: "Formula 1 — I follow team strategy and race-day decisions.",
+
+  // ---------- Bookshelf (hidden until books are added) ----------
+  // { title: "Book title", author: "Author", note: "One line on what it changed for me." }
+  books: [],
+
+  // ---------- Documents vault ----------
+  documents: [
+    { name: "Curriculum Vitae", type: "PDF", url: "assets/Chennuru_Tejith_CV.pdf" },
+  ],
+
+  // ---------- Case studies, one per internship (from CV facts; "takeaway" is drafted — edit freely) ----------
+  cases: {
+    "Operations Intern": {
+      context: "A ₹4 Cr CSR-funded government school construction project (MPPS & ZPHS Integrated School, Phase II), funded by VST Industries and run through the Hyderabad Titans Round Table Charitable Trust.",
+      actions: ["Visited the site 23 times over 7 weeks and tracked progress against the sanctioned drawings.", "Tracked CSR fund utilisation against the sanctioned budget.", "Co-drafted progress-and-spend updates for the sponsor and joined the live sponsor update call.", "Verified contractor-reported material stock and spend against supervisor records."],
+      outcome: "A reporting discrepancy was caught and resolved before it reached the sponsor, so the sponsor received figures that had been checked against the source.",
+      takeaway: "A report is only as reliable as the source it has been checked against.",
+    },
+    "Project Management Intern": {
+      context: "Dr. Reddy's Laboratories wanted a clearer view of five years of employee costs (FY2021–FY2025) to support cost-optimization discussions.",
+      actions: ["Analysed trends in salaries, share-based payments and welfare expenses across FY2021–FY2025.", "Turned multi-year workforce data into structured management reports.", "Used the MS Office Suite for analysis and reporting."],
+      outcome: "Reports that supported leadership decisions on headcount budgeting and welfare spending.",
+      takeaway: "Data only helps a decision when it is structured around the question the decision-maker is asking.",
+    },
+    "Finance Intern": {
+      context: "Ion Exchange India's finance team handled daily transactions, business-partner communication and vendor documentation.",
+      actions: ["Streamlined daily transaction processing.", "Coordinated business-partner communications and order confirmations.", "Standardized vendor records and aligned internal financial documentation."],
+      outcome: "Improved workflow efficiency, fewer documentation backlogs, and records that were more consistent and audit-ready.",
+      takeaway: "Clean records upstream save hours of correction downstream.",
+    },
+  },
 
   // ---------- Availability (confirmed by Tejith) ----------
   availability: {

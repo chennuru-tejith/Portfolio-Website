@@ -553,3 +553,98 @@ body.resume-mode .filterbar { display: none !important; }
   .js .rv { opacity: 1; transform: none; }
 }
 .dot-c { color: var(--clay); }
+
+/* ============================================================
+   Additions: currently, clock, case studies, bookshelf, documents,
+   off the clock, HR copy, cursor, curtain, print
+   ============================================================ */
+.now { margin: 0 0 18px; font: italic 400 19px/1.3 "Instrument Serif", serif; color: var(--ink-2); }
+.now b { font: 400 10px "Geist Mono", monospace; letter-spacing: 0.2em; text-transform: uppercase; color: var(--clay); margin-right: 10px; font-style: normal; }
+.now span + b { margin-left: 22px; }
+#clock { font-variant-numeric: tabular-nums; }
+#clock small { display: block; font-size: 12px; color: var(--ink-4); }
+
+/* case study entry point in experience */
+.case-btn { display: inline-flex; align-items: center; gap: 10px; margin-top: 20px; font: 400 10.5px "Geist Mono", monospace; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); padding-bottom: 4px; border-bottom: 1px solid var(--line-3); transition: color 0.3s, border-color 0.3s; }
+.case-btn:hover { color: var(--clay); border-color: var(--clay); }
+
+/* case study reader */
+.reader { position: fixed; inset: 0; z-index: 95; }
+.reader-scrim { position: absolute; inset: 0; background: color-mix(in srgb, var(--bg) 70%, transparent); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); animation: fade 0.5s; }
+@keyframes fade { from { opacity: 0; } }
+.reader-panel { position: absolute; top: 0; right: 0; bottom: 0; width: min(760px, 100%); overflow-y: auto; background: var(--bg); border-left: 1px solid var(--line-2); padding: 70px clamp(24px, 6vw, 72px) 80px; animation: slideIn 0.8s cubic-bezier(.16, 1, .3, 1); }
+@keyframes slideIn { from { transform: translateX(100%); } }
+.reader-x { position: absolute; top: 22px; right: 22px; }
+.cs-kick { margin-bottom: 18px; }
+.cs h2 { font-size: clamp(44px, 6vw, 72px); margin-bottom: 10px; }
+.cs .cs-org { color: var(--ink-3); margin: 0 0 36px; }
+.cs-block { padding: 26px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 150px 1fr; gap: 24px; }
+.cs-block h4 { font: 400 10.5px "Geist Mono", monospace; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-4); padding-top: 4px; }
+.cs-block p, .cs-block li { color: var(--ink-2); font-size: 15.5px; margin: 0; }
+.cs-block ul { margin: 0; padding-left: 18px; display: grid; gap: 8px; }
+.cs-block li::marker { color: var(--clay); }
+.cs-take { font: italic 400 30px/1.2 "Instrument Serif", serif !important; color: var(--ink) !important; }
+.cs-note { margin-top: 30px; font-size: 12.5px; color: var(--ink-4); }
+
+/* bookshelf */
+.books { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line-2); }
+.books li { padding: 30px 32px 30px 0; border-bottom: 1px solid var(--line); }
+.books b { display: block; font: 400 26px/1.1 "Instrument Serif", serif; }
+.books i { display: block; font-style: normal; font: 400 10px "Geist Mono", monospace; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-4); margin: 8px 0 12px; }
+.books span { color: var(--ink-2); font-size: 14.5px; }
+
+/* documents */
+.docs { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line-2); }
+.docs li { display: grid; grid-template-columns: 1fr auto auto; gap: 24px; align-items: center; padding: 22px 0; border-bottom: 1px solid var(--line); }
+.docs b { font: 400 26px/1.1 "Instrument Serif", serif; font-weight: 400; }
+.docs .mono { color: var(--ink-4); }
+.docs a { font: 400 10.5px "Geist Mono", monospace; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); text-decoration: none; padding-bottom: 4px; border-bottom: 1px solid var(--line-3); }
+.docs a:hover { color: var(--clay); border-color: var(--clay); }
+
+/* off the clock */
+.offclock { padding-top: clamp(80px, 10vw, 120px); }
+.offclock p { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 28px; padding: 26px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font: italic 400 clamp(22px, 2.4vw, 30px)/1.3 "Instrument Serif", serif; color: var(--ink-2); }
+.offclock .mono { font-style: normal; color: var(--clay); }
+
+/* copy buttons */
+.copy-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 32px; margin-top: 30px; }
+.copy-row .copy { margin-top: 0; }
+.cert-verify { margin-left: 8px; font: 400 10px "Geist Mono", monospace; letter-spacing: 0.16em; text-transform: uppercase; color: var(--clay); text-decoration: none; }
+.paper.static { cursor: default; }
+.paper-status { display: inline-flex; align-items: center; gap: 8px; font: 400 10px "Geist Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ok); }
+.paper-status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--ok); animation: pulse 2.6s infinite; }
+
+/* custom cursor (desktop only, enabled by script) */
+.cursor { position: fixed; left: 0; top: 0; z-index: 300; width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 50%; border: 1px solid var(--acc); pointer-events: none; opacity: 0; transition: width 0.35s, height 0.35s, margin 0.35s, background 0.35s, opacity 0.3s, border-color 0.35s; will-change: transform; }
+body.has-cursor .cursor { opacity: 0.8; }
+.cursor.big { width: 64px; height: 64px; margin: -32px 0 0 -32px; background: var(--acc-dim); border-color: var(--clay); }
+
+/* view-switch curtain */
+.curtain { position: fixed; inset: 0; z-index: 250; background: var(--bg-2); transform: scaleY(0); transform-origin: bottom; pointer-events: none; }
+.curtain.in { animation: curtainIn 0.45s cubic-bezier(.7, 0, .3, 1) forwards; }
+.curtain.out { animation: curtainOut 0.55s cubic-bezier(.7, 0, .3, 1) forwards; }
+@keyframes curtainIn { from { transform: scaleY(0); transform-origin: bottom; } to { transform: scaleY(1); transform-origin: bottom; } }
+@keyframes curtainOut { from { transform: scaleY(1); transform-origin: top; } to { transform: scaleY(0); transform-origin: top; } }
+
+@media (max-width: 1100px) { .books { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 720px) {
+  .books { grid-template-columns: 1fr; }
+  .docs li { grid-template-columns: 1fr auto; }
+  .docs .mono { display: none; }
+  .cs-block { grid-template-columns: 1fr; gap: 10px; }
+  .now span + b { margin-left: 0; display: block; margin-top: 6px; }
+}
+
+/* ---------- print: always the clean résumé ---------- */
+@media print {
+  @page { margin: 14mm 14mm; }
+  :root, [data-theme] { --bg: #fff; --ink: #0e1a30; --ink-2: #222b3d; --ink-3: #4a5265; --ink-4: #6b7385; --clay: #8a4526; --acc: #2c4794; --line: #d8dbe2; --line-2: #c3c7d0; --line-3: #9aa0ad; }
+  body { background: #fff !important; color: #0e1a30; font-size: 11pt; }
+  body::after, .nav, .progress, .cursor, .curtain, .filterbar, .toast, .reader, #story, .r-foot, .r-actions { display: none !important; }
+  main#resume, main#resume[hidden] { display: block !important; }
+  .resume { padding: 0; max-width: none; }
+  .r-head h1 { font-size: 34pt; }
+  .r-sec { padding: 10pt 0; break-inside: avoid; }
+  .r-item { break-inside: avoid; }
+  a { color: inherit; text-decoration: none; }
+}

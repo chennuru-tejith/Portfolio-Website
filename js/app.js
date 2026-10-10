@@ -33,7 +33,13 @@
 
   // ---------- views ----------
   let view = "story";
-  function setView(v, push = true) {
+  function setView(v, push = true, animate = false) {
+    if (animate && !still && v !== view) {
+      const c = $("#curtain");
+      c.className = "curtain in";
+      setTimeout(() => { setView(v, push, false); c.className = "curtain out"; setTimeout(() => (c.className = "curtain"), 560); }, 450);
+      return;
+    }
     view = v;
     $("#story").hidden = v !== "story"; $("#resume").hidden = v !== "resume";
     document.body.classList.toggle("resume-mode", v === "resume");
@@ -139,7 +145,8 @@
     $("#journeyList").innerHTML = items.map((s) => `
       <article class="step rv ft ${s.lead ? "lead" : ""}" data-tags="${esc((TAGS[s.role] || []).join(" "))}"><div><div class="step-when">${esc(s.when.split(" · ")[0])}</div><span class="step-tag">${s.tag}</span></div>
       <div><h3>${esc(s.role)}</h3><p class="step-org">${esc(s.org)}</p>${s.points.length ? `<ul>${s.points.map((p) => `<li>${esc(p)}</li>`).join("")}</ul>` : ""}
-      ${!s.lead && OUT[s.role] ? `<div class="ba"><div class="b"><b>Before</b>${esc(OUT[s.role].before)}</div><div class="arr" aria-hidden="true">→</div><div class="a"><b>After</b>${esc(OUT[s.role].after)}</div></div>` : ""}</div></article>`).join("");
+      ${!s.lead && OUT[s.role] ? `<div class="ba"><div class="b"><b>Before</b>${esc(OUT[s.role].before)}</div><div class="arr" aria-hidden="true">→</div><div class="a"><b>After</b>${esc(OUT[s.role].after)}</div></div>` : ""}
+      ${!s.lead && D.cases && D.cases[s.role] ? `<button class="case-btn" data-case="${esc(s.role)}">Read the case study <span aria-hidden="true">→</span></button>` : ""}</div></article>`).join("");
 
     $("#workList").innerHTML = D.projects.map((p, i) => {
       const links = `<div class="proj-links">${p.live ? `<a href="${esc(p.live)}" target="_blank" rel="noopener noreferrer">Visit live app ${I("external", 14)}</a>` : ""}${p.repo ? `<a href="${esc(p.repo)}" target="_blank" rel="noopener noreferrer">${I("github", 15)} Source</a>` : ""}</div>`;
@@ -158,7 +165,7 @@
     renderWriting(); renderRefs();
     $("#honourList").innerHTML = D.achievements.map((a, i) => `<li class="honour rv ft" data-tags="${esc(((D.achievementTags || [])[i] || []).join(" "))}"><b>${esc(a.year)}</b><p>${esc(a.text)}</p></li>`).join("");
     $("#school").innerHTML = `<h3>Education</h3>` + D.education.map((e) => `<div class="edu"><strong>${esc(e.degree)}</strong><span>${esc(e.school)}</span><em>${esc(e.when)} · ${esc(e.score)}</em></div>`).join("") +
-      D.certifications.map((c) => `<div class="edu"><strong>${esc(c.name)}</strong><span>${esc(c.issuer)}</span><em>Certification</em></div>`).join("");
+      D.certifications.map((c) => `<div class="edu"><strong>${esc(c.name)}</strong><span>${esc(c.issuer)}</span><em>Certification</em>${c.verify ? `<a class="cert-verify" href="${esc(c.verify)}" target="_blank" rel="noopener noreferrer">Verify ↗</a>` : ""}</div>`).join("");
     $("#contactCta").innerHTML = contactButtons();
     $("#copyEmail .copy-text").textContent = D.profile.email;
   }
@@ -175,9 +182,12 @@
     bar.hidden = kinds.length < 3;
     bar.innerHTML = kinds.map((k) => `<button role="tab" aria-selected="${k === filter}" data-kind="${esc(k)}">${esc(k)}</button>`).join("");
     $$("button", bar).forEach((b) => b.addEventListener("click", () => renderWriting(b.dataset.kind)));
-    box.innerHTML = items.filter((w) => filter === "All" || w.kind === filter).map((w) => `
-      <a class="paper" href="${esc(w.url)}" target="_blank" rel="noopener noreferrer"><div class="paper-top"><span>${esc(w.kind)}</span><span>${esc(w.date)}</span></div>
-      <h3>${esc(w.title)}</h3><p>${esc(w.summary)}</p><span class="paper-venue">${esc(w.venue)} ↗</span></a>`).join("");
+    box.innerHTML = items.filter((w) => filter === "All" || w.kind === filter).map((w) => {
+      const inner = `<div class="paper-top"><span>${esc(w.kind)}</span><span>${esc(w.date)}</span></div>
+        <h3>${esc(w.title)}</h3><p>${esc(w.summary)}</p>
+        ${w.status ? `<span class="paper-status">${esc(w.status)}</span>` : `<span class="paper-venue">${esc(w.venue)}${w.url ? " ↗" : ""}</span>`}`;
+      return w.url ? `<a class="paper" href="${esc(w.url)}" target="_blank" rel="noopener noreferrer">${inner}</a>` : `<div class="paper static">${inner}</div>`;
+    }).join("");
   }
   function requestLink() {
     const body = ["Hi Tejith,", "", "Here is my recommendation for your portfolio:", "", "", "", "Name:", "Role / title:", "Organisation:", "How I know you (e.g. taught you X / supervised you at Y):", "LinkedIn profile (so recruiters can verify):", "", "I give permission to publish this on your portfolio: Yes / No"].join("\n");
@@ -203,14 +213,14 @@
       <header class="r-head"><h1>${esc(p.name)}</h1><p class="r-role">${esc(p.title)} · BBA + MBA, O.P. Jindal Global University</p>
         <div class="r-links"><span>${I("pin", 15)} ${esc(p.location)}</span><a href="mailto:${esc(p.email)}">${I("mail", 15)} ${esc(p.email)}</a>
         <a href="${esc(p.linkedin)}" target="_blank" rel="noopener noreferrer">${I("linkedin", 15)} chennuru-tejith</a><a href="${esc(p.github)}" target="_blank" rel="noopener noreferrer">${I("github", 15)} chennuru-tejith</a></div>
-        <div class="r-actions"><a class="btn btn-primary btn-sm" href="${esc(p.cv)}" download>Download PDF</a><a class="btn btn-ghost btn-sm" href="mailto:${esc(p.email)}">Email</a></div></header>
+        <div class="r-actions"><a class="btn btn-primary btn-sm" href="${esc(p.cv)}" download>Download PDF</a><button class="btn btn-ghost btn-sm" data-print>Print / save</button><button class="btn btn-ghost btn-sm" data-hr>Copy summary for HR</button><a class="btn btn-ghost btn-sm" href="mailto:${esc(p.email)}">Email</a></div></header>
       <section class="r-sec"><h2>Summary</h2><p>${esc(p.summary)}</p></section>
       <section class="r-sec"><h2>Experience</h2><div>${D.experience.map((e) => `<div class="r-item"><h3>${esc(e.role)}</h3><div class="r-sub"><span>${esc(e.org)}</span><span>${esc(e.when)}</span></div><ul>${e.points.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>`).join("")}</div></section>
       <section class="r-sec"><h2>Leadership</h2><div>${D.leadership.map((l) => `<div class="r-item"><h3>${esc(l.role)}</h3><div class="r-sub"><span>${esc(l.org)}</span><span>${esc(l.when)}</span></div></div>`).join("")}</div></section>
       <section class="r-sec"><h2>Education</h2><div>${D.education.map((e) => `<div class="r-item"><h3>${esc(e.degree)}</h3><div class="r-sub"><span>${esc(e.school)}</span><span>${esc(e.when)} · ${esc(e.score)}</span></div></div>`).join("")}</div></section>
       <section class="r-sec"><h2>Skills</h2><div class="r-skills">${D.skills.map((s) => `<div><b>${esc(s.group)}:</b> ${esc(s.items.join(", "))}</div>`).join("")}<div><b>Languages:</b> ${esc(p.languages.join(", "))}</div><div><b>Certification:</b> ${esc(D.certifications.map((c) => `${c.name} (${c.issuer})`).join(", "))}</div></div></section>
       <section class="r-sec"><h2>Projects</h2><div>${D.projects.map((x) => `<div class="r-item"><h3><a href="${esc(x.live || x.repo)}" target="_blank" rel="noopener noreferrer">${esc(x.name)}</a></h3><div class="r-sub"><span>${esc(x.blurb)}</span></div></div>`).join("")}</div></section>
-      ${D.writing.length ? `<section class="r-sec"><h2>Writing</h2><div>${D.writing.map((w) => `<div class="r-item"><h3><a href="${esc(w.url)}" target="_blank" rel="noopener noreferrer">${esc(w.title)}</a></h3><div class="r-sub"><span>${esc(w.kind)} · ${esc(w.venue)}</span><span>${esc(w.date)}</span></div></div>`).join("")}</div></section>` : ""}
+      ${D.writing.length ? `<section class="r-sec"><h2>Writing</h2><div>${D.writing.map((w) => `<div class="r-item"><h3>${w.url ? `<a href="${esc(w.url)}" target="_blank" rel="noopener noreferrer">${esc(w.title)}</a>` : esc(w.title)}</h3><div class="r-sub"><span>${esc(w.kind)} · ${esc(w.status || w.venue)}</span><span>${esc(w.date)}</span></div></div>`).join("")}</div></section>` : ""}
       ${D.recommendations.length ? `<section class="r-sec"><h2>References</h2><div>${D.recommendations.map((r) => `<div class="r-item"><h3>${esc(r.name)}</h3><div class="r-sub"><span>${esc(r.role)}, ${esc(r.org)}</span>${r.link ? `<a href="${esc(r.link)}" target="_blank" rel="noopener noreferrer">Verify ↗</a>` : ""}</div><p style="margin-top:6px">“${esc(r.quote)}”</p></div>`).join("")}</div></section>` : ""}
       <section class="r-sec"><h2>Honours</h2><div><ul style="margin:0;padding-left:18px">${D.achievements.map((a) => `<li>${esc(a.text)} (${esc(a.year)})</li>`).join("")}</ul></div></section>
     </div><div class="r-foot"><span>Want the full picture? The main site has the details behind each role.</span><button class="btn btn-ghost btn-sm" data-go="story">View full site →</button></div></div>`;
@@ -351,13 +361,118 @@
     $$(".nav-links a").forEach((a) => a.classList.toggle("on", a.getAttribute("href") === "#" + on));
   }
 
+
+  // ---------- "currently" line ----------
+  function renderNow() {
+    const c = D.currently || {}, parts = [["Working on", c.working], ["Reading", c.reading], ["Learning", c.learning]].filter((x) => x[1]);
+    if (!parts.length) return;
+    $("#now").innerHTML = parts.map(([k, v]) => `<b>${esc(k)}</b><span>${esc(v)}</span>`).join("");
+    $("#now").hidden = false;
+  }
+
+  // ---------- local time in Hyderabad (IST) ----------
+  function clock() {
+    const el = $("#clock"); if (!el) return;
+    const fmt = new Intl.DateTimeFormat("en-IN", { timeZone: "Asia/Kolkata", hour: "numeric", minute: "2-digit", hour12: true });
+    const tick = () => { el.innerHTML = `${fmt.format(new Date())} IST<small>Replies ${esc((D.availability && D.availability.response || "soon").toLowerCase())}</small>`; };
+    tick(); setInterval(tick, 30000);
+  }
+
+  // ---------- bookshelf, documents, off the clock ----------
+  function renderExtras() {
+    const books = D.books || [];
+    if (books.length) {
+      $("#bookList").innerHTML = books.map((b) => `<li class="rv"><b>${esc(b.title)}</b><i>${esc(b.author || "")}</i><span>${esc(b.note || "")}</span></li>`).join("");
+      $("#books").hidden = false;
+    }
+    const docs = D.documents || [];
+    if (docs.length) {
+      $("#docList").innerHTML = docs.map((d) => `<li class="rv"><b>${esc(d.name)}</b><span class="mono">${esc(d.type)}</span><a href="${esc(d.url)}" download>Download ↓</a></li>`).join("");
+    } else $("#documents").hidden = true;
+    if (D.offClock) { $("#offText").textContent = D.offClock; $("#offclock").hidden = false; }
+  }
+
+  // ---------- "summary for HR" ----------
+  function hrText() {
+    const p = D.profile, a = D.availability || {};
+    return [
+      `${p.name} — ${D.programme ? D.programme.name : "BBA + MBA"}, O.P. Jindal Global University (graduating Aug 2029)`,
+      `Experience: Round Table India (Operations, ₹4 Cr CSR project), Dr. Reddy's (Project Management), Ion Exchange (Finance)`,
+      a.windows ? `Available: ${a.windows.join(" & ")} · ${a.type} · ${a.locations}` : "",
+      `Contact: ${p.email} · ${p.linkedin}`,
+      `Portfolio: ${location.origin + location.pathname}`,
+    ].filter(Boolean).join("\n");
+  }
+  async function copyHR() {
+    try { await navigator.clipboard.writeText(hrText()); toast("Summary copied ✓"); }
+    catch (err) { location.href = `mailto:?subject=${encodeURIComponent("Candidate: " + D.profile.name)}&body=${encodeURIComponent(hrText())}`; }
+  }
+
+  // ---------- case-study reader ----------
+  let caseFocus = null;
+  function openCase(role) {
+    const c = D.cases && D.cases[role], e = D.experience.find((x) => x.role === role);
+    if (!c || !e) return;
+    caseFocus = document.activeElement;
+    $("#caseBody").innerHTML = `<div class="cs">
+      <p class="kicker cs-kick">Case study</p>
+      <h2 id="caseTitle">${esc(e.org.split(" — ")[0])}</h2>
+      <p class="cs-org">${esc(e.role)} · ${esc(e.when)}</p>
+      <div class="cs-block"><h4>Context</h4><p>${esc(c.context)}</p></div>
+      <div class="cs-block"><h4>What I did</h4><ul>${c.actions.map((a) => `<li>${esc(a)}</li>`).join("")}</ul></div>
+      <div class="cs-block"><h4>What changed</h4><p>${esc(c.outcome)}</p></div>
+      <div class="cs-block"><h4>Takeaway</h4><p class="cs-take">“${esc(c.takeaway)}”</p></div>
+    </div>`;
+    $("#reader").hidden = false; document.body.style.overflow = "hidden";
+    $(".reader-panel").scrollTop = 0; $(".reader-x").focus();
+  }
+  function closeCase() {
+    if ($("#reader").hidden) return;
+    $("#reader").hidden = true; document.body.style.overflow = "";
+    if (caseFocus && caseFocus.focus) caseFocus.focus({ preventScroll: true });
+  }
+
+  // ---------- custom cursor (desktop, motion allowed) ----------
+  function cursor() {
+    if (still || !matchMedia("(pointer: fine)").matches) return;
+    const c = $("#cursor"); let x = -100, y = -100, cx = -100, cy = -100, raf = 0;
+    document.body.classList.add("has-cursor");
+    const loop = () => {
+      cx += (x - cx) * 0.22; cy += (y - cy) * 0.22;
+      c.style.transform = `translate3d(${cx.toFixed(1)}px, ${cy.toFixed(1)}px, 0)`;
+      raf = Math.abs(x - cx) + Math.abs(y - cy) > 0.3 ? requestAnimationFrame(loop) : 0;
+    };
+    addEventListener("pointermove", (e) => {
+      x = e.clientX; y = e.clientY;
+      c.classList.toggle("big", !!e.target.closest("a, button, summary, [role=button], .dt"));
+      if (!raf) raf = requestAnimationFrame(loop);
+    }, { passive: true });
+    document.addEventListener("pointerleave", () => (c.style.opacity = "0"));
+    document.addEventListener("pointerenter", () => (c.style.opacity = ""));
+  }
+
   // ---------- boot ----------
   applyTheme(state.theme);
   $("#year").textContent = new Date().getFullYear();
-  renderDisciplines(); renderSections(); renderProgress(); renderAvail(); renderAbilities(); renderMap(); renderFaq(); renderFilter(); renderResume(); motion(); reveal();
+  renderDisciplines(); renderSections(); renderProgress(); renderAvail(); renderAbilities(); renderMap(); renderFaq(); renderFilter(); renderNow(); renderExtras(); renderResume(); clock(); cursor(); motion(); reveal();
 
-  document.addEventListener("click", (e) => { const go = e.target.closest("[data-go]"); if (go) setView(go.dataset.go); });
-  $(".logo").addEventListener("click", (e) => { if (view !== "story") { e.preventDefault(); setView("story"); } });
+  document.addEventListener("click", (e) => {
+    const go = e.target.closest("[data-go]"); if (go) setView(go.dataset.go, true, true);
+    const cs = e.target.closest("[data-case]"); if (cs) openCase(cs.dataset.case);
+    if (e.target.closest("[data-close-case]")) closeCase();
+    if (e.target.closest("[data-hr]")) copyHR();
+    if (e.target.closest("[data-print]")) window.print();
+  });
+  window.addEventListener("keydown", (e) => {
+    if ($("#reader").hidden) return;
+    if (e.key === "Escape") return closeCase();
+    if (e.key === "Tab") {
+      const f = $$(".reader-panel button, .reader-panel a[href]"); if (!f.length) return;
+      if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+      else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
+    }
+  });
+  $(".logo").addEventListener("click", (e) => { if (view !== "story") { e.preventDefault(); setView("story", true, true); } });
   $("#themeBtn").addEventListener("click", () => { state.theme = state.theme === "dark" ? "light" : "dark"; save(); applyTheme(state.theme); });
   $("#copyEmail").addEventListener("click", async () => {
     try { await navigator.clipboard.writeText(D.profile.email); toast("Email copied ✓"); } catch (err) { location.href = "mailto:" + D.profile.email; }
