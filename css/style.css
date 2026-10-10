@@ -1,35 +1,35 @@
 /* ============================================================
    Chennuru Tejith: portfolio
-   Sapphire · royal blue · ice · ivory
-   Display: Instrument Serif · Text: Geist · Labels: Geist Mono
+   Obsidian · midnight · antique bronze · linen
+   Display: Bell MT · Text and labels: Times New Roman · Script: Pinyon Script
    ============================================================ */
 
-/* Sapphire · royal blue · ice · ivory */
+/* Obsidian · midnight · antique bronze · linen */
 :root,
 [data-theme="dark"] {
-  --bg: #050b1a;
-  --bg-1: #0a1328;
-  --bg-2: #0f1b36;
-  --surface: #0a1328;
-  --ink: #e9edf5;
-  --ink-2: #b6c0d4;
-  --ink-3: #8693ad;
-  --ink-4: #7d8aa6;
-  --muted: #8693ad;
-  --acc: #94b4ff;
-  --acc-hi: #c2d4ff;
-  --acc-dim: rgba(148, 180, 255, 0.1);
-  --clay: #c9d6ee;
-  --ok: #86d4e6;
-  --ok-l: rgba(127, 216, 234, 0.1);
-  --line: rgba(148, 176, 245, 0.09);
-  --line-2: rgba(148, 176, 245, 0.17);
-  --line-3: rgba(148, 176, 245, 0.32);
-  --btn: #e9edf5;
-  --btn-ink: #050b1a;
-  --land: #0c1730;
-  --dotc: rgba(148, 176, 245, 0.26);
-  --stripe: rgba(148, 176, 245, 0.022);
+  --bg: #03071e;
+  --bg-1: #050c2b;
+  --bg-2: #07133b;
+  --surface: #050c2b;
+  --ink: #eadcc5;
+  --ink-2: #c9bea9;
+  --ink-3: #9c9384;
+  --ink-4: #8f877a;
+  --muted: #9c9384;
+  --acc: #b58a57;
+  --acc-hi: #d1ad7d;
+  --acc-dim: rgba(181, 138, 87, 0.1);
+  --clay: #d8c3a0;
+  --ok: #a9c7a0;
+  --ok-l: rgba(169, 199, 160, 0.1);
+  --line: rgba(234, 220, 197, 0.09);
+  --line-2: rgba(234, 220, 197, 0.17);
+  --line-3: rgba(234, 220, 197, 0.32);
+  --btn: #eadcc5;
+  --btn-ink: #03071e;
+  --land: #06102f;
+  --dotc: rgba(234, 220, 197, 0.26);
+  --stripe: rgba(234, 220, 197, 0.022);
   --grain: 0.06;
   --shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.75);
   /* legacy names used by scripts/markup */
@@ -39,29 +39,29 @@
   color-scheme: dark;
 }
 [data-theme="light"] {
-  --bg: #f3f6fc;
-  --bg-1: #eaf0fa;
-  --bg-2: #dfe7f6;
-  --surface: #f8faff;
-  --ink: #0a1a44;
-  --ink-2: #2c3d6b;
-  --ink-3: #4d5d88;
-  --ink-4: #56668f;
-  --muted: #4d5d88;
-  --acc: #1d47c9;
-  --acc-hi: #14348f;
-  --acc-dim: rgba(29, 71, 201, 0.08);
-  --clay: #2f5fd0;
-  --ok: #0e6f86;
-  --ok-l: rgba(14, 111, 134, 0.08);
-  --line: rgba(10, 26, 68, 0.1);
-  --line-2: rgba(10, 26, 68, 0.18);
-  --line-3: rgba(10, 26, 68, 0.34);
-  --btn: #0a1a44;
-  --btn-ink: #f3f6fc;
-  --land: #dde5f3;
-  --dotc: rgba(10, 26, 68, 0.3);
-  --stripe: rgba(10, 26, 68, 0.03);
+  --bg: #f4ede1;
+  --bg-1: #ede4d4;
+  --bg-2: #e4d8c3;
+  --surface: #f9f4ea;
+  --ink: #03071e;
+  --ink-2: #1f2a4d;
+  --ink-3: #4a5373;
+  --ink-4: #545c7c;
+  --muted: #4a5373;
+  --acc: #7a5530;
+  --acc-hi: #5c3f21;
+  --acc-dim: rgba(122, 85, 48, 0.08);
+  --clay: #8a5a2b;
+  --ok: #3f6b3f;
+  --ok-l: rgba(63, 107, 63, 0.08);
+  --line: rgba(3, 7, 30, 0.1);
+  --line-2: rgba(3, 7, 30, 0.18);
+  --line-3: rgba(3, 7, 30, 0.34);
+  --btn: #03071e;
+  --btn-ink: #f4ede1;
+  --land: #e6dccb;
+  --dotc: rgba(3, 7, 30, 0.3);
+  --stripe: rgba(3, 7, 30, 0.03);
   --grain: 0.05;
   --shadow: 0 30px 60px -30px rgba(8, 20, 60, 0.25);
   --blue: var(--acc);
@@ -73,7 +73,7 @@
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 90px; scrollbar-gutter: stable; }
 body {
-  margin: 0; color: var(--ink); font: 400 16px/1.65 "Libre Caslon Text", "Times New Roman", serif; -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  margin: 0; color: var(--ink); font: 400 16px/1.65 "Times New Roman", Tinos, Times, serif; -webkit-font-smoothing: antialiased; overflow-x: hidden;
   background-color: var(--bg);
   transition: background-color 0.5s, color 0.5s;
 }
@@ -85,10 +85,10 @@ img { max-width: 100%; display: block; }
 ::selection { background: var(--acc); color: var(--bg); }
 :focus-visible { outline: 1px solid var(--acc); outline-offset: 4px; }
 h1, h2, h3, h4 { margin: 0; font-weight: 400; }
-h1, h2, .serif { font-family: "Libre Caslon Display", "Times New Roman", serif; letter-spacing: -0.01em; line-height: 0.98; }
-h3, h4 { font-family: "Libre Caslon Text", "Times New Roman", serif; letter-spacing: -0.02em; line-height: 1.2; }
+h1, h2, .serif { font-family: "Bell MT", "Libre Caslon Display", "Times New Roman", serif; letter-spacing: -0.01em; line-height: 0.98; }
+h3, h4 { font-family: "Times New Roman", Tinos, Times, serif; letter-spacing: -0.02em; line-height: 1.2; }
 .wrap { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
-.mono, .kicker { font: 400 11.5px/1.4 "Geist Mono", monospace; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-3); margin: 0; }
+.mono, .kicker { font: 400 11.5px/1.4 "Times New Roman", Tinos, Times, serif; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-3); margin: 0; }
 .kicker { display: inline-flex; align-items: center; gap: 14px; margin-bottom: 22px; color: var(--clay); }
 .kicker::before { content: ""; width: 28px; height: 1px; background: currentColor; }
 .kicker.light { color: var(--clay); }
@@ -99,7 +99,7 @@ h3, h4 { font-family: "Libre Caslon Text", "Times New Roman", serif; letter-spac
 /* ---------- buttons & links ---------- */
 .btn {
   display: inline-flex; align-items: center; gap: 12px; height: 50px; padding: 0 26px; border-radius: 2px;
-  font: 500 11.5px "Geist Mono", monospace; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none;
+  font: 500 11.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none;
   transition: background 0.4s, color 0.4s, border-color 0.4s;
 }
 .btn span { transition: transform 0.5s cubic-bezier(.16, 1, .3, 1); }
@@ -119,10 +119,10 @@ h3, h4 { font-family: "Libre Caslon Text", "Times New Roman", serif; letter-spac
 .nav-in { max-width: 1240px; margin: 0 auto; padding: 0 32px; height: 76px; display: flex; align-items: center; gap: 32px; }
 .logo { display: flex; align-items: baseline; gap: 2px; text-decoration: none; }
 .logo-mark { display: none; }
-.logo-name { font: italic 400 26px/1 "Libre Caslon Display", "Times New Roman", serif; letter-spacing: -0.01em; }
+.logo-name { font: italic 400 26px/1 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; letter-spacing: -0.01em; }
 .logo-name::after { content: "."; color: var(--clay); font-style: normal; }
 .nav-links { display: flex; gap: 30px; margin: 0 auto; }
-.nav-links a { text-decoration: none; font: 400 11px "Geist Mono", monospace; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-3); transition: color 0.3s; position: relative; padding: 6px 0; }
+.nav-links a { text-decoration: none; font: 400 11px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-3); transition: color 0.3s; position: relative; padding: 6px 0; }
 .nav-links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--acc); transform: scaleX(0); transform-origin: left; transition: transform 0.5s cubic-bezier(.16, 1, .3, 1); }
 .nav-links a:hover, .nav-links a.on { color: var(--ink); }
 .nav-links a.on::after, .nav-links a:hover::after { transform: scaleX(1); }
@@ -136,7 +136,7 @@ body.resume-mode .nav-links { visibility: hidden; }
 .blob.b1 { position: absolute; width: 1100px; height: 800px; right: -380px; top: -360px; border-radius: 50%; background: radial-gradient(closest-side, color-mix(in srgb, var(--acc) 10%, transparent), transparent); }
 .blob.b2, .hero-bg .grid { display: none; }
 .hero-in { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 64px; align-items: end; }
-.status { display: inline-flex; align-items: center; gap: 10px; font: 400 11px "Geist Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-2); }
+.status { display: inline-flex; align-items: center; gap: 10px; font: 400 11px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-2); }
 .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ok); animation: pulse 2.6s infinite; }
 @keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--ok) 55%, transparent); } 70%, 100% { box-shadow: 0 0 0 9px transparent; } }
 .hero h1 { font-size: clamp(56px, 7.6vw, 118px); margin: 30px 0 30px; animation: rise 1.4s cubic-bezier(.16, 1, .3, 1) 0.15s both; }
@@ -146,7 +146,7 @@ body.resume-mode .nav-links { visibility: hidden; }
 .hero .lead strong { color: var(--ink); font-weight: 500; }
 .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 44px; animation: rise 1.4s cubic-bezier(.16, 1, .3, 1) 0.5s both; }
 .hero-facts { display: flex; gap: 48px; margin: 0; padding-top: 22px; border-top: 1px solid var(--line-2); }
-.hero-facts dt { font: 400 10.5px "Geist Mono", monospace; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-4); margin-bottom: 6px; }
+.hero-facts dt { font: 400 10.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-4); margin-bottom: 6px; }
 .hero-facts dd { margin: 0; color: var(--ink-2); font-size: 14.5px; }
 
 /* hero documents */
@@ -156,17 +156,17 @@ body.resume-mode .nav-links { visibility: hidden; }
 .file::before { content: ""; position: absolute; left: 28px; top: 0; width: 44px; height: 2px; background: var(--clay); }
 .file-head { display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: start; margin-bottom: 26px; }
 .file-ic { display: none; }
-.file-head h3 { font: 400 26px/1.1 "Libre Caslon Display", "Times New Roman", serif; letter-spacing: 0; margin-top: 8px; }
+.file-head h3 { font: 400 26px/1.1 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; letter-spacing: 0; margin-top: 8px; }
 .file-head .mono { font-size: 10px; }
-.pill { font: 400 10px "Geist Mono", monospace; letter-spacing: 0.16em; text-transform: uppercase; padding: 6px 10px; border: 1px solid currentColor; border-radius: 2px; white-space: nowrap; }
+.pill { font: 400 10px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.16em; text-transform: uppercase; padding: 6px 10px; border: 1px solid currentColor; border-radius: 2px; white-space: nowrap; }
 .pill.ok { color: var(--ok); }
 .file-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line-2); border-bottom: 1px solid var(--line-2); margin-bottom: 22px; }
 .file-grid div { padding: 16px 0 16px 16px; border-left: 1px solid var(--line); }
 .file-grid div:first-child { border-left: 0; padding-left: 0; }
-.file-grid span { display: block; font: 400 10px "Geist Mono", monospace; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-4); margin-bottom: 6px; }
-.file-grid b { font: 400 34px/1 "Libre Caslon Display", "Times New Roman", serif; }
+.file-grid span { display: block; font: 400 10px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-4); margin-bottom: 6px; }
+.file-grid b { font: 400 34px/1 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; }
 .weeks { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-bottom: 16px; }
-.weeks span { position: relative; padding-top: 12px; font: 400 9.5px "Geist Mono", monospace; letter-spacing: 0.08em; color: var(--ink-4); text-align: center; }
+.weeks span { position: relative; padding-top: 12px; font: 400 9.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.08em; color: var(--ink-4); text-align: center; }
 .weeks span::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; background: var(--acc); transform-origin: left; animation: fill 0.8s cubic-bezier(.16, 1, .3, 1) both; }
 .weeks span:nth-child(2)::before { animation-delay: 0.9s; } .weeks span:nth-child(3)::before { animation-delay: 1s; } .weeks span:nth-child(4)::before { animation-delay: 1.1s; }
 .weeks span:nth-child(5)::before { animation-delay: 1.2s; } .weeks span:nth-child(6)::before { animation-delay: 1.3s; } .weeks span:nth-child(7)::before { animation-delay: 1.4s; }
@@ -178,7 +178,7 @@ body.resume-mode .nav-links { visibility: hidden; }
 .float-a span:not(.chk) { font-size: 12.5px; color: var(--ink-3); line-height: 1.5; }
 .chk { flex: none; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; border: 1px solid var(--ok); color: var(--ok); font-size: 12px; }
 .float-b { position: absolute; left: -16px; bottom: 0; width: 236px; padding: 18px; animation: bob 9s ease-in-out -3s infinite; }
-.float-b b { display: block; font: 400 24px/1 "Libre Caslon Display", "Times New Roman", serif; margin: 8px 0 12px; }
+.float-b b { display: block; font: 400 24px/1 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; margin: 8px 0 12px; }
 .float-b > span { font-size: 12px; color: var(--ink-3); }
 .fy { position: relative; display: flex; justify-content: space-between; margin-bottom: 12px; }
 .fy::before { content: ""; position: absolute; left: 4px; right: 4px; top: 50%; height: 1px; background: var(--line-3); }
@@ -188,9 +188,9 @@ body.resume-mode .nav-links { visibility: hidden; }
 .hero.off .float-a, .hero.off .float-b, .hero.off .dot { animation-play-state: paused; }
 
 .trust { display: flex; align-items: baseline; gap: 36px; margin-top: 90px; padding: 26px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.trust-label { font: 400 10.5px "Geist Mono", monospace; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-4); white-space: nowrap; }
+.trust-label { font: 400 10.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-4); white-space: nowrap; }
 .trust ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 44px; }
-.trust li { font: italic 400 22px/1 "Libre Caslon Display", "Times New Roman", serif; color: var(--ink-2); }
+.trust li { font: italic 400 22px/1 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; color: var(--ink-2); }
 
 /* programme progress */
 .prog { margin-top: 26px; max-width: 520px; }
@@ -200,7 +200,7 @@ body.resume-mode .nav-links { visibility: hidden; }
 .prog-bar i { position: absolute; inset: 0 auto 0 0; width: var(--p); background: linear-gradient(90deg, var(--acc), var(--clay)); animation: grow 1.6s cubic-bezier(.16, 1, .3, 1) 0.6s both; }
 .prog-bar i::after { content: ""; position: absolute; right: -4px; top: -3px; width: 8px; height: 8px; border-radius: 50%; background: var(--clay); }
 @keyframes grow { from { width: 0; } }
-.prog-ticks { display: grid; grid-template-columns: repeat(5, 1fr); margin-top: 10px; font: 400 9.5px "Geist Mono", monospace; letter-spacing: 0.1em; color: var(--ink-4); }
+.prog-ticks { display: grid; grid-template-columns: repeat(5, 1fr); margin-top: 10px; font: 400 9.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.1em; color: var(--ink-4); }
 .prog-ticks span.on { color: var(--ink-2); }
 
 /* ---------- metrics & availability (open, no boxes) ---------- */
@@ -208,13 +208,13 @@ body.resume-mode .nav-links { visibility: hidden; }
 .metric-row { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--line); }
 .metric { padding: 44px 28px 40px; border-left: 1px solid var(--line); }
 .metric:first-child { border-left: 0; padding-left: 0; }
-.metric b { display: block; font: 400 clamp(52px, 5.4vw, 76px)/0.9 "Libre Caslon Display", "Times New Roman", serif; letter-spacing: -0.01em; margin-bottom: 14px; color: var(--ink); }
-.metric span { font: 400 10.5px "Geist Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); }
+.metric b { display: block; font: 400 clamp(52px, 5.4vw, 76px)/0.9 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; letter-spacing: -0.01em; margin-bottom: 14px; color: var(--ink); }
+.metric span { font: 400 10.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); }
 .avail { margin-top: 0; }
 .avail-card { display: grid; grid-template-columns: 170px repeat(4, 1fr) auto; border-bottom: 1px solid var(--line); }
-.av-head { display: flex; align-items: center; gap: 10px; padding: 26px 0; font: 400 10.5px "Geist Mono", monospace; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ok); }
+.av-head { display: flex; align-items: center; gap: 10px; padding: 26px 0; font: 400 10.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ok); }
 .av-cell { padding: 26px 22px; border-left: 1px solid var(--line); }
-.av-cell span { display: block; font: 400 10px "Geist Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-4); margin-bottom: 8px; }
+.av-cell span { display: block; font: 400 10px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-4); margin-bottom: 8px; }
 .av-cell b { font-size: 14px; font-weight: 400; color: var(--ink-2); line-height: 1.55; }
 .av-cta { display: flex; align-items: center; padding: 20px 0 20px 22px; border-left: 1px solid var(--line); }
 
@@ -240,26 +240,26 @@ body.resume-mode .nav-links { visibility: hidden; }
 .dt[aria-selected="true"] svg.emb, .dt:hover svg.emb { opacity: 1; }
 .dt b { display: block; font-weight: 500; font-size: 15px; color: var(--ink-2); }
 .dt[aria-selected="true"] b { color: var(--ink); }
-.dt small { font: 400 10px "Geist Mono", monospace; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-4); }
-.dt .no { font: italic 400 20px "Libre Caslon Display", "Times New Roman", serif; color: var(--ink-4); }
+.dt small { font: 400 10px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-4); }
+.dt .no { font: italic 400 20px "Bell MT", "Libre Caslon Display", "Times New Roman", serif; color: var(--ink-4); }
 .dt[aria-selected="true"] .no { color: var(--clay); }
 .disc-panel { padding: 0 0 0 48px; }
 .cred { display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: center; padding: 36px 0 34px; border-bottom: 1px solid var(--line); }
 .cred svg.emb { width: 104px; height: 104px; }
 .cred .mono { color: var(--clay); margin-bottom: 10px; }
-.cred h3 { font: 400 clamp(36px, 3.6vw, 52px)/1 "Libre Caslon Display", "Times New Roman", serif; margin-bottom: 12px; letter-spacing: 0; }
+.cred h3 { font: 400 clamp(36px, 3.6vw, 52px)/1 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; margin-bottom: 12px; letter-spacing: 0; }
 .cred p { margin: 0; color: var(--ink-2); max-width: 560px; }
 .cred-meta { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 16px; }
-.cred-meta span { font: 400 10px "Geist Mono", monospace; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3); }
+.cred-meta span { font: 400 10px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3); }
 .cred-meta .verified { color: var(--ok); }
 .panel-body { padding: 30px 0 10px; display: grid; gap: 34px; }
-.panel-body h4 { font: 400 10.5px "Geist Mono", monospace; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-4); margin-bottom: 14px; }
+.panel-body h4 { font: 400 10.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-4); margin-bottom: 14px; }
 .ev { padding: 20px 0; border-top: 1px solid var(--line); }
 .ev:last-child { border-bottom: 1px solid var(--line); }
 .ev-top { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 .ev h5 { margin: 0; font-weight: 500; font-size: 16.5px; }
 .ev .org { color: var(--ink-3); font-size: 14px; }
-.ev .when { font: 400 10.5px "Geist Mono", monospace; letter-spacing: 0.08em; color: var(--ink-4); }
+.ev .when { font: 400 10.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.08em; color: var(--ink-4); }
 .ev ul { margin: 12px 0 0; padding-left: 18px; }
 .ev li { font-size: 14.5px; color: var(--ink-2); margin-bottom: 6px; }
 .ev li::marker { color: var(--clay); }
@@ -274,36 +274,36 @@ body.resume-mode .nav-links { visibility: hidden; }
 /* ---------- abilities & tools ---------- */
 .am { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 64px; border-top: 1px solid var(--line-2); padding-top: 8px; }
 .am-col { padding: 0; }
-.am-h { font: 400 10.5px "Geist Mono", monospace; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-4); margin: 22px 0 10px; }
+.am-h { font: 400 10.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-4); margin: 22px 0 10px; }
 .abilities { list-style: none; margin: 0; padding: 0; }
 .abilities li { display: grid; grid-template-columns: 200px 1fr; gap: 24px; padding: 20px 0; border-bottom: 1px solid var(--line); }
 .ab-ic { display: none; }
 .abilities li > div { display: contents; }
-.abilities b { font: italic 400 25px/1.1 "Libre Caslon Display", "Times New Roman", serif; color: var(--ink); }
+.abilities b { font: italic 400 25px/1.1 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; color: var(--ink); }
 .abilities span { font-size: 14.5px; color: var(--ink-2); padding-top: 4px; }
 .moves { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; align-content: start; padding-top: 6px; }
 .moves li { display: inline-flex; align-items: center; gap: 10px; padding: 9px 14px; border: 1px solid var(--line-2); border-radius: 2px; font-size: 13.5px; color: var(--ink-2); }
-.moves li small { font: 400 9.5px "Geist Mono", monospace; letter-spacing: 0.12em; text-transform: uppercase; color: var(--clay); }
+.moves li small { font: 400 9.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.12em; text-transform: uppercase; color: var(--clay); }
 
 /* ---------- approach ---------- */
 .principles { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--line-2); }
 .principle { padding: 40px 48px 44px 0; border-bottom: 1px solid var(--line); display: grid; gap: 14px; align-content: start; }
 .principle:nth-child(even) { padding: 40px 0 44px 48px; border-left: 1px solid var(--line); }
-.pr-no { font: italic 400 22px "Libre Caslon Display", "Times New Roman", serif; color: var(--clay); }
-.principle h3 { font: 400 clamp(32px, 3vw, 42px)/1.05 "Libre Caslon Display", "Times New Roman", serif; letter-spacing: 0; }
+.pr-no { font: italic 400 22px "Bell MT", "Libre Caslon Display", "Times New Roman", serif; color: var(--clay); }
+.principle h3 { font: 400 clamp(32px, 3vw, 42px)/1.05 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; letter-spacing: 0; }
 .pr-text { margin: 0; color: var(--ink-2); max-width: 46ch; }
 .pr-proof { margin-top: 8px; padding-left: 18px; border-left: 1px solid var(--clay); }
-.pr-proof b { display: block; font: 400 10px "Geist Mono", monospace; letter-spacing: 0.2em; text-transform: uppercase; color: var(--clay); margin-bottom: 6px; }
+.pr-proof b { display: block; font: 400 10px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.2em; text-transform: uppercase; color: var(--clay); margin-bottom: 6px; }
 .pr-proof p { margin: 0 0 6px; font-size: 14.5px; color: var(--ink); }
 .pr-where { font-size: 12.5px; color: var(--ink-4); }
 
 /* ---------- quote ---------- */
 .quote { padding-top: clamp(120px, 14vw, 190px); }
 .quote figure { margin: 0 auto; max-width: 1000px; text-align: center; }
-.quote blockquote { margin: 0 0 30px; font: 400 clamp(36px, 4.8vw, 68px)/1.08 "Libre Caslon Display", "Times New Roman", serif; letter-spacing: -0.01em; }
+.quote blockquote { margin: 0 0 30px; font: 400 clamp(36px, 4.8vw, 68px)/1.08 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; letter-spacing: -0.01em; }
 .quote blockquote::before { content: "“"; display: block; font-size: 1.8em; line-height: 0.4; color: var(--clay); margin-bottom: 26px; }
 .quote em { font-style: italic; color: var(--acc); }
-.quote figcaption { font: 400 11px "Geist Mono", monospace; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-3); }
+.quote figcaption { font: 400 11px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-3); }
 
 /* ---------- journey map ---------- */
 .map-wrap { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 0; border-top: 1px solid var(--line-2); border-bottom: 1px solid var(--line); }
@@ -315,22 +315,22 @@ body.resume-mode .nav-links { visibility: hidden; }
 .map .dotp circle { fill: var(--dotc); }
 .map .route { fill: none; stroke: url(#routeG); stroke-width: 2; stroke-linecap: round; stroke-dasharray: 6 8; animation: dash 1.8s linear infinite; }
 @keyframes dash { to { stroke-dashoffset: -28; } }
-.map .km { font: italic 400 17px "Libre Caslon Display", "Times New Roman", serif; fill: var(--ink-2); }
+.map .km { font: italic 400 17px "Bell MT", "Libre Caslon Display", "Times New Roman", serif; fill: var(--ink-2); }
 .map .pin { cursor: pointer; }
 .map .pin .halo { fill: var(--acc); opacity: 0.2; transform-box: fill-box; transform-origin: center; animation: halo 2.6s ease-out infinite; }
 @keyframes halo { 0% { transform: scale(0.6); opacity: 0.35; } 100% { transform: scale(2.2); opacity: 0; } }
 .map .pin .core { fill: var(--acc); stroke: var(--bg); stroke-width: 3; }
 .map .pin.on .core, .map .pin.on .halo { fill: var(--clay); }
-.map .pin text { font: italic 400 22px "Libre Caslon Display", "Times New Roman", serif; fill: var(--ink); }
-.map .pin text.st { font: 400 9.5px "Geist Mono", monospace; letter-spacing: 0.16em; text-transform: uppercase; fill: var(--ink-3); }
+.map .pin text { font: italic 400 22px "Bell MT", "Libre Caslon Display", "Times New Roman", serif; fill: var(--ink); }
+.map .pin text.st { font: 400 9.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.16em; text-transform: uppercase; fill: var(--ink-3); }
 .map .pin:focus { outline: none; }
 .map .pin:focus-visible .core { stroke: var(--acc); }
 .map-side { padding: 36px 0 30px 40px; display: grid; gap: 22px; align-content: start; }
 .city-tabs { display: flex; gap: 26px; border-bottom: 1px solid var(--line); }
-.city-tabs button { padding: 0 0 12px; font: 400 10.5px "Geist Mono", monospace; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-4); border-bottom: 1px solid transparent; margin-bottom: -1px; }
+.city-tabs button { padding: 0 0 12px; font: 400 10.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-4); border-bottom: 1px solid transparent; margin-bottom: -1px; }
 .city-tabs button[aria-selected="true"] { color: var(--ink); border-color: var(--clay); }
-.city h3 { font: 400 54px/1 "Libre Caslon Display", "Times New Roman", serif; letter-spacing: 0; }
-.city p { margin: 8px 0 18px; font: 400 10.5px "Geist Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); }
+.city h3 { font: 400 54px/1 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; letter-spacing: 0; }
+.city p { margin: 8px 0 18px; font: 400 10.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); }
 .city ul { list-style: none; margin: 0; padding: 0; }
 .city li { display: flex; gap: 14px; padding: 13px 0; border-top: 1px solid var(--line); font-size: 14.5px; color: var(--ink-2); }
 .city li::before { content: ""; width: 10px; height: 1px; margin-top: 0.8em; background: var(--clay); flex: none; }
@@ -338,10 +338,10 @@ body.resume-mode .nav-links { visibility: hidden; }
 /* ---------- experience ---------- */
 .timeline { border-top: 1px solid var(--line-2); }
 .step { display: grid; grid-template-columns: 220px 1fr; gap: 40px; padding: 40px 0; border-bottom: 1px solid var(--line); }
-.step-when { font: 400 10.5px "Geist Mono", monospace; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); padding-top: 8px; }
-.step-tag { display: inline-block; margin-top: 12px; font: italic 400 17px "Libre Caslon Display", "Times New Roman", serif; color: var(--acc); }
+.step-when { font: 400 10.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); padding-top: 8px; }
+.step-tag { display: inline-block; margin-top: 12px; font: italic 400 17px "Bell MT", "Libre Caslon Display", "Times New Roman", serif; color: var(--acc); }
 .step.lead .step-tag { color: var(--clay); }
-.step h3 { font: 400 clamp(28px, 2.8vw, 38px)/1.08 "Libre Caslon Display", "Times New Roman", serif; letter-spacing: 0; }
+.step h3 { font: 400 clamp(28px, 2.8vw, 38px)/1.08 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; letter-spacing: 0; }
 .step-org { margin: 8px 0 0; color: var(--ink-3); }
 .step ul { margin: 18px 0 0; padding-left: 18px; max-width: 760px; }
 .step li { margin-bottom: 8px; font-size: 15px; color: var(--ink-2); }
@@ -349,7 +349,7 @@ body.resume-mode .nav-links { visibility: hidden; }
 .ba { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; margin-top: 22px; border: 1px solid var(--line-2); max-width: 760px; }
 .ba div { padding: 16px 18px; font-size: 14px; color: var(--ink-2); }
 .ba .a { color: var(--ink); background: var(--ok-l); }
-.ba b { display: block; font: 400 9.5px "Geist Mono", monospace; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 6px; }
+.ba b { display: block; font: 400 9.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 6px; }
 .ba .b b { color: var(--ink-4); }
 .ba .a b { color: var(--ok); }
 .ba .arr { display: grid; place-items: center; color: var(--clay); padding: 0 6px; border-left: 1px solid var(--line); border-right: 1px solid var(--line); }
@@ -361,71 +361,71 @@ body.resume-mode .nav-links { visibility: hidden; }
 .proj.feature { grid-column: 1 / -1; grid-template-columns: 1.15fr 0.85fr; gap: 24px 64px; padding: 48px 0; }
 .proj.feature .proj-main { display: grid; gap: 16px; align-content: start; }
 .proj-top { display: flex; justify-content: space-between; align-items: baseline; }
-.proj-no { font: italic 400 22px "Libre Caslon Display", "Times New Roman", serif; color: var(--clay); }
-.proj-type { font: 400 10px "Geist Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-4); }
-.proj h3 { font: 400 clamp(28px, 2.6vw, 36px)/1.08 "Libre Caslon Display", "Times New Roman", serif; letter-spacing: 0; }
+.proj-no { font: italic 400 22px "Bell MT", "Libre Caslon Display", "Times New Roman", serif; color: var(--clay); }
+.proj-type { font: 400 10px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-4); }
+.proj h3 { font: 400 clamp(28px, 2.6vw, 36px)/1.08 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; letter-spacing: 0; }
 .proj.feature h3 { font-size: clamp(40px, 4.4vw, 64px); }
 .proj p { margin: 0; color: var(--ink-2); }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; }
 .tag { font-size: 12.5px; padding: 5px 11px; border: 1px solid var(--line-2); border-radius: 2px; color: var(--ink-3); }
 .proj-links { display: flex; gap: 26px; margin-top: 6px; }
-.proj-links a { display: inline-flex; gap: 8px; align-items: center; font: 400 10.5px "Geist Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); text-decoration: none; padding-bottom: 4px; border-bottom: 1px solid var(--line-3); transition: border-color 0.3s, color 0.3s; }
+.proj-links a { display: inline-flex; gap: 8px; align-items: center; font: 400 10.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); text-decoration: none; padding-bottom: 4px; border-bottom: 1px solid var(--line-3); transition: border-color 0.3s, color 0.3s; }
 .proj-links a:hover { border-color: var(--clay); color: var(--clay); }
 .mock { align-self: center; border: 1px solid var(--line-2); display: grid; }
 .mock-row { display: grid; grid-template-columns: 30px 1fr auto; gap: 14px; align-items: center; padding: 16px 18px; border-bottom: 1px solid var(--line); font-size: 14px; color: var(--ink); }
 .mock-row:last-child { border-bottom: 0; }
 .mock-av { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--acc); background: var(--acc-dim); }
 .mock-row small { display: block; color: var(--ink-3); font-size: 12px; }
-.mock-tag { font: 400 9.5px "Geist Mono", monospace; letter-spacing: 0.16em; color: var(--clay); }
+.mock-tag { font: 400 9.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.16em; color: var(--clay); }
 
 /* ---------- Q&A ---------- */
 .faq { border-top: 1px solid var(--line-2); max-width: 980px; }
 .faq details { border-bottom: 1px solid var(--line); }
-.faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 28px 0; font: 400 clamp(24px, 2.4vw, 32px)/1.15 "Libre Caslon Display", "Times New Roman", serif; }
+.faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 28px 0; font: 400 clamp(24px, 2.4vw, 32px)/1.15 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; }
 .faq summary::-webkit-details-marker { display: none; }
-.faq summary::after { content: "+"; flex: none; font: 300 26px "Libre Caslon Text", "Times New Roman", serif; color: var(--clay); transition: transform 0.5s cubic-bezier(.16, 1, .3, 1); }
+.faq summary::after { content: "+"; flex: none; font: 300 26px "Times New Roman", Tinos, Times, serif; color: var(--clay); transition: transform 0.5s cubic-bezier(.16, 1, .3, 1); }
 .faq details[open] summary::after { transform: rotate(45deg); }
 .faq details p { margin: 0; padding: 0 0 30px; color: var(--ink-2); font-size: 16px; max-width: 70ch; }
 
 /* ---------- writing & references ---------- */
 .filters { display: flex; gap: 22px; margin-bottom: 22px; }
-.filters button { font: 400 10.5px "Geist Mono", monospace; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-4); padding-bottom: 6px; border-bottom: 1px solid transparent; }
+.filters button { font: 400 10.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-4); padding-bottom: 6px; border-bottom: 1px solid transparent; }
 .filters button[aria-selected="true"] { color: var(--ink); border-color: var(--clay); }
 .writing { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--line-2); }
 .paper { display: grid; gap: 12px; padding: 32px 40px 32px 0; border-bottom: 1px solid var(--line); text-decoration: none; }
-.paper-top { display: flex; justify-content: space-between; font: 400 10px "Geist Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: var(--clay); }
-.paper h3 { font: 400 30px/1.1 "Libre Caslon Display", "Times New Roman", serif; }
+.paper-top { display: flex; justify-content: space-between; font: 400 10px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.18em; text-transform: uppercase; color: var(--clay); }
+.paper h3 { font: 400 30px/1.1 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; }
 .paper p { margin: 0; color: var(--ink-2); }
 .paper-venue { font-size: 13px; color: var(--ink-3); }
 .empty { grid-column: 1 / -1; display: grid; grid-template-columns: auto 1fr auto; gap: 28px; align-items: center; padding: 34px 0; border-bottom: 1px solid var(--line); }
 .empty-ic { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; border: 1px solid var(--line-3); color: var(--clay); }
-.empty h3 { font: 400 28px/1.1 "Libre Caslon Display", "Times New Roman", serif; margin-bottom: 6px; }
+.empty h3 { font: 400 28px/1.1 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; margin-bottom: 6px; }
 .empty p { margin: 0; color: var(--ink-3); font-size: 15px; max-width: 62ch; }
 #refList > .empty { border-top: 1px solid var(--line-2); }
 .ref-grid { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--line-2); }
 .ref { margin: 0; padding: 36px 40px 36px 0; border-bottom: 1px solid var(--line); display: grid; gap: 22px; }
-.ref blockquote { margin: 0; font: 400 24px/1.3 "Libre Caslon Display", "Times New Roman", serif; color: var(--ink); }
+.ref blockquote { margin: 0; font: 400 24px/1.3 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; color: var(--ink); }
 .ref figcaption { display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center; }
-.ref-init { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; border: 1px solid var(--line-3); font: italic 400 17px "Libre Caslon Display", "Times New Roman", serif; }
+.ref-init { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; border: 1px solid var(--line-3); font: italic 400 17px "Bell MT", "Libre Caslon Display", "Times New Roman", serif; }
 .ref figcaption b { display: block; font-weight: 500; font-size: 14.5px; }
 .ref figcaption small { display: block; color: var(--ink-3); font-size: 12.5px; }
-.ref-verify { font: 400 10px "Geist Mono", monospace; letter-spacing: 0.16em; text-transform: uppercase; color: var(--clay); text-decoration: none; }
+.ref-verify { font: 400 10px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.16em; text-transform: uppercase; color: var(--clay); text-decoration: none; }
 .ref-cta { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; padding: 32px 0; border-bottom: 1px solid var(--line); }
-.ref-cta h3 { font: italic 400 28px/1.1 "Libre Caslon Display", "Times New Roman", serif; margin-bottom: 6px; }
+.ref-cta h3 { font: italic 400 28px/1.1 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; margin-bottom: 6px; }
 .ref-cta p { margin: 0; color: var(--ink-3); font-size: 15px; max-width: 60ch; }
 
 /* ---------- honours ---------- */
 .honours { display: grid; grid-template-columns: 1.4fr 0.9fr; gap: 64px; align-items: start; }
 .honour-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line-2); }
 .honour { display: grid; grid-template-columns: 100px 1fr; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--line); }
-.honour b { font: italic 400 30px/1 "Libre Caslon Display", "Times New Roman", serif; color: var(--clay); font-weight: 400; }
+.honour b { font: italic 400 30px/1 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; color: var(--clay); font-weight: 400; }
 .honour p { margin: 0; color: var(--ink-2); font-size: 15px; }
 .school { border-top: 1px solid var(--line-2); position: sticky; top: 100px; }
-.school h3 { font: 400 10.5px "Geist Mono", monospace; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-4); padding: 22px 0 6px; }
+.school h3 { font: 400 10.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-4); padding: 22px 0 6px; }
 .edu { padding: 18px 0; border-bottom: 1px solid var(--line); }
 .edu strong { display: block; font-weight: 500; }
 .edu span { display: block; color: var(--ink-3); font-size: 14px; }
-.edu em { font: italic 400 17px "Libre Caslon Display", "Times New Roman", serif; color: var(--acc); }
+.edu em { font: italic 400 17px "Bell MT", "Libre Caslon Display", "Times New Roman", serif; color: var(--acc); }
 
 /* ---------- contact ---------- */
 .cta { padding-top: clamp(130px, 15vw, 200px); }
@@ -437,8 +437,8 @@ body.resume-mode .nav-links { visibility: hidden; }
 .cta-card .kicker { justify-content: center; }
 .cta-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
 .copy { display: inline-flex; gap: 12px; align-items: center; margin-top: 30px; color: var(--ink-2); font-size: 14px; padding-bottom: 4px; border-bottom: 1px solid var(--line-3); }
-.copy-tag { font: 400 9.5px "Geist Mono", monospace; letter-spacing: 0.2em; text-transform: uppercase; color: var(--clay); }
-.foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding-top: 40px; padding-bottom: 44px; border-top: 1px solid var(--line); font: 400 10.5px "Geist Mono", monospace; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-4); }
+.copy-tag { font: 400 9.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.2em; text-transform: uppercase; color: var(--clay); }
+.foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding-top: 40px; padding-bottom: 44px; border-top: 1px solid var(--line); font: 400 10.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-4); }
 .foot a { text-decoration: none; }
 .foot a:hover { color: var(--ink); }
 
@@ -448,13 +448,13 @@ body.resume-mode .nav-links { visibility: hidden; }
 .r-sheet { padding: 0; }
 .r-head { padding-bottom: 34px; border-bottom: 1px solid var(--line-2); }
 .r-head h1 { font-size: clamp(54px, 7vw, 92px); }
-.r-role { margin: 14px 0 18px; font: 400 10.5px "Geist Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: var(--clay); }
+.r-role { margin: 14px 0 18px; font: 400 10.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.18em; text-transform: uppercase; color: var(--clay); }
 .r-links { display: flex; flex-wrap: wrap; gap: 8px 24px; color: var(--ink-3); font-size: 14px; }
 .r-links a, .r-links span { display: inline-flex; gap: 8px; align-items: center; text-decoration: none; }
 .r-links a:hover { color: var(--ink); }
 .r-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
 .r-sec { display: grid; grid-template-columns: 170px 1fr; gap: 28px; padding: 30px 0; border-bottom: 1px solid var(--line); }
-.r-sec > h2 { font: 400 10.5px "Geist Mono", monospace; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-4); padding-top: 5px; line-height: 1.6; }
+.r-sec > h2 { font: 400 10.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-4); padding-top: 5px; line-height: 1.6; }
 .r-sec p { margin: 0; color: var(--ink-2); }
 .r-item + .r-item { margin-top: 22px; }
 .r-item h3 { font-size: 17px; font-weight: 500; }
@@ -467,7 +467,7 @@ body.resume-mode .nav-links { visibility: hidden; }
 .r-skills b { font-weight: 500; color: var(--ink); }
 .r-foot { margin-top: 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; color: var(--ink-3); }
 
-.toast { position: fixed; left: 50%; bottom: 84px; z-index: 90; transform: translateX(-50%); padding: 12px 18px; border-radius: 2px; background: var(--btn); color: var(--btn-ink); font: 400 11px "Geist Mono", monospace; letter-spacing: 0.12em; text-transform: uppercase; box-shadow: var(--shadow); animation: up 0.5s cubic-bezier(.16, 1, .3, 1); }
+.toast { position: fixed; left: 50%; bottom: 84px; z-index: 90; transform: translateX(-50%); padding: 12px 18px; border-radius: 2px; background: var(--btn); color: var(--btn-ink); font: 400 11px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.12em; text-transform: uppercase; box-shadow: var(--shadow); animation: up 0.5s cubic-bezier(.16, 1, .3, 1); }
 
 /* ---------- responsive ---------- */
 @media (max-width: 1100px) {
@@ -533,14 +533,14 @@ body.resume-mode .nav-links { visibility: hidden; }
    Additions: currently, clock, case studies, bookshelf, documents,
    off the clock, HR copy, cursor, curtain, print
    ============================================================ */
-.now { margin: 0 0 18px; font: italic 400 19px/1.3 "Libre Caslon Display", "Times New Roman", serif; color: var(--ink-2); }
-.now b { font: 400 10px "Geist Mono", monospace; letter-spacing: 0.2em; text-transform: uppercase; color: var(--clay); margin-right: 10px; font-style: normal; }
+.now { margin: 0 0 18px; font: italic 400 19px/1.3 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; color: var(--ink-2); }
+.now b { font: 400 10px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.2em; text-transform: uppercase; color: var(--clay); margin-right: 10px; font-style: normal; }
 .now span + b { margin-left: 22px; }
 #clock { font-variant-numeric: tabular-nums; }
 #clock small { display: block; font-size: 12px; color: var(--ink-4); }
 
 /* case study entry point in experience */
-.case-btn { display: inline-flex; align-items: center; gap: 10px; margin-top: 20px; font: 400 10.5px "Geist Mono", monospace; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); padding-bottom: 4px; border-bottom: 1px solid var(--line-3); transition: color 0.3s, border-color 0.3s; }
+.case-btn { display: inline-flex; align-items: center; gap: 10px; margin-top: 20px; font: 400 10.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); padding-bottom: 4px; border-bottom: 1px solid var(--line-3); transition: color 0.3s, border-color 0.3s; }
 .case-btn:hover { color: var(--clay); border-color: var(--clay); }
 
 /* case study reader */
@@ -554,39 +554,39 @@ body.resume-mode .nav-links { visibility: hidden; }
 .cs h2 { font-size: clamp(44px, 6vw, 72px); margin-bottom: 10px; }
 .cs .cs-org { color: var(--ink-3); margin: 0 0 36px; }
 .cs-block { padding: 26px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 150px 1fr; gap: 24px; }
-.cs-block h4 { font: 400 10.5px "Geist Mono", monospace; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-4); padding-top: 4px; }
+.cs-block h4 { font: 400 10.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-4); padding-top: 4px; }
 .cs-block p, .cs-block li { color: var(--ink-2); font-size: 15.5px; margin: 0; }
 .cs-block ul { margin: 0; padding-left: 18px; display: grid; gap: 8px; }
 .cs-block li::marker { color: var(--clay); }
-.cs-take { font: italic 400 30px/1.2 "Libre Caslon Display", "Times New Roman", serif !important; color: var(--ink) !important; }
+.cs-take { font: italic 400 30px/1.2 "Bell MT", "Libre Caslon Display", "Times New Roman", serif !important; color: var(--ink) !important; }
 .cs-note { margin-top: 30px; font-size: 12.5px; color: var(--ink-4); }
 
 /* bookshelf */
 .books { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line-2); }
 .books li { padding: 30px 32px 30px 0; border-bottom: 1px solid var(--line); }
-.books b { display: block; font: 400 26px/1.1 "Libre Caslon Display", "Times New Roman", serif; }
-.books i { display: block; font-style: normal; font: 400 10px "Geist Mono", monospace; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-4); margin: 8px 0 12px; }
+.books b { display: block; font: 400 26px/1.1 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; }
+.books i { display: block; font-style: normal; font: 400 10px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-4); margin: 8px 0 12px; }
 .books span { color: var(--ink-2); font-size: 14.5px; }
 
 /* documents */
 .docs { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line-2); }
 .docs li { display: grid; grid-template-columns: 1fr auto auto; gap: 24px; align-items: center; padding: 22px 0; border-bottom: 1px solid var(--line); }
-.docs b { font: 400 26px/1.1 "Libre Caslon Display", "Times New Roman", serif; font-weight: 400; }
+.docs b { font: 400 26px/1.1 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; font-weight: 400; }
 .docs .mono { color: var(--ink-4); }
-.docs a { font: 400 10.5px "Geist Mono", monospace; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); text-decoration: none; padding-bottom: 4px; border-bottom: 1px solid var(--line-3); }
+.docs a { font: 400 10.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); text-decoration: none; padding-bottom: 4px; border-bottom: 1px solid var(--line-3); }
 .docs a:hover { color: var(--clay); border-color: var(--clay); }
 
 /* off the clock */
 .offclock { padding-top: clamp(80px, 10vw, 120px); }
-.off-in > p { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 28px; padding: 26px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font: italic 400 clamp(22px, 2.4vw, 30px)/1.3 "Libre Caslon Display", "Times New Roman", serif; color: var(--ink-2); }
+.off-in > p { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 28px; padding: 26px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font: italic 400 clamp(22px, 2.4vw, 30px)/1.3 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; color: var(--ink-2); }
 .offclock .mono { font-style: normal; color: var(--clay); }
 
 /* copy buttons */
 .copy-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 32px; margin-top: 30px; }
 .copy-row .copy { margin-top: 0; }
-.cert-verify { margin-left: 8px; font: 400 10px "Geist Mono", monospace; letter-spacing: 0.16em; text-transform: uppercase; color: var(--clay); text-decoration: none; }
+.cert-verify { margin-left: 8px; font: 400 10px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.16em; text-transform: uppercase; color: var(--clay); text-decoration: none; }
 .paper.static { cursor: default; }
-.paper-status { display: inline-flex; align-items: center; gap: 8px; font: 400 10px "Geist Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ok); }
+.paper-status { display: inline-flex; align-items: center; gap: 8px; font: 400 10px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ok); }
 .paper-status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--ok); animation: pulse 2.6s infinite; }
 
 /* custom cursor (desktop only, enabled by script) */
@@ -613,8 +613,8 @@ body.has-cursor .cursor { opacity: 0.8; }
 /* ---------- print: always the clean résumé ---------- */
 @media print {
   @page { margin: 14mm 14mm; }
-  :root, [data-theme] { --bg: #fff; --ink: #0a1a44; --ink-2: #2e2a24; --ink-3: #4f493f; --ink-4: #56668f; --clay: #8a4526; --acc: #1d47c9; --line: #d8dbe2; --line-2: #c3c7d0; --line-3: #9aa0ad; }
-  body { background: #fff !important; color: #0a1a44; font-size: 11pt; }
+  :root, [data-theme] { --bg: #fff; --ink: #03071e; --ink-2: #2e2a24; --ink-3: #4f493f; --ink-4: #545c7c; --clay: #8a4526; --acc: #7a5530; --line: #d8dbe2; --line-2: #c3c7d0; --line-3: #9aa0ad; }
+  body { background: #fff !important; color: #03071e; font-size: 11pt; }
   body::after, .nav, .progress, .cursor, .curtain, .filterbar, .toast, .reader, #story, .r-foot, .r-actions { display: none !important; }
   main#resume, main#resume[hidden] { display: block !important; }
   .resume { padding: 0; max-width: none; }
@@ -637,9 +637,9 @@ body.has-cursor .cursor { opacity: 0.8; }
 /* hero: what's new + greeting */
 .news { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 26px; padding: 7px 14px 7px 8px; border: 1px solid var(--line-2); border-radius: 999px; text-decoration: none; font-size: 13px; color: var(--ink-2); transition: border-color 0.3s; animation: rise 1.2s cubic-bezier(.16, 1, .3, 1) both; }
 .news:hover { border-color: var(--line-3); }
-.news b { font: 400 9.5px "Geist Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bg); background: var(--clay); padding: 4px 8px; border-radius: 999px; }
+.news b { font: 400 9.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bg); background: var(--clay); padding: 4px 8px; border-radius: 999px; }
 .news i { font-style: normal; color: var(--ink-4); }
-.greet { margin: 0 0 30px; font: italic 400 22px/1.2 "Libre Caslon Display", "Times New Roman", serif; color: var(--acc); }
+.greet { margin: 0 0 30px; font: italic 400 22px/1.2 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; color: var(--acc); }
 .hero h1 .w { display: inline-block; opacity: 0; transform: translateY(0.4em); filter: blur(6px); animation: word 1.1s cubic-bezier(.16, 1, .3, 1) forwards; }
 .hero h1.split { animation: none; }
 @keyframes word { to { opacity: 1; transform: none; filter: none; } }
@@ -653,13 +653,13 @@ body.has-cursor .cursor { opacity: 0.8; }
 .frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .frame-empty { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 16px; color: var(--ink-3); }
 .frame-mark { width: 96px; height: 96px; color: var(--ink-3); opacity: 0.7; }
-.frame-empty span { font: 400 10px "Geist Mono", monospace; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-4); }
+.frame-empty span { font: 400 10px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-4); }
 .pq { margin-top: 0; padding: 22px 0 0; border-top: 1px solid var(--line-2); }
-.pq blockquote { margin: 0 0 10px; font: 400 clamp(22px, 2.2vw, 30px)/1.2 "Libre Caslon Display", "Times New Roman", serif; color: var(--ink); }
+.pq blockquote { margin: 0 0 10px; font: 400 clamp(22px, 2.2vw, 30px)/1.2 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; color: var(--ink); }
 .pq blockquote::before { content: "“"; color: var(--clay); margin-right: 2px; }
 .pq blockquote::after { content: "”"; color: var(--clay); }
 .pq em { font-style: italic; color: var(--acc); }
-.pq span { font: 400 10px "Geist Mono", monospace; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-4); }
+.pq span { font: 400 10px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-4); }
 
 /* metrics: hover / focus reveals the story behind a number */
 .metric { position: relative; cursor: default; outline: none; }
@@ -684,7 +684,7 @@ body.has-cursor .cursor { opacity: 0.8; }
 .st-steps li { min-height: 62vh; padding: 56px 0; border-bottom: 1px solid var(--line); opacity: 0.32; transition: opacity 0.6s; display: flex; flex-direction: column; justify-content: center; }
 .st-steps li.on { opacity: 1; }
 .st-steps li .mono { color: var(--clay); margin-bottom: 14px; }
-.st-steps h3 { font: 400 clamp(30px, 3vw, 44px)/1.08 "Libre Caslon Display", "Times New Roman", serif; letter-spacing: 0; margin-bottom: 14px; }
+.st-steps h3 { font: 400 clamp(30px, 3vw, 44px)/1.08 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; letter-spacing: 0; margin-bottom: 14px; }
 .st-steps p { margin: 0; color: var(--ink-2); max-width: 46ch; }
 
 /* journey map draws itself */
@@ -698,7 +698,7 @@ body.has-cursor .cursor { opacity: 0.8; }
 .ask { border-top: 1px solid var(--line-2); padding: 30px 0 36px; margin-bottom: 10px; max-width: 980px; }
 .ask label { display: block; color: var(--clay); margin-bottom: 14px; }
 .ask-row { display: flex; gap: 10px; }
-.ask input, .msg input, .msg textarea { flex: 1; min-width: 0; height: 52px; padding: 0 18px; background: transparent; border: 1px solid var(--line-3); border-radius: 2px; color: var(--ink); font: 400 16px "Libre Caslon Text", "Times New Roman", serif; transition: border-color 0.3s; }
+.ask input, .msg input, .msg textarea { flex: 1; min-width: 0; height: 52px; padding: 0 18px; background: transparent; border: 1px solid var(--line-3); border-radius: 2px; color: var(--ink); font: 400 16px "Times New Roman", Tinos, Times, serif; transition: border-color 0.3s; }
 .ask input:focus, .msg input:focus, .msg textarea:focus { outline: none; border-color: var(--acc); }
 .ask input::placeholder, .msg input::placeholder, .msg textarea::placeholder { color: var(--ink-4); }
 .ask-row .btn { height: 52px; }
@@ -724,16 +724,16 @@ body.has-cursor .cursor { opacity: 0.8; }
 .cta-actions .btn-primary { display: none; }
 
 /* hire tab */
-.hire { position: fixed; z-index: 61; right: 20px; bottom: 20px; display: inline-flex; align-items: center; gap: 12px; height: 46px; padding: 0 20px; border-radius: 2px; background: var(--btn); color: var(--btn-ink); font: 500 10.5px "Geist Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; box-shadow: var(--shadow); animation: hireIn 0.7s cubic-bezier(.16, 1, .3, 1); }
+.hire { position: fixed; z-index: 61; right: 20px; bottom: 20px; display: inline-flex; align-items: center; gap: 12px; height: 46px; padding: 0 20px; border-radius: 2px; background: var(--btn); color: var(--btn-ink); font: 500 10.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.18em; text-transform: uppercase; box-shadow: var(--shadow); animation: hireIn 0.7s cubic-bezier(.16, 1, .3, 1); }
 @keyframes hireIn { from { opacity: 0; transform: translateX(30px); } }
 body.resume-mode .hire { display: none !important; }
 
 /* hidden details */
 .detail { cursor: help; background-image: linear-gradient(var(--line-3), var(--line-3)); background-size: 100% 1px; background-position: 0 100%; background-repeat: no-repeat; position: relative; }
 .detail.seen { background-image: linear-gradient(var(--clay), var(--clay)); }
-.detail .tip { position: absolute; left: 0; bottom: calc(100% + 10px); width: max-content; max-width: 280px; padding: 10px 14px; background: var(--btn); color: var(--btn-ink); font: 400 13px/1.45 "Libre Caslon Text", "Times New Roman", serif; border-radius: 2px; box-shadow: var(--shadow); opacity: 0; transform: translateY(6px); pointer-events: none; transition: opacity 0.3s, transform 0.3s; z-index: 20; white-space: normal; }
+.detail .tip { position: absolute; left: 0; bottom: calc(100% + 10px); width: max-content; max-width: 280px; padding: 10px 14px; background: var(--btn); color: var(--btn-ink); font: 400 13px/1.45 "Times New Roman", Tinos, Times, serif; border-radius: 2px; box-shadow: var(--shadow); opacity: 0; transform: translateY(6px); pointer-events: none; transition: opacity 0.3s, transform 0.3s; z-index: 20; white-space: normal; }
 .detail:hover .tip, .detail:focus .tip { opacity: 1; transform: none; }
-.found { position: fixed; z-index: 61; left: 20px; bottom: 20px; padding: 10px 14px; border: 1px solid var(--line-2); border-radius: 2px; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(12px); font: 400 10px "Geist Mono", monospace; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-2); animation: up2 0.6s cubic-bezier(.16, 1, .3, 1); }
+.found { position: fixed; z-index: 61; left: 20px; bottom: 20px; padding: 10px 14px; border: 1px solid var(--line-2); border-radius: 2px; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(12px); font: 400 10px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-2); animation: up2 0.6s cubic-bezier(.16, 1, .3, 1); }
 .found b { color: var(--clay); font-weight: 400; }
 @keyframes up2 { from { opacity: 0; transform: translateY(12px); } }
 
@@ -742,12 +742,12 @@ body.resume-mode .hire { display: none !important; }
 .share-scrim { position: absolute; inset: 0; background: color-mix(in srgb, var(--bg) 75%, transparent); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); animation: fade 0.4s; }
 .share-card { position: relative; width: min(440px, 100%); animation: panelIn 0.6s cubic-bezier(.16, 1, .3, 1); }
 .share-x { position: absolute; top: -52px; right: 0; }
-.sc { padding: 34px 32px; background: #050b1a; color: #e9edf5; border: 1px solid rgba(148, 176, 245, 0.2); }
+.sc { padding: 34px 32px; background: #03071e; color: #eadcc5; border: 1px solid rgba(234, 220, 197, 0.2); }
 .sc .logo-svg { width: 40px; height: 40px; color: #f1ece3; }
-.sc h3 { font: 400 40px/1 "Libre Caslon Display", "Times New Roman", serif; margin: 22px 0 8px; letter-spacing: 0; }
-.sc p { margin: 0; font: 400 10px "Geist Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: #8693ad; }
-.sc-row { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: end; margin-top: 28px; padding-top: 22px; border-top: 1px solid rgba(148, 176, 245, 0.16); }
-.sc-row span { font-size: 13px; color: #b6c0d4; line-height: 1.6; }
+.sc h3 { font: 400 40px/1 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; margin: 22px 0 8px; letter-spacing: 0; }
+.sc p { margin: 0; font: 400 10px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.18em; text-transform: uppercase; color: #9c9384; }
+.sc-row { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: end; margin-top: 28px; padding-top: 22px; border-top: 1px solid rgba(234, 220, 197, 0.16); }
+.sc-row span { font-size: 13px; color: #c9bea9; line-height: 1.6; }
 .sc-qr { width: 112px; height: 112px; background: #f1ece3; padding: 8px; }
 .sc-qr svg { width: 100%; height: 100%; display: block; }
 .share-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; justify-content: center; }
@@ -774,22 +774,22 @@ body.resume-mode .hire { display: none !important; }
 /* ============================================================
    Hero: the name as the headline
    ============================================================ */
-.name-pre { margin: 6px 0 0; font: 400 clamp(13px, 1.2vw, 16px) "Geist Mono", monospace; letter-spacing: 0.62em; text-transform: uppercase; color: var(--ink-3); animation: rise 1.2s cubic-bezier(.16, 1, .3, 1) 0.1s both; }
+.name-pre { margin: 6px 0 0; font: 400 clamp(13px, 1.2vw, 16px) "Times New Roman", Tinos, Times, serif; letter-spacing: 0.62em; text-transform: uppercase; color: var(--ink-3); animation: rise 1.2s cubic-bezier(.16, 1, .3, 1) 0.1s both; }
 .hero h1.name .dot-c { color: var(--clay); }
 .hero .lead { max-width: 520px; font-size: 16.5px; }
-.status-inline { display: inline-flex; align-items: center; gap: 8px; margin-left: 6px; font: 400 10.5px "Geist Mono", monospace; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ok); white-space: nowrap; vertical-align: 1px; }
+.status-inline { display: inline-flex; align-items: center; gap: 8px; margin-left: 6px; font: 400 10.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ok); white-space: nowrap; vertical-align: 1px; }
 @media (max-width: 720px) { .name-pre { letter-spacing: 0.4em; } .status-inline { margin: 8px 0 0; display: flex; } }
 
 /* ============================================================
    Round 4 · Caslon typography, rich backdrop, crest, new features
    ============================================================ */
 
-/* typography: Caslon text, Instrument Serif reserved for quotes */
+/* typography: Times New Roman text, Bell MT for display and quotes */
 body { font-size: 17px; line-height: 1.7; text-rendering: optimizeLegibility; font-kerning: normal; font-feature-settings: "kern", "liga", "onum"; }
 h1, h2, .cred h3, .principle h3, .step h3, .proj h3, .st-steps h3, .paper h3, .city h3, .faq summary, .empty h3, .books b, .docs b { font-feature-settings: "kern", "liga", "lnum"; letter-spacing: -0.012em; }
 .metric b, .file-grid b, .float-b b { font-feature-settings: "lnum", "tnum"; }
-.logo-name, .greet, .grad, .rot, .dt .no, .pr-no, .step-tag, .proj-no, .edu em, .honour b, .ref-init, .map .km, .map .pin text, .off-in > p, .ref-cta h3, .now { font-family: "Libre Caslon Text", "Times New Roman", serif !important; }
-.pq blockquote, .quote blockquote, .cs-take, .ref blockquote, .decide-q { font-family: "Instrument Serif", Georgia, serif !important; }
+.logo-name, .greet, .grad, .rot, .dt .no, .pr-no, .step-tag, .proj-no, .edu em, .honour b, .ref-init, .map .km, .map .pin text, .off-in > p, .ref-cta h3, .now { font-family: "Times New Roman", Tinos, Times, serif !important; }
+.pq blockquote, .quote blockquote, .cs-take, .ref blockquote, .decide-q { font-family: "Bell MT", "Libre Caslon Display", "Times New Roman", serif !important; }
 .sec-head h2 { line-height: 1.02; }
 .sub, .hero .lead, .pr-text, .step li, .ev li, .cred p, .faq details p { color: var(--ink-2); }
 
@@ -809,14 +809,14 @@ body { background-color: var(--bg); }
 /* crest logo */
 .crest { position: relative; display: inline-grid; place-items: center; width: 40px; height: 40px; border: 1px solid var(--line-3); flex: none; }
 .crest::before { content: ""; position: absolute; inset: 4px; border: 1px solid var(--line); }
-.crest > span { font: 400 17px/1 "Libre Caslon Display", "Times New Roman", serif; letter-spacing: 0.02em; color: var(--ink); margin-top: -2px; }
+.crest > span { font: 400 17px/1 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; letter-spacing: 0.02em; color: var(--ink); margin-top: -2px; }
 .crest::after { content: ""; position: absolute; left: 50%; bottom: 7px; width: 12px; height: 1px; margin-left: -6px; background: var(--clay); }
 .crest-xl { width: 150px; height: 150px; }
 .crest-xl::before { inset: 10px; }
 .crest-xl > span { font-size: 62px; margin-top: -10px; }
 .crest-xl::after { bottom: 26px; width: 34px; margin-left: -17px; height: 2px; }
 .logo .crest { margin-right: 4px; }
-.sc .crest { width: 52px; height: 52px; border-color: rgba(148, 176, 245, 0.45); }
+.sc .crest { width: 52px; height: 52px; border-color: rgba(234, 220, 197, 0.45); }
 .sc .crest > span { color: #f1ece3; font-size: 22px; }
 
 /* ink reveal on the name */
@@ -824,7 +824,7 @@ body { background-color: var(--bg); }
 @keyframes ink { to { -webkit-mask-position: 0 0; mask-position: 0 0; } }
 
 /* voice + sound */
-.voice { display: inline-flex; align-items: center; gap: 10px; margin: -6px 0 22px; font: 400 10.5px "Geist Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-2); }
+.voice { display: inline-flex; align-items: center; gap: 10px; margin: -6px 0 22px; font: 400 10.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-2); }
 .voice-ic { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; border: 1px solid var(--line-3); font-size: 10px; color: var(--clay); transition: background 0.3s; }
 .voice:hover .voice-ic, .voice.playing .voice-ic { background: var(--acc-dim); }
 #soundBtn[aria-pressed="true"] { color: var(--clay); border-color: var(--clay); }
@@ -833,7 +833,7 @@ body { background-color: var(--bg); }
 .season { color: var(--clay); }
 
 /* map: home tag */
-.map .home-tag { font: 400 9.5px "Geist Mono", monospace; letter-spacing: 0.2em; fill: var(--clay); }
+.map .home-tag { font: 400 9.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.2em; fill: var(--clay); }
 .city .home-note { margin: -8px 0 16px; font-style: italic; color: var(--ink-2); }
 
 /* a decision I'd make */
@@ -842,16 +842,16 @@ body { background-color: var(--bg); }
 .decide ol { list-style: none; margin: 0; padding: 0; counter-reset: d; }
 .decide li { counter-increment: d; display: grid; grid-template-columns: 48px 1fr; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--line); color: var(--ink-2); }
 .decide li:first-child { padding-top: 0; }
-.decide li::before { content: "0" counter(d); font: italic 400 22px "Libre Caslon Text", serif; color: var(--clay); }
+.decide li::before { content: "0" counter(d); font: italic 400 22px "Times New Roman", Tinos, Times, serif; color: var(--clay); }
 
 /* notes from the field + GEO tracker */
 .notes { margin-top: 0; }
 .note { display: grid; grid-template-columns: 220px 1fr; gap: 40px; padding: 36px 0; border-bottom: 1px solid var(--line); }
 .note .mono { color: var(--clay); padding-top: 6px; }
-.note h3 { font: 400 clamp(26px, 2.4vw, 34px)/1.1 "Libre Caslon Display", serif; margin-bottom: 14px; }
+.note h3 { font: 400 clamp(26px, 2.4vw, 34px)/1.1 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; margin-bottom: 14px; }
 .note p { margin: 0; color: var(--ink-2); max-width: 66ch; }
 .geo { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-top: 8px; }
-.geo span { position: relative; padding-top: 12px; font: 400 9.5px "Geist Mono", monospace; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-4); }
+.geo span { position: relative; padding-top: 12px; font: 400 9.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-4); }
 .geo span::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 2px; background: var(--line-2); }
 .geo span.done::before { background: var(--acc); }
 .geo span.now { color: var(--ink); }
@@ -872,7 +872,7 @@ body { background-color: var(--bg); }
 
 /* contact: signature + watermark */
 .cta-card { overflow: hidden; }
-.watermark { position: absolute; left: 50%; top: 52%; transform: translate(-50%, -50%); font: 400 clamp(260px, 38vw, 560px)/1 "Libre Caslon Display", serif; color: var(--ink); opacity: 0.025; pointer-events: none; user-select: none; letter-spacing: -0.04em; }
+.watermark { position: absolute; left: 50%; top: 52%; transform: translate(-50%, -50%); font: 400 clamp(260px, 38vw, 560px)/1 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; color: var(--ink); opacity: 0.025; pointer-events: none; user-select: none; letter-spacing: -0.04em; }
 .sig { height: 70px; margin: -6px auto 26px; display: grid; place-items: center; }
 .sig .script { font: 400 58px/1 "Mrs Saint Delafield", cursive; color: var(--acc); -webkit-mask-image: linear-gradient(90deg, #000 45%, transparent 55%); mask-image: linear-gradient(90deg, #000 45%, transparent 55%); -webkit-mask-size: 240% 100%; mask-size: 240% 100%; -webkit-mask-position: 100% 0; mask-position: 100% 0; }
 .sig.go .script { animation: ink 2.6s cubic-bezier(.4, 0, .2, 1) forwards; }
@@ -882,7 +882,7 @@ body { background-color: var(--bg); }
 .badgecase { display: inline-flex; gap: 6px; align-items: center; text-decoration: none; }
 .badgecase svg { width: 22px; height: 22px; opacity: 0.85; transition: transform 0.3s; }
 .badgecase:hover svg { transform: translateY(-2px); }
-.badgecase em { font: 400 10px "Geist Mono", monospace; font-style: normal; letter-spacing: 0.16em; color: var(--ink-4); margin-left: 6px; }
+.badgecase em { font: 400 10px "Times New Roman", Tinos, Times, serif; font-style: normal; letter-spacing: 0.16em; color: var(--ink-4); margin-left: 6px; }
 
 /* one-pager (print only) */
 .onepager { display: none; }
@@ -892,11 +892,11 @@ body { background-color: var(--bg); }
 
 @media print {
   body.print-one #resume, body.print-one main#resume[hidden] { display: none !important; }
-  body.print-one .onepager { display: block !important; color: #0a1a44; }
+  body.print-one .onepager { display: block !important; color: #03071e; }
   .backdrop { display: none !important; }
-  .onepager h1 { font: 400 40pt/1 "Libre Caslon Display", serif; margin: 0 0 4pt; }
-  .onepager .op-role { font: 400 9pt "Geist Mono", monospace; letter-spacing: 0.16em; text-transform: uppercase; color: #2f5fd0; margin: 0 0 16pt; }
-  .onepager h2 { font: 400 9pt "Geist Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: #6b7385; margin: 16pt 0 6pt; border-bottom: 1px solid #c3c7d0; padding-bottom: 4pt; }
+  .onepager h1 { font: 400 40pt/1 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; margin: 0 0 4pt; }
+  .onepager .op-role { font: 400 9pt "Times New Roman", Tinos, Times, serif; letter-spacing: 0.16em; text-transform: uppercase; color: #8a5a2b; margin: 0 0 16pt; }
+  .onepager h2 { font: 400 9pt "Times New Roman", Tinos, Times, serif; letter-spacing: 0.18em; text-transform: uppercase; color: #6b7385; margin: 16pt 0 6pt; border-bottom: 1px solid #c3c7d0; padding-bottom: 4pt; }
   .onepager li { margin-bottom: 4pt; font-size: 11pt; }
   .onepager p { font-size: 11pt; margin: 0 0 6pt; }
 }
@@ -905,14 +905,14 @@ body { background-color: var(--bg); }
 
 /* GEO-BAF applied to this site */
 .baf { margin-top: 56px; }
-.baf-h { font: 400 clamp(28px, 2.8vw, 40px)/1.1 "Libre Caslon Display", serif; margin-bottom: 10px; }
+.baf-h { font: 400 clamp(28px, 2.8vw, 40px)/1.1 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; margin-bottom: 10px; }
 .baf .sub { margin-bottom: 26px; }
 .baf-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line-2); }
 .baf-list li { display: grid; grid-template-columns: 120px 1fr auto; gap: 24px; align-items: start; padding: 22px 0; border-bottom: 1px solid var(--line); }
-.baf-no { font: 400 10.5px "Geist Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: var(--clay); padding-top: 5px; }
+.baf-no { font: 400 10.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.18em; text-transform: uppercase; color: var(--clay); padding-top: 5px; }
 .baf-list b { display: block; font-weight: 700; margin-bottom: 4px; }
 .baf-list p { margin: 0; color: var(--ink-2); font-size: 15.5px; }
-.baf-st { font: 400 10px "Geist Mono", monospace; letter-spacing: 0.16em; text-transform: uppercase; padding: 5px 9px; border: 1px solid var(--line-3); color: var(--ink-3); white-space: nowrap; }
+.baf-st { font: 400 10px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.16em; text-transform: uppercase; padding: 5px 9px; border: 1px solid var(--line-3); color: var(--ink-3); white-space: nowrap; }
 .baf-list li.done .baf-st { color: var(--ok); border-color: var(--ok); }
 @media (max-width: 720px) { .baf-list li { grid-template-columns: 1fr; gap: 6px; } .baf-st { justify-self: start; } }
 
@@ -931,7 +931,7 @@ body { background-color: var(--bg); }
 .nav-links .nav-ask::before { content: ""; display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--acc); margin-right: 8px; vertical-align: 2px; }
 
 /* hero: the name, then straight to the point */
-.hero-ask { display: inline-flex; align-items: center; gap: 10px; margin-top: 22px; font: 400 11px "Geist Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-2); text-decoration: none; border-bottom: 1px solid var(--line-2); padding-bottom: 6px; transition: color 0.3s, border-color 0.3s; }
+.hero-ask { display: inline-flex; align-items: center; gap: 10px; margin-top: 22px; font: 400 11px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-2); text-decoration: none; border-bottom: 1px solid var(--line-2); padding-bottom: 6px; transition: color 0.3s, border-color 0.3s; }
 .hero-ask:hover { color: var(--ink); border-color: var(--acc); }
 .hero-ask-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--acc); box-shadow: 0 0 0 4px var(--acc-dim); }
 
@@ -947,7 +947,7 @@ body { background-color: var(--bg); }
 .portrait .frame > img { position: absolute; inset: 0; }
 .portrait .frame:has(img)::before { background: var(--shade); }
 .pq { position: absolute; z-index: 4; left: -22%; right: 7%; bottom: 7%; margin: 0; padding: 0; border: 0; }
-.pq blockquote { font: 400 clamp(34px, 3.7vw, 54px)/1.02 "Instrument Serif", Georgia, serif !important; letter-spacing: -0.01em; color: var(--ink); text-shadow: 0 2px 30px color-mix(in srgb, var(--bg) 80%, transparent); margin: 0 0 18px; text-wrap: balance; }
+.pq blockquote { font: 400 clamp(34px, 3.7vw, 54px)/1.02 "Bell MT", "Libre Caslon Display", "Times New Roman", serif !important; letter-spacing: -0.01em; color: var(--ink); text-shadow: 0 2px 30px color-mix(in srgb, var(--bg) 80%, transparent); margin: 0 0 18px; text-wrap: balance; }
 .pq blockquote::before { content: "\201C"; display: block; font-size: 1.9em; line-height: 0.6; height: 0.42em; color: var(--clay); margin: 0; }
 .pq blockquote::after { content: ""; }
 .pq em { color: var(--clay); font-style: italic; }
@@ -961,9 +961,9 @@ body { background-color: var(--bg); }
 .ch-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line-2); }
 .ch { position: relative; display: grid; gap: 10px; align-content: start; padding: 34px 30px 38px 0; border-bottom: 1px solid var(--line); text-decoration: none; transition: background 0.4s; }
 .ch:not(:nth-child(3n+1)) { padding-left: 30px; border-left: 1px solid var(--line); }
-.ch b { font: 400 clamp(30px, 3vw, 42px)/1 "Libre Caslon Display", "Times New Roman", serif; }
+.ch b { font: 400 clamp(30px, 3vw, 42px)/1 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; }
 .ch > span:last-child { color: var(--ink-2); font-size: 15px; max-width: 34ch; }
-.ch-no { font: 400 10.5px "Geist Mono", monospace; letter-spacing: 0.2em; color: var(--clay); }
+.ch-no { font: 400 10.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.2em; color: var(--clay); }
 .ch::after { content: "\2192"; position: absolute; right: 24px; top: 34px; color: var(--ink-4); transition: transform 0.5s cubic-bezier(.16, 1, .3, 1), color 0.3s; }
 .ch:hover::after { transform: translateX(6px); color: var(--ink); }
 .ch:hover { background: linear-gradient(180deg, var(--acc-dim), transparent); }
@@ -975,7 +975,7 @@ body { background-color: var(--bg); }
 .next-page { padding-top: clamp(90px, 10vw, 140px); padding-bottom: 50px; }
 .next-page:empty { display: none; }
 .next-page a { display: flex; align-items: baseline; gap: 22px; padding: 34px 0; border-top: 1px solid var(--line-2); text-decoration: none; }
-.next-page b { font: 400 clamp(44px, 6vw, 84px)/1 "Libre Caslon Display", "Times New Roman", serif; }
+.next-page b { font: 400 clamp(44px, 6vw, 84px)/1 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; }
 .next-page a > span:last-child { margin-left: auto; font-size: 28px; color: var(--clay); transition: transform 0.5s cubic-bezier(.16, 1, .3, 1); }
 .next-page a:hover > span:last-child { transform: translateX(8px); }
 
@@ -985,14 +985,14 @@ body { background-color: var(--bg); }
 .bubble { max-width: 82%; padding: 14px 18px; font-size: 15.5px; line-height: 1.6; animation: up2 0.5s cubic-bezier(.16, 1, .3, 1) both; }
 .bubble.ai { justify-self: start; background: var(--bg-2); border: 1px solid var(--line); color: var(--ink); }
 .bubble.me { justify-self: end; background: var(--btn); color: var(--btn-ink); }
-.bubble-src { display: block; margin-top: 10px; font: 400 9.5px "Geist Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-4); }
+.bubble-src { display: block; margin-top: 10px; font: 400 9.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-4); }
 .typing { display: inline-flex; gap: 5px; padding: 4px 0; }
 .typing i { width: 6px; height: 6px; border-radius: 50%; background: var(--ink-3); animation: blink 1.2s infinite both; }
 .typing i:nth-child(2) { animation-delay: 0.15s; } .typing i:nth-child(3) { animation-delay: 0.3s; }
 @keyframes blink { 0%, 80%, 100% { opacity: 0.25; } 40% { opacity: 1; } }
 .chat .ask-chips { padding: 0 28px; margin-top: 8px; }
 .chat-row { display: flex; gap: 10px; padding: 18px 28px 0; }
-.chat-row input { flex: 1; min-width: 0; height: 52px; padding: 0 18px; background: transparent; border: 1px solid var(--line-3); border-radius: 2px; color: var(--ink); font: 400 16px "Libre Caslon Text", "Times New Roman", serif; }
+.chat-row input { flex: 1; min-width: 0; height: 52px; padding: 0 18px; background: transparent; border: 1px solid var(--line-3); border-radius: 2px; color: var(--ink); font: 400 16px "Times New Roman", Tinos, Times, serif; }
 .chat-row input:focus { outline: none; border-color: var(--acc); }
 .chat-row input::placeholder { color: var(--ink-4); }
 .chat-row .btn { height: 52px; }
@@ -1003,15 +1003,15 @@ body { background-color: var(--bg); }
 .elsewhere-row a { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: var(--ink); border-bottom: 1px solid var(--line-3); padding-bottom: 2px; }
 .elsewhere-row a:hover { border-color: var(--acc); }
 .elsewhere-row .mono { font-size: 10px; color: var(--ink-4); letter-spacing: 0.12em; text-transform: none; }
-.faq-h { margin: 70px 0 10px; font: 400 26px/1.1 "Libre Caslon Display", "Times New Roman", serif; }
+.faq-h { margin: 70px 0 10px; font: 400 26px/1.1 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; }
 @media (max-width: 720px) { .chat-log { padding: 20px 16px 8px; } .chat .ask-chips, .chat-row, .chat-note { padding-left: 16px; padding-right: 16px; } .bubble { max-width: 92%; } }
 
 /* research: cite + press */
-.cite-btn { justify-self: start; margin-top: 6px; font: 400 10.5px "Geist Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-2); border: 1px solid var(--line-3); padding: 9px 14px; transition: border-color 0.3s, color 0.3s; }
+.cite-btn { justify-self: start; margin-top: 6px; font: 400 10.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-2); border: 1px solid var(--line-3); padding: 9px 14px; transition: border-color 0.3s, color 0.3s; }
 .cite-btn:hover { color: var(--ink); border-color: var(--acc); }
 .cite-btn span { color: var(--clay); margin-left: 4px; }
 .cite-card { width: min(620px, 100%); padding: 34px 32px 26px; background: var(--bg-1); border: 1px solid var(--line-2); }
-.cite-card h3 { font: 400 30px/1.1 "Libre Caslon Display", "Times New Roman", serif; margin: 0 0 16px; }
+.cite-card h3 { font: 400 30px/1.1 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; margin: 0 0 16px; }
 .cite-text { margin: 0 0 8px; padding: 16px 18px; border-left: 2px solid var(--clay); background: var(--acc-dim); font-size: 15px; line-height: 1.7; color: var(--ink); padding-left: 2.6em; text-indent: -2em; }
 .cite-card .share-actions { justify-content: flex-start; }
 .press-line { margin: 40px 0 0; color: var(--ink-3); font-size: 15px; }
@@ -1020,7 +1020,7 @@ body { background-color: var(--bg); }
 /* about: change log */
 .clog { list-style: none; margin: 0; padding: 0; max-width: 860px; border-top: 1px solid var(--line-2); }
 .clog > li { display: grid; grid-template-columns: 160px 1fr; gap: 24px; padding: 26px 0; border-bottom: 1px solid var(--line); }
-.clog b { font: 400 11px "Geist Mono", monospace; letter-spacing: 0.2em; text-transform: uppercase; color: var(--clay); padding-top: 4px; }
+.clog b { font: 400 11px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.2em; text-transform: uppercase; color: var(--clay); padding-top: 4px; }
 .clog ul { margin: 0; padding-left: 18px; color: var(--ink-2); }
 .clog ul li + li { margin-top: 6px; }
 @media (max-width: 720px) { .clog > li { grid-template-columns: 1fr; gap: 10px; } }
@@ -1052,12 +1052,12 @@ body { background-color: var(--bg); }
    intro, reading options
    ============================================================ */
 #story, #resume { zoom: var(--zoom, 1); }
-[data-contrast="high"] { --ink-2: #ece7de; --ink-3: #d6d0c6; --ink-4: #c4beb4; --line: rgba(148, 176, 245, 0.22); --line-2: rgba(148, 176, 245, 0.36); --line-3: rgba(148, 176, 245, 0.6); }
-[data-theme="light"][data-contrast="high"] { --ink-2: #0a1a44; --ink-3: #2e2a24; --ink-4: #3a352d; --line: rgba(10, 26, 68, 0.24); --line-2: rgba(10, 26, 68, 0.4); --line-3: rgba(10, 26, 68, 0.65); }
+[data-contrast="high"] { --ink-2: #ece7de; --ink-3: #d6d0c6; --ink-4: #c4beb4; --line: rgba(234, 220, 197, 0.22); --line-2: rgba(234, 220, 197, 0.36); --line-3: rgba(234, 220, 197, 0.6); }
+[data-theme="light"][data-contrast="high"] { --ink-2: #03071e; --ink-3: #2e2a24; --ink-4: #3a352d; --line: rgba(3, 7, 30, 0.24); --line-2: rgba(3, 7, 30, 0.4); --line-3: rgba(3, 7, 30, 0.65); }
 
 /* reading options */
 .nav-right { position: relative; }
-.read-btn { font: 400 14px "Libre Caslon Display", "Times New Roman", serif; }
+.read-btn { font: 400 14px "Bell MT", "Libre Caslon Display", "Times New Roman", serif; }
 .read-pop { position: absolute; top: 52px; right: 0; z-index: 60; width: 250px; padding: 18px; background: var(--bg-1); border: 1px solid var(--line-2); box-shadow: var(--shadow); animation: up2 0.35s cubic-bezier(.16, 1, .3, 1); }
 .read-pop .mono { font-size: 10px; margin: 0 0 8px; }
 .read-pop .seg + .mono { margin-top: 16px; }
@@ -1082,9 +1082,9 @@ html.intro body { overflow: hidden; }
 .intro-crest .ic-a { stroke: var(--ink-3); stroke-width: 1; animation: draw 1s cubic-bezier(.65, 0, .35, 1) forwards; }
 .intro-crest .ic-b { stroke: var(--line-3); stroke-width: 1; animation: draw 1s cubic-bezier(.65, 0, .35, 1) 0.25s forwards; }
 .intro-crest .ic-c { stroke: var(--clay); stroke-width: 2; animation: draw 0.5s ease 1.1s forwards; }
-.intro-crest text { font: 400 44px "Libre Caslon Display", "Times New Roman", serif; fill: var(--ink); opacity: 0; animation: fadeIn 0.8s ease 0.7s forwards; }
-.intro-name { margin: 0; font: italic 400 26px "Libre Caslon Display", "Times New Roman", serif; color: var(--ink-2); opacity: 0; animation: fadeUp 0.9s cubic-bezier(.16, 1, .3, 1) 1.1s forwards; }
-.intro-skip { font: 400 9.5px "Geist Mono", monospace; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-4); opacity: 0; animation: fadeIn 0.6s ease 1.4s forwards; }
+.intro-crest text { font: 400 44px "Bell MT", "Libre Caslon Display", "Times New Roman", serif; fill: var(--ink); opacity: 0; animation: fadeIn 0.8s ease 0.7s forwards; }
+.intro-name { margin: 0; font: italic 400 26px "Bell MT", "Libre Caslon Display", "Times New Roman", serif; color: var(--ink-2); opacity: 0; animation: fadeUp 0.9s cubic-bezier(.16, 1, .3, 1) 1.1s forwards; }
+.intro-skip { font: 400 9.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-4); opacity: 0; animation: fadeIn 0.6s ease 1.4s forwards; }
 @keyframes draw { to { stroke-dashoffset: 0; } }
 @keyframes fadeIn { to { opacity: 1; } }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
@@ -1111,9 +1111,9 @@ body.touring .foot { padding-bottom: 150px; }
 .recon-t { width: 100%; min-width: 620px; border-collapse: collapse; font-size: 15px; }
 .recon-t th, .recon-t td { padding: 15px 22px; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap; }
 .recon-t th:first-child { text-align: left; font-weight: 400; color: var(--ink); }
-.recon-t thead th { font: 400 10px "Geist Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); }
+.recon-t thead th { font: 400 10px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); }
 .recon-t td { font-variant-numeric: tabular-nums lining-nums; color: var(--ink-2); }
-.recon-t .chk { font: 400 10.5px "Geist Mono", monospace; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-4); }
+.recon-t .chk { font: 400 10.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-4); }
 .recon-t tr { transition: background 0.4s; }
 .recon-t tr.checking { background: var(--acc-dim); }
 .recon-t tr.ok .chk { color: var(--ok); }
@@ -1127,8 +1127,8 @@ body.touring .foot { padding-bottom: 150px; }
 /* time slider */
 .scrub { max-width: 980px; }
 .scrub-now { display: flex; align-items: baseline; gap: 16px; margin-bottom: 18px; }
-.scrub-now b { font: 400 clamp(48px, 7vw, 92px)/1 "Libre Caslon Display", "Times New Roman", serif; }
-.scrub-now span { font: 400 10.5px "Geist Mono", monospace; letter-spacing: 0.2em; text-transform: uppercase; color: var(--clay); }
+.scrub-now b { font: 400 clamp(48px, 7vw, 92px)/1 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; }
+.scrub-now span { font: 400 10.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.2em; text-transform: uppercase; color: var(--clay); }
 .scrub-range { -webkit-appearance: none; appearance: none; width: 100%; height: 28px; margin: 0; background: transparent; cursor: pointer; --p: 50%; }
 .scrub-range::-webkit-slider-runnable-track { height: 2px; background: linear-gradient(90deg, var(--acc) var(--p), var(--line-2) var(--p)); }
 .scrub-range::-moz-range-track { height: 2px; background: var(--line-2); }
@@ -1137,7 +1137,7 @@ body.touring .foot { padding-bottom: 150px; }
 .scrub-range::-moz-range-thumb { width: 12px; height: 12px; border-radius: 50%; background: var(--ink); border: 4px solid var(--bg); box-shadow: 0 0 0 1px var(--acc); }
 .scrub-range:focus-visible { outline: 1px solid var(--acc); outline-offset: 6px; }
 .scrub-years { position: relative; height: 34px; margin: 4px 9px 0; }
-.scrub-years span { position: absolute; top: 8px; transform: translateX(-50%); font: 400 10px "Geist Mono", monospace; letter-spacing: 0.1em; color: var(--ink-4); }
+.scrub-years span { position: absolute; top: 8px; transform: translateX(-50%); font: 400 10px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.1em; color: var(--ink-4); }
 .scrub-years span::before { content: ""; position: absolute; left: 50%; top: -8px; width: 1px; height: 5px; background: var(--line-3); }
 .scrub-mark { position: absolute; top: -18px; width: 7px; height: 7px; margin-left: -3.5px; border-radius: 50%; background: var(--clay); }
 .scrub-today { position: absolute; top: -22px; width: 1px; height: 16px; background: var(--acc); }
@@ -1156,8 +1156,8 @@ body.touring .foot { padding-bottom: 150px; }
 .proof-top { display: flex; justify-content: space-between; align-items: center; }
 .proof-ic { color: var(--acc); display: inline-flex; }
 .proof p { flex: 1; }
-.proof-req { font: 400 9.5px "Geist Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-4); }
-.proof-view { align-self: start; font: 400 10px "Geist Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); border-bottom: 1px solid var(--acc); padding-bottom: 2px; }
+.proof-req { font: 400 9.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-4); }
+.proof-view { align-self: start; font: 400 10px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); border-bottom: 1px solid var(--acc); padding-bottom: 2px; }
 .lb { position: relative; margin: 0; width: min(900px, 100%); }
 .lb img { width: 100%; max-height: 80vh; object-fit: contain; background: var(--bg-1); border: 1px solid var(--line-2); }
 .lb figcaption { margin-top: 12px; color: var(--ink-2); font-size: 14px; text-align: center; }
@@ -1170,7 +1170,7 @@ body.touring .foot { padding-bottom: 150px; }
    next badges, pit wall
    ============================================================ */
 /* sources on the headline numbers */
-.src-btn { position: absolute; top: 16px; right: 18px; font: 400 9.5px "Geist Mono", monospace; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ok); opacity: 0.8; transition: opacity 0.3s; }
+.src-btn { position: absolute; top: 16px; right: 18px; font: 400 9.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ok); opacity: 0.8; transition: opacity 0.3s; }
 .metric:first-child .src-btn { right: 18px; }
 .src-btn:hover, .src-btn[aria-expanded="true"] { opacity: 1; }
 .src-pop { position: absolute; top: 40px; right: 10px; z-index: 20; width: min(250px, 90vw); padding: 14px 16px; background: var(--bg-1); border: 1px solid var(--line-2); box-shadow: var(--shadow); text-align: left; }
@@ -1187,25 +1187,25 @@ body.touring .foot { padding-bottom: 150px; }
 .next-badge svg.emb { width: 54px; height: 54px; filter: grayscale(1); opacity: 0.45; }
 .next-badge .mono { font-size: 9.5px; color: var(--clay); }
 .next-badge p { margin: 4px 0 0; font-size: 14.5px; color: var(--ink-2); }
-.nb-tag { font: 400 9.5px "Geist Mono", monospace; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-4); border: 1px dashed var(--line-3); padding: 6px 9px; white-space: nowrap; }
+.nb-tag { font: 400 9.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-4); border: 1px dashed var(--line-3); padding: 6px 9px; white-space: nowrap; }
 .referee a { color: var(--ink); }
 
 /* building now */
 .build-list { list-style: none; margin: 0; padding: 0; max-width: 980px; border-top: 1px solid var(--line-2); }
 .build-list li { display: grid; grid-template-columns: 60px 1fr auto; gap: 20px; align-items: baseline; padding: 24px 0; border-bottom: 1px solid var(--line); }
-.bl-no { font: 400 11px "Geist Mono", monospace; letter-spacing: 0.2em; color: var(--clay); }
-.build-list b { font: 400 26px/1.15 "Libre Caslon Display", "Times New Roman", serif; }
+.bl-no { font: 400 11px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.2em; color: var(--clay); }
+.build-list b { font: 400 26px/1.15 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; }
 .build-list p { margin: 6px 0 0; color: var(--ink-2); font-size: 15px; }
-.bl-st { font: 400 9.5px "Geist Mono", monospace; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-4); border: 1px solid var(--line-2); padding: 6px 10px; }
+.bl-st { font: 400 9.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-4); border: 1px solid var(--line-2); padding: 6px 10px; }
 .bl-st.on { color: var(--ok); border-color: color-mix(in srgb, var(--ok) 40%, transparent); }
 @media (max-width: 720px) { .build-list li { grid-template-columns: 40px 1fr; } .bl-st { grid-column: 2; justify-self: start; } }
 
 /* reference request */
 .refreq { margin-top: 40px; padding: 28px; border: 1px solid var(--line-2); max-width: 980px; }
-.refreq-head h3 { font: 400 28px/1.1 "Libre Caslon Display", "Times New Roman", serif; }
+.refreq-head h3 { font: 400 28px/1.1 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; }
 .refreq-head p { margin: 8px 0 20px; color: var(--ink-3); font-size: 15px; }
 .refreq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
-.refreq input, .refreq select { height: 50px; padding: 0 16px; background: transparent; border: 1px solid var(--line-3); border-radius: 2px; color: var(--ink); font: 400 15px "Libre Caslon Text", "Times New Roman", serif; min-width: 0; }
+.refreq input, .refreq select { height: 50px; padding: 0 16px; background: transparent; border: 1px solid var(--line-3); border-radius: 2px; color: var(--ink); font: 400 15px "Times New Roman", Tinos, Times, serif; min-width: 0; }
 .refreq select option { background: var(--bg-1); color: var(--ink); }
 .refreq input:focus, .refreq select:focus { outline: none; border-color: var(--acc); }
 .refreq input::placeholder { color: var(--ink-4); }
@@ -1214,14 +1214,14 @@ body.touring .foot { padding-bottom: 150px; }
 /* pit wall */
 .pit { margin-top: 34px; padding: 30px; border: 1px solid var(--line-2); background: color-mix(in srgb, var(--bg-1) 60%, transparent); }
 .pit-head .kicker { margin-bottom: 14px; }
-.pit-head h3 { font: 400 clamp(28px, 3vw, 38px)/1.1 "Libre Caslon Display", "Times New Roman", serif; }
+.pit-head h3 { font: 400 clamp(28px, 3vw, 38px)/1.1 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; }
 .pit-head p { margin: 8px 0 22px; color: var(--ink-3); font-size: 15px; }
 .pit-data { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0 0 22px; border-top: 1px solid var(--line); }
 .pit-data div { padding: 14px 14px 14px 0; border-bottom: 1px solid var(--line); }
-.pit-data dt { font: 400 9.5px "Geist Mono", monospace; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-4); }
+.pit-data dt { font: 400 9.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-4); }
 .pit-data dd { margin: 4px 0 0; font-size: 15px; color: var(--ink); }
 .pit-opts { display: flex; flex-wrap: wrap; gap: 10px; }
-.pit-opts button { padding: 12px 18px; border: 1px solid var(--line-3); font: 400 11px "Geist Mono", monospace; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2); transition: border-color 0.3s, background 0.3s, color 0.3s; }
+.pit-opts button { padding: 12px 18px; border: 1px solid var(--line-3); font: 400 11px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2); transition: border-color 0.3s, background 0.3s, color 0.3s; }
 .pit-opts button:hover { border-color: var(--ink); color: var(--ink); }
 .pit-opts button[aria-pressed="true"] { background: var(--btn); color: var(--btn-ink); border-color: var(--btn); }
 .pit-opts button.mine:not([aria-pressed="true"]) { border-color: var(--acc); color: var(--acc); }
@@ -1240,13 +1240,13 @@ body.touring .foot { padding-bottom: 150px; }
 
 /* LinkedIn posts */
 .li-posts { margin-top: 60px; }
-.li-h { margin: 0 0 18px; font: 400 26px/1.1 "Libre Caslon Display", "Times New Roman", serif; }
+.li-h { margin: 0 0 18px; font: 400 26px/1.1 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; }
 .li-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
 .li-card { display: flex; flex-direction: column; gap: 12px; padding: 22px; border: 1px solid var(--line-2); text-decoration: none; transition: border-color 0.3s, background 0.3s; }
 .li-card:hover { border-color: var(--line-3); background: var(--acc-dim); }
 .li-card .mono { font-size: 9.5px; color: var(--clay); }
 .li-card p { margin: 0; flex: 1; color: var(--ink-2); font-size: 15px; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
-.li-more { font: 400 10px "Geist Mono", monospace; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); }
+.li-more { font: 400 10px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); }
 .li-empty { margin: 0; color: var(--ink-3); font-size: 15px; padding: 20px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .li-empty a { color: var(--ink); }
 @media (max-width: 1100px) { .li-grid { grid-template-columns: 1fr; } }
@@ -1255,9 +1255,9 @@ body.touring .foot { padding-bottom: 150px; }
 .slot-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; max-width: 980px; }
 .slot { display: grid; gap: 4px; padding: 18px; text-align: left; border: 1px solid var(--line-2); transition: border-color 0.3s, background 0.3s; }
 .slot:hover { border-color: var(--acc); background: var(--acc-dim); }
-.slot b { font: 400 22px/1.1 "Libre Caslon Display", "Times New Roman", serif; }
+.slot b { font: 400 22px/1.1 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; }
 .slot span { color: var(--ink); font-size: 15px; }
-.slot small { font: 400 9.5px "Geist Mono", monospace; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-4); }
+.slot small { font: 400 9.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-4); }
 .slot-empty { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; padding: 24px 0; border-top: 1px solid var(--line-2); border-bottom: 1px solid var(--line); }
 .slot-empty p { margin: 0; color: var(--ink-2); max-width: 560px; }
 @media (max-width: 1100px) { .slot-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -1265,7 +1265,7 @@ body.touring .foot { padding-bottom: 150px; }
 /* guestbook */
 .gb { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 1100px; align-items: start; }
 .gb-form { padding: 26px; border: 1px solid var(--line-2); }
-.gb-form input { height: 50px; padding: 0 16px; background: transparent; border: 1px solid var(--line-3); border-radius: 2px; color: var(--ink); font: 400 15px "Libre Caslon Text", "Times New Roman", serif; min-width: 0; width: 100%; }
+.gb-form input { height: 50px; padding: 0 16px; background: transparent; border: 1px solid var(--line-3); border-radius: 2px; color: var(--ink); font: 400 15px "Times New Roman", Tinos, Times, serif; min-width: 0; width: 100%; }
 .gb-form input:focus { outline: none; border-color: var(--acc); }
 .gb-form input::placeholder { color: var(--ink-4); }
 .gb-note { margin-bottom: 14px; }
@@ -1273,7 +1273,7 @@ body.touring .foot { padding-bottom: 150px; }
 .gb-form .msg-actions { display: flex; align-items: center; gap: 12px; }
 .gb-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line-2); }
 .gb-list li { padding: 20px 0; border-bottom: 1px solid var(--line); }
-.gb-list p { margin: 0 0 8px; font: italic 400 20px/1.35 "Instrument Serif", Georgia, serif; color: var(--ink); }
+.gb-list p { margin: 0 0 8px; font: italic 400 20px/1.35 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; color: var(--ink); }
 .gb-list span { font-size: 13px; color: var(--ink-3); }
 .gb-list b { font-weight: 400; color: var(--ink-2); }
 .gb-list .gb-none { color: var(--ink-4); font-size: 15px; }
@@ -1299,17 +1299,17 @@ body.touring .foot { padding-bottom: 150px; }
 .feat h2 { font-size: clamp(38px, 4.6vw, 64px); line-height: 1.02; max-width: 16ch; }
 .feat-facts { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; border-top: 1px solid var(--line); }
 .feat-facts div { padding: 16px 18px 0 0; }
-.feat-facts dt { font: 400 9.5px "Geist Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-4); }
+.feat-facts dt { font: 400 9.5px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-4); }
 .feat-facts dd { margin: 6px 0 0; color: var(--ink-2); font-size: 15px; }
-.feat-go { font: 400 11px "Geist Mono", monospace; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); }
+.feat-go { font: 400 11px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); }
 .feat-go span { display: inline-block; transition: transform 0.5s cubic-bezier(.16, 1, .3, 1); }
 .feat:hover .feat-go span { transform: translateX(6px); }
 @media (max-width: 720px) { .feat { padding: 26px 20px; } .feat-facts { grid-template-columns: 1fr; } }
 .chapters + .avail, .avail { margin-top: clamp(60px, 7vw, 90px); }
 .me { max-width: 820px; }
 .me p { margin: 0 0 18px; color: var(--ink-2); font-size: 17px; }
-.me .me-lead { font: 400 clamp(22px, 2.2vw, 28px)/1.4 "Libre Caslon Text", "Times New Roman", serif; color: var(--ink); }
-.me-quote { margin-top: 30px !important; padding-left: 18px; border-left: 2px solid var(--clay); font: 400 22px/1.35 "Instrument Serif", Georgia, serif !important; color: var(--ink) !important; }
+.me .me-lead { font: 400 clamp(22px, 2.2vw, 28px)/1.4 "Times New Roman", Tinos, Times, serif; color: var(--ink); }
+.me-quote { margin-top: 30px !important; padding-left: 18px; border-left: 2px solid var(--clay); font: 400 22px/1.35 "Bell MT", "Libre Caslon Display", "Times New Roman", serif !important; color: var(--ink) !important; }
 .me-quote em { color: var(--clay); }
 
 /* ============================================================
@@ -1325,7 +1325,7 @@ body.touring .foot { padding-bottom: 150px; }
 /* arena tabs on tablets and phones: drop the number that collided with the next tab */
 @media (max-width: 1100px) { .dt { grid-template-columns: 40px 1fr; padding-right: 28px; } .dt .no { display: none; } }
 /* pit wall headings keep their own type */
-.pit .kicker { font: 400 11.5px/1.4 "Geist Mono", monospace; font-style: normal; }
+.pit .kicker { font: 400 11.5px/1.4 "Times New Roman", Tinos, Times, serif; font-style: normal; }
 .src-pop .src-story { margin: 0 0 12px !important; font-size: 14px !important; color: var(--ink) !important; }
 
 /* ============================================================
@@ -1360,33 +1360,71 @@ body.touring .foot { padding-bottom: 150px; }
    saturated brand blue kept for the main action only.
    ============================================================ */
 :root, [data-theme="dark"] {
-  --line: rgba(148, 176, 245, 0.10);
-  --line-2: rgba(148, 176, 245, 0.18);
-  --line-3: rgba(148, 176, 245, 0.32);
-  --dotc: rgba(148, 176, 245, 0.30);
-  --stripe: rgba(148, 176, 245, 0.022);
-  --brand: #3563e9;
+  --line: rgba(234, 220, 197, 0.10);
+  --line-2: rgba(234, 220, 197, 0.18);
+  --line-3: rgba(234, 220, 197, 0.32);
+  --dotc: rgba(234, 220, 197, 0.30);
+  --stripe: rgba(234, 220, 197, 0.022);
+  --brand: #b58a57;
 }
-[data-theme="light"] { --brand: #1d47c9; }
+[data-theme="light"] { --brand: #7a5530; }
 /* quiet navy light, low saturation, so the page reads deep rather than bright */
 .backdrop { background:
-    radial-gradient(1100px 800px at 90% -12%, rgba(53, 99, 233, 0.13), transparent 62%),
-    radial-gradient(900px 700px at -10% 108%, rgba(20, 43, 87, 0.55), transparent 62%),
-    radial-gradient(1300px 900px at 40% 40%, rgba(20, 43, 87, 0.35), transparent 72%),
+    radial-gradient(1100px 800px at 90% -12%, rgba(181, 138, 87, 0.13), transparent 62%),
+    radial-gradient(900px 700px at -10% 108%, rgba(7, 19, 59, 0.55), transparent 62%),
+    radial-gradient(1300px 900px at 40% 40%, rgba(7, 19, 59, 0.35), transparent 72%),
     repeating-linear-gradient(90deg, var(--stripe) 0 1px, transparent 1px 34px),
     var(--bg);
   box-shadow: inset 0 0 300px rgba(0, 0, 0, 0.55); }
 [data-theme="light"] .backdrop { background:
-    radial-gradient(1100px 800px at 90% -12%, rgba(29, 71, 201, 0.08), transparent 62%),
+    radial-gradient(1100px 800px at 90% -12%, rgba(122, 85, 48, 0.08), transparent 62%),
     repeating-linear-gradient(90deg, var(--stripe) 0 1px, transparent 1px 34px),
     var(--bg); box-shadow: none; }
 /* the one saturated blue: the main call to action */
-.btn-primary { background: var(--brand); color: #fff; box-shadow: 0 10px 28px -14px rgba(53, 99, 233, 0.6); }
-.btn-primary:hover { background: #4a76f0; color: #fff; }
-[data-theme="light"] .btn-primary:hover { background: #2a56d8; }
+.btn-primary { background: var(--brand); color: #fff; box-shadow: 0 10px 28px -14px rgba(181, 138, 87, 0.6); }
+.btn-primary:hover { background: #c99c66; color: #fff; }
+[data-theme="light"] .btn-primary:hover { background: #13235c; }
 .hero h1.name .dot-c, .cta-card h2 .dot-c { color: var(--acc); }
 .kicker { color: var(--acc); }
 ::selection { background: var(--brand); color: #fff; }
 /* raised surfaces are lighter navy, not shadows */
 .chat, .recon, .pit, .refreq, .gb-form, .proof.proof, .feat, .read-pop, .src-pop, .tour, .cite-card { background-color: var(--bg-1); }
 .bubble.ai, .slot:hover { background-color: var(--bg-2); }
+
+/* ============================================================
+   Round 16: midnight blue and antique bronze, classic type
+   Obsidian #03071E · Midnight #07133B · Antique bronze #B58A57 · Linen #EADCC5
+   Bell MT headings, Times New Roman text, Pinyon Script for calligraphy
+   ============================================================ */
+:root, [data-theme="dark"] { --brand: #b58a57; --brand-ink: #03071e; }
+[data-theme="light"] { --brand: #07133b; --brand-ink: #eadcc5; }
+.btn-primary, .btn-primary:hover { color: var(--brand-ink); }
+[data-theme="light"] .btn-primary:hover { background: #13235c; }
+.backdrop { background:
+    radial-gradient(1100px 800px at 90% -12%, rgba(181, 138, 87, 0.08), transparent 62%),
+    radial-gradient(1000px 760px at -10% 108%, rgba(7, 19, 59, 0.75), transparent 62%),
+    radial-gradient(1300px 900px at 40% 40%, rgba(7, 19, 59, 0.55), transparent 72%),
+    repeating-linear-gradient(90deg, var(--stripe) 0 1px, transparent 1px 34px),
+    var(--bg);
+  box-shadow: inset 0 0 300px rgba(0, 0, 0, 0.6); }
+[data-theme="light"] .backdrop { background:
+    radial-gradient(1100px 800px at 90% -12%, rgba(122, 85, 48, 0.07), transparent 62%),
+    repeating-linear-gradient(90deg, var(--stripe) 0 1px, transparent 1px 34px),
+    var(--bg); box-shadow: none; }
+/* fine bronze rules where lines carry meaning */
+.kicker::before, .frame::after, .crest::after { background: var(--acc); }
+
+/* type: Times labels read as classical small capitals rather than code */
+.mono, .kicker, .btn, .nav-links a, .foot { letter-spacing: 0.16em; }
+.btn { font-weight: 400; font-size: 12.5px; }
+.btn-sm { font-size: 11.5px; }
+body { font-size: 17px; }
+
+/* calligraphy */
+.script, .name-pre, .pq span, .intro-name {
+  font-family: "Pinyon Script", "Mrs Saint Delafield", cursive !important;
+  letter-spacing: 0 !important; text-transform: none !important; }
+.hero .name-pre { font-size: clamp(30px, 3.2vw, 44px); line-height: 1; color: var(--acc); margin: 0 0 -4px; }
+.pq span { font-size: 24px; color: var(--clay); }
+.pq span::before { background: var(--acc); }
+.intro-name { font-size: 34px; font-style: normal; color: var(--acc); }

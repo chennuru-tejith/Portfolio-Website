@@ -3,12 +3,12 @@
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 F = "C:/Windows/Fonts/"
-serif = lambda s: ImageFont.truetype(F + "georgia.ttf", s)
-italic = lambda s: ImageFont.truetype(F + "georgiai.ttf", s)
-mono = lambda s: ImageFont.truetype(F + "consola.ttf", s)
+serif = lambda s: ImageFont.truetype(F + "BELL.TTF", s)
+italic = lambda s: ImageFont.truetype(F + "BELLI.TTF", s)
+mono = lambda s: ImageFont.truetype(F + "times.ttf", s)
 
-BG, INK, INK2, INK3 = (5, 11, 26), (233, 237, 245), (182, 192, 212), (125, 138, 166)
-ACC, CLAY = (148, 180, 255), (201, 214, 238)
+BG, INK, INK2, INK3 = (3, 7, 30), (234, 220, 197), (201, 190, 169), (143, 135, 122)
+ACC, CLAY = (181, 138, 87), (216, 195, 160)
 
 PAGES = {
     "og": ("PORTFOLIO", "Chennuru Tejith", ["Loyalty works both ways.", "If you ask for it, be ready to give it."]),
@@ -29,13 +29,13 @@ for name, (kicker, title, lines) in PAGES.items():
     img = Image.new("RGBA", (1200, 630), BG + (255,))
     glow(img, (1150, -60), 420, ACC, 34)
     glow(img, (-80, 700), 380, CLAY, 26)
-    glow(img, (420, 300), 520, (20, 43, 87), 150)
+    glow(img, (420, 300), 520, (7, 19, 59), 170)
     ov = Image.new("RGBA", img.size, (0, 0, 0, 0))
     o = ImageDraw.Draw(ov)  # translucent strokes go on their own layer so they blend
     for x in range(0, 1200, 34):
-        o.line([(x, 0), (x, 630)], fill=(148, 176, 245, 6))
-    o.rectangle((1047, 77, 1113, 143), outline=(148, 176, 245, 40), width=1)
-    o.line([(80, 480), (1120, 480)], fill=(148, 176, 245, 40), width=1)
+        o.line([(x, 0), (x, 630)], fill=(234, 220, 197, 6))
+    o.rectangle((1047, 77, 1113, 143), outline=(234, 220, 197, 40), width=1)
+    o.line([(80, 480), (1120, 480)], fill=(234, 220, 197, 40), width=1)
     img.alpha_composite(ov)
     d = ImageDraw.Draw(img)
     # crest
@@ -53,6 +53,6 @@ for name, (kicker, title, lines) in PAGES.items():
     for i, ln in enumerate(lines):
         d.text((80, 345 + i * 62), ln, font=italic(50), fill=CLAY if i else ACC, anchor="ls")
     d.text((80, 521), "FINANCE  ·  OPERATIONS  ·  LEADERSHIP", font=mono(21), fill=INK2, anchor="lm")
-    d.text((80, 567), "Chennuru Tejith  ·  BBA + MBA, O.P. Jindal Global University", font=serif(22), fill=INK3, anchor="lm")
+    d.text((80, 567), "Chennuru Tejith  ·  BBA + MBA, O.P. Jindal Global University", font=mono(22), fill=INK3, anchor="lm")
     img.convert("RGB").save(f"assets/{name}.png", optimize=True)
     print("assets/" + name + ".png")

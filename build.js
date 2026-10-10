@@ -81,18 +81,18 @@ const profile = `<!doctype html>
 <meta name="author" content="${esc(P.name)}" />
 ${base ? `<link rel="canonical" href="${esc(abs("profile.html"))}" />` : ""}
 <link rel="icon" type="image/png" href="assets/favicon-64.png" />
-<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital@0;1&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Tinos:ital@0;1&display=swap" rel="stylesheet" />
 ${jsonld}
 <style>
 :root { color-scheme: dark; }
-body { margin: 0; background: #050b1a; color: #e9edf5; font: 17px/1.7 "Libre Caslon Text", "Times New Roman", serif; }
+body { margin: 0; background: #03071e; color: #eadcc5; font: 17px/1.7 "Times New Roman", Tinos, Times, serif; }
 main { max-width: 760px; margin: 0 auto; padding: 64px 24px 80px; }
-h1 { font: 400 56px/1 "Libre Caslon Display", "Times New Roman", serif; margin: 0 0 18px; }
-h2 { font: 400 28px/1.15 "Libre Caslon Display", "Times New Roman", serif; margin: 44px 0 12px; padding-top: 22px; border-top: 1px solid rgba(148, 176, 245,.16); }
+h1 { font: 400 56px/1 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; margin: 0 0 18px; }
+h2 { font: 400 28px/1.15 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; margin: 44px 0 12px; padding-top: 22px; border-top: 1px solid rgba(234, 220, 197,.16); }
 h3 { font-size: 18px; margin: 18px 0 4px; }
-p, li { color: #b6c0d4; } a { color: #94b4ff; }
-.meta { font-size: 13px; color: #8693ad; }
-@media (prefers-color-scheme: light) { body { background: #f3f6fc; color: #0a1a44; } p, li { color: #2c3d6b; } a { color: #1d47c9; } .meta { color: #4d5d88; } h2 { border-color: rgba(10, 26, 68,.15); } }
+p, li { color: #c9bea9; } a { color: #b58a57; }
+.meta { font-size: 13px; color: #9c9384; }
+@media (prefers-color-scheme: light) { body { background: #f4ede1; color: #03071e; } p, li { color: #1f2a4d; } a { color: #7a5530; } .meta { color: #4a5373; } h2 { border-color: rgba(3, 7, 30,.15); } }
 </style>
 </head>
 <body>
@@ -192,10 +192,10 @@ const press = `<!doctype html>
 <meta name="description" content="${esc(bios.short || entity)}" />
 ${base ? `<link rel="canonical" href="${esc(abs("press.html"))}" />` : ""}
 <link rel="icon" type="image/png" href="assets/favicon-64.png" />
-<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital@0;1&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Tinos:ital@0;1&display=swap" rel="stylesheet" />
 ${pageStyle(profile).replace("</style>", `.kit { display: grid; grid-template-columns: 160px 1fr; gap: 24px; align-items: center; }
-.kit img { width: 160px; height: 160px; border: 1px solid rgba(148, 176, 245,.2); }
-blockquote, pre { margin: 0; padding: 16px 18px; border-left: 2px solid #c9d6ee; background: rgba(148, 176, 245,.04); white-space: pre-wrap; font: inherit; }
+.kit img { width: 160px; height: 160px; border: 1px solid rgba(234, 220, 197,.2); }
+blockquote, pre { margin: 0; padding: 16px 18px; border-left: 2px solid #d8c3a0; background: rgba(234, 220, 197,.04); white-space: pre-wrap; font: inherit; }
 @media (max-width: 560px) { .kit { grid-template-columns: 1fr; } }
 </style>`)}
 </head>
@@ -231,7 +231,7 @@ const SHARE = {
   about: ["About", "Where the work happened, a slider through the years, honours and documents."],
   contact: ["Contact", "Internships, projects, or a conversation. Replies within 48 hours."],
 };
-const stubCss = `body{margin:0;min-height:100vh;display:grid;place-items:center;background:#050b1a;color:#e9edf5;font:17px/1.6 Georgia,"Times New Roman",serif}a{color:#94b4ff}`;
+const stubCss = `body{margin:0;min-height:100vh;display:grid;place-items:center;background:#03071e;color:#eadcc5;font:17px/1.6 Georgia,"Times New Roman",serif}a{color:#b58a57}`;
 for (const [slug, [name, desc]] of Object.entries(SHARE)) {
   const title = `${name} | ${P.name}`;
   fs.writeFileSync(`${slug}.html`, `<!doctype html>
@@ -270,20 +270,20 @@ fs.writeFileSync("404.html", `<!doctype html>
 <meta name="robots" content="noindex" />
 <title>Page not found | ${esc(P.name)}</title>
 <link rel="icon" type="image/png" href="/assets/favicon-64.png" />
-<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital@0;1&family=Geist+Mono&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Tinos:ital@0;1&display=swap" rel="stylesheet" />
 <style>
-:root { --bg: #050b1a; --ink: #e9edf5; --ink2: #b6c0d4; --ink4: #7d8aa6; --acc: #94b4ff; --clay: #c9d6ee; --line: rgba(148, 176, 245,.17); color-scheme: dark; }
-@media (prefers-color-scheme: light) { :root { --bg: #f3f6fc; --ink: #0a1a44; --ink2: #2c3d6b; --ink4: #56668f; --acc: #1d47c9; --clay: #2f5fd0; --line: rgba(10, 26, 68,.18); color-scheme: light; } }
+:root { --bg: #03071e; --ink: #eadcc5; --ink2: #c9bea9; --ink4: #8f877a; --acc: #b58a57; --clay: #d8c3a0; --line: rgba(234, 220, 197,.17); color-scheme: dark; }
+@media (prefers-color-scheme: light) { :root { --bg: #f4ede1; --ink: #03071e; --ink2: #1f2a4d; --ink4: #545c7c; --acc: #7a5530; --clay: #8a5a2b; --line: rgba(3, 7, 30,.18); color-scheme: light; } }
 * { box-sizing: border-box; }
-body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 40px 20px; background: var(--bg); color: var(--ink); font: 17px/1.65 "Libre Caslon Text", "Times New Roman", serif; }
+body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 40px 20px; background: var(--bg); color: var(--ink); font: 17px/1.65 "Times New Roman", Tinos, Times, serif; }
 main { width: min(760px, 100%); }
-.crest { display: inline-grid; place-items: center; width: 56px; height: 56px; border: 1px solid var(--ink4); font: 24px "Libre Caslon Display", serif; text-decoration: none; color: var(--ink); }
-.k { margin: 40px 0 14px; font: 11px "Geist Mono", monospace; letter-spacing: .22em; text-transform: uppercase; color: var(--clay); }
-h1 { margin: 0 0 18px; font: 400 clamp(56px, 10vw, 120px)/.95 "Libre Caslon Display", "Times New Roman", serif; letter-spacing: -.02em; }
+.crest { display: inline-grid; place-items: center; width: 56px; height: 56px; border: 1px solid var(--ink4); font: 24px "Bell MT", "Libre Caslon Display", "Times New Roman", serif; text-decoration: none; color: var(--ink); }
+.k { margin: 40px 0 14px; font: 11px "Times New Roman", Tinos, Times, serif; letter-spacing: .22em; text-transform: uppercase; color: var(--clay); }
+h1 { margin: 0 0 18px; font: 400 clamp(56px, 10vw, 120px)/.95 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; letter-spacing: -.02em; }
 h1 span { color: var(--clay); }
 p { color: var(--ink2); margin: 0 0 34px; }
 nav { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); border-top: 1px solid var(--line); }
-nav a { padding: 16px 0; border-bottom: 1px solid var(--line); color: var(--ink); text-decoration: none; font: 400 22px "Libre Caslon Display", serif; }
+nav a { padding: 16px 0; border-bottom: 1px solid var(--line); color: var(--ink); text-decoration: none; font: 400 22px "Bell MT", "Libre Caslon Display", "Times New Roman", serif; }
 nav a:hover { color: var(--acc); }
 </style>
 </head>
