@@ -85,14 +85,14 @@ ${base ? `<link rel="canonical" href="${esc(abs("profile.html"))}" />` : ""}
 ${jsonld}
 <style>
 :root { color-scheme: dark; }
-body { margin: 0; background: #03071e; color: #eadcc5; font: 17px/1.7 "Times New Roman", Tinos, Times, serif; }
+body { margin: 0; background: #0a0f1f; color: #eef1f8; font: 17px/1.7 "Times New Roman", Tinos, Times, serif; }
 main { max-width: 760px; margin: 0 auto; padding: 64px 24px 80px; }
 h1 { font: 400 56px/1 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; margin: 0 0 18px; }
-h2 { font: 400 28px/1.15 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; margin: 44px 0 12px; padding-top: 22px; border-top: 1px solid rgba(234, 220, 197,.16); }
+h2 { font: 400 28px/1.15 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; margin: 44px 0 12px; padding-top: 22px; border-top: 1px solid rgba(180, 195, 255,.16); }
 h3 { font-size: 18px; margin: 18px 0 4px; }
-p, li { color: #c9bea9; } a { color: #b58a57; }
-.meta { font-size: 13px; color: #9c9384; }
-@media (prefers-color-scheme: light) { body { background: #f4ede1; color: #03071e; } p, li { color: #1f2a4d; } a { color: #7a5530; } .meta { color: #4a5373; } h2 { border-color: rgba(3, 7, 30,.15); } }
+p, li { color: #bcc4d8; } a { color: #8ea2ff; }
+.meta { font-size: 13px; color: #8c96b0; }
+@media (prefers-color-scheme: light) { body { background: #f5f6fb; color: #0a0f1f; } p, li { color: #343c5c; } a { color: #4353d6; } .meta { color: #4b5475; } h2 { border-color: rgba(14, 20, 48,.15); } }
 </style>
 </head>
 <body>
@@ -194,8 +194,8 @@ ${base ? `<link rel="canonical" href="${esc(abs("press.html"))}" />` : ""}
 <link rel="icon" type="image/png" href="assets/favicon-64.png" />
 <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Tinos:ital@0;1&display=swap" rel="stylesheet" />
 ${pageStyle(profile).replace("</style>", `.kit { display: grid; grid-template-columns: 160px 1fr; gap: 24px; align-items: center; }
-.kit img { width: 160px; height: 160px; border: 1px solid rgba(234, 220, 197,.2); }
-blockquote, pre { margin: 0; padding: 16px 18px; border-left: 2px solid #d8c3a0; background: rgba(234, 220, 197,.04); white-space: pre-wrap; font: inherit; }
+.kit img { width: 160px; height: 160px; border: 1px solid rgba(180, 195, 255,.2); }
+blockquote, pre { margin: 0; padding: 16px 18px; border-left: 2px solid #e2c792; background: rgba(180, 195, 255,.04); white-space: pre-wrap; font: inherit; }
 @media (max-width: 560px) { .kit { grid-template-columns: 1fr; } }
 </style>`)}
 </head>
@@ -231,7 +231,7 @@ const SHARE = {
   about: ["About", "Where the work happened, a slider through the years, honours and documents."],
   contact: ["Contact", "Internships, projects, or a conversation. Replies within 48 hours."],
 };
-const stubCss = `body{margin:0;min-height:100vh;display:grid;place-items:center;background:#03071e;color:#eadcc5;font:17px/1.6 Georgia,"Times New Roman",serif}a{color:#b58a57}`;
+const stubCss = `body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0a0f1f;color:#eef1f8;font:17px/1.6 Georgia,"Times New Roman",serif}a{color:#8ea2ff}`;
 for (const [slug, [name, desc]] of Object.entries(SHARE)) {
   const title = `${name} | ${P.name}`;
   fs.writeFileSync(`${slug}.html`, `<!doctype html>
@@ -272,8 +272,8 @@ fs.writeFileSync("404.html", `<!doctype html>
 <link rel="icon" type="image/png" href="/assets/favicon-64.png" />
 <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Tinos:ital@0;1&display=swap" rel="stylesheet" />
 <style>
-:root { --bg: #03071e; --ink: #eadcc5; --ink2: #c9bea9; --ink4: #8f877a; --acc: #b58a57; --clay: #d8c3a0; --line: rgba(234, 220, 197,.17); color-scheme: dark; }
-@media (prefers-color-scheme: light) { :root { --bg: #f4ede1; --ink: #03071e; --ink2: #1f2a4d; --ink4: #545c7c; --acc: #7a5530; --clay: #8a5a2b; --line: rgba(3, 7, 30,.18); color-scheme: light; } }
+:root { --bg: #0a0f1f; --ink: #eef1f8; --ink2: #bcc4d8; --ink4: #818ba6; --acc: #8ea2ff; --clay: #e2c792; --line: rgba(180, 195, 255,.17); color-scheme: dark; }
+@media (prefers-color-scheme: light) { :root { --bg: #f5f6fb; --ink: #0a0f1f; --ink2: #343c5c; --ink4: #5a6385; --acc: #4353d6; --clay: #8a6a2a; --line: rgba(14, 20, 48,.18); color-scheme: light; } }
 * { box-sizing: border-box; }
 body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 40px 20px; background: var(--bg); color: var(--ink); font: 17px/1.65 "Times New Roman", Tinos, Times, serif; }
 main { width: min(760px, 100%); }

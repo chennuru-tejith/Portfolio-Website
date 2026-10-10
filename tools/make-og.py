@@ -7,8 +7,8 @@ serif = lambda s: ImageFont.truetype(F + "BELL.TTF", s)
 italic = lambda s: ImageFont.truetype(F + "BELLI.TTF", s)
 mono = lambda s: ImageFont.truetype(F + "times.ttf", s)
 
-BG, INK, INK2, INK3 = (3, 7, 30), (234, 220, 197), (201, 190, 169), (143, 135, 122)
-ACC, CLAY = (181, 138, 87), (216, 195, 160)
+BG, INK, INK2, INK3 = (10, 15, 31), (238, 241, 248), (188, 196, 216), (129, 139, 166)
+ACC, CLAY = (142, 162, 255), (226, 199, 146)
 
 PAGES = {
     "og": ("PORTFOLIO", "Chennuru Tejith", ["Loyalty works both ways.", "If you ask for it, be ready to give it."]),
@@ -27,19 +27,17 @@ def glow(img, xy, r, color, alpha):
 
 for name, (kicker, title, lines) in PAGES.items():
     img = Image.new("RGBA", (1200, 630), BG + (255,))
-    glow(img, (1150, -60), 420, ACC, 34)
-    glow(img, (-80, 700), 380, CLAY, 26)
-    glow(img, (420, 300), 520, (7, 19, 59), 170)
+    glow(img, (1150, -60), 460, (99, 102, 241), 70)
+    glow(img, (-80, 700), 420, (124, 92, 230), 46)
+    glow(img, (420, 300), 520, (56, 120, 230), 30)
     ov = Image.new("RGBA", img.size, (0, 0, 0, 0))
     o = ImageDraw.Draw(ov)  # translucent strokes go on their own layer so they blend
-    for x in range(0, 1200, 34):
-        o.line([(x, 0), (x, 630)], fill=(234, 220, 197, 6))
-    o.rectangle((1047, 77, 1113, 143), outline=(234, 220, 197, 40), width=1)
-    o.line([(80, 480), (1120, 480)], fill=(234, 220, 197, 40), width=1)
+    o.rounded_rectangle((1047, 77, 1113, 143), radius=8, outline=(180, 195, 255, 40), width=1)
+    o.line([(80, 480), (1120, 480)], fill=(180, 195, 255, 40), width=1)
     img.alpha_composite(ov)
     d = ImageDraw.Draw(img)
     # crest
-    d.rectangle((1040, 70, 1120, 150), outline=INK3 + (255,), width=1)
+    d.rounded_rectangle((1040, 70, 1120, 150), radius=12, outline=INK3 + (255,), width=1)
     d.text((1080, 106), "CT", font=serif(34), fill=INK, anchor="mm")
     d.line([(1070, 132), (1090, 132)], fill=CLAY, width=2)
     # kicker

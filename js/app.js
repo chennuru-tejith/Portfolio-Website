@@ -30,7 +30,7 @@
     document.documentElement.dataset.theme = t;
     $("#themeBtn").innerHTML = I(t === "dark" ? "sun" : "moon", 17);
     $("#themeBtn").setAttribute("aria-label", t === "dark" ? "Switch to light mode" : "Switch to dark mode");
-    const tc = $('meta[name="theme-color"]'); if (tc) tc.content = t === "dark" ? "#03071e" : "#f4ede1";
+    const tc = $('meta[name="theme-color"]'); if (tc) tc.content = t === "dark" ? "#0a0f1f" : "#f5f6fb";
   }
 
   // ---------- views ----------
@@ -61,8 +61,8 @@
     const glyph = I(g.icon, 34).replace("<svg ", '<svg x="33" y="33" ').replace('stroke-width="1.7"', 'stroke-width="1.8"');
     return `<svg class="${cls}" viewBox="0 0 100 100" aria-hidden="true">
       <defs>
-        <linearGradient id="${id}m" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f3e2c4"/><stop offset=".45" stop-color="#b58a57"/><stop offset=".7" stop-color="#ead2a8"/><stop offset="1" stop-color="#7a5530"/></linearGradient>
-        <linearGradient id="${id}c" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${g.color}"/><stop offset="1" style="stop-color:color-mix(in srgb, ${g.color} 50%, #03071e)"/></linearGradient>
+        <linearGradient id="${id}m" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4f6fc"/><stop offset=".45" stop-color="#b9c2dc"/><stop offset=".7" stop-color="#eef1fa"/><stop offset="1" stop-color="#7f89a8"/></linearGradient>
+        <linearGradient id="${id}c" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${g.color}"/><stop offset="1" style="stop-color:color-mix(in srgb, ${g.color} 50%, #0a0f1f)"/></linearGradient>
         <linearGradient id="${id}h" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".45"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient>
       </defs>
       <polygon points="${hex(47)}" fill="url(#${id}m)"/>
@@ -671,17 +671,17 @@
   function saveCard(qr) {
     const W = 1080, H = 1350, c = document.createElement("canvas"); c.width = W; c.height = H;
     const x = c.getContext("2d");
-    x.fillStyle = "#03071e"; x.fillRect(0, 0, W, H);
-    x.strokeStyle = "rgba(234, 220, 197,.22)"; x.strokeRect(40, 40, W - 80, H - 80);
+    x.fillStyle = "#0a0f1f"; x.fillRect(0, 0, W, H);
+    x.strokeStyle = "rgba(180, 195, 255,.22)"; x.strokeRect(40, 40, W - 80, H - 80);
     x.fillStyle = "#d69c77"; x.fillRect(100, 140, 90, 3);
     x.fillStyle = "#f1ece3"; x.font = "400 110px 'Bell MT', 'Times New Roman', serif"; x.fillText(D.profile.name.split(" ")[0], 96, 330); x.fillText(D.profile.name.split(" ").slice(1).join(" "), 96, 450);
-    x.fillStyle = "#b58a57"; x.font = "italic 400 52px 'Bell MT', 'Times New Roman', serif"; x.fillText("Finance · Operations · Leadership", 100, 560);
-    x.fillStyle = "#9c9384"; x.font = "400 30px 'Times New Roman', serif"; x.fillText("BBA + MBA, O.P. Jindal Global University", 100, 640); x.fillText(D.profile.email, 100, 690);
+    x.fillStyle = "#8ea2ff"; x.font = "italic 400 52px 'Bell MT', 'Times New Roman', serif"; x.fillText("Finance · Operations · Leadership", 100, 560);
+    x.fillStyle = "#8c96b0"; x.font = "400 30px 'Times New Roman', serif"; x.fillText("BBA + MBA, O.P. Jindal Global University", 100, 640); x.fillText(D.profile.email, 100, 690);
     const n = qr.getModuleCount(), size = 380, cell = size / n, ox = W - 100 - size, oy = H - 100 - size;
     x.fillStyle = "#f1ece3"; x.fillRect(ox - 20, oy - 20, size + 40, size + 40);
-    x.fillStyle = "#03071e";
+    x.fillStyle = "#0a0f1f";
     for (let r = 0; r < n; r++) for (let k = 0; k < n; k++) if (qr.isDark(r, k)) x.fillRect(ox + k * cell, oy + r * cell, Math.ceil(cell), Math.ceil(cell));
-    x.fillStyle = "#9c9384"; x.font = "400 26px 'Times New Roman', serif"; x.fillText("SCAN TO VIEW PORTFOLIO", 100, H - 110);
+    x.fillStyle = "#8c96b0"; x.font = "400 26px 'Times New Roman', serif"; x.fillText("SCAN TO VIEW PORTFOLIO", 100, H - 110);
     c.toBlob((b) => { const a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = "Chennuru-Tejith-card.png"; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); }, "image/png");
   }
   function wireShare() {

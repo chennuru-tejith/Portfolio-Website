@@ -1,6 +1,6 @@
 # Chennuru Tejith: Portfolio
 
-An editorial portfolio in midnight blue and antique bronze (obsidian #03071E, midnight #07133B, bronze #B58A57, linen #EADCC5), set in Bell MT, Times New Roman and Pinyon Script split into five pages: Home, About, Work, Research and Contact (`#about`, `#work`…). Old links such as `#arenas` and `#ask` still land on the right section. There is also a recruiter résumé view (`?view=resume`), a press kit (`press.html`) and a plain text profile (`profile.html`).
+An editorial portfolio in night navy (#0A0F1F) with a periwinkle accent (#8EA2FF), an indigo-violet main button and champagne details (#E2C792), soft rounded corners, set in Bell MT, Times New Roman and Pinyon Script split into five pages: Home, About, Work, Research and Contact (`#about`, `#work`…). Old links such as `#arenas` and `#ask` still land on the right section. There is also a recruiter résumé view (`?view=resume`), a press kit (`press.html`) and a plain text profile (`profile.html`).
 
 ## Edit content
 Everything lives in `js/data.js`:

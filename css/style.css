@@ -1,35 +1,35 @@
 /* ============================================================
    Chennuru Tejith: portfolio
-   Obsidian · midnight · antique bronze · linen
+   Night navy · periwinkle · champagne
    Display: Bell MT · Text and labels: Times New Roman · Script: Pinyon Script
    ============================================================ */
 
-/* Obsidian · midnight · antique bronze · linen */
+/* Night navy · periwinkle · champagne */
 :root,
 [data-theme="dark"] {
-  --bg: #03071e;
-  --bg-1: #050c2b;
-  --bg-2: #07133b;
-  --surface: #050c2b;
-  --ink: #eadcc5;
-  --ink-2: #c9bea9;
-  --ink-3: #9c9384;
-  --ink-4: #8f877a;
-  --muted: #9c9384;
-  --acc: #b58a57;
-  --acc-hi: #d1ad7d;
-  --acc-dim: rgba(181, 138, 87, 0.1);
-  --clay: #d8c3a0;
-  --ok: #a9c7a0;
-  --ok-l: rgba(169, 199, 160, 0.1);
-  --line: rgba(234, 220, 197, 0.09);
-  --line-2: rgba(234, 220, 197, 0.17);
-  --line-3: rgba(234, 220, 197, 0.32);
-  --btn: #eadcc5;
-  --btn-ink: #03071e;
-  --land: #06102f;
-  --dotc: rgba(234, 220, 197, 0.26);
-  --stripe: rgba(234, 220, 197, 0.022);
+  --bg: #0a0f1f;
+  --bg-1: #10172b;
+  --bg-2: #161f38;
+  --surface: #10172b;
+  --ink: #eef1f8;
+  --ink-2: #bcc4d8;
+  --ink-3: #8c96b0;
+  --ink-4: #818ba6;
+  --muted: #8c96b0;
+  --acc: #8ea2ff;
+  --acc-hi: #b7c3ff;
+  --acc-dim: rgba(142, 162, 255, 0.1);
+  --clay: #e2c792;
+  --ok: #7dd3b0;
+  --ok-l: rgba(125, 211, 176, 0.1);
+  --line: rgba(180, 195, 255, 0.09);
+  --line-2: rgba(180, 195, 255, 0.17);
+  --line-3: rgba(180, 195, 255, 0.32);
+  --btn: #eef1f8;
+  --btn-ink: #0a0f1f;
+  --land: #121a31;
+  --dotc: rgba(180, 195, 255, 0.26);
+  --stripe: rgba(180, 195, 255, 0.022);
   --grain: 0.06;
   --shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.75);
   /* legacy names used by scripts/markup */
@@ -39,29 +39,29 @@
   color-scheme: dark;
 }
 [data-theme="light"] {
-  --bg: #f4ede1;
-  --bg-1: #ede4d4;
-  --bg-2: #e4d8c3;
-  --surface: #f9f4ea;
-  --ink: #03071e;
-  --ink-2: #1f2a4d;
-  --ink-3: #4a5373;
-  --ink-4: #545c7c;
-  --muted: #4a5373;
-  --acc: #7a5530;
-  --acc-hi: #5c3f21;
-  --acc-dim: rgba(122, 85, 48, 0.08);
-  --clay: #8a5a2b;
-  --ok: #3f6b3f;
-  --ok-l: rgba(63, 107, 63, 0.08);
-  --line: rgba(3, 7, 30, 0.1);
-  --line-2: rgba(3, 7, 30, 0.18);
-  --line-3: rgba(3, 7, 30, 0.34);
-  --btn: #03071e;
-  --btn-ink: #f4ede1;
-  --land: #e6dccb;
-  --dotc: rgba(3, 7, 30, 0.3);
-  --stripe: rgba(3, 7, 30, 0.03);
+  --bg: #f5f6fb;
+  --bg-1: #eceff8;
+  --bg-2: #e3e8f5;
+  --surface: #ffffff;
+  --ink: #0a0f1f;
+  --ink-2: #343c5c;
+  --ink-3: #4b5475;
+  --ink-4: #5a6385;
+  --muted: #4b5475;
+  --acc: #4353d6;
+  --acc-hi: #2f3cb0;
+  --acc-dim: rgba(67, 83, 214, 0.08);
+  --clay: #8a6a2a;
+  --ok: #157a5c;
+  --ok-l: rgba(21, 122, 92, 0.08);
+  --line: rgba(14, 20, 48, 0.1);
+  --line-2: rgba(14, 20, 48, 0.18);
+  --line-3: rgba(14, 20, 48, 0.34);
+  --btn: #0a0f1f;
+  --btn-ink: #f5f6fb;
+  --land: #e1e6f2;
+  --dotc: rgba(14, 20, 48, 0.3);
+  --stripe: rgba(14, 20, 48, 0.03);
   --grain: 0.05;
   --shadow: 0 30px 60px -30px rgba(8, 20, 60, 0.25);
   --blue: var(--acc);
@@ -613,8 +613,8 @@ body.has-cursor .cursor { opacity: 0.8; }
 /* ---------- print: always the clean résumé ---------- */
 @media print {
   @page { margin: 14mm 14mm; }
-  :root, [data-theme] { --bg: #fff; --ink: #03071e; --ink-2: #2e2a24; --ink-3: #4f493f; --ink-4: #545c7c; --clay: #8a4526; --acc: #7a5530; --line: #d8dbe2; --line-2: #c3c7d0; --line-3: #9aa0ad; }
-  body { background: #fff !important; color: #03071e; font-size: 11pt; }
+  :root, [data-theme] { --bg: #fff; --ink: #0a0f1f; --ink-2: #2e2a24; --ink-3: #4f493f; --ink-4: #5a6385; --clay: #8a4526; --acc: #4353d6; --line: #d8dbe2; --line-2: #c3c7d0; --line-3: #9aa0ad; }
+  body { background: #fff !important; color: #0a0f1f; font-size: 11pt; }
   body::after, .nav, .progress, .cursor, .curtain, .filterbar, .toast, .reader, #story, .r-foot, .r-actions { display: none !important; }
   main#resume, main#resume[hidden] { display: block !important; }
   .resume { padding: 0; max-width: none; }
@@ -742,12 +742,12 @@ body.resume-mode .hire { display: none !important; }
 .share-scrim { position: absolute; inset: 0; background: color-mix(in srgb, var(--bg) 75%, transparent); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); animation: fade 0.4s; }
 .share-card { position: relative; width: min(440px, 100%); animation: panelIn 0.6s cubic-bezier(.16, 1, .3, 1); }
 .share-x { position: absolute; top: -52px; right: 0; }
-.sc { padding: 34px 32px; background: #03071e; color: #eadcc5; border: 1px solid rgba(234, 220, 197, 0.2); }
+.sc { padding: 34px 32px; background: #0a0f1f; color: #eef1f8; border: 1px solid rgba(180, 195, 255, 0.2); }
 .sc .logo-svg { width: 40px; height: 40px; color: #f1ece3; }
 .sc h3 { font: 400 40px/1 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; margin: 22px 0 8px; letter-spacing: 0; }
-.sc p { margin: 0; font: 400 10px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.18em; text-transform: uppercase; color: #9c9384; }
-.sc-row { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: end; margin-top: 28px; padding-top: 22px; border-top: 1px solid rgba(234, 220, 197, 0.16); }
-.sc-row span { font-size: 13px; color: #c9bea9; line-height: 1.6; }
+.sc p { margin: 0; font: 400 10px "Times New Roman", Tinos, Times, serif; letter-spacing: 0.18em; text-transform: uppercase; color: #8c96b0; }
+.sc-row { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: end; margin-top: 28px; padding-top: 22px; border-top: 1px solid rgba(180, 195, 255, 0.16); }
+.sc-row span { font-size: 13px; color: #bcc4d8; line-height: 1.6; }
 .sc-qr { width: 112px; height: 112px; background: #f1ece3; padding: 8px; }
 .sc-qr svg { width: 100%; height: 100%; display: block; }
 .share-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; justify-content: center; }
@@ -816,7 +816,7 @@ body { background-color: var(--bg); }
 .crest-xl > span { font-size: 62px; margin-top: -10px; }
 .crest-xl::after { bottom: 26px; width: 34px; margin-left: -17px; height: 2px; }
 .logo .crest { margin-right: 4px; }
-.sc .crest { width: 52px; height: 52px; border-color: rgba(234, 220, 197, 0.45); }
+.sc .crest { width: 52px; height: 52px; border-color: rgba(180, 195, 255, 0.45); }
 .sc .crest > span { color: #f1ece3; font-size: 22px; }
 
 /* ink reveal on the name */
@@ -892,10 +892,10 @@ body { background-color: var(--bg); }
 
 @media print {
   body.print-one #resume, body.print-one main#resume[hidden] { display: none !important; }
-  body.print-one .onepager { display: block !important; color: #03071e; }
+  body.print-one .onepager { display: block !important; color: #0a0f1f; }
   .backdrop { display: none !important; }
   .onepager h1 { font: 400 40pt/1 "Bell MT", "Libre Caslon Display", "Times New Roman", serif; margin: 0 0 4pt; }
-  .onepager .op-role { font: 400 9pt "Times New Roman", Tinos, Times, serif; letter-spacing: 0.16em; text-transform: uppercase; color: #8a5a2b; margin: 0 0 16pt; }
+  .onepager .op-role { font: 400 9pt "Times New Roman", Tinos, Times, serif; letter-spacing: 0.16em; text-transform: uppercase; color: #8a6a2a; margin: 0 0 16pt; }
   .onepager h2 { font: 400 9pt "Times New Roman", Tinos, Times, serif; letter-spacing: 0.18em; text-transform: uppercase; color: #6b7385; margin: 16pt 0 6pt; border-bottom: 1px solid #c3c7d0; padding-bottom: 4pt; }
   .onepager li { margin-bottom: 4pt; font-size: 11pt; }
   .onepager p { font-size: 11pt; margin: 0 0 6pt; }
@@ -1052,8 +1052,8 @@ body { background-color: var(--bg); }
    intro, reading options
    ============================================================ */
 #story, #resume { zoom: var(--zoom, 1); }
-[data-contrast="high"] { --ink-2: #ece7de; --ink-3: #d6d0c6; --ink-4: #c4beb4; --line: rgba(234, 220, 197, 0.22); --line-2: rgba(234, 220, 197, 0.36); --line-3: rgba(234, 220, 197, 0.6); }
-[data-theme="light"][data-contrast="high"] { --ink-2: #03071e; --ink-3: #2e2a24; --ink-4: #3a352d; --line: rgba(3, 7, 30, 0.24); --line-2: rgba(3, 7, 30, 0.4); --line-3: rgba(3, 7, 30, 0.65); }
+[data-contrast="high"] { --ink-2: #ece7de; --ink-3: #d6d0c6; --ink-4: #c4beb4; --line: rgba(180, 195, 255, 0.22); --line-2: rgba(180, 195, 255, 0.36); --line-3: rgba(180, 195, 255, 0.6); }
+[data-theme="light"][data-contrast="high"] { --ink-2: #0a0f1f; --ink-3: #2e2a24; --ink-4: #3a352d; --line: rgba(14, 20, 48, 0.24); --line-2: rgba(14, 20, 48, 0.4); --line-3: rgba(14, 20, 48, 0.65); }
 
 /* reading options */
 .nav-right { position: relative; }
@@ -1360,30 +1360,30 @@ body.touring .foot { padding-bottom: 150px; }
    saturated brand blue kept for the main action only.
    ============================================================ */
 :root, [data-theme="dark"] {
-  --line: rgba(234, 220, 197, 0.10);
-  --line-2: rgba(234, 220, 197, 0.18);
-  --line-3: rgba(234, 220, 197, 0.32);
-  --dotc: rgba(234, 220, 197, 0.30);
-  --stripe: rgba(234, 220, 197, 0.022);
-  --brand: #b58a57;
+  --line: rgba(180, 195, 255, 0.10);
+  --line-2: rgba(180, 195, 255, 0.18);
+  --line-3: rgba(180, 195, 255, 0.32);
+  --dotc: rgba(180, 195, 255, 0.30);
+  --stripe: rgba(180, 195, 255, 0.022);
+  --brand: #8ea2ff;
 }
-[data-theme="light"] { --brand: #7a5530; }
+[data-theme="light"] { --brand: #4353d6; }
 /* quiet navy light, low saturation, so the page reads deep rather than bright */
 .backdrop { background:
-    radial-gradient(1100px 800px at 90% -12%, rgba(181, 138, 87, 0.13), transparent 62%),
-    radial-gradient(900px 700px at -10% 108%, rgba(7, 19, 59, 0.55), transparent 62%),
-    radial-gradient(1300px 900px at 40% 40%, rgba(7, 19, 59, 0.35), transparent 72%),
+    radial-gradient(1100px 800px at 90% -12%, rgba(142, 162, 255, 0.13), transparent 62%),
+    radial-gradient(900px 700px at -10% 108%, rgba(22, 31, 56, 0.55), transparent 62%),
+    radial-gradient(1300px 900px at 40% 40%, rgba(22, 31, 56, 0.35), transparent 72%),
     repeating-linear-gradient(90deg, var(--stripe) 0 1px, transparent 1px 34px),
     var(--bg);
   box-shadow: inset 0 0 300px rgba(0, 0, 0, 0.55); }
 [data-theme="light"] .backdrop { background:
-    radial-gradient(1100px 800px at 90% -12%, rgba(122, 85, 48, 0.08), transparent 62%),
+    radial-gradient(1100px 800px at 90% -12%, rgba(67, 83, 214, 0.08), transparent 62%),
     repeating-linear-gradient(90deg, var(--stripe) 0 1px, transparent 1px 34px),
     var(--bg); box-shadow: none; }
 /* the one saturated blue: the main call to action */
-.btn-primary { background: var(--brand); color: #fff; box-shadow: 0 10px 28px -14px rgba(181, 138, 87, 0.6); }
-.btn-primary:hover { background: #c99c66; color: #fff; }
-[data-theme="light"] .btn-primary:hover { background: #13235c; }
+.btn-primary { background: var(--brand); color: #fff; box-shadow: 0 10px 28px -14px rgba(142, 162, 255, 0.6); }
+.btn-primary:hover { background: #a9b6ff; color: #fff; }
+[data-theme="light"] .btn-primary:hover { background: #2a3290; }
 .hero h1.name .dot-c, .cta-card h2 .dot-c { color: var(--acc); }
 .kicker { color: var(--acc); }
 ::selection { background: var(--brand); color: #fff; }
@@ -1393,22 +1393,22 @@ body.touring .foot { padding-bottom: 150px; }
 
 /* ============================================================
    Round 16: midnight blue and antique bronze, classic type
-   Obsidian #03071E · Midnight #07133B · Antique bronze #B58A57 · Linen #EADCC5
+   Obsidian #0a0f1f · Midnight #161f38 · Antique bronze #8ea2ff · Linen #eef1f8
    Bell MT headings, Times New Roman text, Pinyon Script for calligraphy
    ============================================================ */
-:root, [data-theme="dark"] { --brand: #b58a57; --brand-ink: #03071e; }
-[data-theme="light"] { --brand: #07133b; --brand-ink: #eadcc5; }
+:root, [data-theme="dark"] { --brand: #8ea2ff; --brand-ink: #0a0f1f; }
+[data-theme="light"] { --brand: #161f38; --brand-ink: #eef1f8; }
 .btn-primary, .btn-primary:hover { color: var(--brand-ink); }
-[data-theme="light"] .btn-primary:hover { background: #13235c; }
+[data-theme="light"] .btn-primary:hover { background: #2a3290; }
 .backdrop { background:
-    radial-gradient(1100px 800px at 90% -12%, rgba(181, 138, 87, 0.08), transparent 62%),
-    radial-gradient(1000px 760px at -10% 108%, rgba(7, 19, 59, 0.75), transparent 62%),
-    radial-gradient(1300px 900px at 40% 40%, rgba(7, 19, 59, 0.55), transparent 72%),
+    radial-gradient(1100px 800px at 90% -12%, rgba(142, 162, 255, 0.08), transparent 62%),
+    radial-gradient(1000px 760px at -10% 108%, rgba(22, 31, 56, 0.75), transparent 62%),
+    radial-gradient(1300px 900px at 40% 40%, rgba(22, 31, 56, 0.55), transparent 72%),
     repeating-linear-gradient(90deg, var(--stripe) 0 1px, transparent 1px 34px),
     var(--bg);
   box-shadow: inset 0 0 300px rgba(0, 0, 0, 0.6); }
 [data-theme="light"] .backdrop { background:
-    radial-gradient(1100px 800px at 90% -12%, rgba(122, 85, 48, 0.07), transparent 62%),
+    radial-gradient(1100px 800px at 90% -12%, rgba(67, 83, 214, 0.07), transparent 62%),
     repeating-linear-gradient(90deg, var(--stripe) 0 1px, transparent 1px 34px),
     var(--bg); box-shadow: none; }
 /* fine bronze rules where lines carry meaning */
@@ -1429,64 +1429,86 @@ body { font-size: 17px; }
 .pq span::before { background: var(--acc); }
 .intro-name { font-size: 34px; font-style: normal; color: var(--acc); }
 
+
 /* ============================================================
-   Round 17: richer background and metallic bronze
+   Round 18: night navy, soft light, soft corners
+   Night #0A0F1F · Surface #10172B / #161F38 · Periwinkle #8EA2FF
+   Indigo-violet for the main action · Champagne #E2C792 for small details
    ============================================================ */
 :root, [data-theme="dark"] {
-  --bg-1: #050e33;
-  --bg-2: #081749;
-  --surface: #050e33;
-  --bronze: linear-gradient(135deg, #e6c48f 0%, #b58a57 46%, #8a6136 100%);
-  --bronze-hi: linear-gradient(135deg, #f0d4a4 0%, #c79a63 46%, #9a6d3e 100%);
-  --engrave: 0.085;
+  --brand: linear-gradient(135deg, #4f5fe6 0%, #6a4fd8 100%);
+  --brand-hi: linear-gradient(135deg, #5d6cf0 0%, #7a5ee6 100%);
+  --brand-ink: #ffffff;
+  --stripe: transparent;
+  --grain: 0.035;
+  --r-sm: 10px; --r: 14px; --r-lg: 20px;
 }
 [data-theme="light"] {
-  --bronze: linear-gradient(135deg, #b08654 0%, #7a5530 50%, #5c3f21 100%);
-  --bronze-hi: linear-gradient(135deg, #c39463 0%, #8a6138 50%, #6a4a28 100%);
-  --engrave: 0.11;
+  --brand: linear-gradient(135deg, #4353d6 0%, #6a46d0 100%);
+  --brand-hi: linear-gradient(135deg, #3644c4 0%, #5a38c0 100%);
+  --brand-ink: #ffffff;
+  --stripe: transparent;
+  --surface: #ffffff;
 }
 
-/* engraved guilloche rosettes, like the pattern on a banknote or share certificate */
-.backdrop::before {
-  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: var(--engrave);
-  background:
-    url("../assets/guilloche.svg") no-repeat right -260px top -300px / 980px 980px,
-    url("../assets/guilloche.svg") no-repeat left -320px bottom -380px / 760px 760px;
-}
-/* a soft midnight pool so the rosettes fade into the page */
+/* soft light: indigo from the top right, blue on the left, violet low down */
 .backdrop { background:
-    radial-gradient(900px 700px at 88% 6%, rgba(181, 138, 87, 0.10), transparent 60%),
-    radial-gradient(1200px 900px at 45% 45%, rgba(8, 23, 73, 0.55), transparent 72%),
-    radial-gradient(900px 700px at 0% 100%, rgba(8, 23, 73, 0.70), transparent 62%),
-    repeating-linear-gradient(90deg, var(--stripe) 0 1px, transparent 1px 34px),
+    radial-gradient(900px 640px at 86% -6%, rgba(99, 102, 241, 0.24), transparent 60%),
+    radial-gradient(760px 600px at 2% 28%, rgba(56, 120, 230, 0.12), transparent 62%),
+    radial-gradient(900px 700px at 62% 108%, rgba(124, 92, 230, 0.15), transparent 62%),
+    var(--bg);
+  box-shadow: none; }
+[data-theme="light"] .backdrop { background:
+    radial-gradient(900px 640px at 86% -6%, rgba(99, 102, 241, 0.10), transparent 60%),
+    radial-gradient(760px 600px at 2% 28%, rgba(56, 120, 230, 0.06), transparent 62%),
+    radial-gradient(900px 700px at 62% 108%, rgba(124, 92, 230, 0.07), transparent 62%),
     var(--bg); }
 
-/* certificate border: a fine double bronze rule around the window */
-body::after {
-  content: ""; position: fixed; inset: 12px; z-index: 40; pointer-events: none;
-  border: 1px solid rgba(181, 138, 87, 0.22);
-  box-shadow: inset 0 0 0 4px transparent, inset 0 0 0 5px rgba(181, 138, 87, 0.10);
-}
-[data-theme="light"] body::after { border-color: rgba(122, 85, 48, 0.25); box-shadow: inset 0 0 0 4px transparent, inset 0 0 0 5px rgba(122, 85, 48, 0.12); }
-@media (max-width: 720px) { body::after { inset: 6px; box-shadow: none; } }
-@media print { body::after, .backdrop::before { display: none; } }
+/* main action */
+.btn-primary { background: var(--brand); color: var(--brand-ink); border: 0; box-shadow: 0 12px 30px -14px rgba(99, 102, 241, 0.75); }
+.btn-primary:hover { background: var(--brand-hi); color: var(--brand-ink); }
+.hero h1.name .dot-c, .cta-card h2 .dot-c, .pq em, .me-quote em { color: var(--clay); }
+.grad { color: var(--acc); }
+.kicker::before, .frame::after, .crest::after { background: var(--acc); }
+.progress { background: linear-gradient(90deg, #6366f1, #8ea2ff); }
+::selection { background: #6366f1; color: #fff; }
 
-/* metallic bronze */
-.btn-primary { background: var(--bronze); border: 0; box-shadow: 0 10px 26px -14px rgba(181, 138, 87, 0.75), inset 0 1px 0 rgba(255, 240, 210, 0.35); }
-.btn-primary:hover { background: var(--bronze-hi); }
-[data-theme="light"] .btn-primary { background: linear-gradient(180deg, #0b1d55, #07133b); box-shadow: inset 0 1px 0 rgba(234, 220, 197, 0.2); }
-[data-theme="light"] .btn-primary:hover { background: linear-gradient(180deg, #13277a, #0b1d55); }
-.grad, .hero h1.name .dot-c, .cta-card h2 .dot-c, .ch-ask b, .scrub-now b {
-  background: var(--bronze); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.kicker::before, .frame::after, .crest::after, .tour-bar i, .progress { background: var(--bronze); }
-.hero h1.name .dot-c { padding-right: 0.04em; }
+/* ---------- soft corners ---------- */
+.btn, .btn-sm, .hero-ask, .cite-btn, .case-btn, .proof-view, .pit-opts button, .city-tabs button, .filters button, .msg-type button { border-radius: 999px; }
+.ask-chips button, .chip, .tag, .pill, .news, .bl-st, .nb-tag, .paper-status, .src-btn { border-radius: 999px; }
+input, textarea, select, .chat-row input, .msg input, .msg textarea, .refreq input, .refreq select, .gb-form input, .ask input { border-radius: var(--r-sm) !important; }
+.seg { border-radius: var(--r-sm); overflow: hidden; }
+.chat, .recon, .pit, .refreq, .gb-form, .feat, .proof.proof, .li-card, .slot, .card, .file, .avail-card, .empty, .ref-cta, .ref, .note, .paper, .baf, .decide, .cs-block, .st-flag, .mock, .proj.feature { border-radius: var(--r-lg); }
+.read-pop, .src-pop, .tour, .share-card, .sc, .cite-card, .lb img, .reader-panel, .toast { border-radius: var(--r-lg); }
+.bubble { border-radius: 16px; }
+.bubble.me { border-bottom-right-radius: 6px; }
+.bubble.ai { border-bottom-left-radius: 6px; }
+.proof::before { border-radius: 15px; }
+.recon, .chat, .tour { overflow: hidden; }
+.recon-scroll { border-radius: var(--r-lg) var(--r-lg) 0 0; }
+.portrait .frame { border-radius: 24px; border-color: var(--line-2); box-shadow: 0 40px 80px -40px rgba(0, 0, 0, 0.6); }
+.portrait .frame::before { border-radius: 18px; }
+.crest, .crest::before { border-radius: 10px; }
+.crest-xl, .crest-xl::before { border-radius: 22px; }
+.icon-btn { border-radius: 999px; }
 
-/* surfaces: richer midnight with a fine bronze top edge */
-.chat, .recon, .pit, .refreq, .gb-form, .proof.proof, .feat, .slot {
-  background: linear-gradient(180deg, color-mix(in srgb, var(--bg-2) 70%, transparent), var(--bg-1));
-  border-top-color: rgba(181, 138, 87, 0.38); }
-.portrait .frame { border-color: rgba(181, 138, 87, 0.32); }
-.portrait .frame::before { border-color: rgba(181, 138, 87, 0.16); }
-.nav.solid, body.resume-mode .nav { background: color-mix(in srgb, var(--bg) 86%, transparent); border-bottom-color: rgba(181, 138, 87, 0.18); }
-[data-theme="light"] .btn-ghost { border-color: rgba(122, 85, 48, 0.55); }
-.btn-ghost:hover { border-color: #b58a57; }
+/* raised surfaces: lighter navy, soft border, no hard top edge */
+.chat, .recon, .pit, .refreq, .gb-form, .feat, .proof.proof, .li-card, .slot, .avail-card {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--bg-2) 80%, transparent), var(--bg-1));
+  border: 1px solid var(--line-2); }
+[data-theme="light"] .chat, [data-theme="light"] .recon, [data-theme="light"] .pit, [data-theme="light"] .refreq, [data-theme="light"] .gb-form,
+[data-theme="light"] .feat, [data-theme="light"] .proof.proof, [data-theme="light"] .li-card, [data-theme="light"] .slot, [data-theme="light"] .avail-card {
+  background: #ffffff; box-shadow: 0 18px 40px -28px rgba(14, 20, 48, 0.25); }
+
+/* home: the four destinations become soft tiles */
+.ch-grid.ch-4 { gap: 14px; border-top: 0; }
+.ch-grid.ch-4 .ch, .ch-grid.ch-4 .ch + .ch, .ch-grid.ch-4 .ch:nth-child(odd) {
+  padding: 28px 26px 30px; border: 1px solid var(--line-2); border-radius: var(--r-lg);
+  background: color-mix(in srgb, var(--bg-1) 70%, transparent); transition: border-color 0.3s, transform 0.4s cubic-bezier(.16, 1, .3, 1), background 0.3s; }
+.ch-grid.ch-4 .ch:hover { border-color: var(--line-3); transform: translateY(-3px); background: var(--bg-1); }
+[data-theme="light"] .ch-grid.ch-4 .ch { background: #ffffff; }
+.ch::after { top: 28px; right: 24px; }
+
+/* the nav reads as frosted glass */
+.nav.solid, body.resume-mode .nav { background: color-mix(in srgb, var(--bg) 72%, transparent); backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4); border-bottom-color: var(--line); }
+@media (max-width: 1100px) { .nav { background: color-mix(in srgb, var(--bg) 78%, transparent); } }
