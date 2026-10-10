@@ -208,8 +208,9 @@
     const cta = `<div class="ref-cta rv"><div><h3>Worked with me?</h3><p>If I've been your student, intern or teammate, I'd be grateful for a few honest lines. I only publish them with your permission.</p></div>
       <a class="btn btn-primary btn-sm" href="${esc(requestLink())}">Write a recommendation <span aria-hidden="true">→</span></a></div>`;
     if (!recs.length) {
-      $("#refList").innerHTML = `<div class="empty rv"><span class="empty-ic">${I("star", 24)}</span><div><h3>Recommendations will appear here.</h3>
-        <p>Words from the professors and supervisors I've worked with, published only with their permission and linked to their profiles.</p></div></div>${cta}`;
+      $("#references h2").textContent = "References, on request.";
+      $("#references .sub").textContent = "Supervisors from each internship and club can speak to my work. Tell me what you're hiring for and I'll put you in touch.";
+      $("#refList").innerHTML = "";
       return;
     }
     $("#refList").innerHTML = `<div class="ref-grid">${recs.map((r) => `<figure class="ref rv"><blockquote>“${esc(r.quote)}”</blockquote>
@@ -477,9 +478,7 @@
     }
     const u = (D.updates || [])[0];
     if (u) { const n = $("#news"); n.href = u.link || "#"; n.innerHTML = `<b>Now</b>${esc(u.text)}<i>· ${esc(u.date)}</i>`; n.hidden = false; }
-    const h = new Date().getHours();
-    const g = h < 5 ? "Up late? Welcome." : h < 12 ? "Good morning, and welcome." : h < 17 ? "Good afternoon, and welcome." : h < 22 ? "Good evening, and welcome." : "Up late? Welcome.";
-    $("#greet").textContent = g;
+    $("#greet").hidden = true; // only used for seasonal greetings
     if (still) return;
     const h1 = $(".hero h1"); let i = 0;
     const walk = (node) => {
@@ -688,12 +687,7 @@
   // ---------- hidden details ----------
   function hiddenDetails() {
     const list = D.details || []; if (!list.length) return;
-    const seen = new Set(), pill = $("#found");
-    const show = () => {
-      pill.innerHTML = seen.size === list.length ? `All <b>${list.length}</b> details found ✓` : `Details found <b>${seen.size}</b> / ${list.length}`;
-      pill.hidden = false;
-      if (seen.size === list.length) setTimeout(() => (pill.hidden = true), 4000);
-    };
+    const seen = new Set(), show = () => {};
     list.forEach((d, i) => {
       const walker = document.createTreeWalker($("#story"), NodeFilter.SHOW_TEXT, { acceptNode: (n) => n.parentElement.closest("script, style, svg, .detail, button, input, textarea, .tip") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT });
       let n;
@@ -793,11 +787,10 @@
     } catch (e) {}
   }
   function soundToggle() {
-    const b = $("#soundBtn");
-    const paint = () => { b.innerHTML = state.sound ? "♪" : "<span style='opacity:.55'>♪</span>"; b.setAttribute("aria-pressed", !!state.sound); b.setAttribute("aria-label", state.sound ? "Turn interface sounds off" : "Turn interface sounds on"); };
+    const paint = () => $$("#clickSeg button").forEach((b) => b.setAttribute("aria-pressed", String((b.dataset.click === "on") === !!state.sound)));
+    $$("#clickSeg button").forEach((b) => b.addEventListener("click", () => { state.sound = b.dataset.click === "on"; save(); paint(); click(); }));
     paint();
-    b.addEventListener("click", () => { state.sound = !state.sound; save(); paint(); click(); });
-    document.addEventListener("click", (e) => { if (e.target.closest("a, button, summary") && !e.target.closest("#soundBtn")) click(); });
+    document.addEventListener("click", (e) => { if (e.target.closest("a, button, summary") && !e.target.closest("#clickSeg")) click(); });
   }
 
   // ---------- voice clip ----------
@@ -826,7 +819,7 @@
     const inRange = (a, b) => (a <= b ? md >= a && md <= b : md >= a || md <= b);
     const s = (D.seasons || []).find((x) => inRange(x.from, x.to));
     if (!s) return;
-    const g = $("#greet"); g.innerHTML = `<span class="season">${esc(s.greeting)}.</span> ${esc(g.textContent)}`;
+    const g = $("#greet"); g.innerHTML = `<span class="season">${esc(s.greeting)}.</span>`; g.hidden = false;
     if (s.accent && document.documentElement.dataset.theme === "dark") document.documentElement.style.setProperty("--clay", s.accent);
   }
 
@@ -882,6 +875,7 @@
   // ---------- endorsements from LinkedIn ----------
   function renderEndorse() {
     const e = D.endorsements || [], skills = D.profile.linkedin.replace(/\/$/, "") + "/details/skills/";
+    if (!e.length) { $("#endorse").hidden = true; return; }
     $("#endorseList").innerHTML = e.length
       ? `<div class="ref-grid">${e.map((x) => `<figure class="ref rv"><span class="mono en-kind">${esc(x.kind || "Endorsement")}</span><blockquote>“${esc(x.quote)}”</blockquote>
           <figcaption><span class="ref-init" aria-hidden="true">${esc(initials(x.name))}</span><span><b>${esc(x.name)}</b><small>${esc(x.role || "")}</small></span>${x.link ? `<a class="ref-verify" href="${esc(x.link)}" target="_blank" rel="noopener noreferrer">See on LinkedIn ↗</a>` : ""}</figcaption></figure>`).join("")}</div>`
@@ -903,6 +897,7 @@
     const ist = (d, o) => d.toLocaleString("en-GB", { timeZone: "Asia/Kolkata", ...o });
     const mine = (d) => d.toLocaleTimeString("en-GB", { hour: "numeric", minute: "2-digit" });
     const slots = (D.interviewSlots || []).flatMap((s) => s.times.map((t) => new Date(`${s.date}T${t}:00+05:30`))).filter((d) => !isNaN(d) && d > now).sort((a, b) => a - b).slice(0, 8);
+    if (!slots.length) { $("#slots").hidden = true; return; }
     if (!slots.length) {
       $("#slotGrid").innerHTML = `<div class="slot-empty"><p>No slots listed this week. Suggest a time that suits you and I'll confirm within 48 hours.</p><button class="btn btn-ghost btn-sm" id="slotAsk">Suggest a time <span aria-hidden="true">→</span></button></div>`;
       $("#slotAsk").addEventListener("click", () => { location.href = `mailto:${D.profile.email}?subject=${encodeURIComponent("Interview: suggesting a time")}&body=${encodeURIComponent("Hi Tejith,\n\nCould we speak for 30 minutes at one of these times?\n\n1.\n2.\n\nBest,")}`; });
@@ -921,6 +916,7 @@
   // ---------- guestbook (notes are emailed for approval) ----------
   function renderGuestbook() {
     const g = D.guestbook || [];
+    $(".gb").classList.toggle("gb-solo", !g.length);
     $("#gbList").innerHTML = g.length ? g.map((x) => `<li class="rv"><p>“${esc(x.note)}”</p><span><b>${esc(x.name)}</b>${x.org ? `, ${esc(x.org)}` : ""}${x.date ? ` · ${esc(x.date)}` : ""}</span></li>`).join("") : `<li class="gb-none">No notes yet. Be the first.</li>`;
     const note = $("#gbNote"), err = $("#gbErr");
     note.addEventListener("input", () => { $("#gbCount").textContent = `${note.value.length} / 140`; err.hidden = true; });

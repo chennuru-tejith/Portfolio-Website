@@ -24,8 +24,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Instrument+Serif:ital@0;1&family=Mrs+Saint+Delafield&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-  <link rel="stylesheet" href="css/style.css?v=171" />
-  <script src="js/boot.js?v=171"></script>
+  <link rel="stylesheet" href="css/style.css?v=182" />
+  <script src="js/boot.js?v=182"></script>
 </head>
 <body>
   <div class="intro" id="intro" aria-hidden="true">
@@ -58,11 +58,12 @@
           <div class="seg" id="zoomSeg"><button data-zoom="1" aria-pressed="true">A</button><button data-zoom="1.12" aria-pressed="false">A+</button><button data-zoom="1.25" aria-pressed="false">A++</button></div>
           <p class="mono">Contrast</p>
           <div class="seg" id="contrastSeg"><button data-contrast="std" aria-pressed="true">Standard</button><button data-contrast="high" aria-pressed="false">High</button></div>
+          <p class="mono">Click sounds</p>
+          <div class="seg" id="clickSeg"><button data-click="off" aria-pressed="true">Off</button><button data-click="on" aria-pressed="false">On</button></div>
           <p class="mono">Room tone</p>
           <div class="seg" id="ambSeg"><button data-amb="off" aria-pressed="true">Off</button><button data-amb="on" aria-pressed="false">On</button></div>
           <p class="read-note">A soft background hum, with a page-turn sound between pages.</p>
         </div>
-        <button class="icon-btn" id="soundBtn" aria-pressed="false" aria-label="Turn interface sounds on" title="Interface sounds"></button>
         <button class="icon-btn" id="themeBtn" aria-label="Switch theme"></button>
         <button class="btn btn-dark btn-sm" data-go="resume" id="resBtn">Résumé</button>
       </div>
@@ -115,7 +116,7 @@
     <section class="avail wrap" aria-label="Availability" data-page="home"><div class="avail-card" id="avail"></div></section>
 
     <section class="sec wrap chapters" id="chapters" data-page="home" aria-label="Explore">
-      <header class="sec-head"><p class="kicker">Explore</p><h2>Six rooms, one person.</h2></header>
+      <header class="sec-head"><p class="kicker">Explore</p><h2>Where to next?</h2></header>
       <div class="ch-grid">
         <a class="ch" href="#work"><span class="ch-no">01</span><b>Work</b><span>Three internships, a ₹4 Cr build told step by step, and the things I've built.</span></a>
         <a class="ch" href="#arenas"><span class="ch-no">02</span><b>Arenas</b><span>Five skill areas, each one backed by work you can check.</span></a>
@@ -192,7 +193,7 @@
     <section class="sec wrap" id="disciplines" data-page="arenas">
       <header class="sec-head">
         <p class="kicker">Arenas</p>
-        <h2>Five arenas. Five badges, earned on the job.</h2>
+        <h2>Five areas of work, each with proof.</h2>
         <p class="sub">Each credential below is backed by real work you can check: the role, the organisation and what I delivered.</p>
       </header>
       <div class="disc">
@@ -240,7 +241,7 @@
     <section class="sec wrap" id="journey" data-page="about">
       <header class="sec-head">
         <p class="kicker">Journey map</p>
-        <h2>Two cities, one direction.</h2>
+        <h2>Where the work happened.</h2>
         <p class="sub">Where the work happened. Select a city to see what I did there.</p>
       </header>
       <div class="map-wrap">
@@ -315,7 +316,7 @@
       </header>
       <div id="refList"></div>
       <div class="refreq" id="refreq">
-        <div class="refreq-head"><h3>Ask for a reference</h3><p>Requests come to me first. I'll connect you with the right referee, usually within 48 hours.</p></div>
+        <div class="refreq-head"><h3>Ask for a reference</h3><p>Requests come to me first. I'll connect you with the right referee, usually within 48 hours. You can also see my <a href="https://www.linkedin.com/in/chennuru-tejith/details/skills/" target="_blank" rel="noopener noreferrer">skill endorsements on LinkedIn ↗</a></p></div>
         <div class="refreq-grid">
           <input id="rqName" aria-label="Your name" placeholder="Your name" autocomplete="name" />
           <input id="rqOrg" aria-label="Company" placeholder="Company" autocomplete="organization" />
@@ -333,7 +334,7 @@
     </section>
 
     <section class="sec wrap cv-auto" id="honours" data-page="about">
-      <header class="sec-head"><p class="kicker">Proof wall</p><h2>Honours, and the paper behind them.</h2><p class="sub">Each honour with its certificate or letter. Originals are available on request.</p></header>
+      <header class="sec-head"><p class="kicker">Proof wall</p><h2>Honours and certificates.</h2><p class="sub">Each honour with its certificate or letter. Originals are available on request.</p></header>
       <div class="honours"><ul class="honour-list" id="honourList"></ul><aside class="school" id="school"></aside></div>
     </section>
 
@@ -349,7 +350,7 @@
     </section>
 
     <section class="sec wrap" id="changelog" data-page="about">
-      <header class="sec-head"><p class="kicker">Change log</p><h2>What's new, month by month.</h2></header>
+      <header class="sec-head"><p class="kicker">Change log</p><h2>Change log.</h2></header>
       <ol class="clog" id="clogList"></ol>
     </section>
 
@@ -509,9 +510,9 @@
 
   <div class="toast" id="toast" role="status" hidden></div>
 
-  <script src="js/data.js?v=171"></script>
-  <script src="js/icons.js?v=171"></script>
-  <script src="js/india.js?v=171"></script>
-  <script src="js/app.js?v=171"></script>
+  <script src="js/data.js?v=182"></script>
+  <script src="js/icons.js?v=182"></script>
+  <script src="js/india.js?v=182"></script>
+  <script src="js/app.js?v=182"></script>
 </body>
 </html>
