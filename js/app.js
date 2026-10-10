@@ -28,7 +28,7 @@
     document.documentElement.dataset.theme = t;
     $("#themeBtn").innerHTML = I(t === "dark" ? "sun" : "moon", 17);
     $("#themeBtn").setAttribute("aria-label", t === "dark" ? "Switch to light mode" : "Switch to dark mode");
-    const tc = $('meta[name="theme-color"]'); if (tc) tc.content = t === "dark" ? "#0b1424" : "#f6f3ee";
+    const tc = $('meta[name="theme-color"]'); if (tc) tc.content = t === "dark" ? "#0a1220" : "#f4efe6";
   }
 
   // ---------- views ----------
@@ -298,7 +298,11 @@
     const bar = $("#filterbar");
     $("#fbBtns").innerHTML = `<button aria-pressed="true" data-f="all">All</button>` + G.map((g) => `<button aria-pressed="false" data-f="${g.id}" style="--c:${g.color}"><i></i>${esc(SHORT[g.id] || g.domain)}</button>`).join("");
     $$("#fbBtns button").forEach((b) => b.addEventListener("click", () => setFilter(b.dataset.f)));
-    new IntersectionObserver(([e]) => { bar.hidden = e.isIntersecting || view !== "story"; }, { rootMargin: "0px 0px -40% 0px" }).observe($(".hero"));
+    // show the bar only between the hero and the contact section, so it never covers the hero or the contact buttons
+    let heroVis = true, contactVis = false;
+    const sync = () => { bar.hidden = heroVis || contactVis || view !== "story"; };
+    new IntersectionObserver(([e]) => { heroVis = e.isIntersecting; sync(); }, { rootMargin: "0px 0px -40% 0px" }).observe($(".hero"));
+    new IntersectionObserver(([e]) => { contactVis = e.isIntersecting; sync(); }).observe($("#contact"));
   }
   function setFilter(id) {
     filter = filter === id ? "all" : id;
@@ -339,6 +343,8 @@
   }
   function onScroll() {
     $("#nav").classList.toggle("solid", scrollY > 20);
+    const max = document.documentElement.scrollHeight - innerHeight;
+    $("#progress").style.setProperty("--sp", max > 0 ? Math.min(1, scrollY / max).toFixed(4) : 0);
     if (view !== "story") return;
     let on = "";
     ["disciplines", "journey", "experience", "projects", "qa", "references"].forEach((id) => { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top < innerHeight * 0.4) on = id; });
