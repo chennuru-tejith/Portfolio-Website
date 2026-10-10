@@ -343,7 +343,7 @@
   }
 
   // ---------- pages: one room at a time (all content stays in the HTML for crawlers) ----------
-  const PAGES = ["home", "work", "arenas", "research", "about", "ask", "contact"];
+  const PAGES = ["home", "about", "work", "arenas", "research", "ask", "contact"];
   const PAGE_NAME = { home: "Home", work: "Work", arenas: "Arenas", research: "Research", about: "About", ask: "Ask", contact: "Contact" };
   let page = "";
   function pageFor(id) {
@@ -1032,9 +1032,9 @@
   const TOUR = [
     ["top", "Chennuru Tejith: BBA + MBA at O.P. Jindal Global University, working across finance, operations and leadership."],
     ["stats", "Three internships, a ₹4 Cr CSR build, a 200+ member club, and a CGPA of 7.9 out of 8."],
+    ["experience", "Operations at Round Table India, project management at Dr. Reddy's, finance at Ion Exchange."],
     ["story-4cr", "The ₹4 Cr school build: 23 site visits in 7 weeks, every rupee tracked, one discrepancy caught before the sponsor saw it."],
     ["recon", "This is the weekly check, line by line: contractor figures against what the site supervisor recorded."],
-    ["experience", "Operations at Round Table India, project management at Dr. Reddy's, finance at Ion Exchange."],
     ["disciplines", "Five arenas: finance, operations, leadership, communication and tech. Each one is backed by real work."],
     ["writing", "Research as sole author: From SEO to GEO, on how AI search decides what to cite."],
     ["contact", "Open to internships in December to January and June to July. Thanks for taking the tour."],

@@ -24,8 +24,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Instrument+Serif:ital@0;1&family=Mrs+Saint+Delafield&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-  <link rel="stylesheet" href="css/style.css?v=182" />
-  <script src="js/boot.js?v=182"></script>
+  <link rel="stylesheet" href="css/style.css?v=190" />
+  <script src="js/boot.js?v=190"></script>
 </head>
 <body>
   <div class="intro" id="intro" aria-hidden="true">
@@ -44,10 +44,11 @@
     <div class="nav-in">
       <a class="logo" href="#home" aria-label="Chennuru Tejith, home"><span class="crest" aria-hidden="true"><span>CT</span></span><span class="logo-name">Chennuru Tejith</span></a>
       <nav class="nav-links" aria-label="Sections">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
         <a href="#work">Work</a>
         <a href="#arenas">Arenas</a>
         <a href="#research">Research</a>
-        <a href="#about">About</a>
         <a href="#ask" class="nav-ask">Ask</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -113,21 +114,141 @@
 
     <section class="metrics wrap" aria-label="At a glance" data-page="home"><div class="metric-row" id="stats"></div></section>
 
-    <section class="avail wrap" aria-label="Availability" data-page="home"><div class="avail-card" id="avail"></div></section>
+    <section class="sec wrap featured" id="featured" data-page="home" aria-label="Featured work">
+      <a class="feat" href="#story-4cr">
+        <span class="kicker">Featured work</span>
+        <h2>23 site visits, one <em class="grad">₹4 Cr</em> school, every rupee checked.</h2>
+        <dl class="feat-facts"><div><dt>Role</dt><dd>Operations Intern, Round Table India</dd></div><div><dt>On the ground</dt><dd>23 site visits in 7 weeks</dd></div><div><dt>Result</dt><dd>A reporting gap caught before it reached the sponsor</dd></div></dl>
+        <span class="feat-go">Read the story <span aria-hidden="true">→</span></span>
+      </a>
+    </section>
 
     <section class="sec wrap chapters" id="chapters" data-page="home" aria-label="Explore">
       <header class="sec-head"><p class="kicker">Explore</p><h2>Where to next?</h2></header>
       <div class="ch-grid">
-        <a class="ch" href="#work"><span class="ch-no">01</span><b>Work</b><span>Three internships, a ₹4 Cr build told step by step, and the things I've built.</span></a>
-        <a class="ch" href="#arenas"><span class="ch-no">02</span><b>Arenas</b><span>Five skill areas, each one backed by work you can check.</span></a>
-        <a class="ch" href="#research"><span class="ch-no">03</span><b>Research</b><span>My paper on Generative Engine Optimization, and how I applied it here.</span></a>
-        <a class="ch" href="#about"><span class="ch-no">04</span><b>About</b><span>Where the work happened, honours, references and documents.</span></a>
+        <a class="ch" href="#about"><span class="ch-no">01</span><b>About</b><span>Who I am, the years so far, honours and references.</span></a>
+        <a class="ch" href="#work"><span class="ch-no">02</span><b>Work</b><span>Three internships, a ₹4 Cr build told step by step, and the things I've built.</span></a>
+        <a class="ch" href="#arenas"><span class="ch-no">03</span><b>Arenas</b><span>Five skill areas, each one backed by work you can check.</span></a>
+        <a class="ch" href="#research"><span class="ch-no">04</span><b>Research</b><span>My paper on Generative Engine Optimization, and how I applied it here.</span></a>
         <a class="ch ch-ask" href="#ask"><span class="ch-no">05</span><b>Ask</b><span>Type any question about me and get an answer from this site, instantly.</span></a>
         <a class="ch" href="#contact"><span class="ch-no">06</span><b>Contact</b><span>Internships, projects, or a conversation.</span></a>
       </div>
     </section>
 
-    <!-- The five disciplines (the "gyms") -->
+    <section class="avail wrap" aria-label="Availability" data-page="home"><div class="avail-card" id="avail"></div></section>
+
+    <section class="sec wrap" id="me" data-page="about">
+      <header class="sec-head"><p class="kicker">About</p><h2>Hi, I'm Tejith.</h2></header>
+      <div class="me">
+        <p class="me-lead">I'm an integrated BBA (Hons.) + MBA student at O.P. Jindal Global University, from Hyderabad. I like work where the numbers have to hold up: tracking a CSR budget on site, analysing five years of employee costs, keeping vendor records audit-ready.</p>
+        <p>On campus I head outreach for ZAMAC, sit on university committees and directed a 200+ member entrepreneurship club. Alongside the degree I build my own tools, and I'm writing a research paper on how AI search decides what to cite.</p>
+        <p class="me-quote">“Loyalty works both ways. <em>If you ask for it, be ready to give it.</em>”</p>
+      </div>
+    </section>
+
+    <section class="sec wrap" id="scrub" data-page="about">
+      <header class="sec-head">
+        <p class="kicker">Over the years</p>
+        <h2>Drag through the years.</h2>
+        <p class="sub">From Class X in Hyderabad to the BBA + MBA at JGU. Move the slider to see what I was doing at any point.</p>
+      </header>
+      <div class="scrub">
+        <div class="scrub-now"><b id="scrubDate"></b><span id="scrubTag"></span></div>
+        <label class="sr" for="scrubRange">Month</label>
+        <input type="range" id="scrubRange" class="scrub-range" />
+        <div class="scrub-years" id="scrubYears" aria-hidden="true"></div>
+        <ul class="scrub-list" id="scrubList" aria-live="polite"></ul>
+      </div>
+    </section>
+
+    <section class="sec wrap" id="journey" data-page="about">
+      <header class="sec-head">
+        <p class="kicker">Journey map</p>
+        <h2>Where the work happened.</h2>
+        <p class="sub">Where the work happened. Select a city to see what I did there.</p>
+      </header>
+      <div class="map-wrap">
+        <div class="map-card"><svg class="map" id="map" viewBox="0 0 600 520" role="img" aria-label="Map showing Sonipat in Haryana and Hyderabad in Telangana"></svg></div>
+        <div class="map-side" id="mapSide"></div>
+      </div>
+    </section>
+
+    <section class="sec wrap cv-auto" id="honours" data-page="about">
+      <header class="sec-head"><p class="kicker">Proof wall</p><h2>Honours and certificates.</h2><p class="sub">Each honour with its certificate or letter. Originals are available on request.</p></header>
+      <div class="honours"><ul class="honour-list" id="honourList"></ul><aside class="school" id="school"></aside></div>
+    </section>
+
+    <section class="offclock wrap" id="offclock" hidden data-page="about">
+      <div class="off-in">
+      <svg class="car" viewBox="0 0 620 150" role="img" aria-label="Line drawing of a Formula 1 car">
+        <path pathLength="1" d="M18 108 L118 104 L196 96 Q222 72 252 70 L304 68 Q322 46 350 46 L368 46 Q380 60 402 64 L480 68 L528 60 L568 58 L574 80 L568 104 L486 108 Z"/>
+        <path pathLength="1" d="M6 116 L82 116 L82 106"/>
+        <path pathLength="1" d="M304 68 Q330 36 368 46"/>
+        <path pathLength="1" d="M554 26 L604 26 L604 42 L554 42 Z M566 42 L566 60 M594 42 L594 58"/>
+        <path pathLength="1" d="M210 92 L470 92"/>
+        <circle pathLength="1" cx="112" cy="114" r="27"/><circle pathLength="1" cx="112" cy="114" r="10"/>
+        <circle pathLength="1" cx="480" cy="112" r="30"/><circle pathLength="1" cx="480" cy="112" r="11"/>
+        <path pathLength="1" class="ground" d="M0 144 L620 144"/>
+      </svg>
+      <p><span class="mono">Off the clock</span><span id="offText"></span></p>
+      </div>
+      <div class="pit" id="pit">
+        <div class="pit-head"><p class="kicker">Pit wall</p><h3>Your call: stay out, or box?</h3><p>A made-up race, real trade-offs. Pick one, then see how I'd weigh it.</p></div>
+        <dl class="pit-data" id="pitData"></dl>
+        <div class="pit-opts" id="pitOpts" role="group" aria-label="Your decision"></div>
+        <div class="pit-out" id="pitOut" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="sec wrap cv-auto" id="references" data-page="about">
+      <header class="sec-head">
+        <p class="kicker">References</p>
+        <h2>What people I've worked with say.</h2>
+        <p class="sub">Published with permission and linked to each author's profile so you can verify them.</p>
+      </header>
+      <div id="refList"></div>
+      <div class="refreq" id="refreq">
+        <div class="refreq-head"><h3>Ask for a reference</h3><p>Requests come to me first. I'll connect you with the right referee, usually within 48 hours. You can also see my <a href="https://www.linkedin.com/in/chennuru-tejith/details/skills/" target="_blank" rel="noopener noreferrer">skill endorsements on LinkedIn ↗</a></p></div>
+        <div class="refreq-grid">
+          <input id="rqName" aria-label="Your name" placeholder="Your name" autocomplete="name" />
+          <input id="rqOrg" aria-label="Company" placeholder="Company" autocomplete="organization" />
+          <input id="rqRole" aria-label="Role you're hiring for" placeholder="Role you're hiring for" />
+          <select id="rqArena" aria-label="Area the reference should cover"></select>
+        </div>
+        <div class="msg-actions"><button class="btn btn-primary btn-sm" id="rqSend">Request a reference <span aria-hidden="true">→</span></button></div>
+        <p class="msg-err" id="rqErr" hidden></p>
+      </div>
+    </section>
+
+    <section class="sec wrap" id="endorse" data-page="about">
+      <header class="sec-head"><p class="kicker">From LinkedIn</p><h2>Endorsements and comments.</h2><p class="sub">Quoted with permission, each one linked so you can see it in place.</p></header>
+      <div id="endorseList"></div>
+    </section>
+
+    <section class="sec wrap" id="books" hidden data-page="about">
+      <header class="sec-head"><p class="kicker">Bookshelf</p><h2>Books that changed my thinking.</h2></header>
+      <ul class="books" id="bookList"></ul>
+    </section>
+
+    <section class="sec wrap" id="documents" data-page="about">
+      <header class="sec-head"><p class="kicker">Documents</p><h2>For your records.</h2><p class="sub">Download, print or forward. Everything here is current.</p></header>
+      <ul class="docs" id="docList"></ul>
+      <div class="docs-actions"><button class="btn btn-ghost btn-sm" id="dlAll">Download all</button><button class="btn btn-ghost btn-sm" data-vcard>Save contact (.vcf)</button><button class="btn btn-ghost btn-sm" data-onepager>Print the one-pager</button></div>
+    </section>
+
+    <section class="sec wrap" id="changelog" data-page="about">
+      <header class="sec-head"><p class="kicker">Change log</p><h2>Change log.</h2></header>
+      <ol class="clog" id="clogList"></ol>
+    </section>
+
+    <section class="sec wrap cv-auto" id="experience" data-page="work">
+      <header class="sec-head">
+        <p class="kicker">Experience</p>
+        <h2>Internships &amp; leadership.</h2>
+      </header>
+      <div class="timeline" id="journeyList"></div>
+    </section>
+
     <section class="sec wrap story" id="story-4cr" data-page="work">
       <header class="sec-head">
         <p class="kicker">One project, start to finish</p>
@@ -190,6 +311,15 @@
       </div>
     </section>
 
+    <section class="sec wrap cv-auto" id="projects" data-page="work">
+      <header class="sec-head">
+        <p class="kicker">Projects</p>
+        <h2>Things I've built.</h2>
+        <p class="sub">An outreach platform, AI-chat tools and market analytics, built alongside my degree.</p>
+      </header>
+      <div class="projects" id="workList"></div>
+    </section>
+
     <section class="sec wrap" id="disciplines" data-page="arenas">
       <header class="sec-head">
         <p class="kicker">Arenas</p>
@@ -200,12 +330,6 @@
         <div class="disc-tabs" role="tablist" aria-label="Disciplines" id="discTabs"></div>
         <div class="disc-panel" role="tabpanel" id="discPanel" aria-live="polite"></div>
       </div>
-    </section>
-
-
-    <section class="sec wrap" id="building" data-page="arenas">
-      <header class="sec-head"><p class="kicker">Building now</p><h2>What I'm working on next.</h2><p class="sub">The skills in progress, so you can see where the arenas are heading.</p></header>
-      <ol class="build-list" id="buildList"></ol>
     </section>
 
     <section class="sec wrap" id="approach" data-page="arenas">
@@ -222,49 +346,26 @@
       <div class="decide" id="decide"></div>
     </section>
 
+    <section class="sec wrap" id="building" data-page="arenas">
+      <header class="sec-head"><p class="kicker">Building now</p><h2>What I'm working on next.</h2><p class="sub">The skills in progress, so you can see where the arenas are heading.</p></header>
+      <ol class="build-list" id="buildList"></ol>
+    </section>
 
-    <section class="sec wrap" id="scrub" data-page="about">
+    <section class="sec wrap cv-auto" id="writing" data-page="research">
       <header class="sec-head">
-        <p class="kicker">About</p>
-        <h2>Drag through the years.</h2>
-        <p class="sub">From Class X in Hyderabad to the BBA + MBA at JGU. Move the slider to see what I was doing at any point.</p>
+        <p class="kicker">Research &amp; writing</p>
+        <h2>Papers, case studies and essays.</h2>
       </header>
-      <div class="scrub">
-        <div class="scrub-now"><b id="scrubDate"></b><span id="scrubTag"></span></div>
-        <label class="sr" for="scrubRange">Month</label>
-        <input type="range" id="scrubRange" class="scrub-range" />
-        <div class="scrub-years" id="scrubYears" aria-hidden="true"></div>
-        <ul class="scrub-list" id="scrubList" aria-live="polite"></ul>
+      <div class="filters" id="writingFilters" role="tablist" aria-label="Filter writing" hidden></div>
+      <div class="writing" id="writingList"></div>
+      <div class="baf" id="baf" hidden>
+        <h3 class="baf-h">My research, applied to this website</h3>
+        <p class="sub">The paper's GEO Business Adoption Framework, run on this portfolio so AI assistants can find and describe me accurately.</p>
+        <ol class="baf-list" id="bafList"></ol>
       </div>
-    </section>
-
-    <section class="sec wrap" id="journey" data-page="about">
-      <header class="sec-head">
-        <p class="kicker">Journey map</p>
-        <h2>Where the work happened.</h2>
-        <p class="sub">Where the work happened. Select a city to see what I did there.</p>
-      </header>
-      <div class="map-wrap">
-        <div class="map-card"><svg class="map" id="map" viewBox="0 0 600 520" role="img" aria-label="Map showing Sonipat in Haryana and Hyderabad in Telangana"></svg></div>
-        <div class="map-side" id="mapSide"></div>
-      </div>
-    </section>
-
-    <section class="sec wrap cv-auto" id="experience" data-page="work">
-      <header class="sec-head">
-        <p class="kicker">Experience</p>
-        <h2>Internships &amp; leadership.</h2>
-      </header>
-      <div class="timeline" id="journeyList"></div>
-    </section>
-
-    <section class="sec wrap cv-auto" id="projects" data-page="work">
-      <header class="sec-head">
-        <p class="kicker">Projects</p>
-        <h2>Things I've built.</h2>
-        <p class="sub">An outreach platform, AI-chat tools and market analytics, built alongside my degree.</p>
-      </header>
-      <div class="projects" id="workList"></div>
+      <div class="notes" id="noteList"></div>
+      <div class="li-posts" id="liPosts"></div>
+      <p class="press-line">Writing about me? The <a href="press.html">press kit</a> has two bios, the crest and a citation.</p>
     </section>
 
     <section class="sec wrap" id="qa" data-page="ask">
@@ -289,91 +390,6 @@
       </div>
       <h3 class="faq-h">Questions recruiters ask most</h3>
       <div class="faq" id="faqList"></div>
-    </section>
-
-    <section class="sec wrap cv-auto" id="writing" data-page="research">
-      <header class="sec-head">
-        <p class="kicker">Research &amp; writing</p>
-        <h2>Papers, case studies and essays.</h2>
-      </header>
-      <div class="filters" id="writingFilters" role="tablist" aria-label="Filter writing" hidden></div>
-      <div class="writing" id="writingList"></div>
-      <div class="baf" id="baf" hidden>
-        <h3 class="baf-h">My research, applied to this website</h3>
-        <p class="sub">The paper's GEO Business Adoption Framework, run on this portfolio so AI assistants can find and describe me accurately.</p>
-        <ol class="baf-list" id="bafList"></ol>
-      </div>
-      <div class="notes" id="noteList"></div>
-      <div class="li-posts" id="liPosts"></div>
-      <p class="press-line">Writing about me? The <a href="press.html">press kit</a> has two bios, the crest and a citation.</p>
-    </section>
-
-    <section class="sec wrap cv-auto" id="references" data-page="about">
-      <header class="sec-head">
-        <p class="kicker">References</p>
-        <h2>What people I've worked with say.</h2>
-        <p class="sub">Published with permission and linked to each author's profile so you can verify them.</p>
-      </header>
-      <div id="refList"></div>
-      <div class="refreq" id="refreq">
-        <div class="refreq-head"><h3>Ask for a reference</h3><p>Requests come to me first. I'll connect you with the right referee, usually within 48 hours. You can also see my <a href="https://www.linkedin.com/in/chennuru-tejith/details/skills/" target="_blank" rel="noopener noreferrer">skill endorsements on LinkedIn ↗</a></p></div>
-        <div class="refreq-grid">
-          <input id="rqName" aria-label="Your name" placeholder="Your name" autocomplete="name" />
-          <input id="rqOrg" aria-label="Company" placeholder="Company" autocomplete="organization" />
-          <input id="rqRole" aria-label="Role you're hiring for" placeholder="Role you're hiring for" />
-          <select id="rqArena" aria-label="Area the reference should cover"></select>
-        </div>
-        <div class="msg-actions"><button class="btn btn-primary btn-sm" id="rqSend">Request a reference <span aria-hidden="true">→</span></button></div>
-        <p class="msg-err" id="rqErr" hidden></p>
-      </div>
-    </section>
-
-    <section class="sec wrap" id="endorse" data-page="about">
-      <header class="sec-head"><p class="kicker">From LinkedIn</p><h2>Endorsements and comments.</h2><p class="sub">Quoted with permission, each one linked so you can see it in place.</p></header>
-      <div id="endorseList"></div>
-    </section>
-
-    <section class="sec wrap cv-auto" id="honours" data-page="about">
-      <header class="sec-head"><p class="kicker">Proof wall</p><h2>Honours and certificates.</h2><p class="sub">Each honour with its certificate or letter. Originals are available on request.</p></header>
-      <div class="honours"><ul class="honour-list" id="honourList"></ul><aside class="school" id="school"></aside></div>
-    </section>
-
-    <section class="sec wrap" id="books" hidden data-page="about">
-      <header class="sec-head"><p class="kicker">Bookshelf</p><h2>Books that changed my thinking.</h2></header>
-      <ul class="books" id="bookList"></ul>
-    </section>
-
-    <section class="sec wrap" id="documents" data-page="about">
-      <header class="sec-head"><p class="kicker">Documents</p><h2>For your records.</h2><p class="sub">Download, print or forward. Everything here is current.</p></header>
-      <ul class="docs" id="docList"></ul>
-      <div class="docs-actions"><button class="btn btn-ghost btn-sm" id="dlAll">Download all</button><button class="btn btn-ghost btn-sm" data-vcard>Save contact (.vcf)</button><button class="btn btn-ghost btn-sm" data-onepager>Print the one-pager</button></div>
-    </section>
-
-    <section class="sec wrap" id="changelog" data-page="about">
-      <header class="sec-head"><p class="kicker">Change log</p><h2>Change log.</h2></header>
-      <ol class="clog" id="clogList"></ol>
-    </section>
-
-    <section class="offclock wrap" id="offclock" hidden data-page="about">
-      <div class="off-in">
-      <svg class="car" viewBox="0 0 620 150" role="img" aria-label="Line drawing of a Formula 1 car">
-        <path pathLength="1" d="M18 108 L118 104 L196 96 Q222 72 252 70 L304 68 Q322 46 350 46 L368 46 Q380 60 402 64 L480 68 L528 60 L568 58 L574 80 L568 104 L486 108 Z"/>
-        <path pathLength="1" d="M6 116 L82 116 L82 106"/>
-        <path pathLength="1" d="M304 68 Q330 36 368 46"/>
-        <path pathLength="1" d="M554 26 L604 26 L604 42 L554 42 Z M566 42 L566 60 M594 42 L594 58"/>
-        <path pathLength="1" d="M210 92 L470 92"/>
-        <circle pathLength="1" cx="112" cy="114" r="27"/><circle pathLength="1" cx="112" cy="114" r="10"/>
-        <circle pathLength="1" cx="480" cy="112" r="30"/><circle pathLength="1" cx="480" cy="112" r="11"/>
-        <path pathLength="1" class="ground" d="M0 144 L620 144"/>
-      </svg>
-      <p><span class="mono">Off the clock</span><span id="offText"></span></p>
-      </div>
-      <div class="pit" id="pit">
-        <div class="pit-head"><p class="kicker">Pit wall</p><h3>Your call: stay out, or box?</h3><p>A made-up race, real trade-offs. Pick one, then see how I'd weigh it.</p></div>
-        <dl class="pit-data" id="pitData"></dl>
-        <div class="pit-opts" id="pitOpts" role="group" aria-label="Your decision"></div>
-        <div class="pit-out" id="pitOut" aria-live="polite"></div>
-      </div>
     </section>
 
     <section class="cta wrap" id="contact" data-page="contact">
@@ -510,9 +526,9 @@
 
   <div class="toast" id="toast" role="status" hidden></div>
 
-  <script src="js/data.js?v=182"></script>
-  <script src="js/icons.js?v=182"></script>
-  <script src="js/india.js?v=182"></script>
-  <script src="js/app.js?v=182"></script>
+  <script src="js/data.js?v=190"></script>
+  <script src="js/icons.js?v=190"></script>
+  <script src="js/india.js?v=190"></script>
+  <script src="js/app.js?v=190"></script>
 </body>
 </html>
