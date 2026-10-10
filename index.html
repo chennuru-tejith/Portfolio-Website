@@ -13,8 +13,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=33" />
-  <script src="js/boot.js?v=33"></script>
+  <link rel="stylesheet" href="css/style.css?v=41" />
+  <script src="js/boot.js?v=41"></script>
 </head>
 <body>
   <!-- ============ NAV ============ -->
@@ -23,10 +23,10 @@
       <a class="logo" href="#top" aria-label="Chennuru Tejith, home"><span class="logo-mark">CT</span><span class="logo-name">Chennuru Tejith</span></a>
       <nav class="nav-links" aria-label="Sections">
         <a href="#disciplines">Disciplines</a>
-        <a href="#approach">Approach</a>
+        <a href="#journey">Journey</a>
         <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
-        <a href="#writing">Writing</a>
+        <a href="#qa">Q&amp;A</a>
         <a href="#references">References</a>
       </nav>
       <div class="nav-right">
@@ -42,7 +42,7 @@
       <div class="hero-bg" aria-hidden="true"><span class="blob b1"></span><span class="blob b2"></span><span class="grid"></span></div>
       <div class="hero-in wrap">
         <div class="hero-copy">
-          <span class="status"><span class="dot"></span>Open to internships · 2027</span>
+          <span class="status"><span class="dot"></span>Open to internships · Dec–Jan &amp; Jun–Jul</span>
           <h1>I take ownership of the numbers <span class="grad">and the people behind them.</span></h1>
           <p class="lead">I'm <strong>Chennuru Tejith</strong>, a BBA + MBA student at O.P. Jindal Global University, working in finance, operations and leadership. I've monitored a ₹4 Cr build on site, checked every figure before it reached the sponsor, and directed a 200+ member student club.</p>
           <div class="hero-cta">
@@ -53,6 +53,7 @@
             <div><dt>Based in</dt><dd>Hyderabad · Sonipat</dd></div>
             <div><dt>Languages</dt><dd>English, Telugu, Hindi, French</dd></div>
           </dl>
+          <div class="prog" id="prog" aria-label="Programme progress"></div>
         </div>
 
         <div class="hero-visual" id="heroVisual" aria-label="Highlights from recent work">
@@ -98,6 +99,8 @@
 
     <section class="metrics wrap" aria-label="At a glance"><div class="metric-row" id="stats"></div></section>
 
+    <section class="avail wrap" aria-label="Availability"><div class="avail-card" id="avail"></div></section>
+
     <!-- The five disciplines (the "gyms") -->
     <section class="sec wrap" id="disciplines">
       <header class="sec-head">
@@ -108,6 +111,18 @@
       <div class="disc">
         <div class="disc-tabs" role="tablist" aria-label="Disciplines" id="discTabs"></div>
         <div class="disc-panel" role="tabpanel" id="discPanel" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="sec wrap" id="abilities">
+      <header class="sec-head">
+        <p class="kicker">Abilities &amp; tools</p>
+        <h2>Who I am, and what I work with.</h2>
+        <p class="sub">Abilities are how I work, each with proof. Tools are what I use to get it done.</p>
+      </header>
+      <div class="am">
+        <div class="am-col"><h3 class="am-h">Abilities</h3><ul class="abilities" id="abilityList"></ul></div>
+        <div class="am-col"><h3 class="am-h">Tools</h3><ul class="moves" id="moveList"></ul></div>
       </div>
     </section>
 
@@ -122,6 +137,18 @@
 
     <section class="quote wrap" id="quote" aria-label="On loyalty">
       <figure><blockquote id="quoteText"></blockquote><figcaption id="quoteBy"></figcaption></figure>
+    </section>
+
+    <section class="sec wrap" id="journey">
+      <header class="sec-head">
+        <p class="kicker">Journey map</p>
+        <h2>Two cities, one direction.</h2>
+        <p class="sub">Where the work happened. Select a city to see what I did there.</p>
+      </header>
+      <div class="map-wrap">
+        <div class="map-card"><svg class="map" id="map" viewBox="0 0 600 520" role="img" aria-label="Map showing Sonipat in Haryana and Hyderabad in Telangana"></svg></div>
+        <div class="map-side" id="mapSide"></div>
+      </div>
     </section>
 
     <section class="sec wrap cv-auto" id="experience">
@@ -139,6 +166,15 @@
         <p class="sub">An outreach platform, AI-chat tools and market analytics, built alongside my degree.</p>
       </header>
       <div class="projects" id="workList"></div>
+    </section>
+
+    <section class="sec wrap cv-auto" id="qa">
+      <header class="sec-head">
+        <p class="kicker">Recruiter Q&amp;A</p>
+        <h2>Questions you'd ask me, answered.</h2>
+        <p class="sub">The questions that come up in most first interviews.</p>
+      </header>
+      <div class="faq" id="faqList"></div>
     </section>
 
     <section class="sec wrap cv-auto" id="writing">
@@ -184,10 +220,15 @@
   <!-- ============ RÉSUMÉ ============ -->
   <main id="resume" hidden></main>
 
+  <div class="filterbar" id="filterbar" role="toolbar" aria-label="Highlight work by skill" hidden>
+    <span class="fb-label">Highlight</span>
+    <div class="fb-btns" id="fbBtns"></div>
+  </div>
+
   <div class="toast" id="toast" role="status" hidden></div>
 
-  <script src="js/data.js?v=33"></script>
-  <script src="js/icons.js?v=33"></script>
-  <script src="js/app.js?v=33"></script>
+  <script src="js/data.js?v=41"></script>
+  <script src="js/icons.js?v=41"></script>
+  <script src="js/app.js?v=41"></script>
 </body>
 </html>

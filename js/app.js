@@ -4,6 +4,8 @@
 (function () {
   const D = window.PORTFOLIO, I = window.ICONS;
   const G = D.gyms; // the five disciplines
+  const TAGS = D.skillTags || {}, OUT = D.outcomes || {};
+  const SHORT = { ledger: "Finance", blueprint: "Operations", summit: "Leadership", signal: "Communication", circuit: "Tech" };
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -107,6 +109,7 @@
           <div class="ev"><div class="ev-top"><div><h5>${esc(b.role)}</h5><span class="org">${esc(b.org)}</span></div><span class="when">${esc(b.when)}</span></div>
           ${b.points && b.points.length ? `<ul>${b.points.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}</div>`).join("")}</div>
         <div><h4>Skills</h4><div class="chips">${g.moves.map((m) => `<span class="chip">${esc(m)}</span>`).join("")}</div></div>
+        <div class="referee">${I("star", 16)}${g.referee ? `<span>Referee: <b>${esc(g.referee.name)}</b>, ${esc(g.referee.role)}${g.referee.link ? ` · <a href="${esc(g.referee.link)}" target="_blank" rel="noopener noreferrer">Verify ↗</a>` : ""}</span>` : `<span>Referee details shared on request.</span>`}</div>
       </div>`;
     if (anim && !still) { p.classList.remove("panel-anim"); void p.offsetWidth; p.classList.add("panel-anim"); }
   }
@@ -134,24 +137,26 @@
 
     const items = [...D.experience.map((e) => ({ ...e, tag: "Internship" })), ...D.leadership.map((l) => ({ ...l, points: pointsFor(l.role), tag: "Leadership", lead: true }))].sort((a, b) => startOf(b.when) - startOf(a.when));
     $("#journeyList").innerHTML = items.map((s) => `
-      <article class="step rv ${s.lead ? "lead" : ""}"><div><div class="step-when">${esc(s.when.split(" · ")[0])}</div><span class="step-tag">${s.tag}</span></div>
-      <div><h3>${esc(s.role)}</h3><p class="step-org">${esc(s.org)}</p>${s.points.length ? `<ul>${s.points.map((p) => `<li>${esc(p)}</li>`).join("")}</ul>` : ""}</div></article>`).join("");
+      <article class="step rv ft ${s.lead ? "lead" : ""}" data-tags="${esc((TAGS[s.role] || []).join(" "))}"><div><div class="step-when">${esc(s.when.split(" · ")[0])}</div><span class="step-tag">${s.tag}</span></div>
+      <div><h3>${esc(s.role)}</h3><p class="step-org">${esc(s.org)}</p>${s.points.length ? `<ul>${s.points.map((p) => `<li>${esc(p)}</li>`).join("")}</ul>` : ""}
+      ${!s.lead && OUT[s.role] ? `<div class="ba"><div class="b"><b>Before</b>${esc(OUT[s.role].before)}</div><div class="arr" aria-hidden="true">→</div><div class="a"><b>After</b>${esc(OUT[s.role].after)}</div></div>` : ""}</div></article>`).join("");
 
     $("#workList").innerHTML = D.projects.map((p, i) => {
       const links = `<div class="proj-links">${p.live ? `<a href="${esc(p.live)}" target="_blank" rel="noopener noreferrer">Visit live app ${I("external", 14)}</a>` : ""}${p.repo ? `<a href="${esc(p.repo)}" target="_blank" rel="noopener noreferrer">${I("github", 15)} Source</a>` : ""}</div>`;
       const body = `<div class="proj-top"><span class="proj-no">${pad(i + 1)}</span><span class="proj-type">${esc(p.types.join(" · "))}</span></div>
         <h3>${esc(p.name)}</h3><p>${esc(p.blurb)}</p><div class="tags">${p.moves.map((m) => `<span class="tag">${esc(m)}</span>`).join("")}</div>${links}`;
-      if (i === 0) return `<article class="proj feature rv"><div class="proj-main">${body}</div>
+      const tg = `data-tags="${esc((TAGS[p.id] || []).join(" "))}"`;
+      if (i === 0) return `<article class="proj feature rv ft" ${tg}><div class="proj-main">${body}</div>
         <div class="mock" aria-hidden="true">
           <div class="mock-row"><span class="mock-av"></span><span>Find the right people<small>Alumni, recruiters, founders</small></span><span class="mock-tag">DISCOVER</span></div>
           <div class="mock-row"><span class="mock-av" style="opacity:.75"></span><span>Write a note that sounds like you<small>Personal, not spammy</small></span><span class="mock-tag">DRAFT</span></div>
           <div class="mock-row"><span class="mock-av" style="opacity:.5"></span><span>Turn replies into referrals<small>Follow-ups that land</small></span><span class="mock-tag">CONVERT</span></div>
         </div></article>`;
-      return `<article class="proj rv">${body}</article>`;
+      return `<article class="proj rv ft" ${tg}>${body}</article>`;
     }).join("");
 
     renderWriting(); renderRefs();
-    $("#honourList").innerHTML = D.achievements.map((a) => `<li class="honour rv"><b>${esc(a.year)}</b><p>${esc(a.text)}</p></li>`).join("");
+    $("#honourList").innerHTML = D.achievements.map((a, i) => `<li class="honour rv ft" data-tags="${esc(((D.achievementTags || [])[i] || []).join(" "))}"><b>${esc(a.year)}</b><p>${esc(a.text)}</p></li>`).join("");
     $("#school").innerHTML = `<h3>Education</h3>` + D.education.map((e) => `<div class="edu"><strong>${esc(e.degree)}</strong><span>${esc(e.school)}</span><em>${esc(e.when)} · ${esc(e.score)}</em></div>`).join("") +
       D.certifications.map((c) => `<div class="edu"><strong>${esc(c.name)}</strong><span>${esc(c.issuer)}</span><em>Certification</em></div>`).join("");
     $("#contactCta").innerHTML = contactButtons();
@@ -211,6 +216,101 @@
     </div><div class="r-foot"><span>Want the full picture? The main site has the details behind each role.</span><button class="btn btn-ghost btn-sm" data-go="story">View full site →</button></div></div>`;
   }
 
+  // ---------- programme progress (EXP bar) ----------
+  function renderProgress() {
+    const pr = D.programme; if (!pr) return;
+    const YR = 31557600000, s = new Date(pr.start), e = new Date(pr.end), now = new Date();
+    const p = Math.min(1, Math.max(0, (now - s) / (e - s)));
+    const total = Math.round((e - s) / YR), year = Math.min(total, Math.max(1, Math.floor((now - s) / YR) + 1));
+    $("#prog").innerHTML = `<div class="prog-top"><span><b>Year ${year} of ${total}</b> · ${esc(pr.name)}</span><span>Graduating ${e.toLocaleDateString("en-GB", { month: "short", year: "numeric" })}</span></div>
+      <div class="prog-bar" role="progressbar" aria-label="Programme progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(p * 100)}"><i style="--p:${(p * 100).toFixed(1)}%"></i></div>
+      <div class="prog-ticks">${Array.from({ length: total }, (_, i) => `<span class="${i < year ? "on" : ""}">Y${i + 1} · ${s.getFullYear() + i}</span>`).join("")}</div>`;
+  }
+
+  // ---------- availability ----------
+  function renderAvail() {
+    const a = D.availability; if (!a) { $(".avail").hidden = true; return; }
+    $("#avail").innerHTML = `<div class="av-head"><span class="dot"></span>Available</div>
+      <div class="av-cell"><span>When</span><b>${a.windows.map(esc).join("<br>")}</b></div>
+      <div class="av-cell"><span>Type</span><b>${esc(a.type)}</b></div>
+      <div class="av-cell"><span>Roles</span><b>${a.roles.map(esc).join(", ")}</b></div>
+      <div class="av-cell"><span>Location · Reply time</span><b>${esc(a.locations)}<br>${esc(a.response)}</b></div>
+      <div class="av-cta"><a class="btn btn-primary btn-sm" href="mailto:${esc(D.profile.email)}?subject=${encodeURIComponent("Internship opportunity")}">Contact <span aria-hidden="true">→</span></a></div>`;
+  }
+
+  // ---------- abilities vs tools ----------
+  function renderAbilities() {
+    $("#abilityList").innerHTML = (D.abilities || []).map((a) => `<li class="rv"><span class="ab-ic">${I("check", 16)}</span><div><b>${esc(a.name)}</b><span>${esc(a.proof)}</span></div></li>`).join("");
+    $("#moveList").innerHTML = (D.moves || []).map((m) => `<li>${esc(m.name)}${m.level ? `<small>${esc(m.level)}</small>` : ""}</li>`).join("");
+  }
+
+  // ---------- journey map (graticule + real coordinates, no borders drawn) ----------
+  function renderMap() {
+    const places = D.places || []; if (!places.length) return;
+    const lon0 = 72, lon1 = 84, lat0 = 14, lat1 = 32;
+    const X = (lon) => 40 + ((lon - lon0) / (lon1 - lon0)) * 520, Y = (lat) => 30 + ((lat1 - lat) / (lat1 - lat0)) * 460;
+    let s = `<defs><linearGradient id="routeG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b82f6"/><stop offset="1" stop-color="#0ea5e9"/></linearGradient></defs>`;
+    s += `<g class="dots">`; for (let x = 20; x < 600; x += 22) for (let y = 16; y < 520; y += 22) s += `<circle cx="${x}" cy="${y}" r="1.1"/>`; s += `</g>`;
+    [15, 20, 25, 30].forEach((lat) => { const y = Y(lat).toFixed(1); s += `<line class="gl" x1="20" y1="${y}" x2="580" y2="${y}"/><text class="gl-t" x="24" y="${(Y(lat) - 6).toFixed(1)}">${lat}°N</text>`; });
+    [75, 80].forEach((lon) => { const x = X(lon).toFixed(1); s += `<line class="gl" x1="${x}" y1="10" x2="${x}" y2="510"/><text class="gl-t" x="${(X(lon) + 6).toFixed(1)}" y="506">${lon}°E</text>`; });
+    const pts = places.map((p) => ({ ...p, x: X(p.lon), y: Y(p.lat) }));
+    if (pts.length >= 2) {
+      const [a, b] = pts, mx = (a.x + b.x) / 2 + 110, my = (a.y + b.y) / 2;
+      const R = 6371, rad = (d) => (d * Math.PI) / 180;
+      const h = Math.sin(rad(b.lat - a.lat) / 2) ** 2 + Math.cos(rad(a.lat)) * Math.cos(rad(b.lat)) * Math.sin(rad(b.lon - a.lon) / 2) ** 2;
+      const km = Math.round((2 * R * Math.asin(Math.sqrt(h))) / 10) * 10;
+      s += `<path class="route" d="M${a.x.toFixed(1)} ${a.y.toFixed(1)} Q${mx.toFixed(1)} ${my.toFixed(1)} ${b.x.toFixed(1)} ${b.y.toFixed(1)}"/>`;
+      s += `<text class="km" x="${((a.x + b.x) / 2 + 62).toFixed(1)}" y="${my.toFixed(1)}">≈ ${km.toLocaleString("en-IN")} km</text>`;
+    }
+    pts.forEach((p, i) => {
+      s += `<g class="pin" data-i="${i}" tabindex="0" role="button" aria-label="${esc(p.city)}, ${esc(p.state)}" transform="translate(${p.x.toFixed(1)} ${p.y.toFixed(1)})">
+        <circle class="halo" r="14"/><circle class="core" r="8"/>
+        <text x="-18" y="5" text-anchor="end">${esc(p.city)}</text><text class="st" x="-18" y="22" text-anchor="end">${esc(p.state)}</text></g>`;
+    });
+    $("#map").innerHTML = s;
+    const pick = (i) => {
+      $$("#map .pin").forEach((g) => g.classList.toggle("on", +g.dataset.i === i));
+      const p = places[i];
+      $("#mapSide").innerHTML = `<div class="city-tabs" role="tablist">${places.map((q, k) => `<button role="tab" aria-selected="${k === i}" data-i="${k}">${esc(q.city)}</button>`).join("")}</div>
+        <div class="city"><h3>${esc(p.city)}</h3><p>${esc(p.state)}, India</p><ul>${p.items.map((t) => `<li>${esc(t)}</li>`).join("")}</ul></div>`;
+      $$("#mapSide .city-tabs button").forEach((b) => b.addEventListener("click", () => pick(+b.dataset.i)));
+    };
+    $$("#map .pin").forEach((g) => {
+      g.addEventListener("click", () => pick(+g.dataset.i));
+      g.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(+g.dataset.i); } });
+    });
+    pick(Math.max(0, places.findIndex((p) => p.city === "Hyderabad")));
+  }
+
+  // ---------- recruiter Q&A ----------
+  function renderFaq() {
+    const f = D.faq || []; if (!f.length) { $("#qa").hidden = true; return; }
+    $("#faqList").innerHTML = f.map((x, i) => `<details class="rv" ${i === 0 ? "open" : ""}><summary>${esc(x.q)}</summary><p>${esc(x.a)}</p></details>`).join("");
+  }
+
+  // ---------- skill filter (highlights matching work across the page) ----------
+  let filter = "all";
+  function renderFilter() {
+    const bar = $("#filterbar");
+    $("#fbBtns").innerHTML = `<button aria-pressed="true" data-f="all">All</button>` + G.map((g) => `<button aria-pressed="false" data-f="${g.id}" style="--c:${g.color}"><i></i>${esc(SHORT[g.id] || g.domain)}</button>`).join("");
+    $$("#fbBtns button").forEach((b) => b.addEventListener("click", () => setFilter(b.dataset.f)));
+    new IntersectionObserver(([e]) => { bar.hidden = e.isIntersecting || view !== "story"; }, { rootMargin: "0px 0px -40% 0px" }).observe($(".hero"));
+  }
+  function setFilter(id) {
+    filter = filter === id ? "all" : id;
+    $$("#fbBtns button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.f === filter));
+    const on = filter !== "all";
+    document.body.classList.toggle("filtering", on);
+    const g = G.find((x) => x.id === filter);
+    let n = 0;
+    $$(".ft").forEach((el) => {
+      const m = on && (el.dataset.tags || "").split(" ").includes(filter);
+      el.classList.toggle("match", m); if (m) n++;
+      el.style.setProperty("--fc", g ? g.color : "transparent");
+    });
+    if (on) { showDisc(G.indexOf(g)); toast(`${n} items highlighted for ${SHORT[filter]}`); }
+  }
+
   // ---------- motion: hero card tilt, paused off-screen ----------
   function motion() {
     const hero = $(".hero");
@@ -237,14 +337,14 @@
     $("#nav").classList.toggle("solid", scrollY > 20);
     if (view !== "story") return;
     let on = "";
-    ["disciplines", "approach", "experience", "projects", "writing", "references"].forEach((id) => { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top < innerHeight * 0.4) on = id; });
+    ["disciplines", "journey", "experience", "projects", "qa", "references"].forEach((id) => { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top < innerHeight * 0.4) on = id; });
     $$(".nav-links a").forEach((a) => a.classList.toggle("on", a.getAttribute("href") === "#" + on));
   }
 
   // ---------- boot ----------
   applyTheme(state.theme);
   $("#year").textContent = new Date().getFullYear();
-  renderDisciplines(); renderSections(); renderResume(); motion(); reveal();
+  renderDisciplines(); renderSections(); renderProgress(); renderAvail(); renderAbilities(); renderMap(); renderFaq(); renderFilter(); renderResume(); motion(); reveal();
 
   document.addEventListener("click", (e) => { const go = e.target.closest("[data-go]"); if (go) setView(go.dataset.go); });
   $(".logo").addEventListener("click", (e) => { if (view !== "story") { e.preventDefault(); setView("story"); } });

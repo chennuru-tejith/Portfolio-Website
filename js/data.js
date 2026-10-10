@@ -366,4 +366,80 @@ window.PORTFOLIO = {
   //   link: "https://www.linkedin.com/in/their-profile",   // lets recruiters verify
   // },
   recommendations: [],
+
+  // ---------- Availability (confirmed by Tejith) ----------
+  availability: {
+    windows: ["December – January", "June – July"],
+    type: "Internship · in person",
+    roles: ["Finance", "Operations & Project Management", "Consulting & Strategy", "Marketing & Partnerships"],
+    locations: "Hyderabad · Anywhere in India",
+    response: "Within 48 hours",
+  },
+
+  // Programme timeline for the progress bar (from the CV: Aug 2024 – Aug 2029)
+  programme: { name: "Integrated BBA (Hons.) + MBA", start: "2024-08-01", end: "2029-08-31" },
+
+  // ---------- Abilities (who I am) vs Moves (what I use) ----------
+  abilities: [
+    { name: "Ownership", proof: "Monitored a ₹4 Cr build on site across 23 visits in 7 weeks." },
+    { name: "Verification", proof: "Caught a reporting discrepancy before it reached the sponsor." },
+    { name: "Stakeholder trust", proof: "Elected student representative; trusted to administer student elections." },
+    { name: "Clear reporting", proof: "Wrote management reports and co-drafted sponsor updates." },
+    { name: "Builder's initiative", proof: "Built a live outreach app and AI-chat tools alongside the degree." },
+  ],
+  moves: [
+    { name: "Microsoft Excel", level: "Certified · Intermediate I" },
+    { name: "Financial Analysis" },
+    { name: "Cost Analysis" },
+    { name: "Budgeting & Tracking" },
+    { name: "Financial Reporting" },
+    { name: "Tableau" },
+    { name: "PowerPoint" },
+    { name: "MS Office Suite" },
+    { name: "Python", level: "Foundational" },
+    { name: "AI-assisted Development" },
+  ],
+
+  // ---------- Journey map: where the work happened ----------
+  places: [
+    { city: "Sonipat", state: "Haryana", lat: 28.99, lon: 77.02, items: ["O.P. Jindal Global University: BBA + MBA (2024–2029)", "Head of Outreach, ZAMAC", "Director, JGU Entrepreneurship Club", "Student Representative, COGSASH", "Election Commission & Grievance Committee"] },
+    { city: "Hyderabad", state: "Telangana", lat: 17.39, lon: 78.49, items: ["Operations Intern, Round Table India (2026)", "Project Management Intern, Dr. Reddy's (2025)", "Finance Intern, Ion Exchange India (2024–25)", "Schooling: Class X & XII"] },
+  ],
+
+  // ---------- Before → after, per internship (from CV results) ----------
+  outcomes: {
+    "Operations Intern": { before: "Contractor-reported stock and spend figures going to the sponsor unchecked.", after: "Figures verified against supervisor records; a discrepancy was resolved before the sponsor update." },
+    "Project Management Intern": { before: "Five years of workforce cost data (FY2021–FY2025) spread across records.", after: "Structured management reports supporting decisions on headcount budgeting and welfare spending." },
+    "Finance Intern": { before: "Documentation backlogs and inconsistent vendor records.", after: "Streamlined daily transaction processing; standardized, audit-ready vendor records." },
+  },
+
+  // ---------- Skill filter: which disciplines each item proves ----------
+  // ledger = Finance, blueprint = Operations, summit = Leadership, signal = Communication, circuit = Tech
+  skillTags: {
+    "Operations Intern": ["blueprint", "ledger", "signal"],
+    "Project Management Intern": ["ledger", "blueprint"],
+    "Finance Intern": ["ledger", "signal"],
+    "Head of Outreach": ["signal", "summit"],
+    "Member, Student Grievance Redressal Committee": ["summit"],
+    "Student Representative, COGSASH": ["summit"],
+    "Member, Election Commission": ["summit"],
+    "Director": ["summit"],
+    reachly: ["signal", "circuit"],
+    queuebit: ["circuit"],
+    queuebolt: ["circuit"],
+    candlox: ["ledger", "circuit"],
+    scoutling: ["signal", "circuit"],
+    notewing: ["signal", "circuit"],
+    prismo: ["circuit"],
+  },
+  achievementTags: [["summit"], ["summit"], ["summit"], [], ["signal"]],
+
+  // ---------- Recruiter Q&A (drafted from the CV — edit to your own words) ----------
+  faq: [
+    { q: "What do you bring to a team?", a: "Ownership of the details. At Round Table India I monitored a ₹4 Cr build across 23 site visits and checked contractor figures against supervisor records before they went to the sponsor." },
+    { q: "How do you handle numbers that don't add up?", a: "I go back to the source. When contractor-reported stock and spend didn't match supervisor records, I traced the gap and got it resolved before the sponsor update." },
+    { q: "Can you lead people?", a: "Yes. I directed programming for a 200+ member entrepreneurship club, I lead external outreach for the marketing club, and I was elected to a university committee." },
+    { q: "Why business and technology together?", a: "I study business, but I like building the tools myself: a live outreach platform, AI-chat utilities and a stock-screening suite, all on my GitHub." },
+    { q: "What are you looking for?", a: "An internship in finance, operations, consulting or marketing, in December–January or June–July, where I can own a real piece of work and be measured on the result." },
+  ],
 };
