@@ -4,6 +4,9 @@
 // ============================================================
 
 window.PORTFOLIO = {
+  // Your live website address once deployed, e.g. "https://tejith.in" (enables absolute share links + sitemap)
+  siteUrl: "",
+
   profile: {
     name: "Chennuru Tejith",
     shortName: "Tejith",
@@ -359,7 +362,7 @@ window.PORTFOLIO = {
       title: "Generative Engine Optimization",
       venue: "Independent research",
       date: "2026",
-      summary: "How content gets surfaced and cited by AI answer engines, and what that means for how organisations communicate.",
+      summary: "From SEO to GEO: a replication study across five AI assistants (ChatGPT, Claude, Gemini, Grok and Perplexity) on which sources they cite, and how faithfully they disclose them.",
       status: "In progress",
       url: "",
     },

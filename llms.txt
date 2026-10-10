@@ -1,0 +1,30 @@
+# Chennuru Tejith
+
+> Chennuru Tejith is an Indian business student pursuing an integrated BBA (Hons.) + MBA at O.P. Jindal Global University (2024–2029, CGPA 7.9/8), from Hyderabad, with internship experience in operations at Round Table India, project management at Dr. Reddy's Laboratories Ltd. and finance at Ion Exchange India Ltd.
+
+Last updated: 2026-10-10
+
+## Key facts
+- Programme: Integrated BBA (Hons.) + MBA, O.P. Jindal Global University, Sonipat (Aug 2024 – Aug 2029), CGPA 7.9 / 8.00
+- Operations Intern, Round Table India (Jun 2026 – Jul 2026 · Hyderabad): Monitored on-site execution of a ₹4 Cr CSR-funded government school construction project (MPPS & ZPHS Integrated School, Phase II) across 23 site visits over 7 weeks, tracking progress against sanctioned drawings.
+- Project Management Intern, Dr. Reddy's Laboratories Ltd. (Jun 2025 – Jul 2025 · Hyderabad): Conducted employee cost analysis across FY2021–FY2025, tracking trends in salaries, share-based payments, and welfare expenses to support cost-optimization discussions.
+- Finance Intern, Ion Exchange India Ltd. (Dec 2024 – Jan 2025 · Hyderabad): Streamlined daily transaction processing, improving departmental workflow efficiency and reducing documentation backlogs.
+- Head of Outreach, ZAMAC — The Marketing Club, JGBS (Feb 2026 – Present)
+- Member, Student Grievance Redressal Committee, Food & Mess Committee, JGBS (Aug 2026 – Present)
+- Student Representative, COGSASH, O.P. Jindal Global University (Nov 2025 – Present)
+- Member, Election Commission, Jindal Global Business School (Apr 2025 – Present)
+- Director, JGU Entrepreneurship Club (200+ members) (Feb 2026 – May 2026)
+- Languages: English (Full Professional), Telugu (Native), Hindi (Working), French (Elementary)
+- Availability: Internship · in person, December – January and June – July, Hyderabad · Anywhere in India
+
+## Research
+- Generative Engine Optimization (Research paper, In progress): From SEO to GEO: a replication study across five AI assistants (ChatGPT, Claude, Gemini, Grok and Perplexity) on which sources they cite, and how faithfully they disclose them.
+
+## Pages
+- [Interactive portfolio](./): the main site
+- [Text profile](profile.html): every fact on one plain page
+- [CV (PDF)](assets/Chennuru_Tejith_CV.pdf)
+
+## Elsewhere
+- [LinkedIn](https://www.linkedin.com/in/chennuru-tejith)
+- [GitHub](https://github.com/chennuru-tejith)

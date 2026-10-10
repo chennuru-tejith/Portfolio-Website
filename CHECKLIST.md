@@ -29,5 +29,14 @@ Tick items off as you send them. Each one is a single line in `js/data.js` (show
 - [ ] **Domain** (e.g. `tejith.in`). After this I'll make the share image and canonical link absolute and add a sitemap
 - [ ] *(Optional)* sign in to GitHub CLI: `& "C:\Program Files\GitHub CLI\gh.exe" auth login --web`
 
+## Getting found by AI assistants (after the site is live)
+- [ ] Put the live address in `siteUrl` (js/data.js), run `node build.js`, push
+- [ ] Submit the site to **Google Search Console** and **Bing Webmaster Tools** (Bing feeds ChatGPT search and others)
+- [ ] Add the site link to **LinkedIn** (Contact info + Featured) and the **GitHub** profile website field + README
+- [ ] Ask for a link from any JGU / club page that lists you (independent corroboration)
+- [ ] When the GEO paper is published (e.g. SSRN), link it from the site and the site from it
+- [ ] Re-run your own replication protocol with prompts like "Who is Chennuru Tejith?" across the five assistants
+- [ ] Confirm you're happy showing the GEO study design (five assistants) publicly on the site
+
 ## Optional
 - [ ] Your birthday, if you'd like a small seasonal greeting on that day (`seasons`)

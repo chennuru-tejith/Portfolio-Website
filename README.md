@@ -31,7 +31,15 @@ See [CHECKLIST.md](CHECKLIST.md).
 Add `?motion=1` to the URL to force full animations even if your system asks for reduced motion.
 
 ## After editing
-Bump the `?v=` number on the css/js links in `index.html` so returning visitors get the new files.
+1. Run `node build.js`. It rewrites `profile.html`, `llms.txt`, the structured data and the static résumé from `js/data.js`, so AI crawlers (which don't run JavaScript) see current facts.
+2. Bump the `?v=` number on the css/js links in `index.html` so returning visitors get the new files.
+
+## GEO (being found by AI assistants)
+- `profile.html`: a plain, question-led, no-JavaScript profile page
+- `llms.txt`: a short summary for AI tools
+- Structured data: ProfilePage + Person + FAQPage (JSON-LD)
+- `robots.txt` explicitly allows GPTBot, ClaudeBot, PerplexityBot, Google-Extended and others
+- Set `siteUrl` in `js/data.js` once live, then run `node build.js` for absolute URLs and `sitemap.xml`
 
 ## Link previews
 `assets/og.png` is the share image. Once the site has a domain, change `og:image` and `twitter:image` in `index.html` to the full URL (e.g. `https://tejith.in/assets/og.png`); LinkedIn and WhatsApp need absolute URLs.
