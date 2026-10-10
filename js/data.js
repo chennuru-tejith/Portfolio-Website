@@ -388,11 +388,9 @@ window.PORTFOLIO = {
 
   // ---------- Change log (newest first). Add a line whenever the site or your work changes ----------
   changelog: [
-    { month: "Oct 2026", items: ["Site split into separate pages: Work, Arenas, Research, About, Ask and Contact", "Added an AI assistant that answers questions about me from this site", "Added a press kit, a citation for the GEO paper and this change log", "Applied my paper's GEO Business Adoption Framework to the site"] },
+    { month: "Oct 2026", items: ["Site split into separate pages: Work, Arenas, Research, About, Ask and Contact", "Added an Ask page that answers questions about me from this site", "Added a press kit, a citation for the GEO paper and this change log", "Applied my paper's GEO Business Adoption Framework to the site"] },
   ],
 
-  // ---------- AI assistant: the serverless endpoint (needs ANTHROPIC_API_KEY on Vercel). Empty = answers from the site only ----------
-  askEndpoint: "/api/ask",
 
   // ---------- "Currently" line in the hero (leave a field empty to hide it) ----------
   currently: { working: "Generative Engine Optimization research paper", reading: "", learning: "" },

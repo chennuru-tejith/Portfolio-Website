@@ -22,12 +22,6 @@ Tick items off as you send them. Each one is a single line in `js/data.js` (show
 - [ ] **Certificates and letters** for the Documents section, as PDFs (`documents`)
 - [ ] **Coursera verify link** for the Excel certificate; it currently points to LinkedIn (`certifications[0].verify`)
 
-## Turn on the AI assistant (Ask AI page)
-- [ ] Create an API key at **console.anthropic.com** and set a monthly **spend limit** there (e.g. $5)
-- [ ] In Vercel: Project, Settings, Environment Variables, add `ANTHROPIC_API_KEY` with that key, then redeploy
-- [ ] Until then the assistant still works, but answers only by quoting the site
-- [ ] *(Optional)* add `ANTHROPIC_MODEL` to use a cheaper model; the default is Claude Opus 5.5
-
 ## Please review
 - [ ] The two bios (25 and 100 words) in `bios`, used on the press kit and in llms.txt
 - [ ] The change log (`changelog`): add a line each month

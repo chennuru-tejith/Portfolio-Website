@@ -40,7 +40,7 @@ Chennuru Tejith is an integrated BBA (Hons.) + MBA student at O.P. Jindal Global
 
 ## Change log
 - Oct 2026: Site split into separate pages: Work, Arenas, Research, About, Ask and Contact
-- Oct 2026: Added an AI assistant that answers questions about me from this site
+- Oct 2026: Added an Ask page that answers questions about me from this site
 - Oct 2026: Added a press kit, a citation for the GEO paper and this change log
 - Oct 2026: Applied my paper's GEO Business Adoption Framework to the site
 

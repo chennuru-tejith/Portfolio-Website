@@ -338,7 +338,7 @@
 
   // ---------- pages: one room at a time (all content stays in the HTML for crawlers) ----------
   const PAGES = ["home", "work", "arenas", "research", "about", "ask", "contact"];
-  const PAGE_NAME = { home: "Home", work: "Work", arenas: "Arenas", research: "Research", about: "About", ask: "Ask AI", contact: "Contact" };
+  const PAGE_NAME = { home: "Home", work: "Work", arenas: "Arenas", research: "Research", about: "About", ask: "Ask", contact: "Contact" };
   let page = "";
   function pageFor(id) {
     if (!id || id === "top") return "home";
@@ -554,16 +554,39 @@
     words.forEach((w) => { keys.add(w.slice(0, 5)); Object.values(SYN).forEach((list) => { if (list.some((k) => w.startsWith(k.slice(0, 4)) || k.startsWith(w.slice(0, 4)))) list.forEach((k) => keys.add(k)); }); });
     return corpus.map((d) => { const low = d.t.toLowerCase(); let sc = 0; keys.forEach((k) => { if (low.includes(k)) sc++; }); return { ...d, sc }; }).filter((d) => d.sc > 0).sort((a, b) => b.sc - a.sc).slice(0, 3);
   }
-  // used when the AI endpoint isn't available (local preview, or no API key yet)
+  // answers come straight from js/data.js: no API, no cost, nothing leaves the browser
+  const list = (xs) => (xs.length < 2 ? xs.join("") : xs.slice(0, -1).join(", ") + " and " + xs[xs.length - 1]);
+  const exp = (re) => D.experience.find((e) => re.test(e.org));
+  const INTENTS = [
+    [/^\s*(hi|hello|hey|namaste|good (morning|afternoon|evening))\b/, () => `Hello! ${(D.bios || {}).short || ""} Ask me about his internships, leadership, projects, research or availability.`],
+    [/weak|fail|mistake|salary|stipend|pay|age|old|religion|caste|married|relationship/, () => `That isn't something this site covers. It's a good one to ask Tejith directly at ${D.profile.email}.`],
+    [/round table|4 ?cr|csr|school build|site visit|vst/, () => { const e = exp(/Round Table/); return `At Round Table India (${e.when.split(" · ")[0]}), Tejith worked as an operations intern on a ₹4 Cr CSR-funded government school build.\n• ${e.points.join("\n• ")}`; }],
+    [/reddy|pharma|project manag/, () => { const e = exp(/Reddy/); return `At Dr. Reddy's Laboratories (${e.when.split(" · ")[0]}), Tejith was a project management intern.\n• ${e.points.join("\n• ")}`; }],
+    [/ion exchange|finance intern/, () => { const e = exp(/Ion Exchange/); return `At Ion Exchange India (${e.when.split(" · ")[0]}), Tejith was a finance intern.\n• ${e.points.join("\n• ")}`; }],
+    [/budget|money|financ|cost|account|spend|fund|numbers/, () => `Yes. At Round Table India he tracked CSR fund use against a ₹4 Cr sanctioned budget and caught a reporting discrepancy before it reached the sponsor. At Dr. Reddy's he analysed five years of employee costs (FY2021 to FY2025), and at Ion Exchange he handled daily transactions and vendor records.`],
+    [/lead|team|club|manag(e|ing) people|committee|captain|director|head/, () => `Yes. His roles: ${list(D.leadership.map((l) => `${l.role} at ${l.org} (${l.when})`))}. He was also named Best Leader at JGU University Day 2025.`],
+    [/availab|when can|start|join|free|hire|internship|vacanc|open to/, () => { const a = D.availability; return `Tejith is open to ${a.type.toLowerCase()} in ${list(a.windows)}. Roles: ${list(a.roles)}. Location: ${a.locations}. He usually replies ${a.response.toLowerCase()}.`; }],
+    [/research|paper|geo\b|generative engine|seo|publish|writ/, () => { const w = D.writing[0]; return `He is writing a research paper as sole author: "${w.title}". ${w.summary} Current stage: ${D.geoStage}. You can cite it from the Research page.`; }],
+    [/built|build|project|app|code|program|github|tech|extension|tool|ai\b/, () => `Alongside his degree he has built ${list(D.projects.slice(0, 4).map((p) => p.name.split(":")[0]))}. The featured one, ${D.projects[0].name.split(":")[0]}, is live: ${D.projects[0].live}. Source code is on ${D.profile.github}.`],
+    [/language|speak|telugu|hindi|french|english/, () => `He speaks ${list(D.profile.languages)}.`],
+    [/stud|educat|college|universit|degree|cgpa|gpa|grade|mark|school|class/, () => D.education.map((e) => `${e.degree}, ${e.school} (${e.when}, ${e.score})`).join("\n")],
+    [/award|honou?r|achiev|recogn|rank|prize/, () => "• " + D.achievements.map((x) => `${x.text} (${x.year})`).join("\n• ")],
+    [/contact|email|mail|reach|linkedin|phone|call|connect/, () => `Email ${D.profile.email}, or LinkedIn at ${D.profile.linkedin}. The Contact page also lets you book a 15-minute call.`],
+    [/where|based|locat|city|relocat|move|remote|hyderabad|sonipat|delhi/, () => `He is from Hyderabad and studies in Sonipat, Haryana. For internships: ${D.availability.locations}.`],
+    [/why|hire him|strength|good at|stand out|different|value/, () => "Four things he holds himself to:\n• " + D.principles.map((p) => `${p.title}: ${p.proof}`).join("\n• ")],
+    [/skill|abilit|know|excel|tableau|python|software/, () => D.gyms.map((g) => `${g.domain}: ${g.moves.slice(0, 4).join(", ")}`).join("\n")],
+    [/hobb|interest|free time|weekend|f1|formula|sport/, () => D.offClock || "Ask him directly."],
+    [/believ|value|loyal|principle/, () => `"${D.profile.quote.text.replace(/\*/g, "")}" That's the line he works by.`],
+    [/\bwho\b|about (him|tejith)|introduce|tell me|summar|overview/, () => (D.bios || {}).long || D.profile.summary],
+  ];
   function localAnswer(q) {
-    const low = q.toLowerCase(), bio = D.bios || {};
-    if (/^\s*(hi|hello|hey|namaste)\b/.test(low)) return `Hello! ${bio.short || ""} Ask me about his internships, skills, research or availability.`;
-    if (/\bwho\b|about (him|tejith)|introduce|tell me about/.test(low)) return bio.long || D.profile.summary;
+    const low = q.toLowerCase();
+    for (const [re, fn] of INTENTS) if (re.test(low)) return fn();
     const hits = search(q);
     if (!hits.length) return `I couldn't find that on this site. The quickest way to know is to ask Tejith directly at ${D.profile.email}.`;
-    return "Here is what the portfolio says:\n" + hits.map((h) => `• ${h.src}: ${h.t}`).join("\n");
+    return "Here is what the site says:\n• " + hits.map((h) => `${h.src}: ${h.t}`).join("\n• ");
   }
-  const chat = { history: [], aiOff: !D.askEndpoint || !/^https?:/.test(location.protocol), busy: false };
+  const chat = { busy: false };
   function bubble(role, html) {
     const el = document.createElement("div");
     el.className = "bubble " + role; el.innerHTML = html;
@@ -581,28 +604,13 @@
     const step = () => { i = Math.min(words.length, i + 3); box.innerHTML = fmt(words.slice(0, i).join("")); $("#chatLog").scrollTop = $("#chatLog").scrollHeight; if (i < words.length) setTimeout(step, 28); };
     step();
   }
-  async function askAI(raw) {
+  function askAI(raw) {
     const q = String(raw || "").trim().slice(0, 500);
     if (!q || chat.busy) return;
-    chat.busy = true; $("#askBtn").disabled = true; $("#askInput").value = "";
+    chat.busy = true; $("#askInput").value = "";
     bubble("me", fmt(q));
-    const pending = bubble("ai", `<span class="typing" aria-label="Thinking"><i></i><i></i><i></i></span>`);
-    chat.history.push({ role: "user", content: q });
-    let answer = "", src = "From this portfolio";
-    if (!chat.aiOff) {
-      try {
-        const ctrl = new AbortController(), t = setTimeout(() => ctrl.abort(), 30000);
-        const r = await fetch(D.askEndpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ messages: chat.history.slice(-8) }), signal: ctrl.signal });
-        clearTimeout(t);
-        if (r.ok) { const j = await r.json(); if (j && typeof j.answer === "string") { answer = j.answer.trim(); src = "AI answer, from this portfolio"; } }
-        else if ([404, 405, 501, 503].includes(r.status)) chat.aiOff = true;
-        else if (r.status === 429) { const j = await r.json().catch(() => ({})); answer = j.error || "Too many questions for now. Please try again in a few minutes."; src = "Assistant"; }
-      } catch (e) {}
-    }
-    if (!answer) answer = localAnswer(q);
-    chat.history.push({ role: "assistant", content: answer });
-    typeOut(pending, answer, src);
-    chat.busy = false; $("#askBtn").disabled = false;
+    const pending = bubble("ai", `<span class="typing" aria-label="Looking it up"><i></i><i></i><i></i></span>`);
+    setTimeout(() => { typeOut(pending, localAnswer(q), "From this portfolio"); chat.busy = false; }, still ? 0 : 450);
   }
   function renderAsk() {
     const chips = ["Who is Tejith?", "Has he handled budgets?", "Can he lead a team?", "When is he available?", "What has he built?", "What is his research about?"];
@@ -610,7 +618,7 @@
     $$("#askChips button").forEach((b) => b.addEventListener("click", () => askAI(b.textContent)));
     $("#askBtn").addEventListener("click", () => askAI($("#askInput").value));
     $("#askInput").addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); askAI(e.target.value); } });
-    bubble("ai", `${fmt(`Hi, I'm Tejith's assistant. I've read everything on this site: his internships, leadership, projects and research. What would you like to know?`)}<span class="bubble-src">Assistant</span>`);
+    bubble("ai", `${fmt(`Hi! Ask me anything about Tejith: his internships, leadership, projects, research or when he's available. Answers come straight from this site.`)}<span class="bubble-src">From this portfolio</span>`);
     const prompt = `Who is ${D.profile.name}?`, enc = encodeURIComponent(prompt);
     $("#askElsewhere").innerHTML = [["ChatGPT", `https://chatgpt.com/?q=${enc}`], ["Perplexity", `https://www.perplexity.ai/search?q=${enc}`], ["Claude", `https://claude.ai/new?q=${enc}`]]
       .map(([n, u]) => `<a href="${esc(u)}" target="_blank" rel="noopener noreferrer">${n} ${I("external", 13)}</a>`).join("") + `<span class="mono">Asks “${esc(prompt)}”</span>`;

@@ -1,6 +1,6 @@
 # Chennuru Tejith: Portfolio
 
-An editorial portfolio (obsidian, ivory, champagne, rose-copper) split into pages: Home, Work, Arenas, Research, About, Ask AI and Contact (`#work`, `#ask`…). There is also a recruiter résumé view (`?view=resume`), a press kit (`press.html`) and a plain text profile (`profile.html`).
+An editorial portfolio (obsidian, ivory, champagne, rose-copper) split into pages: Home, Work, Arenas, Research, About, Ask and Contact (`#work`, `#ask`…). There is also a recruiter résumé view (`?view=resume`), a press kit (`press.html`) and a plain text profile (`profile.html`).
 
 ## Edit content
 Everything lives in `js/data.js`:
@@ -22,8 +22,7 @@ Everything lives in `js/data.js`:
 | `availability`, `programme`, `places`, `faq` | Availability panel, progress bar, India map, Q&A |
 | `photo`, `signature`, `voice`, `homeNote` | Hero portrait, written signature, voice clip, hometown line on the map |
 | `updates`, `geoStage`, `decision`, `notes`, `seasons`, `details` | "Now" strip, GEO tracker, decision, field notes, seasonal greetings, hidden details |
-| `bios`, `changelog` | Short and long bio (press kit, llms.txt, assistant), monthly change log |
-| `askEndpoint` | The AI assistant's endpoint (`/api/ask`); empty = answers from the site only |
+| `bios`, `changelog` | Short and long bio (press kit, llms.txt, Ask page), monthly change log |
 | `bookingUrl`, `goatcounter` | Call booking link, optional visitor counter |
 
 ## What I still need
@@ -33,11 +32,11 @@ See [CHECKLIST.md](CHECKLIST.md).
 Add `?motion=1` to the URL to force full animations even if your system asks for reduced motion.
 
 ## After editing
-1. Run `node build.js`. It rewrites `profile.html`, `press.html`, `llms.txt`, `api/_profile.mjs`, the structured data and the static résumé from `js/data.js`, so AI crawlers (which don't run JavaScript) and the assistant see current facts.
+1. Run `node build.js`. It rewrites `profile.html`, `press.html`, `llms.txt`, the structured data and the static résumé from `js/data.js`, so AI crawlers (which don't run JavaScript) see current facts.
 2. Bump the `?v=` number on the css/js links in `index.html` so returning visitors get the new files.
 
-## AI assistant
-`api/ask.mjs` is a Vercel serverless function that answers visitors' questions with Claude (default model `claude-opus-5-5`, override with `ANTHROPIC_MODEL`). It only knows what is in `api/_profile.mjs`, which `node build.js` writes from `js/data.js`. Set `ANTHROPIC_API_KEY` in Vercel. Requests are capped (short questions, last few turns, 20 questions per 10 minutes per visitor) and declined requests fall back server-side (`fallbacks: "default"`). If the endpoint is missing, the page answers by quoting the site instead.
+## Ask page
+The Ask page answers visitors' questions in the browser from `js/data.js` (matching common interview questions, then searching the site). No API, no cost, nothing is sent anywhere.
 
 ## GEO (being found by AI assistants)
 - `profile.html`: a plain, question-led, no-JavaScript profile page
@@ -61,4 +60,4 @@ Ctrl+P (or "Print / save" on the résumé) always prints the clean one-page rés
     python -m http.server 5173
 
 ## Deploy
-Import the GitHub repo in Vercel (recommended: applies the security headers and runs the AI assistant). Netlify also works for the static site, without the assistant.
+Import the GitHub repo in Vercel (recommended, applies the security headers) or drag the folder onto app.netlify.com/drop.

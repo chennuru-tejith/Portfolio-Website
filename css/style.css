@@ -920,7 +920,7 @@ body { background-color: var(--bg); }
 
 
 /* ============================================================
-   Round 6: pages, quote across the portrait, AI assistant
+   Round 6: pages, quote across the portrait, Ask page
    ============================================================ */
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .off-page { display: none !important; }
@@ -982,7 +982,7 @@ body { background-color: var(--bg); }
 .next-page a > span:last-child { margin-left: auto; font-size: 28px; color: var(--clay); transition: transform 0.5s cubic-bezier(.16, 1, .3, 1); }
 .next-page a:hover > span:last-child { transform: translateX(8px); }
 
-/* AI assistant */
+/* Ask page */
 .chat { max-width: 860px; border: 1px solid var(--line-2); background: color-mix(in srgb, var(--bg-1) 70%, transparent); }
 .chat-log { display: grid; gap: 14px; padding: 28px 28px 10px; max-height: min(56vh, 540px); min-height: 220px; overflow-y: auto; scroll-behavior: smooth; }
 .bubble { max-width: 82%; padding: 14px 18px; font-size: 15.5px; line-height: 1.6; animation: up2 0.5s cubic-bezier(.16, 1, .3, 1) both; }
