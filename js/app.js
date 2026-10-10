@@ -28,7 +28,7 @@
     document.documentElement.dataset.theme = t;
     $("#themeBtn").innerHTML = I(t === "dark" ? "sun" : "moon", 17);
     $("#themeBtn").setAttribute("aria-label", t === "dark" ? "Switch to light mode" : "Switch to dark mode");
-    const tc = $('meta[name="theme-color"]'); if (tc) tc.content = t === "dark" ? "#050b18" : "#ffffff";
+    const tc = $('meta[name="theme-color"]'); if (tc) tc.content = t === "dark" ? "#0b1424" : "#f6f3ee";
   }
 
   // ---------- views ----------
@@ -244,30 +244,33 @@
     $("#moveList").innerHTML = (D.moves || []).map((m) => `<li>${esc(m.name)}${m.level ? `<small>${esc(m.level)}</small>` : ""}</li>`).join("");
   }
 
-  // ---------- journey map (graticule + real coordinates, no borders drawn) ----------
+  // ---------- journey map: dot-matrix India (official outline, DataMeet CC-0) ----------
   function renderMap() {
-    const places = D.places || []; if (!places.length) return;
-    const lon0 = 72, lon1 = 84, lat0 = 14, lat1 = 32;
-    const X = (lon) => 40 + ((lon - lon0) / (lon1 - lon0)) * 520, Y = (lat) => 30 + ((lat1 - lat) / (lat1 - lat0)) * 460;
-    let s = `<defs><linearGradient id="routeG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b82f6"/><stop offset="1" stop-color="#0ea5e9"/></linearGradient></defs>`;
-    s += `<g class="dots">`; for (let x = 20; x < 600; x += 22) for (let y = 16; y < 520; y += 22) s += `<circle cx="${x}" cy="${y}" r="1.1"/>`; s += `</g>`;
-    [15, 20, 25, 30].forEach((lat) => { const y = Y(lat).toFixed(1); s += `<line class="gl" x1="20" y1="${y}" x2="580" y2="${y}"/><text class="gl-t" x="24" y="${(Y(lat) - 6).toFixed(1)}">${lat}°N</text>`; });
-    [75, 80].forEach((lon) => { const x = X(lon).toFixed(1); s += `<line class="gl" x1="${x}" y1="10" x2="${x}" y2="510"/><text class="gl-t" x="${(X(lon) + 6).toFixed(1)}" y="506">${lon}°E</text>`; });
+    const places = D.places || [], M = window.INDIA;
+    if (!places.length || !M) { $("#journey").hidden = true; return; }
+    const X = (lon) => (lon - M.lon0) * M.cosf * M.k + M.pad, Y = (lat) => (M.lat1 - lat) * M.k + M.pad;
+    const svg = $("#map");
+    svg.setAttribute("viewBox", `0 0 ${M.w} ${M.h}`);
+    let s = `<defs>
+      <pattern id="dotp" class="dotp" width="9" height="9" patternUnits="userSpaceOnUse"><circle cx="4.5" cy="4.5" r="1.35"/></pattern>
+      <linearGradient id="routeG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--blue)"/><stop offset="1" style="stop-color:var(--clay)"/></linearGradient>
+    </defs>
+    <path class="land" d="${M.d}"/><path class="land-dots" d="${M.d}"/><path class="land-edge" d="${M.d}"/>`;
     const pts = places.map((p) => ({ ...p, x: X(p.lon), y: Y(p.lat) }));
     if (pts.length >= 2) {
-      const [a, b] = pts, mx = (a.x + b.x) / 2 + 110, my = (a.y + b.y) / 2;
+      const [a, b] = pts, mx = (a.x + b.x) / 2 + 120, my = (a.y + b.y) / 2;
       const R = 6371, rad = (d) => (d * Math.PI) / 180;
       const h = Math.sin(rad(b.lat - a.lat) / 2) ** 2 + Math.cos(rad(a.lat)) * Math.cos(rad(b.lat)) * Math.sin(rad(b.lon - a.lon) / 2) ** 2;
       const km = Math.round((2 * R * Math.asin(Math.sqrt(h))) / 10) * 10;
       s += `<path class="route" d="M${a.x.toFixed(1)} ${a.y.toFixed(1)} Q${mx.toFixed(1)} ${my.toFixed(1)} ${b.x.toFixed(1)} ${b.y.toFixed(1)}"/>`;
-      s += `<text class="km" x="${((a.x + b.x) / 2 + 62).toFixed(1)}" y="${my.toFixed(1)}">≈ ${km.toLocaleString("en-IN")} km</text>`;
+      s += `<text class="km" x="${((a.x + b.x) / 2 + 70).toFixed(1)}" y="${my.toFixed(1)}">≈ ${km.toLocaleString("en-IN")} km</text>`;
     }
     pts.forEach((p, i) => {
       s += `<g class="pin" data-i="${i}" tabindex="0" role="button" aria-label="${esc(p.city)}, ${esc(p.state)}" transform="translate(${p.x.toFixed(1)} ${p.y.toFixed(1)})">
-        <circle class="halo" r="14"/><circle class="core" r="8"/>
-        <text x="-18" y="5" text-anchor="end">${esc(p.city)}</text><text class="st" x="-18" y="22" text-anchor="end">${esc(p.state)}</text></g>`;
+        <circle class="halo" r="14"/><circle class="core" r="7"/>
+        <text x="-16" y="5" text-anchor="end">${esc(p.city)}</text><text class="st" x="-16" y="21" text-anchor="end">${esc(p.state)}</text></g>`;
     });
-    $("#map").innerHTML = s;
+    svg.innerHTML = s;
     const pick = (i) => {
       $$("#map .pin").forEach((g) => g.classList.toggle("on", +g.dataset.i === i));
       const p = places[i];
@@ -281,6 +284,7 @@
     });
     pick(Math.max(0, places.findIndex((p) => p.city === "Hyderabad")));
   }
+
 
   // ---------- recruiter Q&A ----------
   function renderFaq() {
