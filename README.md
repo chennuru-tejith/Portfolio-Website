@@ -1,6 +1,6 @@
 # Chennuru Tejith: Portfolio
 
-An editorial portfolio (sapphire, royal blue, ice and ivory) split into five pages: Home, About, Work, Research and Contact (`#about`, `#work`…). Old links such as `#arenas` and `#ask` still land on the right section. There is also a recruiter résumé view (`?view=resume`), a press kit (`press.html`) and a plain text profile (`profile.html`).
+An editorial portfolio (deep midnight navy, soft cornflower and off-white; royal blue only on the main buttons) split into five pages: Home, About, Work, Research and Contact (`#about`, `#work`…). Old links such as `#arenas` and `#ask` still land on the right section. There is also a recruiter résumé view (`?view=resume`), a press kit (`press.html`) and a plain text profile (`profile.html`).
 
 ## Edit content
 Everything lives in `js/data.js`:

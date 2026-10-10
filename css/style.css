@@ -7,29 +7,29 @@
 /* Sapphire · royal blue · ice · ivory */
 :root,
 [data-theme="dark"] {
-  --bg: #071331;
-  --bg-1: #0b1a40;
-  --bg-2: #102352;
-  --surface: #0b1a40;
-  --ink: #f3f1ec;
-  --ink-2: #c3cde3;
-  --ink-3: #8e9cc0;
-  --ink-4: #8593b8;
-  --muted: #8e9cc0;
-  --acc: #7aa2ff;
-  --acc-hi: #b4cbff;
-  --acc-dim: rgba(122, 162, 255, 0.1);
-  --clay: #a9c4ff;
-  --ok: #7fd8ea;
+  --bg: #050b1a;
+  --bg-1: #0a1328;
+  --bg-2: #0f1b36;
+  --surface: #0a1328;
+  --ink: #e9edf5;
+  --ink-2: #b6c0d4;
+  --ink-3: #8693ad;
+  --ink-4: #7d8aa6;
+  --muted: #8693ad;
+  --acc: #94b4ff;
+  --acc-hi: #c2d4ff;
+  --acc-dim: rgba(148, 180, 255, 0.1);
+  --clay: #c9d6ee;
+  --ok: #86d4e6;
   --ok-l: rgba(127, 216, 234, 0.1);
-  --line: rgba(214, 226, 255, 0.09);
-  --line-2: rgba(214, 226, 255, 0.17);
-  --line-3: rgba(214, 226, 255, 0.32);
-  --btn: #f3f1ec;
-  --btn-ink: #071331;
-  --land: #0d1d47;
-  --dotc: rgba(214, 226, 255, 0.26);
-  --stripe: rgba(214, 226, 255, 0.022);
+  --line: rgba(148, 176, 245, 0.09);
+  --line-2: rgba(148, 176, 245, 0.17);
+  --line-3: rgba(148, 176, 245, 0.32);
+  --btn: #e9edf5;
+  --btn-ink: #050b1a;
+  --land: #0c1730;
+  --dotc: rgba(148, 176, 245, 0.26);
+  --stripe: rgba(148, 176, 245, 0.022);
   --grain: 0.06;
   --shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.75);
   /* legacy names used by scripts/markup */
@@ -742,12 +742,12 @@ body.resume-mode .hire { display: none !important; }
 .share-scrim { position: absolute; inset: 0; background: color-mix(in srgb, var(--bg) 75%, transparent); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); animation: fade 0.4s; }
 .share-card { position: relative; width: min(440px, 100%); animation: panelIn 0.6s cubic-bezier(.16, 1, .3, 1); }
 .share-x { position: absolute; top: -52px; right: 0; }
-.sc { padding: 34px 32px; background: #071331; color: #f3f1ec; border: 1px solid rgba(214, 226, 255, 0.2); }
+.sc { padding: 34px 32px; background: #050b1a; color: #e9edf5; border: 1px solid rgba(148, 176, 245, 0.2); }
 .sc .logo-svg { width: 40px; height: 40px; color: #f1ece3; }
 .sc h3 { font: 400 40px/1 "Libre Caslon Display", "Times New Roman", serif; margin: 22px 0 8px; letter-spacing: 0; }
-.sc p { margin: 0; font: 400 10px "Geist Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: #8e9cc0; }
-.sc-row { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: end; margin-top: 28px; padding-top: 22px; border-top: 1px solid rgba(214, 226, 255, 0.16); }
-.sc-row span { font-size: 13px; color: #c3cde3; line-height: 1.6; }
+.sc p { margin: 0; font: 400 10px "Geist Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: #8693ad; }
+.sc-row { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: end; margin-top: 28px; padding-top: 22px; border-top: 1px solid rgba(148, 176, 245, 0.16); }
+.sc-row span { font-size: 13px; color: #b6c0d4; line-height: 1.6; }
 .sc-qr { width: 112px; height: 112px; background: #f1ece3; padding: 8px; }
 .sc-qr svg { width: 100%; height: 100%; display: block; }
 .share-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; justify-content: center; }
@@ -816,7 +816,7 @@ body { background-color: var(--bg); }
 .crest-xl > span { font-size: 62px; margin-top: -10px; }
 .crest-xl::after { bottom: 26px; width: 34px; margin-left: -17px; height: 2px; }
 .logo .crest { margin-right: 4px; }
-.sc .crest { width: 52px; height: 52px; border-color: rgba(214, 226, 255, 0.45); }
+.sc .crest { width: 52px; height: 52px; border-color: rgba(148, 176, 245, 0.45); }
 .sc .crest > span { color: #f1ece3; font-size: 22px; }
 
 /* ink reveal on the name */
@@ -1052,7 +1052,7 @@ body { background-color: var(--bg); }
    intro, reading options
    ============================================================ */
 #story, #resume { zoom: var(--zoom, 1); }
-[data-contrast="high"] { --ink-2: #ece7de; --ink-3: #d6d0c6; --ink-4: #c4beb4; --line: rgba(214, 226, 255, 0.22); --line-2: rgba(214, 226, 255, 0.36); --line-3: rgba(214, 226, 255, 0.6); }
+[data-contrast="high"] { --ink-2: #ece7de; --ink-3: #d6d0c6; --ink-4: #c4beb4; --line: rgba(148, 176, 245, 0.22); --line-2: rgba(148, 176, 245, 0.36); --line-3: rgba(148, 176, 245, 0.6); }
 [data-theme="light"][data-contrast="high"] { --ink-2: #0a1a44; --ink-3: #2e2a24; --ink-4: #3a352d; --line: rgba(10, 26, 68, 0.24); --line-2: rgba(10, 26, 68, 0.4); --line-3: rgba(10, 26, 68, 0.65); }
 
 /* reading options */
@@ -1354,24 +1354,39 @@ body.touring .foot { padding-bottom: 150px; }
 .scrub .prog { margin-top: 34px; }
 
 /* ============================================================
-   Round 14: sapphire blue
+   Round 15: deep midnight navy
+   Dark-theme rules applied: a very dark desaturated base (not black),
+   depth from lighter surfaces, soft accent tones for text, and the
+   saturated brand blue kept for the main action only.
    ============================================================ */
-/* layered blue light: royal glow top right, deep indigo low left, sapphire pool in the middle */
+:root, [data-theme="dark"] {
+  --line: rgba(148, 176, 245, 0.10);
+  --line-2: rgba(148, 176, 245, 0.18);
+  --line-3: rgba(148, 176, 245, 0.32);
+  --dotc: rgba(148, 176, 245, 0.30);
+  --stripe: rgba(148, 176, 245, 0.022);
+  --brand: #3563e9;
+}
+[data-theme="light"] { --brand: #1d47c9; }
+/* quiet navy light, low saturation, so the page reads deep rather than bright */
 .backdrop { background:
-    radial-gradient(1100px 820px at 92% -14%, rgba(70, 120, 255, 0.22), transparent 62%),
-    radial-gradient(900px 700px at -12% 108%, rgba(64, 52, 190, 0.20), transparent 60%),
-    radial-gradient(1300px 900px at 35% 45%, rgba(26, 58, 156, 0.30), transparent 70%),
+    radial-gradient(1100px 800px at 90% -12%, rgba(53, 99, 233, 0.13), transparent 62%),
+    radial-gradient(900px 700px at -10% 108%, rgba(20, 43, 87, 0.55), transparent 62%),
+    radial-gradient(1300px 900px at 40% 40%, rgba(20, 43, 87, 0.35), transparent 72%),
     repeating-linear-gradient(90deg, var(--stripe) 0 1px, transparent 1px 34px),
-    var(--bg); }
+    var(--bg);
+  box-shadow: inset 0 0 300px rgba(0, 0, 0, 0.55); }
 [data-theme="light"] .backdrop { background:
-    radial-gradient(1100px 820px at 92% -14%, rgba(29, 71, 201, 0.10), transparent 62%),
-    radial-gradient(900px 700px at -12% 108%, rgba(64, 52, 190, 0.06), transparent 60%),
+    radial-gradient(1100px 800px at 90% -12%, rgba(29, 71, 201, 0.08), transparent 62%),
     repeating-linear-gradient(90deg, var(--stripe) 0 1px, transparent 1px 34px),
-    var(--bg); }
-/* the main call to action becomes solid royal blue */
-.btn-primary { background: linear-gradient(180deg, #4f7dff, #2f5fe8); color: #fff; box-shadow: 0 10px 30px -12px rgba(47, 95, 232, 0.7); }
-.btn-primary:hover { background: linear-gradient(180deg, #6690ff, #3b6bf0); color: #fff; }
-[data-theme="light"] .btn-primary { background: linear-gradient(180deg, #2a56d8, #1a3fb4); }
+    var(--bg); box-shadow: none; }
+/* the one saturated blue: the main call to action */
+.btn-primary { background: var(--brand); color: #fff; box-shadow: 0 10px 28px -14px rgba(53, 99, 233, 0.6); }
+.btn-primary:hover { background: #4a76f0; color: #fff; }
+[data-theme="light"] .btn-primary:hover { background: #2a56d8; }
 .hero h1.name .dot-c, .cta-card h2 .dot-c { color: var(--acc); }
 .kicker { color: var(--acc); }
-::selection { background: #4f7dff; color: #fff; }
+::selection { background: var(--brand); color: #fff; }
+/* raised surfaces are lighter navy, not shadows */
+.chat, .recon, .pit, .refreq, .gb-form, .proof.proof, .feat, .read-pop, .src-pop, .tour, .cite-card { background-color: var(--bg-1); }
+.bubble.ai, .slot:hover { background-color: var(--bg-2); }

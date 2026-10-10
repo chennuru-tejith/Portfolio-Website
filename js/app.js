@@ -30,7 +30,7 @@
     document.documentElement.dataset.theme = t;
     $("#themeBtn").innerHTML = I(t === "dark" ? "sun" : "moon", 17);
     $("#themeBtn").setAttribute("aria-label", t === "dark" ? "Switch to light mode" : "Switch to dark mode");
-    const tc = $('meta[name="theme-color"]'); if (tc) tc.content = t === "dark" ? "#071331" : "#f3f6fc";
+    const tc = $('meta[name="theme-color"]'); if (tc) tc.content = t === "dark" ? "#050b1a" : "#f3f6fc";
   }
 
   // ---------- views ----------
@@ -62,7 +62,7 @@
     return `<svg class="${cls}" viewBox="0 0 100 100" aria-hidden="true">
       <defs>
         <linearGradient id="${id}m" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4f7fd"/><stop offset=".45" stop-color="#b8c6e3"/><stop offset=".7" stop-color="#eef3fc"/><stop offset="1" stop-color="#8796bd"/></linearGradient>
-        <linearGradient id="${id}c" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${g.color}"/><stop offset="1" style="stop-color:color-mix(in srgb, ${g.color} 50%, #071331)"/></linearGradient>
+        <linearGradient id="${id}c" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${g.color}"/><stop offset="1" style="stop-color:color-mix(in srgb, ${g.color} 50%, #050b1a)"/></linearGradient>
         <linearGradient id="${id}h" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".45"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient>
       </defs>
       <polygon points="${hex(47)}" fill="url(#${id}m)"/>
@@ -671,17 +671,17 @@
   function saveCard(qr) {
     const W = 1080, H = 1350, c = document.createElement("canvas"); c.width = W; c.height = H;
     const x = c.getContext("2d");
-    x.fillStyle = "#071331"; x.fillRect(0, 0, W, H);
-    x.strokeStyle = "rgba(214, 226, 255,.22)"; x.strokeRect(40, 40, W - 80, H - 80);
+    x.fillStyle = "#050b1a"; x.fillRect(0, 0, W, H);
+    x.strokeStyle = "rgba(148, 176, 245,.22)"; x.strokeRect(40, 40, W - 80, H - 80);
     x.fillStyle = "#d69c77"; x.fillRect(100, 140, 90, 3);
     x.fillStyle = "#f1ece3"; x.font = "400 110px 'Instrument Serif', Georgia, serif"; x.fillText(D.profile.name.split(" ")[0], 96, 330); x.fillText(D.profile.name.split(" ").slice(1).join(" "), 96, 450);
-    x.fillStyle = "#7aa2ff"; x.font = "italic 400 52px 'Instrument Serif', Georgia, serif"; x.fillText("Finance · Operations · Leadership", 100, 560);
-    x.fillStyle = "#8e9cc0"; x.font = "400 30px 'Geist', sans-serif"; x.fillText("BBA + MBA, O.P. Jindal Global University", 100, 640); x.fillText(D.profile.email, 100, 690);
+    x.fillStyle = "#94b4ff"; x.font = "italic 400 52px 'Instrument Serif', Georgia, serif"; x.fillText("Finance · Operations · Leadership", 100, 560);
+    x.fillStyle = "#8693ad"; x.font = "400 30px 'Geist', sans-serif"; x.fillText("BBA + MBA, O.P. Jindal Global University", 100, 640); x.fillText(D.profile.email, 100, 690);
     const n = qr.getModuleCount(), size = 380, cell = size / n, ox = W - 100 - size, oy = H - 100 - size;
     x.fillStyle = "#f1ece3"; x.fillRect(ox - 20, oy - 20, size + 40, size + 40);
-    x.fillStyle = "#071331";
+    x.fillStyle = "#050b1a";
     for (let r = 0; r < n; r++) for (let k = 0; k < n; k++) if (qr.isDark(r, k)) x.fillRect(ox + k * cell, oy + r * cell, Math.ceil(cell), Math.ceil(cell));
-    x.fillStyle = "#8e9cc0"; x.font = "400 26px 'Geist Mono', monospace"; x.fillText("SCAN TO VIEW PORTFOLIO", 100, H - 110);
+    x.fillStyle = "#8693ad"; x.font = "400 26px 'Geist Mono', monospace"; x.fillText("SCAN TO VIEW PORTFOLIO", 100, H - 110);
     c.toBlob((b) => { const a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = "Chennuru-Tejith-card.png"; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); }, "image/png");
   }
   function wireShare() {
