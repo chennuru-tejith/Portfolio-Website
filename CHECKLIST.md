@@ -17,6 +17,10 @@ Tick items off as you send them. Each one is a single line in `js/data.js` (show
 - [ ] "Next badge" goal for each arena, all drafts (`gyms[].next`)
 
 ## Content to send
+- [ ] **Interview slots** each week, in IST (`interviewSlots`); past ones hide themselves
+- [ ] **LinkedIn posts**: your latest 1 to 3, with date, first lines and link (`linkedinPosts`)
+- [ ] **LinkedIn endorsements or comments** you have permission to quote (`endorsements`)
+- [ ] **Guestbook notes**: when one arrives by email and you approve it, paste it into `guestbook`
 - [ ] **GEO paper** progress: tell me when it moves to Draft, Review or Published, and send the final link or PDF (`geoStage`, `writing`)
 - [ ] **4 to 6 books** with one line each on what they changed for you (`books`)
 - [ ] **Referees** per arena: name, role, organisation and LinkedIn link (`gyms[].referee`)

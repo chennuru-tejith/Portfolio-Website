@@ -24,8 +24,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Instrument+Serif:ital@0;1&family=Mrs+Saint+Delafield&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-  <link rel="stylesheet" href="css/style.css?v=161" />
-  <script src="js/boot.js?v=161"></script>
+  <link rel="stylesheet" href="css/style.css?v=171" />
+  <script src="js/boot.js?v=171"></script>
 </head>
 <body>
   <div class="intro" id="intro" aria-hidden="true">
@@ -52,12 +52,15 @@
         <a href="#contact">Contact</a>
       </nav>
       <div class="nav-right">
-        <button class="icon-btn read-btn" id="readBtn" aria-expanded="false" aria-controls="readPop" aria-label="Reading options" title="Reading options">Aa</button>
+        <button class="icon-btn read-btn" id="readBtn" aria-expanded="false" aria-controls="readPop" aria-label="Reading and sound options" title="Reading and sound options">Aa</button>
         <div class="read-pop" id="readPop" hidden role="group" aria-label="Reading options">
           <p class="mono">Text size</p>
           <div class="seg" id="zoomSeg"><button data-zoom="1" aria-pressed="true">A</button><button data-zoom="1.12" aria-pressed="false">A+</button><button data-zoom="1.25" aria-pressed="false">A++</button></div>
           <p class="mono">Contrast</p>
           <div class="seg" id="contrastSeg"><button data-contrast="std" aria-pressed="true">Standard</button><button data-contrast="high" aria-pressed="false">High</button></div>
+          <p class="mono">Room tone</p>
+          <div class="seg" id="ambSeg"><button data-amb="off" aria-pressed="true">Off</button><button data-amb="on" aria-pressed="false">On</button></div>
+          <p class="read-note">A soft background hum, with a page-turn sound between pages.</p>
         </div>
         <button class="icon-btn" id="soundBtn" aria-pressed="false" aria-label="Turn interface sounds on" title="Interface sounds"></button>
         <button class="icon-btn" id="themeBtn" aria-label="Switch theme"></button>
@@ -300,6 +303,7 @@
         <ol class="baf-list" id="bafList"></ol>
       </div>
       <div class="notes" id="noteList"></div>
+      <div class="li-posts" id="liPosts"></div>
       <p class="press-line">Writing about me? The <a href="press.html">press kit</a> has two bios, the crest and a citation.</p>
     </section>
 
@@ -321,6 +325,11 @@
         <div class="msg-actions"><button class="btn btn-primary btn-sm" id="rqSend">Request a reference <span aria-hidden="true">→</span></button></div>
         <p class="msg-err" id="rqErr" hidden></p>
       </div>
+    </section>
+
+    <section class="sec wrap" id="endorse" data-page="about">
+      <header class="sec-head"><p class="kicker">From LinkedIn</p><h2>Endorsements and comments.</h2><p class="sub">Quoted with permission, each one linked so you can see it in place.</p></header>
+      <div id="endorseList"></div>
     </section>
 
     <section class="sec wrap cv-auto" id="honours" data-page="about">
@@ -397,6 +406,27 @@
           <button class="copy" data-hr><span>Summary for HR</span><span class="copy-tag">Copy</span></button>
           <button class="copy" data-vcard><span>Save to contacts</span><span class="copy-tag">.vcf</span></button>
         </div>
+      </div>
+    </section>
+
+    <section class="sec wrap" id="slots" data-page="contact">
+      <header class="sec-head"><p class="kicker">Interview times</p><h2>Pick a slot.</h2><p class="sub">My next free 30 minutes, shown in India time and yours. Choose one and it drafts the email for you.</p></header>
+      <div class="slot-grid" id="slotGrid"></div>
+    </section>
+
+    <section class="sec wrap" id="guestbook" data-page="contact">
+      <header class="sec-head"><p class="kicker">Guestbook</p><h2>Leave a line.</h2><p class="sub">Visited, worked with me, or just passing through? Notes come to me first and appear here once I approve them.</p></header>
+      <div class="gb">
+        <div class="gb-form">
+          <div class="refreq-grid">
+            <input id="gbName" aria-label="Your name" placeholder="Your name" autocomplete="name" />
+            <input id="gbOrg" aria-label="Organisation (optional)" placeholder="Organisation (optional)" autocomplete="organization" />
+          </div>
+          <input id="gbNote" class="gb-note" maxlength="140" aria-label="Your note, up to 140 characters" placeholder="One line, up to 140 characters" />
+          <div class="msg-actions"><button class="btn btn-primary btn-sm" id="gbSend">Send for approval <span aria-hidden="true">→</span></button><span class="gb-count mono" id="gbCount">0 / 140</span></div>
+          <p class="msg-err" id="gbErr" hidden></p>
+        </div>
+        <ul class="gb-list" id="gbList"></ul>
       </div>
     </section>
 
@@ -479,9 +509,9 @@
 
   <div class="toast" id="toast" role="status" hidden></div>
 
-  <script src="js/data.js?v=161"></script>
-  <script src="js/icons.js?v=161"></script>
-  <script src="js/india.js?v=161"></script>
-  <script src="js/app.js?v=161"></script>
+  <script src="js/data.js?v=171"></script>
+  <script src="js/icons.js?v=171"></script>
+  <script src="js/india.js?v=171"></script>
+  <script src="js/app.js?v=171"></script>
 </body>
 </html>

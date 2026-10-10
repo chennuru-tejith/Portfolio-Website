@@ -45,6 +45,7 @@ Chennuru Tejith is an integrated BBA (Hons.) + MBA student at O.P. Jindal Global
 - Oct 2026: Applied my paper's GEO Business Adoption Framework to the site
 - Oct 2026: Added a 60-second tour, a line-by-line reconciliation demo, a slider through the years, a proof wall, reading options and share cards for each page
 - Oct 2026: Added sources behind every headline number, reference requests, skills in progress, next badges and a pit-wall strategy call
+- Oct 2026: Added interview slots, a guestbook, LinkedIn posts and endorsements, and an optional room tone
 
 ## Elsewhere
 - [LinkedIn](https://www.linkedin.com/in/chennuru-tejith)

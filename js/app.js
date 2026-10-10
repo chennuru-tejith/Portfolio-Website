@@ -364,6 +364,7 @@
       const i = PAGES.indexOf(page), nx = PAGES[(i + 1) % PAGES.length];
       $("#nextPage").innerHTML = page === "home" ? "" : `<a href="#${nx}"><span class="mono">Next</span><b>${esc(PAGE_NAME[nx])}</b><span aria-hidden="true">→</span></a>`;
       if (animate && !still) { const m = $("#story"); m.classList.remove("page-in"); void m.offsetWidth; m.classList.add("page-in"); }
+      if (animate) pageTurn();
       reveal();
     }
     const target = id && !PAGES.includes(id) && id !== "top" ? document.getElementById(id) : null;
@@ -878,6 +879,105 @@
     io.observe(car);
   }
 
+  // ---------- endorsements from LinkedIn ----------
+  function renderEndorse() {
+    const e = D.endorsements || [], skills = D.profile.linkedin.replace(/\/$/, "") + "/details/skills/";
+    $("#endorseList").innerHTML = e.length
+      ? `<div class="ref-grid">${e.map((x) => `<figure class="ref rv"><span class="mono en-kind">${esc(x.kind || "Endorsement")}</span><blockquote>“${esc(x.quote)}”</blockquote>
+          <figcaption><span class="ref-init" aria-hidden="true">${esc(initials(x.name))}</span><span><b>${esc(x.name)}</b><small>${esc(x.role || "")}</small></span>${x.link ? `<a class="ref-verify" href="${esc(x.link)}" target="_blank" rel="noopener noreferrer">See on LinkedIn ↗</a>` : ""}</figcaption></figure>`).join("")}</div>`
+      : `<div class="empty rv"><span class="empty-ic">${I("linkedin", 22)}</span><div><h3>Skill endorsements live on LinkedIn.</h3><p>Quotes will appear here once the people who wrote them say yes. Until then, you can see every endorsement on my profile.</p></div>
+          <a class="btn btn-ghost btn-sm" href="${esc(skills)}" target="_blank" rel="noopener noreferrer">See endorsements ↗</a></div>`;
+  }
+
+  // ---------- recently on LinkedIn ----------
+  function renderPosts() {
+    const ps = (D.linkedinPosts || []).slice(0, 3);
+    $("#liPosts").innerHTML = `<h3 class="li-h">Recently on LinkedIn</h3>` + (ps.length
+      ? `<div class="li-grid">${ps.map((x) => `<a class="li-card rv" href="${esc(x.url)}" target="_blank" rel="noopener noreferrer"><span class="mono">${esc(x.date)}</span><p>${esc(x.text)}</p><span class="li-more">Read on LinkedIn ↗</span></a>`).join("")}</div>`
+      : `<p class="li-empty">I post about operations, research and what I'm building. <a href="${esc(D.profile.linkedin)}" target="_blank" rel="noopener noreferrer">Follow along on LinkedIn ↗</a></p>`);
+  }
+
+  // ---------- interview slots (IST, shown in the visitor's time too) ----------
+  function renderSlots() {
+    const now = Date.now(), here = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const ist = (d, o) => d.toLocaleString("en-GB", { timeZone: "Asia/Kolkata", ...o });
+    const mine = (d) => d.toLocaleTimeString("en-GB", { hour: "numeric", minute: "2-digit" });
+    const slots = (D.interviewSlots || []).flatMap((s) => s.times.map((t) => new Date(`${s.date}T${t}:00+05:30`))).filter((d) => !isNaN(d) && d > now).sort((a, b) => a - b).slice(0, 8);
+    if (!slots.length) {
+      $("#slotGrid").innerHTML = `<div class="slot-empty"><p>No slots listed this week. Suggest a time that suits you and I'll confirm within 48 hours.</p><button class="btn btn-ghost btn-sm" id="slotAsk">Suggest a time <span aria-hidden="true">→</span></button></div>`;
+      $("#slotAsk").addEventListener("click", () => { location.href = `mailto:${D.profile.email}?subject=${encodeURIComponent("Interview: suggesting a time")}&body=${encodeURIComponent("Hi Tejith,\n\nCould we speak for 30 minutes at one of these times?\n\n1.\n2.\n\nBest,")}`; });
+      return;
+    }
+    const sameZone = here === "Asia/Kolkata" || here === "Asia/Calcutta";
+    $("#slotGrid").innerHTML = slots.map((d) => {
+      const label = `${ist(d, { weekday: "short", day: "numeric", month: "short" })}, ${ist(d, { hour: "2-digit", minute: "2-digit", hour12: false })} IST`;
+      return `<button class="slot" data-slot="${esc(label)}"><b>${esc(ist(d, { weekday: "short", day: "numeric", month: "short" }))}</b><span>${esc(ist(d, { hour: "numeric", minute: "2-digit" }))} IST</span>${sameZone ? "" : `<small>${esc(mine(d))} your time</small>`}</button>`;
+    }).join("");
+    $$("#slotGrid .slot").forEach((b) => b.addEventListener("click", () => {
+      location.href = `mailto:${D.profile.email}?subject=${encodeURIComponent(`Interview: ${b.dataset.slot}`)}&body=${encodeURIComponent(`Hi Tejith,\n\nI'd like to take the ${b.dataset.slot} slot for a 30-minute conversation.\n\nName:\nCompany:\nRole:\n\nBest,`)}`;
+    }));
+  }
+
+  // ---------- guestbook (notes are emailed for approval) ----------
+  function renderGuestbook() {
+    const g = D.guestbook || [];
+    $("#gbList").innerHTML = g.length ? g.map((x) => `<li class="rv"><p>“${esc(x.note)}”</p><span><b>${esc(x.name)}</b>${x.org ? `, ${esc(x.org)}` : ""}${x.date ? ` · ${esc(x.date)}` : ""}</span></li>`).join("") : `<li class="gb-none">No notes yet. Be the first.</li>`;
+    const note = $("#gbNote"), err = $("#gbErr");
+    note.addEventListener("input", () => { $("#gbCount").textContent = `${note.value.length} / 140`; err.hidden = true; });
+    $("#gbSend").addEventListener("click", () => {
+      const name = $("#gbName").value.trim(), org = $("#gbOrg").value.trim(), text = note.value.trim();
+      if (!name || !text) { err.textContent = "Add your name and a line."; err.hidden = false; (name ? note : $("#gbName")).focus(); return; }
+      const body = [`Guestbook note for your portfolio:`, ``, `"${text}"`, ``, `Name: ${name}`, org ? `Organisation: ${org}` : "", ``, `I'm happy for this to appear on the site.`].filter((l, i, a) => l || a[i - 1] !== "").join("\n");
+      location.href = `mailto:${D.profile.email}?subject=${encodeURIComponent(`Guestbook: ${name}`)}&body=${encodeURIComponent(body)}`;
+    });
+  }
+
+  // ---------- room tone + page-turn sound (off by default) ----------
+  let amb = null;
+  function noiseBuffer(ctx, secs, brown) {
+    const b = ctx.createBuffer(1, ctx.sampleRate * secs, ctx.sampleRate), d = b.getChannelData(0);
+    let last = 0;
+    for (let i = 0; i < d.length; i++) { const w = Math.random() * 2 - 1; if (brown) { last = (last + 0.02 * w) / 1.02; d[i] = last * 3.5; } else d[i] = w; }
+    return b;
+  }
+  function ambStart() {
+    try {
+      actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+      if (actx.state === "suspended") actx.resume();
+      if (amb) return;
+      const src = actx.createBufferSource(), lp = actx.createBiquadFilter(), g = actx.createGain(), lfo = actx.createOscillator(), lg = actx.createGain();
+      src.buffer = noiseBuffer(actx, 4, true); src.loop = true;
+      lp.type = "lowpass"; lp.frequency.value = 420;
+      g.gain.value = 0; g.gain.linearRampToValueAtTime(0.05, actx.currentTime + 2);
+      lfo.frequency.value = 0.07; lg.gain.value = 0.012; lfo.connect(lg).connect(g.gain);
+      src.connect(lp).connect(g).connect(actx.destination); src.start(); lfo.start();
+      amb = { src, g, lfo };
+    } catch (e) {}
+  }
+  function ambStop() {
+    if (!amb) return;
+    const a = amb; amb = null;
+    try { a.g.gain.cancelScheduledValues(actx.currentTime); a.g.gain.setTargetAtTime(0, actx.currentTime, 0.4); setTimeout(() => { a.src.stop(); a.lfo.stop(); }, 1500); } catch (e) {}
+  }
+  function pageTurn() {
+    if (!state.ambient || !actx) return;
+    try {
+      const t = actx.currentTime, src = actx.createBufferSource(), bp = actx.createBiquadFilter(), g = actx.createGain();
+      src.buffer = noiseBuffer(actx, 0.3, false);
+      bp.type = "bandpass"; bp.frequency.setValueAtTime(2400, t); bp.frequency.exponentialRampToValueAtTime(900, t + 0.25); bp.Q.value = 0.8;
+      g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.06, t + 0.03); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.28);
+      src.connect(bp).connect(g).connect(actx.destination); src.start(t); src.stop(t + 0.3);
+    } catch (e) {}
+  }
+  function wireAmbient() {
+    const paint = () => $$("#ambSeg button").forEach((b) => b.setAttribute("aria-pressed", String((b.dataset.amb === "on") === !!state.ambient)));
+    $$("#ambSeg button").forEach((b) => b.addEventListener("click", () => { state.ambient = b.dataset.amb === "on"; save(); paint(); state.ambient ? ambStart() : ambStop(); }));
+    paint();
+    // browsers only allow sound after a click or key press, so a saved "on" waits for the first one
+    if (state.ambient) { const go = () => { ambStart(); removeEventListener("pointerdown", go); removeEventListener("keydown", go); }; addEventListener("pointerdown", go); addEventListener("keydown", go); }
+    document.addEventListener("visibilitychange", () => { if (!actx) return; document.hidden ? actx.suspend() : state.ambient && actx.resume(); });
+  }
+
   // ---------- source popovers on the headline numbers ----------
   function wireSources() {
     const closeAll = (except) => $$(".src-pop").forEach((p) => { if (p !== except) { p.hidden = true; const b = p.previousElementSibling; if (b) b.setAttribute("aria-expanded", "false"); } });
@@ -1094,7 +1194,7 @@
   // ---------- boot ----------
   applyTheme(state.theme);
   $("#year").textContent = new Date().getFullYear();
-  renderDisciplines(); renderSections(); renderProgress(); renderAvail(); renderMap(); renderFaq(); renderExtras(); renderResume(); renderHeroExtras(); renderAsk(); renderChangelog(); geoBadge(); renderRecon(); renderScrub(); wireSources(); renderBuilding(); renderRefReq(); renderPit(); wireTour(); wireReading(); intro(); renderContact(); wireShare(); renderThinking(); renderBaf(); badgeCase(); docsActions(); soundToggle(); voice(); signature(); season(); carDraw();
+  renderDisciplines(); renderSections(); renderProgress(); renderAvail(); renderMap(); renderFaq(); renderExtras(); renderResume(); renderHeroExtras(); renderAsk(); renderChangelog(); geoBadge(); renderRecon(); renderScrub(); wireSources(); renderBuilding(); renderRefReq(); renderPit(); renderEndorse(); renderPosts(); renderSlots(); renderGuestbook(); wireAmbient(); wireTour(); wireReading(); intro(); renderContact(); wireShare(); renderThinking(); renderBaf(); badgeCase(); docsActions(); soundToggle(); voice(); signature(); season(); carDraw();
   clock(); cursor(); motion(); countUps(); scrollStory(); mapReveal(); hireTab(); hiddenDetails(); views(); reveal();
 
   document.addEventListener("click", (e) => {

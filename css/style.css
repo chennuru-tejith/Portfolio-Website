@@ -1232,3 +1232,53 @@ body.touring .foot { padding-bottom: 150px; }
 .pit-out .mono { display: block; margin-bottom: 6px; font-size: 10px; color: var(--clay); }
 .pit-out .pit-why { padding-left: 16px; border-left: 2px solid var(--acc); color: var(--ink); }
 @media (max-width: 720px) { .pit { padding: 20px 16px; } .pit-data { grid-template-columns: 1fr 1fr; } }
+
+
+/* ============================================================
+   Round 9: endorsements, LinkedIn posts, interview slots,
+   guestbook, room tone
+   ============================================================ */
+.read-note { margin: 10px 0 0; font-size: 12px; line-height: 1.45; color: var(--ink-4); }
+.en-kind { display: block; margin-bottom: 12px; font-size: 9.5px; color: var(--clay); }
+
+/* LinkedIn posts */
+.li-posts { margin-top: 60px; }
+.li-h { margin: 0 0 18px; font: 400 26px/1.1 "Libre Caslon Display", "Times New Roman", serif; }
+.li-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.li-card { display: flex; flex-direction: column; gap: 12px; padding: 22px; border: 1px solid var(--line-2); text-decoration: none; transition: border-color 0.3s, background 0.3s; }
+.li-card:hover { border-color: var(--line-3); background: var(--acc-dim); }
+.li-card .mono { font-size: 9.5px; color: var(--clay); }
+.li-card p { margin: 0; flex: 1; color: var(--ink-2); font-size: 15px; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+.li-more { font: 400 10px "Geist Mono", monospace; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); }
+.li-empty { margin: 0; color: var(--ink-3); font-size: 15px; padding: 20px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.li-empty a { color: var(--ink); }
+@media (max-width: 1100px) { .li-grid { grid-template-columns: 1fr; } }
+
+/* interview slots */
+.slot-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; max-width: 980px; }
+.slot { display: grid; gap: 4px; padding: 18px; text-align: left; border: 1px solid var(--line-2); transition: border-color 0.3s, background 0.3s; }
+.slot:hover { border-color: var(--acc); background: var(--acc-dim); }
+.slot b { font: 400 22px/1.1 "Libre Caslon Display", "Times New Roman", serif; }
+.slot span { color: var(--ink); font-size: 15px; }
+.slot small { font: 400 9.5px "Geist Mono", monospace; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-4); }
+.slot-empty { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; padding: 24px 0; border-top: 1px solid var(--line-2); border-bottom: 1px solid var(--line); }
+.slot-empty p { margin: 0; color: var(--ink-2); max-width: 560px; }
+@media (max-width: 1100px) { .slot-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* guestbook */
+.gb { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 1100px; align-items: start; }
+.gb-form { padding: 26px; border: 1px solid var(--line-2); }
+.gb-form input { height: 50px; padding: 0 16px; background: transparent; border: 1px solid var(--line-3); border-radius: 2px; color: var(--ink); font: 400 15px "Libre Caslon Text", "Times New Roman", serif; min-width: 0; width: 100%; }
+.gb-form input:focus { outline: none; border-color: var(--acc); }
+.gb-form input::placeholder { color: var(--ink-4); }
+.gb-note { margin-bottom: 14px; }
+.gb-count { margin-left: auto; font-size: 10px; color: var(--ink-4); }
+.gb-form .msg-actions { display: flex; align-items: center; gap: 12px; }
+.gb-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line-2); }
+.gb-list li { padding: 20px 0; border-bottom: 1px solid var(--line); }
+.gb-list p { margin: 0 0 8px; font: italic 400 20px/1.35 "Instrument Serif", Georgia, serif; color: var(--ink); }
+.gb-list span { font-size: 13px; color: var(--ink-3); }
+.gb-list b { font-weight: 400; color: var(--ink-2); }
+.gb-list .gb-none { color: var(--ink-4); font-size: 15px; }
+@media (max-width: 1100px) { .gb { grid-template-columns: 1fr; gap: 28px; } }
+@media (max-width: 720px) { .gb-form { padding: 20px 16px; } }

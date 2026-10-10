@@ -393,6 +393,22 @@ window.PORTFOLIO = {
     { skill: "Financial modelling", detail: "Building a full three-statement model from a listed company's annual report.", stage: "Next" },
   ],
 
+  // ---------- LinkedIn endorsements and comments, quoted with permission ----------
+  // { quote: "What they wrote", name: "Full Name", role: "Role, Organisation", kind: "Endorsement" or "Comment", link: "https://www.linkedin.com/..." }
+  endorsements: [],
+
+  // ---------- Guestbook: notes visitors send you by email. Paste the ones you approve here ----------
+  // { name: "Their name", org: "Organisation (optional)", note: "Their one line", date: "Oct 2026" }
+  guestbook: [],
+
+  // ---------- Recently on LinkedIn: your latest posts, updated by hand (newest first, up to 3 shown) ----------
+  // { date: "Oct 2026", text: "First line or two of the post", url: "https://www.linkedin.com/posts/..." }
+  linkedinPosts: [],
+
+  // ---------- Interview slots, in India time (IST). Update weekly; past slots hide themselves ----------
+  // { date: "2026-10-14", times: ["10:00", "16:30"] }
+  interviewSlots: [],
+
   // ---------- Bios for the press kit and llms.txt (about 25 and 100 words) ----------
   bios: {
     short: "Chennuru Tejith is a BBA + MBA student at O.P. Jindal Global University with internships in operations, project management and finance, now writing a research paper on GEO.",
@@ -401,7 +417,7 @@ window.PORTFOLIO = {
 
   // ---------- Change log (newest first). Add a line whenever the site or your work changes ----------
   changelog: [
-    { month: "Oct 2026", items: ["Site split into separate pages: Work, Arenas, Research, About, Ask and Contact", "Added an Ask page that answers questions about me from this site", "Added a press kit, a citation for the GEO paper and this change log", "Applied my paper's GEO Business Adoption Framework to the site", "Added a 60-second tour, a line-by-line reconciliation demo, a slider through the years, a proof wall, reading options and share cards for each page", "Added sources behind every headline number, reference requests, skills in progress, next badges and a pit-wall strategy call"] },
+    { month: "Oct 2026", items: ["Site split into separate pages: Work, Arenas, Research, About, Ask and Contact", "Added an Ask page that answers questions about me from this site", "Added a press kit, a citation for the GEO paper and this change log", "Applied my paper's GEO Business Adoption Framework to the site", "Added a 60-second tour, a line-by-line reconciliation demo, a slider through the years, a proof wall, reading options and share cards for each page", "Added sources behind every headline number, reference requests, skills in progress, next badges and a pit-wall strategy call", "Added interview slots, a guestbook, LinkedIn posts and endorsements, and an optional room tone"] },
   ],
 
 
