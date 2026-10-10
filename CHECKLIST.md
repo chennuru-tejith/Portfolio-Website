@@ -13,6 +13,8 @@ Tick items off as you send them. Each one is a single line in `js/data.js` (show
 - [ ] "What 23 site visits taught me about reports" field note (`notes`)
 - [ ] Case-study takeaways for Dr. Reddy's and Ion Exchange (`cases`)
 - [ ] Recruiter Q&A answers (`faq`)
+- [ ] "Building now" skills: only the GEO paper is from you; the other two are drafts (`buildingNow`)
+- [ ] "Next badge" goal for each arena, all drafts (`gyms[].next`)
 
 ## Content to send
 - [ ] **GEO paper** progress: tell me when it moves to Draft, Review or Published, and send the final link or PDF (`geoStage`, `writing`)

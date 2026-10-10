@@ -1166,3 +1166,69 @@ body.touring .foot { padding-bottom: 150px; }
 .lb figcaption { margin-top: 12px; color: var(--ink-2); font-size: 14px; text-align: center; }
 @media (max-width: 1100px) { .honour-list.honour-list { grid-template-columns: 1fr; } }
 @media print { .tour, .intro, .read-pop { display: none !important; } }
+
+
+/* ============================================================
+   Round 8: sources, reference requests, building now,
+   next badges, pit wall
+   ============================================================ */
+/* sources on the headline numbers */
+.src-btn { position: absolute; top: 16px; right: 18px; font: 400 9.5px "Geist Mono", monospace; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ok); opacity: 0.8; transition: opacity 0.3s; }
+.metric:first-child .src-btn { right: 18px; }
+.src-btn:hover, .src-btn[aria-expanded="true"] { opacity: 1; }
+.src-pop { position: absolute; top: 40px; right: 10px; z-index: 20; width: min(250px, 90vw); padding: 14px 16px; background: var(--bg-1); border: 1px solid var(--line-2); box-shadow: var(--shadow); text-align: left; }
+.src-pop .mono { font-size: 9.5px; margin: 0 0 8px; }
+.src-pop ul { list-style: none; margin: 0; padding: 0; }
+.src-pop li + li { margin-top: 6px; }
+.src-pop a { color: var(--ink); font-size: 14px; text-decoration: none; border-bottom: 1px solid var(--line-3); }
+.src-pop a:hover { border-color: var(--acc); }
+.src-pop p:not(.mono) { margin: 10px 0 0; font-size: 13px; color: var(--ink-3); }
+.metric .src-pop span { all: unset; }
+
+/* arena: next badge */
+.next-badge { display: grid; grid-template-columns: 54px 1fr auto; gap: 16px; align-items: center; padding: 16px 0; border-top: 1px solid var(--line); }
+.next-badge svg.emb { width: 54px; height: 54px; filter: grayscale(1); opacity: 0.45; }
+.next-badge .mono { font-size: 9.5px; color: var(--clay); }
+.next-badge p { margin: 4px 0 0; font-size: 14.5px; color: var(--ink-2); }
+.nb-tag { font: 400 9.5px "Geist Mono", monospace; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-4); border: 1px dashed var(--line-3); padding: 6px 9px; white-space: nowrap; }
+.referee a { color: var(--ink); }
+
+/* building now */
+.build-list { list-style: none; margin: 0; padding: 0; max-width: 980px; border-top: 1px solid var(--line-2); }
+.build-list li { display: grid; grid-template-columns: 60px 1fr auto; gap: 20px; align-items: baseline; padding: 24px 0; border-bottom: 1px solid var(--line); }
+.bl-no { font: 400 11px "Geist Mono", monospace; letter-spacing: 0.2em; color: var(--clay); }
+.build-list b { font: 400 26px/1.15 "Libre Caslon Display", "Times New Roman", serif; }
+.build-list p { margin: 6px 0 0; color: var(--ink-2); font-size: 15px; }
+.bl-st { font: 400 9.5px "Geist Mono", monospace; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-4); border: 1px solid var(--line-2); padding: 6px 10px; }
+.bl-st.on { color: var(--ok); border-color: color-mix(in srgb, var(--ok) 40%, transparent); }
+@media (max-width: 720px) { .build-list li { grid-template-columns: 40px 1fr; } .bl-st { grid-column: 2; justify-self: start; } }
+
+/* reference request */
+.refreq { margin-top: 40px; padding: 28px; border: 1px solid var(--line-2); max-width: 980px; }
+.refreq-head h3 { font: 400 28px/1.1 "Libre Caslon Display", "Times New Roman", serif; }
+.refreq-head p { margin: 8px 0 20px; color: var(--ink-3); font-size: 15px; }
+.refreq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+.refreq input, .refreq select { height: 50px; padding: 0 16px; background: transparent; border: 1px solid var(--line-3); border-radius: 2px; color: var(--ink); font: 400 15px "Libre Caslon Text", "Times New Roman", serif; min-width: 0; }
+.refreq select option { background: var(--bg-1); color: var(--ink); }
+.refreq input:focus, .refreq select:focus { outline: none; border-color: var(--acc); }
+.refreq input::placeholder { color: var(--ink-4); }
+@media (max-width: 720px) { .refreq { padding: 20px 16px; } .refreq-grid { grid-template-columns: 1fr; } }
+
+/* pit wall */
+.pit { margin-top: 34px; padding: 30px; border: 1px solid var(--line-2); background: color-mix(in srgb, var(--bg-1) 60%, transparent); }
+.pit-head .kicker { margin-bottom: 14px; }
+.pit-head h3 { font: 400 clamp(28px, 3vw, 38px)/1.1 "Libre Caslon Display", "Times New Roman", serif; }
+.pit-head p { margin: 8px 0 22px; color: var(--ink-3); font-size: 15px; }
+.pit-data { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0 0 22px; border-top: 1px solid var(--line); }
+.pit-data div { padding: 14px 14px 14px 0; border-bottom: 1px solid var(--line); }
+.pit-data dt { font: 400 9.5px "Geist Mono", monospace; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-4); }
+.pit-data dd { margin: 4px 0 0; font-size: 15px; color: var(--ink); }
+.pit-opts { display: flex; flex-wrap: wrap; gap: 10px; }
+.pit-opts button { padding: 12px 18px; border: 1px solid var(--line-3); font: 400 11px "Geist Mono", monospace; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2); transition: border-color 0.3s, background 0.3s, color 0.3s; }
+.pit-opts button:hover { border-color: var(--ink); color: var(--ink); }
+.pit-opts button[aria-pressed="true"] { background: var(--btn); color: var(--btn-ink); border-color: var(--btn); }
+.pit-opts button.mine:not([aria-pressed="true"]) { border-color: var(--acc); color: var(--acc); }
+.pit-out p { margin: 20px 0 0; color: var(--ink-2); font-size: 15.5px; max-width: 760px; }
+.pit-out .mono { display: block; margin-bottom: 6px; font-size: 10px; color: var(--clay); }
+.pit-out .pit-why { padding-left: 16px; border-left: 2px solid var(--acc); color: var(--ink); }
+@media (max-width: 720px) { .pit { padding: 20px 16px; } .pit-data { grid-template-columns: 1fr 1fr; } }

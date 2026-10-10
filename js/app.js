@@ -118,7 +118,8 @@
           <div class="ev"><div class="ev-top"><div><h5>${esc(b.role)}</h5><span class="org">${esc(b.org)}</span></div><span class="when">${esc(b.when)}</span></div>
           ${b.points && b.points.length ? `<ul>${b.points.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}</div>`).join("")}</div>
         <div><h4>Skills</h4><div class="chips">${g.moves.map((m) => `<span class="chip">${esc(m)}</span>`).join("")}</div></div>
-        <div class="referee">${I("star", 16)}${g.referee ? `<span>Referee: <b>${esc(g.referee.name)}</b>, ${esc(g.referee.role)}${g.referee.link ? ` · <a href="${esc(g.referee.link)}" target="_blank" rel="noopener noreferrer">Verify ↗</a>` : ""}</span>` : `<span>Referee details shared on request.</span>`}</div>
+        <div class="referee">${I("star", 16)}${g.referee ? `<span>Referee: <b>${esc(g.referee.name)}</b>, ${esc(g.referee.role)}${g.referee.link ? ` · <a href="${esc(g.referee.link)}" target="_blank" rel="noopener noreferrer">Verify ↗</a>` : ""}</span>` : `<span>Referee details on request. <a href="#refreq" data-ref-arena="${esc(g.id)}">Ask for a reference →</a></span>`}</div>
+        ${g.next ? `<div class="next-badge">${emblem(g, "emb locked")}<div><span class="mono">Next badge</span><p>${esc(g.next)}</p></div><span class="nb-tag">In progress</span></div>` : ""}
       </div>`;
     if (anim && !still) { p.classList.remove("panel-anim"); void p.offsetWidth; p.classList.add("panel-anim"); }
   }
@@ -137,7 +138,9 @@
 
   function renderSections() {
     $("#cvHero").href = D.profile.cv;
-    $("#stats").innerHTML = D.profile.stats.map((s) => `<div class="metric" tabindex="0"><b data-v="${esc(s.value)}">${esc(s.value)}</b><span>${esc(s.label)}</span>${s.story ? `<span class="story">${esc(s.story)}</span>` : ""}</div>`).join("");
+    const SRC = { cv: ["CV (PDF)", D.profile.cv], linkedin: ["LinkedIn: Experience", D.profile.linkedin.replace(/\/$/, "") + "/details/experience/"] };
+    $("#stats").innerHTML = D.profile.stats.map((s, i) => `<div class="metric" tabindex="0"><b data-v="${esc(s.value)}">${esc(s.value)}</b><span>${esc(s.label)}</span>${s.story ? `<span class="story">${esc(s.story)}</span>` : ""}
+      ${s.sources ? `<button class="src-btn" aria-expanded="false" aria-controls="src${i}" title="Where this number comes from">✓ Source</button><div class="src-pop" id="src${i}" hidden><p class="mono">Where this comes from</p><ul>${s.sources.map((k) => SRC[k] ? `<li><a href="${esc(SRC[k][1])}" target="_blank" rel="noopener noreferrer">${esc(SRC[k][0])} ↗</a></li>` : "").join("")}</ul>${s.note ? `<p>${esc(s.note)}</p>` : ""}</div>` : ""}</div>`).join("");
     $("#principleList").innerHTML = D.principles.map((p, i) => `
       <article class="principle rv"><span class="pr-no">${pad(i + 1)}</span><h3>${esc(p.title)}</h3><p class="pr-text">${esc(p.text)}</p>
       <span class="pr-where">${esc(p.where)}</span></article>`).join("");
@@ -875,6 +878,60 @@
     io.observe(car);
   }
 
+  // ---------- source popovers on the headline numbers ----------
+  function wireSources() {
+    const closeAll = (except) => $$(".src-pop").forEach((p) => { if (p !== except) { p.hidden = true; const b = p.previousElementSibling; if (b) b.setAttribute("aria-expanded", "false"); } });
+    document.addEventListener("click", (e) => {
+      const b = e.target.closest(".src-btn");
+      if (b) { const p = b.nextElementSibling; closeAll(p); p.hidden = !p.hidden; b.setAttribute("aria-expanded", String(!p.hidden)); return; }
+      if (!e.target.closest(".src-pop")) closeAll();
+    });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeAll(); });
+  }
+
+  // ---------- building now ----------
+  function renderBuilding() {
+    const b = D.buildingNow || []; if (!b.length) { $("#building").hidden = true; return; }
+    $("#buildList").innerHTML = b.map((x, i) => `<li class="rv"><span class="bl-no">${pad(i + 1)}</span><div><b>${esc(x.skill)}</b><p>${esc(x.detail)}</p></div><span class="bl-st ${x.stage === "In progress" ? "on" : ""}">${esc(x.stage)}</span></li>`).join("");
+  }
+
+  // ---------- ask for a reference (comes to Tejith first) ----------
+  function renderRefReq() {
+    $("#rqArena").innerHTML = `<option value="">Area the reference should cover</option>` + G.map((g) => `<option value="${esc(g.id)}">${esc(g.domain)}</option>`).join("") + `<option value="general">General character reference</option>`;
+    const err = $("#rqErr");
+    $("#rqSend").addEventListener("click", () => {
+      const name = $("#rqName").value.trim(), org = $("#rqOrg").value.trim(), role = $("#rqRole").value.trim(), sel = $("#rqArena");
+      if (!name || !org) { err.textContent = "Add your name and company."; err.hidden = false; (name ? $("#rqOrg") : $("#rqName")).focus(); return; }
+      err.hidden = true;
+      const area = sel.value ? sel.options[sel.selectedIndex].text : "Any area";
+      const body = [`Hi Tejith,`, ``, `I'd like a reference for you.`, ``, `Name: ${name}`, `Company: ${org}`, `Role I'm hiring for: ${role || "(not given)"}`, `Area: ${area}`, ``, `Best,`, name].join("\n");
+      location.href = `mailto:${D.profile.email}?subject=${encodeURIComponent(`Reference request: ${org}`)}&body=${encodeURIComponent(body)}`;
+    });
+    document.addEventListener("click", (e) => { const a = e.target.closest("[data-ref-arena]"); if (a) setTimeout(() => { $("#rqArena").value = a.dataset.refArena; $("#rqName").focus({ preventScroll: true }); }, 400); });
+  }
+
+  // ---------- pit wall: a small strategy call ----------
+  const PIT = {
+    data: [["Lap", "34 of 57"], ["Position", "P4"], ["Tyres", "Mediums, 24 laps old"], ["Wear", "+0.15 s slower every lap"], ["Fresh hards", "about 1 s a lap quicker"], ["Pit stop costs", "21 s"], ["Gap to car behind", "19 s"], ["Rain", "40% chance in 10 laps"]],
+    opts: [
+      ["stay", "Stay out to the flag", "23 more laps on worn mediums. Wear adds 0.15 s a lap, every lap, which adds up to roughly 40 s by the flag: about twice what a stop costs. You'd likely lose the place anyway, late in the race."],
+      ["now", "Box now for hards", "The stop costs 21 s against a 19 s gap, so you rejoin about 2 s behind. On tyres a second a lap quicker, you're back ahead within three laps. If the rain does come, it costs a second stop, but you're covered either way."],
+      ["wait", "Wait for the rain", "Five more laps on old tyres costs time and shrinks the gap. If it rains (40%), one stop for intermediates wins big. If it doesn't (60%), the gap is gone and the stop now costs you a place."],
+    ],
+    mine: "now",
+    why: "My call: box now. The numbers say the worn tyre costs more than the stop, and a plan that works whatever the weather beats one that needs a 40% chance. It's the same rule I used on site: decide on the figures you have, not the ones you hope for.",
+  };
+  function renderPit() {
+    if (!D.offClock) return;
+    $("#pitData").innerHTML = PIT.data.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("");
+    $("#pitOpts").innerHTML = PIT.opts.map(([id, label]) => `<button data-pit="${id}" aria-pressed="false">${esc(label)}</button>`).join("");
+    $$("#pitOpts button").forEach((b) => b.addEventListener("click", () => {
+      $$("#pitOpts button").forEach((x) => { x.setAttribute("aria-pressed", String(x === b)); x.classList.toggle("mine", x.dataset.pit === PIT.mine); });
+      const o = PIT.opts.find((x) => x[0] === b.dataset.pit);
+      $("#pitOut").innerHTML = `<p><span class="mono">${b.dataset.pit === PIT.mine ? "Same call as mine" : "Your call"}</span>${esc(o[2])}</p><p class="pit-why">${esc(PIT.why)}</p>`;
+    }));
+  }
+
   // ---------- 60-second tour ----------
   const TOUR = [
     ["top", "Chennuru Tejith: BBA + MBA at O.P. Jindal Global University, working across finance, operations and leadership."],
@@ -1037,7 +1094,7 @@
   // ---------- boot ----------
   applyTheme(state.theme);
   $("#year").textContent = new Date().getFullYear();
-  renderDisciplines(); renderSections(); renderProgress(); renderAvail(); renderMap(); renderFaq(); renderExtras(); renderResume(); renderHeroExtras(); renderAsk(); renderChangelog(); geoBadge(); renderRecon(); renderScrub(); wireTour(); wireReading(); intro(); renderContact(); wireShare(); renderThinking(); renderBaf(); badgeCase(); docsActions(); soundToggle(); voice(); signature(); season(); carDraw();
+  renderDisciplines(); renderSections(); renderProgress(); renderAvail(); renderMap(); renderFaq(); renderExtras(); renderResume(); renderHeroExtras(); renderAsk(); renderChangelog(); geoBadge(); renderRecon(); renderScrub(); wireSources(); renderBuilding(); renderRefReq(); renderPit(); wireTour(); wireReading(); intro(); renderContact(); wireShare(); renderThinking(); renderBaf(); badgeCase(); docsActions(); soundToggle(); voice(); signature(); season(); carDraw();
   clock(); cursor(); motion(); countUps(); scrollStory(); mapReveal(); hireTab(); hiddenDetails(); views(); reveal();
 
   document.addEventListener("click", (e) => {

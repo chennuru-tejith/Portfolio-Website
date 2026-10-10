@@ -24,8 +24,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Instrument+Serif:ital@0;1&family=Mrs+Saint+Delafield&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-  <link rel="stylesheet" href="css/style.css?v=151" />
-  <script src="js/boot.js?v=151"></script>
+  <link rel="stylesheet" href="css/style.css?v=161" />
+  <script src="js/boot.js?v=161"></script>
 </head>
 <body>
   <div class="intro" id="intro" aria-hidden="true">
@@ -199,6 +199,11 @@
     </section>
 
 
+    <section class="sec wrap" id="building" data-page="arenas">
+      <header class="sec-head"><p class="kicker">Building now</p><h2>What I'm working on next.</h2><p class="sub">The skills in progress, so you can see where the arenas are heading.</p></header>
+      <ol class="build-list" id="buildList"></ol>
+    </section>
+
     <section class="sec wrap" id="approach" data-page="arenas">
       <header class="sec-head">
         <p class="kicker">How I work</p>
@@ -305,6 +310,17 @@
         <p class="sub">Published with permission and linked to each author's profile so you can verify them.</p>
       </header>
       <div id="refList"></div>
+      <div class="refreq" id="refreq">
+        <div class="refreq-head"><h3>Ask for a reference</h3><p>Requests come to me first. I'll connect you with the right referee, usually within 48 hours.</p></div>
+        <div class="refreq-grid">
+          <input id="rqName" aria-label="Your name" placeholder="Your name" autocomplete="name" />
+          <input id="rqOrg" aria-label="Company" placeholder="Company" autocomplete="organization" />
+          <input id="rqRole" aria-label="Role you're hiring for" placeholder="Role you're hiring for" />
+          <select id="rqArena" aria-label="Area the reference should cover"></select>
+        </div>
+        <div class="msg-actions"><button class="btn btn-primary btn-sm" id="rqSend">Request a reference <span aria-hidden="true">→</span></button></div>
+        <p class="msg-err" id="rqErr" hidden></p>
+      </div>
     </section>
 
     <section class="sec wrap cv-auto" id="honours" data-page="about">
@@ -341,6 +357,12 @@
         <path pathLength="1" class="ground" d="M0 144 L620 144"/>
       </svg>
       <p><span class="mono">Off the clock</span><span id="offText"></span></p>
+      </div>
+      <div class="pit" id="pit">
+        <div class="pit-head"><p class="kicker">Pit wall</p><h3>Your call: stay out, or box?</h3><p>A made-up race, real trade-offs. Pick one, then see how I'd weigh it.</p></div>
+        <dl class="pit-data" id="pitData"></dl>
+        <div class="pit-opts" id="pitOpts" role="group" aria-label="Your decision"></div>
+        <div class="pit-out" id="pitOut" aria-live="polite"></div>
       </div>
     </section>
 
@@ -457,9 +479,9 @@
 
   <div class="toast" id="toast" role="status" hidden></div>
 
-  <script src="js/data.js?v=151"></script>
-  <script src="js/icons.js?v=151"></script>
-  <script src="js/india.js?v=151"></script>
-  <script src="js/app.js?v=151"></script>
+  <script src="js/data.js?v=161"></script>
+  <script src="js/icons.js?v=161"></script>
+  <script src="js/india.js?v=161"></script>
+  <script src="js/app.js?v=161"></script>
 </body>
 </html>

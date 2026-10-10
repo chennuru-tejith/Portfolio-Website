@@ -23,10 +23,10 @@ window.PORTFOLIO = {
     summary:
       "Business management student with hands-on experience in CSR operations, finance, and project management at a nonprofit trust and leading corporate organizations. Skilled in on-ground project monitoring, budget tracking, financial analysis, and stakeholder/sponsor reporting. Combines operational and analytical rigor with active leadership in institutional governance and student organizations.",
     stats: [
-      { label: "Internships", value: "3", story: "Round Table India, Dr. Reddy's and Ion Exchange, 2024 to 2026." },
-      { label: "CSR project monitored", value: "₹4 Cr", story: "Monitored on site across 23 visits in 7 weeks." },
-      { label: "Member club directed", value: "200+", story: "JGU Entrepreneurship Club, Feb to May 2026." },
-      { label: "CGPA", value: "7.9/8", story: "BBA + MBA, O.P. Jindal Global University." },
+      { label: "Internships", value: "3", story: "Round Table India, Dr. Reddy's and Ion Exchange, 2024 to 2026.", sources: ["cv", "linkedin"] },
+      { label: "CSR project monitored", value: "₹4 Cr", story: "Monitored on site across 23 visits in 7 weeks.", sources: ["cv", "linkedin"], note: "CSR sponsor: VST Industries Ltd." },
+      { label: "Member club directed", value: "200+", story: "JGU Entrepreneurship Club, Feb to May 2026.", sources: ["cv", "linkedin"] },
+      { label: "CGPA", value: "7.9/8", story: "BBA + MBA, O.P. Jindal Global University.", sources: ["cv"], note: "Transcript on request." },
     ],
     // The quote shown between the Gyms and the Journey. Wrap words in *stars* to set them in italic gold.
     quote: {
@@ -40,6 +40,7 @@ window.PORTFOLIO = {
   gyms: [
     {
       id: "ledger",
+      next: "Build a three-statement financial model from a listed company's annual report", // DRAFT next badge, edit freely
       name: "Ledger Gym",
       domain: "Finance & Analytics",
       type: "Finance",
@@ -70,6 +71,7 @@ window.PORTFOLIO = {
     },
     {
       id: "blueprint",
+      next: "Run a project end to end as the lead, not the monitor", // DRAFT next badge, edit freely
       name: "Blueprint Gym",
       domain: "Operations & Project Management",
       type: "Operations",
@@ -92,6 +94,7 @@ window.PORTFOLIO = {
     },
     {
       id: "summit",
+      next: "Lead a cross-club event at JGU from plan to wrap-up", // DRAFT next badge, edit freely
       name: "Summit Gym",
       domain: "Leadership & Governance",
       type: "Leadership",
@@ -128,6 +131,7 @@ window.PORTFOLIO = {
     },
     {
       id: "signal",
+      next: "Publish the GEO paper and present it to an audience", // DRAFT next badge, edit freely
       name: "Signal Gym",
       domain: "Marketing & Communication",
       type: "Comms",
@@ -152,6 +156,7 @@ window.PORTFOLIO = {
     },
     {
       id: "circuit",
+      next: "Ship the next version of Reachly to real users", // DRAFT next badge, edit freely
       name: "Circuit Gym",
       domain: "Tech & Automation",
       type: "Tech",
@@ -381,6 +386,13 @@ window.PORTFOLIO = {
   // },
   recommendations: [],
 
+  // ---------- Skills I'm building now (shown on the Arenas page). DRAFT except the GEO paper: please confirm or replace ----------
+  buildingNow: [
+    { skill: "Research writing", detail: "Writing the GEO paper as sole author, from research through to publication.", stage: "In progress" },
+    { skill: "Excel, the next level", detail: "Moving on from Excel Skills for Business: Intermediate I.", stage: "Next" },
+    { skill: "Financial modelling", detail: "Building a full three-statement model from a listed company's annual report.", stage: "Next" },
+  ],
+
   // ---------- Bios for the press kit and llms.txt (about 25 and 100 words) ----------
   bios: {
     short: "Chennuru Tejith is a BBA + MBA student at O.P. Jindal Global University with internships in operations, project management and finance, now writing a research paper on GEO.",
@@ -389,7 +401,7 @@ window.PORTFOLIO = {
 
   // ---------- Change log (newest first). Add a line whenever the site or your work changes ----------
   changelog: [
-    { month: "Oct 2026", items: ["Site split into separate pages: Work, Arenas, Research, About, Ask and Contact", "Added an Ask page that answers questions about me from this site", "Added a press kit, a citation for the GEO paper and this change log", "Applied my paper's GEO Business Adoption Framework to the site", "Added a 60-second tour, a line-by-line reconciliation demo, a slider through the years, a proof wall, reading options and share cards for each page"] },
+    { month: "Oct 2026", items: ["Site split into separate pages: Work, Arenas, Research, About, Ask and Contact", "Added an Ask page that answers questions about me from this site", "Added a press kit, a citation for the GEO paper and this change log", "Applied my paper's GEO Business Adoption Framework to the site", "Added a 60-second tour, a line-by-line reconciliation demo, a slider through the years, a proof wall, reading options and share cards for each page", "Added sources behind every headline number, reference requests, skills in progress, next badges and a pit-wall strategy call"] },
   ],
 
 
