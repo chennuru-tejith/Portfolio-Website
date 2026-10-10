@@ -7,17 +7,15 @@ serif = lambda s: ImageFont.truetype(F + "georgia.ttf", s)
 italic = lambda s: ImageFont.truetype(F + "georgiai.ttf", s)
 mono = lambda s: ImageFont.truetype(F + "consola.ttf", s)
 
-BG, INK, INK2, INK3 = (12, 13, 17), (242, 237, 228), (201, 196, 187), (141, 136, 127)
-ACC, CLAY = (217, 191, 143), (219, 165, 149)
+BG, INK, INK2, INK3 = (10, 17, 14), (242, 237, 226), (198, 200, 188), (139, 145, 133)
+ACC, CLAY = (207, 171, 99), (212, 144, 108)
 
 PAGES = {
     "og": ("PORTFOLIO", "Chennuru Tejith", ["Loyalty works both ways.", "If you ask for it, be ready to give it."]),
     "og-work": ("WORK", "Work", ["Three internships, and one school", "build kept honest, step by step."]),
-    "og-arenas": ("ARENAS", "Five arenas", ["Finance, operations, leadership,", "communication and tech. Each one earned."]),
-    "og-research": ("RESEARCH", "From SEO to GEO", ["My research on how AI search", "decides what to cite."]),
+        "og-research": ("RESEARCH", "From SEO to GEO", ["My research on how AI search", "decides what to cite."]),
     "og-about": ("ABOUT", "About", ["Where the work happened,", "and what it earned."]),
-    "og-ask": ("ASK", "Ask me anything", ["Type a question. Get an answer", "straight from my portfolio."]),
-    "og-contact": ("CONTACT", "Let's work together", ["Internships, projects,", "or a conversation."]),
+        "og-contact": ("CONTACT", "Let's work together", ["Internships, projects,", "or a conversation."]),
 }
 
 def glow(img, xy, r, color, alpha):
@@ -30,13 +28,14 @@ def glow(img, xy, r, color, alpha):
 for name, (kicker, title, lines) in PAGES.items():
     img = Image.new("RGBA", (1200, 630), BG + (255,))
     glow(img, (1150, -60), 420, ACC, 34)
-    glow(img, (-80, 700), 380, CLAY, 30)
+    glow(img, (-80, 700), 380, CLAY, 26)
+    glow(img, (420, 300), 520, (29, 58, 44), 90)
     ov = Image.new("RGBA", img.size, (0, 0, 0, 0))
     o = ImageDraw.Draw(ov)  # translucent strokes go on their own layer so they blend
     for x in range(0, 1200, 34):
-        o.line([(x, 0), (x, 630)], fill=(242, 237, 228, 6))
-    o.rectangle((1047, 77, 1113, 143), outline=(242, 237, 228, 40), width=1)
-    o.line([(80, 480), (1120, 480)], fill=(242, 237, 228, 40), width=1)
+        o.line([(x, 0), (x, 630)], fill=(242, 237, 226, 6))
+    o.rectangle((1047, 77, 1113, 143), outline=(242, 237, 226, 40), width=1)
+    o.line([(80, 480), (1120, 480)], fill=(242, 237, 226, 40), width=1)
     img.alpha_composite(ov)
     d = ImageDraw.Draw(img)
     # crest

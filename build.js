@@ -85,14 +85,14 @@ ${base ? `<link rel="canonical" href="${esc(abs("profile.html"))}" />` : ""}
 ${jsonld}
 <style>
 :root { color-scheme: dark; }
-body { margin: 0; background: #0c0d11; color: #f2ede4; font: 17px/1.7 "Libre Caslon Text", "Times New Roman", serif; }
+body { margin: 0; background: #0a110e; color: #f2ede2; font: 17px/1.7 "Libre Caslon Text", "Times New Roman", serif; }
 main { max-width: 760px; margin: 0 auto; padding: 64px 24px 80px; }
 h1 { font: 400 56px/1 "Libre Caslon Display", "Times New Roman", serif; margin: 0 0 18px; }
-h2 { font: 400 28px/1.15 "Libre Caslon Display", "Times New Roman", serif; margin: 44px 0 12px; padding-top: 22px; border-top: 1px solid rgba(242,237,228,.16); }
+h2 { font: 400 28px/1.15 "Libre Caslon Display", "Times New Roman", serif; margin: 44px 0 12px; padding-top: 22px; border-top: 1px solid rgba(242, 237, 226,.16); }
 h3 { font-size: 18px; margin: 18px 0 4px; }
-p, li { color: #c9c4bb; } a { color: #d9bf8f; }
-.meta { font-size: 13px; color: #948f86; }
-@media (prefers-color-scheme: light) { body { background: #f5f0e7; color: #1a1712; } p, li { color: #403a31; } a { color: #7a5a22; } .meta { color: #625b50; } h2 { border-color: rgba(26,23,18,.15); } }
+p, li { color: #c6c8bc; } a { color: #cfab63; }
+.meta { font-size: 13px; color: #979c90; }
+@media (prefers-color-scheme: light) { body { background: #f3eee3; color: #13201a; } p, li { color: #36443c; } a { color: #7c5a17; } .meta { color: #56635a; } h2 { border-color: rgba(19, 32, 26,.15); } }
 </style>
 </head>
 <body>
@@ -194,8 +194,8 @@ ${base ? `<link rel="canonical" href="${esc(abs("press.html"))}" />` : ""}
 <link rel="icon" type="image/png" href="assets/favicon-64.png" />
 <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital@0;1&display=swap" rel="stylesheet" />
 ${pageStyle(profile).replace("</style>", `.kit { display: grid; grid-template-columns: 160px 1fr; gap: 24px; align-items: center; }
-.kit img { width: 160px; height: 160px; border: 1px solid rgba(242,237,228,.2); }
-blockquote, pre { margin: 0; padding: 16px 18px; border-left: 2px solid #dba595; background: rgba(242,237,228,.04); white-space: pre-wrap; font: inherit; }
+.kit img { width: 160px; height: 160px; border: 1px solid rgba(242, 237, 226,.2); }
+blockquote, pre { margin: 0; padding: 16px 18px; border-left: 2px solid #d4906c; background: rgba(242, 237, 226,.04); white-space: pre-wrap; font: inherit; }
 @media (max-width: 560px) { .kit { grid-template-columns: 1fr; } }
 </style>`)}
 </head>
@@ -227,13 +227,11 @@ fs.writeFileSync("press.html", press);
 // ---------- share pages: one per section, so link previews show that page's own card ----------
 const SHARE = {
   work: ["Work", "Three internships, and a ₹4 Cr school build kept honest, step by step."],
-  arenas: ["Arenas", "Five arenas: finance, operations, leadership, communication and tech, each backed by real work."],
   research: ["Research", "From SEO to GEO: research on how AI search decides what to cite."],
   about: ["About", "Where the work happened, a slider through the years, honours and documents."],
-  ask: ["Ask", "Ask anything about Chennuru Tejith and get an answer straight from his portfolio."],
   contact: ["Contact", "Internships, projects, or a conversation. Replies within 48 hours."],
 };
-const stubCss = `body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0c0d11;color:#f2ede4;font:17px/1.6 Georgia,"Times New Roman",serif}a{color:#d9bf8f}`;
+const stubCss = `body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0a110e;color:#f2ede2;font:17px/1.6 Georgia,"Times New Roman",serif}a{color:#cfab63}`;
 for (const [slug, [name, desc]] of Object.entries(SHARE)) {
   const title = `${name} | ${P.name}`;
   fs.writeFileSync(`${slug}.html`, `<!doctype html>
@@ -274,8 +272,8 @@ fs.writeFileSync("404.html", `<!doctype html>
 <link rel="icon" type="image/png" href="/assets/favicon-64.png" />
 <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital@0;1&family=Geist+Mono&display=swap" rel="stylesheet" />
 <style>
-:root { --bg: #0c0d11; --ink: #f2ede4; --ink2: #c9c4bb; --ink4: #8d887f; --acc: #d9bf8f; --clay: #dba595; --line: rgba(242,237,228,.17); color-scheme: dark; }
-@media (prefers-color-scheme: light) { :root { --bg: #f5f0e7; --ink: #1a1712; --ink2: #403a31; --ink4: #6b6458; --acc: #7a5a22; --clay: #8e4a3d; --line: rgba(26,23,18,.18); color-scheme: light; } }
+:root { --bg: #0a110e; --ink: #f2ede2; --ink2: #c6c8bc; --ink4: #8b9185; --acc: #cfab63; --clay: #d4906c; --line: rgba(242, 237, 226,.17); color-scheme: dark; }
+@media (prefers-color-scheme: light) { :root { --bg: #f3eee3; --ink: #13201a; --ink2: #36443c; --ink4: #5f6b62; --acc: #7c5a17; --clay: #9a4a2c; --line: rgba(19, 32, 26,.18); color-scheme: light; } }
 * { box-sizing: border-box; }
 body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 40px 20px; background: var(--bg); color: var(--ink); font: 17px/1.65 "Libre Caslon Text", "Times New Roman", serif; }
 main { width: min(760px, 100%); }

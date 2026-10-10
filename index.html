@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://*.goatcounter.com; connect-src 'self' https://*.goatcounter.com; object-src 'none'; base-uri 'self'; form-action 'none'" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <meta name="theme-color" content="#0c0d11" />
+  <meta name="theme-color" content="#0a110e" />
   <title>Chennuru Tejith | Finance, Operations &amp; Leadership</title>
   <meta name="description" content="Chennuru Tejith is a BBA + MBA student at O.P. Jindal Global University (2024 to 2029) with internships in operations (Round Table India), project management (Dr. Reddy's) and finance (Ion Exchange)." />
   <meta name="author" content="Chennuru Tejith" />
@@ -24,8 +24,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Instrument+Serif:ital@0;1&family=Mrs+Saint+Delafield&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-  <link rel="stylesheet" href="css/style.css?v=201" />
-  <script src="js/boot.js?v=201"></script>
+  <link rel="stylesheet" href="css/style.css?v=210" />
+  <script src="js/boot.js?v=210"></script>
 </head>
 <body>
   <div class="intro" id="intro" aria-hidden="true">
@@ -37,7 +37,6 @@
   </div>
   <div class="backdrop" aria-hidden="true"></div>
   <div class="progress" id="progress" aria-hidden="true"></div>
-  <div class="cursor" id="cursor" aria-hidden="true"></div>
   <div class="curtain" id="curtain" aria-hidden="true"></div>
   <!-- ============ NAV ============ -->
   <header class="nav" id="nav">
@@ -47,23 +46,17 @@
         <a href="#home">Home</a>
         <a href="#about">About</a>
         <a href="#work">Work</a>
-        <a href="#arenas">Arenas</a>
         <a href="#research">Research</a>
-        <a href="#ask" class="nav-ask">Ask</a>
         <a href="#contact">Contact</a>
       </nav>
       <div class="nav-right">
-        <button class="icon-btn read-btn" id="readBtn" aria-expanded="false" aria-controls="readPop" aria-label="Reading and sound options" title="Reading and sound options">Aa</button>
+        <button class="icon-btn read-btn" id="readBtn" aria-expanded="false" aria-controls="readPop" aria-label="Reading options" title="Reading options">Aa</button>
         <div class="read-pop" id="readPop" hidden role="group" aria-label="Reading options">
           <p class="mono">Text size</p>
           <div class="seg" id="zoomSeg"><button data-zoom="1" aria-pressed="true">A</button><button data-zoom="1.12" aria-pressed="false">A+</button><button data-zoom="1.25" aria-pressed="false">A++</button></div>
           <p class="mono">Contrast</p>
           <div class="seg" id="contrastSeg"><button data-contrast="std" aria-pressed="true">Standard</button><button data-contrast="high" aria-pressed="false">High</button></div>
-          <p class="mono">Click sounds</p>
-          <div class="seg" id="clickSeg"><button data-click="off" aria-pressed="true">Off</button><button data-click="on" aria-pressed="false">On</button></div>
-          <p class="mono">Room tone</p>
-          <div class="seg" id="ambSeg"><button data-amb="off" aria-pressed="true">Off</button><button data-amb="on" aria-pressed="false">On</button></div>
-          <p class="read-note">A soft background hum, with a page-turn sound between pages.</p>
+
         </div>
         <button class="icon-btn" id="themeBtn" aria-label="Switch theme"></button>
         <button class="btn btn-dark btn-sm" data-go="resume" id="resBtn">Résumé</button>
@@ -82,21 +75,20 @@
           <p class="name-pre">Chennuru</p>
           <h1 class="name">Tejith<span class="dot-c">.</span></h1>
           <button class="voice" id="voice" hidden><span class="voice-ic" aria-hidden="true">▶</span>Hear me say hello</button>
-          <p class="lead">BBA + MBA student at O.P. Jindal Global University, working across finance, operations and leadership. <span class="status-inline"><span class="dot"></span>Open to internships</span></p>
+          <p class="lead">BBA + MBA student at O.P. Jindal Global University, working across finance, operations and leadership. <span class="status-inline"><span class="dot"></span>Open to internships · Dec to Jan, Jun to Jul</span></p>
           <div class="hero-cta">
             <a class="btn btn-primary" href="#work">See my work <span aria-hidden="true">→</span></a>
             <a class="btn btn-ghost" id="cvHero" download>Download CV</a>
           </div>
           <div class="hero-links">
             <button class="hero-ask" id="tourBtn"><span class="hero-play" aria-hidden="true">▶</span>Take the 60-second tour</button>
-            <a class="hero-ask" href="#ask"><span class="hero-ask-dot" aria-hidden="true"></span>Ask me anything <span aria-hidden="true">→</span></a>
+            <a class="hero-ask" href="#qa"><span class="hero-ask-dot" aria-hidden="true"></span>Ask me anything <span aria-hidden="true">→</span></a>
           </div>
           <dl class="hero-facts">
             <div><dt>Based in</dt><dd>Hyderabad · Sonipat</dd></div>
             <div><dt>Languages</dt><dd>English, Telugu, Hindi, French</dd></div>
             <div><dt>Local time</dt><dd id="clock">IST</dd></div>
           </dl>
-          <div class="prog" id="prog" aria-label="Programme progress"></div>
         </div>
 
         <figure class="portrait" id="portrait">
@@ -125,17 +117,13 @@
 
     <section class="sec wrap chapters" id="chapters" data-page="home" aria-label="Explore">
       <header class="sec-head"><p class="kicker">Explore</p><h2>Where to next?</h2></header>
-      <div class="ch-grid">
-        <a class="ch" href="#about"><span class="ch-no">01</span><b>About</b><span>Who I am, the years so far, honours and references.</span></a>
-        <a class="ch" href="#work"><span class="ch-no">02</span><b>Work</b><span>Three internships, a ₹4 Cr build told step by step, and the things I've built.</span></a>
-        <a class="ch" href="#arenas"><span class="ch-no">03</span><b>Arenas</b><span>Five skill areas, each one backed by work you can check.</span></a>
-        <a class="ch" href="#research"><span class="ch-no">04</span><b>Research</b><span>My paper on Generative Engine Optimization, and how I applied it here.</span></a>
-        <a class="ch ch-ask" href="#ask"><span class="ch-no">05</span><b>Ask</b><span>Type any question about me and get an answer from this site, instantly.</span></a>
-        <a class="ch" href="#contact"><span class="ch-no">06</span><b>Contact</b><span>Internships, projects, or a conversation.</span></a>
+      <div class="ch-grid ch-4">
+        <a class="ch" href="#about"><span class="ch-no">01</span><b>About</b><span>Who I am, the years so far, how I work and who can vouch for me.</span></a>
+        <a class="ch" href="#work"><span class="ch-no">02</span><b>Work</b><span>Three internships, the ₹4 Cr build step by step, five skill areas and what I've built.</span></a>
+        <a class="ch" href="#research"><span class="ch-no">03</span><b>Research</b><span>My paper on Generative Engine Optimization, and how I applied it here.</span></a>
+        <a class="ch ch-ask" href="#contact"><span class="ch-no">04</span><b>Contact</b><span>Ask a question and get an instant answer, or write to me directly.</span></a>
       </div>
     </section>
-
-    <section class="avail wrap" aria-label="Availability" data-page="home"><div class="avail-card" id="avail"></div></section>
 
     <section class="sec wrap" id="me" data-page="about">
       <header class="sec-head"><p class="kicker">About</p><h2>Hi, I'm Tejith.</h2></header>
@@ -158,6 +146,8 @@
         <input type="range" id="scrubRange" class="scrub-range" />
         <div class="scrub-years" id="scrubYears" aria-hidden="true"></div>
         <ul class="scrub-list" id="scrubList" aria-live="polite"></ul>
+        <div class="prog" id="prog" aria-label="Programme progress"></div>
+
       </div>
     </section>
 
@@ -171,6 +161,20 @@
         <div class="map-card"><svg class="map" id="map" viewBox="0 0 600 520" role="img" aria-label="Map showing Sonipat in Haryana and Hyderabad in Telangana"></svg></div>
         <div class="map-side" id="mapSide"></div>
       </div>
+    </section>
+
+    <section class="sec wrap" id="approach" data-page="about">
+      <header class="sec-head">
+        <p class="kicker">How I work</p>
+        <h2>Four rules I hold myself to.</h2>
+        <p class="sub">Each one is backed by something I've actually done.</p>
+      </header>
+      <div class="principles" id="principleList"></div>
+    </section>
+
+    <section class="sec wrap" id="decision" data-page="about">
+      <header class="sec-head"><p class="kicker">How I'd decide</p><h2>A decision I'd make.</h2><p class="sub">One real question, and how I would reason through it.</p></header>
+      <div class="decide" id="decide"></div>
     </section>
 
     <section class="sec wrap cv-auto" id="honours" data-page="about">
@@ -234,11 +238,6 @@
       <header class="sec-head"><p class="kicker">Documents</p><h2>For your records.</h2><p class="sub">Download, print or forward. Everything here is current.</p></header>
       <ul class="docs" id="docList"></ul>
       <div class="docs-actions"><button class="btn btn-ghost btn-sm" id="dlAll">Download all</button><button class="btn btn-ghost btn-sm" data-vcard>Save contact (.vcf)</button><button class="btn btn-ghost btn-sm" data-onepager>Print the one-pager</button></div>
-    </section>
-
-    <section class="sec wrap" id="changelog" data-page="about">
-      <header class="sec-head"><p class="kicker">Change log</p><h2>Change log.</h2></header>
-      <ol class="clog" id="clogList"></ol>
     </section>
 
     <section class="sec wrap cv-auto" id="experience" data-page="work">
@@ -311,16 +310,7 @@
       </div>
     </section>
 
-    <section class="sec wrap cv-auto" id="projects" data-page="work">
-      <header class="sec-head">
-        <p class="kicker">Projects</p>
-        <h2>Things I've built.</h2>
-        <p class="sub">An outreach platform, AI-chat tools and market analytics, built alongside my degree.</p>
-      </header>
-      <div class="projects" id="workList"></div>
-    </section>
-
-    <section class="sec wrap" id="disciplines" data-page="arenas">
+    <section class="sec wrap" id="disciplines" data-page="work">
       <header class="sec-head">
         <p class="kicker">Arenas</p>
         <h2>Five areas of work, each with proof.</h2>
@@ -332,21 +322,16 @@
       </div>
     </section>
 
-    <section class="sec wrap" id="approach" data-page="arenas">
+    <section class="sec wrap cv-auto" id="projects" data-page="work">
       <header class="sec-head">
-        <p class="kicker">How I work</p>
-        <h2>Four rules I hold myself to.</h2>
-        <p class="sub">Each one is backed by something I've actually done.</p>
+        <p class="kicker">Projects</p>
+        <h2>Things I've built.</h2>
+        <p class="sub">An outreach platform, AI-chat tools and market analytics, built alongside my degree.</p>
       </header>
-      <div class="principles" id="principleList"></div>
+      <div class="projects" id="workList"></div>
     </section>
 
-    <section class="sec wrap" id="decision" data-page="arenas">
-      <header class="sec-head"><p class="kicker">How I'd decide</p><h2>A decision I'd make.</h2><p class="sub">One real question, and how I would reason through it.</p></header>
-      <div class="decide" id="decide"></div>
-    </section>
-
-    <section class="sec wrap" id="building" data-page="arenas">
+    <section class="sec wrap" id="building" data-page="work">
       <header class="sec-head"><p class="kicker">Building now</p><h2>What I'm working on next.</h2><p class="sub">The skills in progress, so you can see where the arenas are heading.</p></header>
       <ol class="build-list" id="buildList"></ol>
     </section>
@@ -366,30 +351,6 @@
       <div class="notes" id="noteList"></div>
       <div class="li-posts" id="liPosts"></div>
       <p class="press-line">Writing about me? The <a href="press.html">press kit</a> has two bios, the crest and a citation.</p>
-    </section>
-
-    <section class="sec wrap" id="qa" data-page="ask">
-      <header class="sec-head">
-        <p class="kicker">Ask</p>
-        <h2>Ask anything about me.</h2>
-        <p class="sub">Type a question the way you'd ask it in an interview. Answers come straight from this site, and it says so when it doesn't know.</p>
-      </header>
-      <div class="chat" id="chat">
-        <div class="chat-log" id="chatLog" aria-live="polite"></div>
-        <div class="ask-chips" id="askChips"></div>
-        <div class="chat-row">
-          <label class="sr" for="askInput">Your question</label>
-          <input id="askInput" type="text" maxlength="500" autocomplete="off" placeholder="e.g. Has he handled budgets?" />
-          <button class="btn btn-primary btn-sm" id="askBtn">Ask <span aria-hidden="true">→</span></button>
-        </div>
-        <p class="chat-note" id="chatNote">Answers are drawn from this portfolio. For anything important, confirm with me directly.</p>
-      </div>
-      <div class="elsewhere">
-        <p class="mono">Or ask another assistant</p>
-        <div class="elsewhere-row" id="askElsewhere"></div>
-      </div>
-      <h3 class="faq-h">Questions recruiters ask most</h3>
-      <div class="faq" id="faqList"></div>
     </section>
 
     <section class="cta wrap" id="contact" data-page="contact">
@@ -426,6 +387,32 @@
       </div>
     </section>
 
+    <section class="sec wrap" id="qa" data-page="contact">
+      <header class="sec-head">
+        <p class="kicker">Questions first?</p>
+        <h2>Ask anything about me.</h2>
+        <p class="sub">Type a question the way you'd ask it in an interview. Answers come straight from this site, and it says so when it doesn't know.</p>
+      </header>
+      <div class="chat" id="chat">
+        <div class="chat-log" id="chatLog" aria-live="polite"></div>
+        <div class="ask-chips" id="askChips"></div>
+        <div class="chat-row">
+          <label class="sr" for="askInput">Your question</label>
+          <input id="askInput" type="text" maxlength="500" autocomplete="off" placeholder="e.g. Has he handled budgets?" />
+          <button class="btn btn-primary btn-sm" id="askBtn">Ask <span aria-hidden="true">→</span></button>
+        </div>
+        <p class="chat-note" id="chatNote">Answers are drawn from this portfolio. For anything important, confirm with me directly.</p>
+      </div>
+      <div class="elsewhere">
+        <p class="mono">Or ask another assistant</p>
+        <div class="elsewhere-row" id="askElsewhere"></div>
+      </div>
+      <h3 class="faq-h">Questions recruiters ask most</h3>
+      <div class="faq" id="faqList"></div>
+    </section>
+
+    <section class="sec wrap avail" aria-label="Availability" data-page="contact"><div class="avail-card" id="avail"></div></section>
+
     <section class="sec wrap" id="slots" data-page="contact">
       <header class="sec-head"><p class="kicker">Interview times</p><h2>Pick a slot.</h2><p class="sub">My next free 30 minutes, shown in India time and yours. Choose one and it drafts the email for you.</p></header>
       <div class="slot-grid" id="slotGrid"></div>
@@ -451,7 +438,6 @@
 
     <footer class="foot wrap">
       <span>© <span id="year"></span> Chennuru Tejith · <!-- BUILD:UPDATED --><time datetime="2026-10-10">Updated October 2026</time><!-- /BUILD:UPDATED --> · <a href="profile.html">Text profile</a> · <a href="press.html">Press kit</a></span>
-      <a class="badgecase" id="badgecase" href="#disciplines" aria-label="Badge case: five arenas"></a>
       <a class="geo-badge" id="geoBadge" href="#baf" hidden></a>
       <span class="views" id="views" hidden></span>
       <button class="foot-share" data-share>Share this profile</button>
@@ -478,7 +464,6 @@
     </article>
   </div>
 
-  <div class="found" id="found" hidden></div>
 
   <div class="share" id="share" hidden>
     <div class="share-scrim" data-close-share></div>
@@ -525,9 +510,9 @@
 
   <div class="toast" id="toast" role="status" hidden></div>
 
-  <script src="js/data.js?v=201"></script>
-  <script src="js/icons.js?v=201"></script>
-  <script src="js/india.js?v=201"></script>
-  <script src="js/app.js?v=201"></script>
+  <script src="js/data.js?v=210"></script>
+  <script src="js/icons.js?v=210"></script>
+  <script src="js/india.js?v=210"></script>
+  <script src="js/app.js?v=210"></script>
 </body>
 </html>

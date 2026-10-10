@@ -160,7 +160,7 @@ window.PORTFOLIO = {
       name: "Circuit Gym",
       domain: "Tech & Automation",
       type: "Tech",
-      color: "#7fae95",
+      color: "#93c4a8",
       icon: "chip", medal: "Circuit Badge",
       intro: "A business mind that can also build, using AI-assisted development to ship real tools.",
       moves: ["Microsoft Excel (Certified)", "Tableau", "MS Office Suite", "Python (Foundational)", "AI-assisted Development", "Browser Extensions"],
@@ -417,7 +417,7 @@ window.PORTFOLIO = {
 
   // ---------- Change log (newest first). Add a line whenever the site or your work changes ----------
   changelog: [
-    { month: "Oct 2026", items: ["Site split into separate pages: Work, Arenas, Research, About, Ask and Contact", "Added an Ask page that answers questions about me from this site", "Added a press kit, a citation for the GEO paper and this change log", "Applied my paper's GEO Business Adoption Framework to the site", "Added a 60-second tour, a line-by-line reconciliation demo, a slider through the years, a proof wall, reading options and share cards for each page", "Added sources behind every headline number, reference requests, skills in progress, next badges and a pit-wall strategy call", "Added interview slots, a guestbook, LinkedIn posts and endorsements, and an optional room tone"] },
+    { month: "Oct 2026", items: ["Site split into separate pages: Work, Arenas, Research, About, Ask and Contact", "Added an Ask page that answers questions about me from this site", "Added a press kit, a citation for the GEO paper and this change log", "Applied my paper's GEO Business Adoption Framework to the site", "Added a 60-second tour, a line-by-line reconciliation demo, a slider through the years, a proof wall, reading options and share cards for each page", "Added sources behind every headline number, reference requests, skills in progress, next badges and a pit-wall strategy call", "Added interview slots, a guestbook, LinkedIn posts and endorsements, and an optional room tone", "Merged the site into five pages, removed extras that got in the way, and moved to a racing green, ivory and brass palette"] },
   ],
 
 

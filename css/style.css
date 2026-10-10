@@ -1,35 +1,35 @@
 /* ============================================================
    Chennuru Tejith: portfolio
-   Obsidian · ivory · champagne · rose-copper
+   Racing green · ivory · brass · copper
    Display: Instrument Serif · Text: Geist · Labels: Geist Mono
    ============================================================ */
 
-/* Obsidian · ivory · champagne · rose-copper */
+/* Racing green · ivory · brass · copper */
 :root,
 [data-theme="dark"] {
-  --bg: #0c0d11;
-  --bg-1: #111318;
-  --bg-2: #16191f;
-  --surface: #111318;
-  --ink: #f2ede4;
-  --ink-2: #c9c4bb;
-  --ink-3: #9a958c;
-  --ink-4: #8d887f;
-  --muted: #9a958c;
-  --acc: #d9bf8f;
-  --acc-hi: #ecdcbc;
-  --acc-dim: rgba(217, 191, 143, 0.1);
-  --clay: #dba595;
-  --ok: #a8c9a0;
-  --ok-l: rgba(168, 201, 160, 0.1);
-  --line: rgba(242, 237, 228, 0.09);
-  --line-2: rgba(242, 237, 228, 0.17);
-  --line-3: rgba(242, 237, 228, 0.32);
-  --btn: #f2ede4;
-  --btn-ink: #0c0d11;
-  --land: #15171c;
-  --dotc: rgba(242, 237, 228, 0.26);
-  --stripe: rgba(242, 237, 228, 0.022);
+  --bg: #0a110e;
+  --bg-1: #0f1813;
+  --bg-2: #14201a;
+  --surface: #0f1813;
+  --ink: #f2ede2;
+  --ink-2: #c6c8bc;
+  --ink-3: #979c90;
+  --ink-4: #8b9185;
+  --muted: #979c90;
+  --acc: #cfab63;
+  --acc-hi: #e6cd95;
+  --acc-dim: rgba(207, 171, 99, 0.1);
+  --clay: #d4906c;
+  --ok: #b5d99c;
+  --ok-l: rgba(181, 217, 156, 0.1);
+  --line: rgba(242, 237, 226, 0.09);
+  --line-2: rgba(242, 237, 226, 0.17);
+  --line-3: rgba(242, 237, 226, 0.32);
+  --btn: #f2ede2;
+  --btn-ink: #0a110e;
+  --land: #121c17;
+  --dotc: rgba(242, 237, 226, 0.26);
+  --stripe: rgba(242, 237, 226, 0.022);
   --grain: 0.06;
   --shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.75);
   /* legacy names used by scripts/markup */
@@ -39,31 +39,31 @@
   color-scheme: dark;
 }
 [data-theme="light"] {
-  --bg: #f5f0e7;
-  --bg-1: #efe9de;
-  --bg-2: #e8e1d4;
-  --surface: #f9f5ee;
-  --ink: #1a1712;
-  --ink-2: #403a31;
-  --ink-3: #625b50;
-  --ink-4: #6b6458;
-  --muted: #625b50;
-  --acc: #7a5a22;
-  --acc-hi: #5e4418;
-  --acc-dim: rgba(122, 90, 34, 0.08);
-  --clay: #8e4a3d;
-  --ok: #3f6b38;
-  --ok-l: rgba(63, 107, 56, 0.08);
-  --line: rgba(26, 23, 18, 0.1);
-  --line-2: rgba(26, 23, 18, 0.18);
-  --line-3: rgba(26, 23, 18, 0.34);
-  --btn: #1a1712;
-  --btn-ink: #f5f0e7;
-  --land: #e6dfd1;
-  --dotc: rgba(26, 23, 18, 0.3);
-  --stripe: rgba(26, 23, 18, 0.03);
+  --bg: #f3eee3;
+  --bg-1: #ece6d8;
+  --bg-2: #e4ddcd;
+  --surface: #f8f4ea;
+  --ink: #13201a;
+  --ink-2: #36443c;
+  --ink-3: #56635a;
+  --ink-4: #5f6b62;
+  --muted: #56635a;
+  --acc: #7c5a17;
+  --acc-hi: #5c420f;
+  --acc-dim: rgba(124, 90, 23, 0.08);
+  --clay: #9a4a2c;
+  --ok: #2f6b3a;
+  --ok-l: rgba(47, 107, 58, 0.08);
+  --line: rgba(19, 32, 26, 0.1);
+  --line-2: rgba(19, 32, 26, 0.18);
+  --line-3: rgba(19, 32, 26, 0.34);
+  --btn: #13201a;
+  --btn-ink: #f3eee3;
+  --land: #e3dccb;
+  --dotc: rgba(19, 32, 26, 0.3);
+  --stripe: rgba(19, 32, 26, 0.03);
   --grain: 0.05;
-  --shadow: 0 30px 60px -30px rgba(40, 30, 15, 0.25);
+  --shadow: 0 30px 60px -30px rgba(15, 30, 22, 0.25);
   --blue: var(--acc);
   --blue-l: var(--acc-dim);
   --line-strong: var(--line-3);
@@ -613,8 +613,8 @@ body.has-cursor .cursor { opacity: 0.8; }
 /* ---------- print: always the clean résumé ---------- */
 @media print {
   @page { margin: 14mm 14mm; }
-  :root, [data-theme] { --bg: #fff; --ink: #1a1712; --ink-2: #2e2a24; --ink-3: #4f493f; --ink-4: #6b6458; --clay: #8a4526; --acc: #7a5a22; --line: #d8dbe2; --line-2: #c3c7d0; --line-3: #9aa0ad; }
-  body { background: #fff !important; color: #1a1712; font-size: 11pt; }
+  :root, [data-theme] { --bg: #fff; --ink: #13201a; --ink-2: #2e2a24; --ink-3: #4f493f; --ink-4: #5f6b62; --clay: #8a4526; --acc: #7c5a17; --line: #d8dbe2; --line-2: #c3c7d0; --line-3: #9aa0ad; }
+  body { background: #fff !important; color: #13201a; font-size: 11pt; }
   body::after, .nav, .progress, .cursor, .curtain, .filterbar, .toast, .reader, #story, .r-foot, .r-actions { display: none !important; }
   main#resume, main#resume[hidden] { display: block !important; }
   .resume { padding: 0; max-width: none; }
@@ -742,12 +742,12 @@ body.resume-mode .hire { display: none !important; }
 .share-scrim { position: absolute; inset: 0; background: color-mix(in srgb, var(--bg) 75%, transparent); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); animation: fade 0.4s; }
 .share-card { position: relative; width: min(440px, 100%); animation: panelIn 0.6s cubic-bezier(.16, 1, .3, 1); }
 .share-x { position: absolute; top: -52px; right: 0; }
-.sc { padding: 34px 32px; background: #0c0d11; color: #f2ede4; border: 1px solid rgba(242, 237, 228, 0.2); }
+.sc { padding: 34px 32px; background: #0a110e; color: #f2ede2; border: 1px solid rgba(242, 237, 226, 0.2); }
 .sc .logo-svg { width: 40px; height: 40px; color: #f1ece3; }
 .sc h3 { font: 400 40px/1 "Libre Caslon Display", "Times New Roman", serif; margin: 22px 0 8px; letter-spacing: 0; }
-.sc p { margin: 0; font: 400 10px "Geist Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: #9a958c; }
-.sc-row { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: end; margin-top: 28px; padding-top: 22px; border-top: 1px solid rgba(242, 237, 228, 0.16); }
-.sc-row span { font-size: 13px; color: #c9c4bb; line-height: 1.6; }
+.sc p { margin: 0; font: 400 10px "Geist Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: #979c90; }
+.sc-row { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: end; margin-top: 28px; padding-top: 22px; border-top: 1px solid rgba(242, 237, 226, 0.16); }
+.sc-row span { font-size: 13px; color: #c6c8bc; line-height: 1.6; }
 .sc-qr { width: 112px; height: 112px; background: #f1ece3; padding: 8px; }
 .sc-qr svg { width: 100%; height: 100%; display: block; }
 .share-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; justify-content: center; }
@@ -816,7 +816,7 @@ body { background-color: var(--bg); }
 .crest-xl > span { font-size: 62px; margin-top: -10px; }
 .crest-xl::after { bottom: 26px; width: 34px; margin-left: -17px; height: 2px; }
 .logo .crest { margin-right: 4px; }
-.sc .crest { width: 52px; height: 52px; border-color: rgba(242, 237, 228, 0.45); }
+.sc .crest { width: 52px; height: 52px; border-color: rgba(242, 237, 226, 0.45); }
 .sc .crest > span { color: #f1ece3; font-size: 22px; }
 
 /* ink reveal on the name */
@@ -892,10 +892,10 @@ body { background-color: var(--bg); }
 
 @media print {
   body.print-one #resume, body.print-one main#resume[hidden] { display: none !important; }
-  body.print-one .onepager { display: block !important; color: #1a1712; }
+  body.print-one .onepager { display: block !important; color: #13201a; }
   .backdrop { display: none !important; }
   .onepager h1 { font: 400 40pt/1 "Libre Caslon Display", serif; margin: 0 0 4pt; }
-  .onepager .op-role { font: 400 9pt "Geist Mono", monospace; letter-spacing: 0.16em; text-transform: uppercase; color: #8e4a3d; margin: 0 0 16pt; }
+  .onepager .op-role { font: 400 9pt "Geist Mono", monospace; letter-spacing: 0.16em; text-transform: uppercase; color: #9a4a2c; margin: 0 0 16pt; }
   .onepager h2 { font: 400 9pt "Geist Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: #6b7385; margin: 16pt 0 6pt; border-bottom: 1px solid #c3c7d0; padding-bottom: 4pt; }
   .onepager li { margin-bottom: 4pt; font-size: 11pt; }
   .onepager p { font-size: 11pt; margin: 0 0 6pt; }
@@ -1052,8 +1052,8 @@ body { background-color: var(--bg); }
    intro, reading options
    ============================================================ */
 #story, #resume { zoom: var(--zoom, 1); }
-[data-contrast="high"] { --ink-2: #ece7de; --ink-3: #d6d0c6; --ink-4: #c4beb4; --line: rgba(242, 237, 228, 0.22); --line-2: rgba(242, 237, 228, 0.36); --line-3: rgba(242, 237, 228, 0.6); }
-[data-theme="light"][data-contrast="high"] { --ink-2: #1a1712; --ink-3: #2e2a24; --ink-4: #3a352d; --line: rgba(26, 23, 18, 0.24); --line-2: rgba(26, 23, 18, 0.4); --line-3: rgba(26, 23, 18, 0.65); }
+[data-contrast="high"] { --ink-2: #ece7de; --ink-3: #d6d0c6; --ink-4: #c4beb4; --line: rgba(242, 237, 226, 0.22); --line-2: rgba(242, 237, 226, 0.36); --line-3: rgba(242, 237, 226, 0.6); }
+[data-theme="light"][data-contrast="high"] { --ink-2: #13201a; --ink-3: #2e2a24; --ink-4: #3a352d; --line: rgba(19, 32, 26, 0.24); --line-2: rgba(19, 32, 26, 0.4); --line-3: rgba(19, 32, 26, 0.65); }
 
 /* reading options */
 .nav-right { position: relative; }
@@ -1327,3 +1327,28 @@ body.touring .foot { padding-bottom: 150px; }
 /* pit wall headings keep their own type */
 .pit .kicker { font: 400 11.5px/1.4 "Geist Mono", monospace; font-style: normal; }
 .src-pop .src-story { margin: 0 0 12px !important; font-size: 14px !important; color: var(--ink) !important; }
+
+/* ============================================================
+   Round 13: racing green palette, five pages
+   ============================================================ */
+/* a deeper green pool behind the content, brass light from the top */
+.backdrop { background:
+    radial-gradient(1100px 820px at 88% -12%, color-mix(in srgb, var(--acc) 10%, transparent), transparent 62%),
+    radial-gradient(1000px 760px at -10% 110%, color-mix(in srgb, var(--clay) 8%, transparent), transparent 60%),
+    radial-gradient(1200px 900px at 30% 40%, color-mix(in srgb, #1d3a2c 45%, transparent), transparent 70%),
+    repeating-linear-gradient(90deg, var(--stripe) 0 1px, transparent 1px 34px),
+    var(--bg); }
+[data-theme="light"] .backdrop { background:
+    radial-gradient(1100px 820px at 88% -12%, color-mix(in srgb, var(--acc) 9%, transparent), transparent 62%),
+    radial-gradient(1000px 760px at -10% 110%, color-mix(in srgb, var(--clay) 6%, transparent), transparent 60%),
+    repeating-linear-gradient(90deg, var(--stripe) 0 1px, transparent 1px 34px),
+    var(--bg); }
+.btn-primary:hover, .btn-dark:hover { background: var(--acc-hi); }
+/* home: four destinations */
+.ch-grid.ch-4 { grid-template-columns: repeat(4, 1fr); }
+.ch-grid.ch-4 .ch:not(:nth-child(3n+1)) { padding-left: 0; border-left: 0; }
+.ch-grid.ch-4 .ch + .ch { padding-left: 26px; border-left: 1px solid var(--line); }
+@media (max-width: 1100px) { .ch-grid.ch-4 { grid-template-columns: 1fr 1fr; } .ch-grid.ch-4 .ch:nth-child(odd) { padding-left: 0; border-left: 0; } }
+@media (max-width: 720px) { .ch-grid.ch-4 { grid-template-columns: 1fr; } .ch-grid.ch-4 .ch + .ch { padding-left: 0; border-left: 0; } }
+/* programme bar now lives under the time slider */
+.scrub .prog { margin-top: 34px; }

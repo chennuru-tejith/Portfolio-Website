@@ -30,7 +30,7 @@
     document.documentElement.dataset.theme = t;
     $("#themeBtn").innerHTML = I(t === "dark" ? "sun" : "moon", 17);
     $("#themeBtn").setAttribute("aria-label", t === "dark" ? "Switch to light mode" : "Switch to dark mode");
-    const tc = $('meta[name="theme-color"]'); if (tc) tc.content = t === "dark" ? "#0c0d11" : "#f5f0e7";
+    const tc = $('meta[name="theme-color"]'); if (tc) tc.content = t === "dark" ? "#0a110e" : "#f3eee3";
   }
 
   // ---------- views ----------
@@ -343,8 +343,9 @@
   }
 
   // ---------- pages: one room at a time (all content stays in the HTML for crawlers) ----------
-  const PAGES = ["home", "about", "work", "arenas", "research", "ask", "contact"];
-  const PAGE_NAME = { home: "Home", work: "Work", arenas: "Arenas", research: "Research", about: "About", ask: "Ask", contact: "Contact" };
+  const PAGES = ["home", "about", "work", "research", "contact"];
+  const ALIAS = { arenas: "disciplines", ask: "qa", changelog: "about" }; // old links still land somewhere sensible
+  const PAGE_NAME = { home: "Home", about: "About", work: "Work", research: "Research", contact: "Contact" };
   let page = "";
   function pageFor(id) {
     if (!id || id === "top") return "home";
@@ -353,7 +354,7 @@
     return sec ? sec.dataset.page : "home";
   }
   function route(animate = true, force = false) {
-    const id = decodeURIComponent(location.hash.slice(1)), next = pageFor(id);
+    const raw = decodeURIComponent(location.hash.slice(1)), id = ALIAS[raw] || raw, next = pageFor(id);
     if (view !== "story") setView("story", true);
     const changed = next !== page || force;
     if (changed) {
@@ -365,13 +366,11 @@
       const i = PAGES.indexOf(page), nx = PAGES[(i + 1) % PAGES.length];
       $("#nextPage").innerHTML = page === "home" ? "" : `<a href="#${nx}"><span class="mono">Next</span><b>${esc(PAGE_NAME[nx])}</b><span aria-hidden="true">→</span></a>`;
       if (animate && !still) { const m = $("#story"); m.classList.remove("page-in"); void m.offsetWidth; m.classList.add("page-in"); }
-      if (animate) pageTurn();
       reveal();
     }
     const target = id && !PAGES.includes(id) && id !== "top" ? document.getElementById(id) : null;
     if (target) requestAnimationFrame(() => target.scrollIntoView({ behavior: changed || still ? "auto" : "smooth" }));
     else if (changed) window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-    if (page === "ask" && changed && matchMedia("(pointer: fine)").matches) setTimeout(() => $("#askInput").focus({ preventScroll: true }), 300);
     onScroll();
   }
   const HOME_TITLE = document.title;
@@ -446,27 +445,6 @@
     $("#reader").hidden = true; document.body.style.overflow = "";
     if (caseFocus && caseFocus.focus) caseFocus.focus({ preventScroll: true });
   }
-
-  // ---------- custom cursor (desktop, motion allowed) ----------
-  function cursor() {
-    if (still || !matchMedia("(pointer: fine)").matches) return;
-    const c = $("#cursor"); let x = -100, y = -100, cx = -100, cy = -100, raf = 0, shown = false;
-    c.style.transform = "translate3d(-100px, -100px, 0)";
-    const loop = () => {
-      cx += (x - cx) * 0.22; cy += (y - cy) * 0.22;
-      c.style.transform = `translate3d(${cx.toFixed(1)}px, ${cy.toFixed(1)}px, 0)`;
-      raf = Math.abs(x - cx) + Math.abs(y - cy) > 0.3 ? requestAnimationFrame(loop) : 0;
-    };
-    addEventListener("pointermove", (e) => {
-      x = e.clientX; y = e.clientY;
-      if (!shown) { shown = true; cx = x; cy = y; document.body.classList.add("has-cursor"); }
-      c.classList.toggle("big", !!(e.target && e.target.closest && e.target.closest("a, button, summary, [role=button], .dt")));
-      if (!raf) raf = requestAnimationFrame(loop);
-    }, { passive: true });
-    document.addEventListener("pointerleave", () => (c.style.opacity = "0"));
-    document.addEventListener("pointerenter", () => (c.style.opacity = ""));
-  }
-
 
   // ---------- hero: portrait, what's new, greeting, word-by-word headline ----------
   function renderHeroExtras() {
@@ -629,12 +607,7 @@
       .map(([n, u]) => `<a href="${esc(u)}" target="_blank" rel="noopener noreferrer">${n} ${I("external", 13)}</a>`).join("") + `<span class="mono">Asks “${esc(prompt)}”</span>`;
   }
 
-  // ---------- change log, citation, GEO readiness ----------
-  function renderChangelog() {
-    const c = D.changelog || [];
-    if (!c.length) { $("#changelog").hidden = true; return; }
-    $("#clogList").innerHTML = c.map((m) => `<li class="rv"><b>${esc(m.month)}</b><ul>${m.items.map((i) => `<li>${esc(i)}</li>`).join("")}</ul></li>`).join("");
-  }
+  // ---------- citation, GEO readiness ----------
   function apa() {
     const w = D.writing[0]; if (!w) return "";
     const [family, given] = D.profile.name.split(" ");
@@ -676,28 +649,6 @@
     });
   }
 
-  // ---------- hidden details ----------
-  function hiddenDetails() {
-    const list = D.details || []; if (!list.length) return;
-    const seen = new Set(), show = () => {};
-    list.forEach((d, i) => {
-      const walker = document.createTreeWalker($("#story"), NodeFilter.SHOW_TEXT, { acceptNode: (n) => n.parentElement.closest("script, style, svg, .detail, button, input, textarea, .tip, .metric, .src-pop") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT });
-      let n;
-      while ((n = walker.nextNode())) {
-        const at = n.textContent.indexOf(d.word);
-        if (at < 0) continue;
-        const after = n.splitText(at); after.splitText(d.word.length);
-        const span = document.createElement("span");
-        span.className = "detail"; span.tabIndex = 0; span.textContent = d.word;
-        span.innerHTML += `<span class="tip" role="tooltip">${esc(d.fact)}</span>`;
-        after.replaceWith(span);
-        const hit = () => { if (!seen.has(i)) { seen.add(i); span.classList.add("seen"); show(); } };
-        span.addEventListener("mouseenter", hit); span.addEventListener("focus", hit);
-        break;
-      }
-    });
-  }
-
   // ---------- share card with QR ----------
   const shareUrl = () => { const base = location.origin + location.pathname.replace(/[^/]*$/, ""); return page && page !== "home" ? `${base}${page}.html` : base; };
   // the QR library is only needed here, so it loads on first use
@@ -720,17 +671,17 @@
   function saveCard(qr) {
     const W = 1080, H = 1350, c = document.createElement("canvas"); c.width = W; c.height = H;
     const x = c.getContext("2d");
-    x.fillStyle = "#0c0d11"; x.fillRect(0, 0, W, H);
-    x.strokeStyle = "rgba(242,237,228,.22)"; x.strokeRect(40, 40, W - 80, H - 80);
+    x.fillStyle = "#0a110e"; x.fillRect(0, 0, W, H);
+    x.strokeStyle = "rgba(242, 237, 226,.22)"; x.strokeRect(40, 40, W - 80, H - 80);
     x.fillStyle = "#d69c77"; x.fillRect(100, 140, 90, 3);
     x.fillStyle = "#f1ece3"; x.font = "400 110px 'Instrument Serif', Georgia, serif"; x.fillText(D.profile.name.split(" ")[0], 96, 330); x.fillText(D.profile.name.split(" ").slice(1).join(" "), 96, 450);
-    x.fillStyle = "#d9bf8f"; x.font = "italic 400 52px 'Instrument Serif', Georgia, serif"; x.fillText("Finance · Operations · Leadership", 100, 560);
-    x.fillStyle = "#948f86"; x.font = "400 30px 'Geist', sans-serif"; x.fillText("BBA + MBA, O.P. Jindal Global University", 100, 640); x.fillText(D.profile.email, 100, 690);
+    x.fillStyle = "#cfab63"; x.font = "italic 400 52px 'Instrument Serif', Georgia, serif"; x.fillText("Finance · Operations · Leadership", 100, 560);
+    x.fillStyle = "#979c90"; x.font = "400 30px 'Geist', sans-serif"; x.fillText("BBA + MBA, O.P. Jindal Global University", 100, 640); x.fillText(D.profile.email, 100, 690);
     const n = qr.getModuleCount(), size = 380, cell = size / n, ox = W - 100 - size, oy = H - 100 - size;
     x.fillStyle = "#f1ece3"; x.fillRect(ox - 20, oy - 20, size + 40, size + 40);
-    x.fillStyle = "#0c0d11";
+    x.fillStyle = "#0a110e";
     for (let r = 0; r < n; r++) for (let k = 0; k < n; k++) if (qr.isDark(r, k)) x.fillRect(ox + k * cell, oy + r * cell, Math.ceil(cell), Math.ceil(cell));
-    x.fillStyle = "#948f86"; x.font = "400 26px 'Geist Mono', monospace"; x.fillText("SCAN TO VIEW PORTFOLIO", 100, H - 110);
+    x.fillStyle = "#979c90"; x.font = "400 26px 'Geist Mono', monospace"; x.fillText("SCAN TO VIEW PORTFOLIO", 100, H - 110);
     c.toBlob((b) => { const a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = "Chennuru-Tejith-card.png"; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); }, "image/png");
   }
   function wireShare() {
@@ -764,25 +715,6 @@
     const stages = ["Research", "Draft", "Review", "Published"], at = stages.indexOf(D.geoStage);
     if (at < 0) return "";
     return `<div class="geo" aria-label="Stage: ${esc(D.geoStage)}">${stages.map((st, i) => `<span class="${i < at ? "done" : i === at ? "now" : ""}">${st}</span>`).join("")}</div>`;
-  }
-
-  // ---------- interface sounds (off by default) ----------
-  let actx = null;
-  function click() {
-    if (!state.sound) return;
-    try {
-      actx = actx || new (window.AudioContext || window.webkitAudioContext)();
-      const o = actx.createOscillator(), g = actx.createGain(), t = actx.currentTime;
-      o.type = "sine"; o.frequency.setValueAtTime(880, t); o.frequency.exponentialRampToValueAtTime(520, t + 0.06);
-      g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.05, t + 0.005); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.09);
-      o.connect(g).connect(actx.destination); o.start(t); o.stop(t + 0.1);
-    } catch (e) {}
-  }
-  function soundToggle() {
-    const paint = () => $$("#clickSeg button").forEach((b) => b.setAttribute("aria-pressed", String((b.dataset.click === "on") === !!state.sound)));
-    $$("#clickSeg button").forEach((b) => b.addEventListener("click", () => { state.sound = b.dataset.click === "on"; save(); paint(); click(); }));
-    paint();
-    document.addEventListener("click", (e) => { if (e.target.closest("a, button, summary") && !e.target.closest("#clickSeg")) click(); });
   }
 
   // ---------- voice clip ----------
@@ -851,11 +783,6 @@
     window.print();
   }
 
-  // ---------- footer badge case (one badge per arena) ----------
-  function badgeCase() {
-    $("#badgecase").innerHTML = G.map((g) => emblem(g)).join("") + `<em>${G.length} arenas · ${G.length} badges</em>`;
-  }
-
   // ---------- race car draws itself ----------
   function carDraw() {
     const car = $(".car"); if (!car) return;
@@ -918,52 +845,6 @@
       const body = [`Guestbook note for your portfolio:`, ``, `"${text}"`, ``, `Name: ${name}`, org ? `Organisation: ${org}` : "", ``, `I'm happy for this to appear on the site.`].filter((l, i, a) => l || a[i - 1] !== "").join("\n");
       location.href = `mailto:${D.profile.email}?subject=${encodeURIComponent(`Guestbook: ${name}`)}&body=${encodeURIComponent(body)}`;
     });
-  }
-
-  // ---------- room tone + page-turn sound (off by default) ----------
-  let amb = null;
-  function noiseBuffer(ctx, secs, brown) {
-    const b = ctx.createBuffer(1, ctx.sampleRate * secs, ctx.sampleRate), d = b.getChannelData(0);
-    let last = 0;
-    for (let i = 0; i < d.length; i++) { const w = Math.random() * 2 - 1; if (brown) { last = (last + 0.02 * w) / 1.02; d[i] = last * 3.5; } else d[i] = w; }
-    return b;
-  }
-  function ambStart() {
-    try {
-      actx = actx || new (window.AudioContext || window.webkitAudioContext)();
-      if (actx.state === "suspended") actx.resume();
-      if (amb) return;
-      const src = actx.createBufferSource(), lp = actx.createBiquadFilter(), g = actx.createGain(), lfo = actx.createOscillator(), lg = actx.createGain();
-      src.buffer = noiseBuffer(actx, 4, true); src.loop = true;
-      lp.type = "lowpass"; lp.frequency.value = 420;
-      g.gain.value = 0; g.gain.linearRampToValueAtTime(0.05, actx.currentTime + 2);
-      lfo.frequency.value = 0.07; lg.gain.value = 0.012; lfo.connect(lg).connect(g.gain);
-      src.connect(lp).connect(g).connect(actx.destination); src.start(); lfo.start();
-      amb = { src, g, lfo };
-    } catch (e) {}
-  }
-  function ambStop() {
-    if (!amb) return;
-    const a = amb; amb = null;
-    try { a.g.gain.cancelScheduledValues(actx.currentTime); a.g.gain.setTargetAtTime(0, actx.currentTime, 0.4); setTimeout(() => { a.src.stop(); a.lfo.stop(); }, 1500); } catch (e) {}
-  }
-  function pageTurn() {
-    if (!state.ambient || !actx) return;
-    try {
-      const t = actx.currentTime, src = actx.createBufferSource(), bp = actx.createBiquadFilter(), g = actx.createGain();
-      src.buffer = noiseBuffer(actx, 0.3, false);
-      bp.type = "bandpass"; bp.frequency.setValueAtTime(2400, t); bp.frequency.exponentialRampToValueAtTime(900, t + 0.25); bp.Q.value = 0.8;
-      g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.06, t + 0.03); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.28);
-      src.connect(bp).connect(g).connect(actx.destination); src.start(t); src.stop(t + 0.3);
-    } catch (e) {}
-  }
-  function wireAmbient() {
-    const paint = () => $$("#ambSeg button").forEach((b) => b.setAttribute("aria-pressed", String((b.dataset.amb === "on") === !!state.ambient)));
-    $$("#ambSeg button").forEach((b) => b.addEventListener("click", () => { state.ambient = b.dataset.amb === "on"; save(); paint(); state.ambient ? ambStart() : ambStop(); }));
-    paint();
-    // browsers only allow sound after a click or key press, so a saved "on" waits for the first one
-    if (state.ambient) { const go = () => { ambStart(); removeEventListener("pointerdown", go); removeEventListener("keydown", go); }; addEventListener("pointerdown", go); addEventListener("keydown", go); }
-    document.addEventListener("visibilitychange", () => { if (!actx) return; document.hidden ? actx.suspend() : state.ambient && actx.resume(); });
   }
 
   // ---------- source popovers on the headline numbers ----------
@@ -1182,8 +1063,8 @@
   // ---------- boot ----------
   applyTheme(state.theme);
   $("#year").textContent = new Date().getFullYear();
-  renderDisciplines(); renderSections(); renderProgress(); renderAvail(); renderMap(); renderFaq(); renderExtras(); renderResume(); renderHeroExtras(); renderAsk(); renderChangelog(); geoBadge(); renderRecon(); renderScrub(); wireSources(); renderBuilding(); renderRefReq(); renderPit(); renderEndorse(); renderPosts(); renderSlots(); renderGuestbook(); wireAmbient(); wireTour(); wireReading(); intro(); renderContact(); wireShare(); renderThinking(); renderBaf(); badgeCase(); docsActions(); soundToggle(); voice(); signature(); season(); carDraw();
-  clock(); cursor(); motion(); countUps(); scrollStory(); mapReveal(); hiddenDetails(); views(); reveal();
+  renderDisciplines(); renderSections(); renderProgress(); renderAvail(); renderMap(); renderFaq(); renderExtras(); renderResume(); renderHeroExtras(); renderAsk(); geoBadge(); renderRecon(); renderScrub(); wireSources(); renderBuilding(); renderRefReq(); renderPit(); renderEndorse(); renderPosts(); renderSlots(); renderGuestbook(); wireTour(); wireReading(); intro(); renderContact(); wireShare(); renderThinking(); renderBaf(); docsActions(); voice(); signature(); season(); carDraw();
+  clock(); motion(); countUps(); scrollStory(); mapReveal(); views(); reveal();
 
   document.addEventListener("click", (e) => {
     const go = e.target.closest("[data-go]"); if (go) setView(go.dataset.go, true, true);
