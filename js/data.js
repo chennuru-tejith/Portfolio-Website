@@ -377,6 +377,9 @@ window.PORTFOLIO = {
   // },
   recommendations: [],
 
+  // ---------- Rotating line under the name: "Someone who …" ----------
+  roles: ["verifies every number", "shows up on site", "leads student teams", "builds his own tools", "gives loyalty first"],
+
   // ---------- "Currently" line in the hero (leave a field empty to hide it) ----------
   currently: { working: "Generative Engine Optimization research paper", reading: "", learning: "" },
 
@@ -387,7 +390,7 @@ window.PORTFOLIO = {
   photo: "",
 
   // ---------- "What's new" strip ----------
-  updates: [{ date: "Oct 2026", text: "Generative Engine Optimization research paper in progress", link: "#writing" }],
+  updates: [{ date: "Oct 2026", text: "Researching how AI search engines choose what to cite", link: "#writing" }],
 
   // ---------- Booking link for "Book a 15-minute call" (e.g. a free Calendly link). Empty = email request instead ----------
   bookingUrl: "",
@@ -413,12 +416,6 @@ window.PORTFOLIO = {
 
   // ---------- Case studies, one per internship (from CV facts; "takeaway" is drafted — edit freely) ----------
   cases: {
-    "Operations Intern": {
-      context: "A ₹4 Cr CSR-funded government school construction project (MPPS & ZPHS Integrated School, Phase II), funded by VST Industries and run through the Hyderabad Titans Round Table Charitable Trust.",
-      actions: ["Visited the site 23 times over 7 weeks and tracked progress against the sanctioned drawings.", "Tracked CSR fund utilisation against the sanctioned budget.", "Co-drafted progress-and-spend updates for the sponsor and joined the live sponsor update call.", "Verified contractor-reported material stock and spend against supervisor records."],
-      outcome: "A reporting discrepancy was caught and resolved before it reached the sponsor, so the sponsor received figures that had been checked against the source.",
-      takeaway: "A report is only as reliable as the source it has been checked against.",
-    },
     "Project Management Intern": {
       context: "Dr. Reddy's Laboratories wanted a clearer view of five years of employee costs (FY2021–FY2025) to support cost-optimization discussions.",
       actions: ["Analysed trends in salaries, share-based payments and welfare expenses across FY2021–FY2025.", "Turned multi-year workforce data into structured management reports.", "Used the MS Office Suite for analysis and reporting."],
@@ -474,7 +471,6 @@ window.PORTFOLIO = {
 
   // ---------- Before → after, per internship (from CV results) ----------
   outcomes: {
-    "Operations Intern": { before: "Contractor-reported stock and spend figures going to the sponsor unchecked.", after: "Figures verified against supervisor records; a discrepancy was resolved before the sponsor update." },
     "Project Management Intern": { before: "Five years of workforce cost data (FY2021–FY2025) spread across records.", after: "Structured management reports supporting decisions on headcount budgeting and welfare spending." },
     "Finance Intern": { before: "Documentation backlogs and inconsistent vendor records.", after: "Streamlined daily transaction processing; standardized, audit-ready vendor records." },
   },
@@ -502,8 +498,6 @@ window.PORTFOLIO = {
 
   // ---------- Recruiter Q&A (drafted from the CV — edit to your own words) ----------
   faq: [
-    { q: "What do you bring to a team?", a: "Ownership of the details. At Round Table India I monitored a ₹4 Cr build across 23 site visits and checked contractor figures against supervisor records before they went to the sponsor." },
-    { q: "How do you handle numbers that don't add up?", a: "I go back to the source. When contractor-reported stock and spend didn't match supervisor records, I traced the gap and got it resolved before the sponsor update." },
     { q: "Can you lead people?", a: "Yes. I directed programming for a 200+ member entrepreneurship club, I lead external outreach for the marketing club, and I was elected to a university committee." },
     { q: "Why business and technology together?", a: "I study business, but I like building the tools myself: a live outreach platform, AI-chat utilities and a stock-screening suite, all on my GitHub." },
     { q: "What are you looking for?", a: "An internship in finance, operations, consulting or marketing, in December–January or June–July, where I can own a real piece of work and be measured on the result." },

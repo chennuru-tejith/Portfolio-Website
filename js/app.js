@@ -137,7 +137,7 @@
     $("#stats").innerHTML = D.profile.stats.map((s) => `<div class="metric" tabindex="0"><b data-v="${esc(s.value)}">${esc(s.value)}</b><span>${esc(s.label)}</span>${s.story ? `<span class="story">${esc(s.story)}</span>` : ""}</div>`).join("");
     $("#principleList").innerHTML = D.principles.map((p, i) => `
       <article class="principle rv"><span class="pr-no">${pad(i + 1)}</span><h3>${esc(p.title)}</h3><p class="pr-text">${esc(p.text)}</p>
-      <div class="pr-proof"><b>Proof</b><p>${esc(p.proof)}</p><span class="pr-where">${esc(p.where)}</span></div></article>`).join("");
+      <span class="pr-where">${esc(p.where)}</span></article>`).join("");
     const q = D.profile.quote;
     if (q) { $("#quoteText").innerHTML = esc(q.text).replace(/\*([^*]+)\*/g, "<em>$1</em>"); $("#quoteBy").textContent = "— " + q.by; } else $(".pq").hidden = true;
 
@@ -452,6 +452,22 @@
   }
 
 
+  // ---------- rotating "Someone who …" line ----------
+  function rotate() {
+    const list = D.roles || [], el = $("#rot"); if (!el || !list.length) return;
+    el.innerHTML = `<span>${esc(list[0])}</span>`;
+    if (still || list.length < 2) return;
+    let i = 0;
+    setInterval(() => {
+      if (document.hidden) return;
+      i = (i + 1) % list.length;
+      const old = el.firstElementChild, nx = document.createElement("span");
+      nx.textContent = list[i]; nx.className = "in";
+      old.className = "out"; el.appendChild(nx);
+      setTimeout(() => old.remove(), 700);
+    }, 2600);
+  }
+
   // ---------- hero: portrait, what's new, greeting, word-by-word headline ----------
   function renderHeroExtras() {
     if (D.photo) {
@@ -461,7 +477,8 @@
       $("#frame").appendChild(img);
     }
     const u = (D.updates || [])[0];
-    if (u) { const n = $("#news"); n.href = u.link || "#"; n.innerHTML = `<b>New</b>${esc(u.text)}<i>· ${esc(u.date)}</i>`; n.hidden = false; }
+    if (u) { const n = $("#news"); n.href = u.link || "#"; n.innerHTML = `<b>Now</b>${esc(u.text)}<i>· ${esc(u.date)}</i>`; n.hidden = false; }
+    rotate();
     const h = new Date().getHours();
     const g = h < 5 ? "Up late? Welcome." : h < 12 ? "Good morning, and welcome." : h < 17 ? "Good afternoon, and welcome." : h < 22 ? "Good evening, and welcome." : "Up late? Welcome.";
     $("#greet").textContent = g;
@@ -669,7 +686,7 @@
   // ---------- boot ----------
   applyTheme(state.theme);
   $("#year").textContent = new Date().getFullYear();
-  renderDisciplines(); renderSections(); renderProgress(); renderAvail(); renderAbilities(); renderMap(); renderFaq(); renderFilter(); renderNow(); renderExtras(); renderResume(); renderHeroExtras(); renderAsk(); renderContact(); wireShare();
+  renderDisciplines(); renderSections(); renderProgress(); renderAvail(); renderMap(); renderFaq(); renderFilter(); renderExtras(); renderResume(); renderHeroExtras(); renderAsk(); renderContact(); wireShare();
   clock(); cursor(); motion(); countUps(); scrollStory(); mapReveal(); hireTab(); hiddenDetails(); views(); reveal();
 
   document.addEventListener("click", (e) => {
