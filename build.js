@@ -224,6 +224,83 @@ ${q("Contact", `<p>LinkedIn: <a href="${esc(P.linkedin)}">${esc(P.linkedin)}</a>
 `;
 fs.writeFileSync("press.html", press);
 
+// ---------- share pages: one per section, so link previews show that page's own card ----------
+const SHARE = {
+  work: ["Work", "Three internships, and a ₹4 Cr school build kept honest, step by step."],
+  arenas: ["Arenas", "Five arenas: finance, operations, leadership, communication and tech, each backed by real work."],
+  research: ["Research", "From SEO to GEO: research on how AI search decides what to cite."],
+  about: ["About", "Where the work happened, a slider through the years, honours and documents."],
+  ask: ["Ask", "Ask anything about Chennuru Tejith and get an answer straight from his portfolio."],
+  contact: ["Contact", "Internships, projects, or a conversation. Replies within 48 hours."],
+};
+const stubCss = `body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0c0d11;color:#f2ede4;font:17px/1.6 Georgia,"Times New Roman",serif}a{color:#d9bf8f}`;
+for (const [slug, [name, desc]] of Object.entries(SHARE)) {
+  const title = `${name} | ${P.name}`;
+  fs.writeFileSync(`${slug}.html`, `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'unsafe-inline'; img-src 'self'; base-uri 'self'; form-action 'none'" />
+<meta http-equiv="refresh" content="0; url=./#${slug}" />
+<meta name="robots" content="noindex, follow" />
+<title>${esc(title)}</title>
+<meta name="description" content="${esc(desc)}" />
+<meta property="og:title" content="${esc(title)}" />
+<meta property="og:description" content="${esc(desc)}" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="${esc(abs(`assets/og-${slug}.png`))}" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+${base ? `<meta property="og:url" content="${esc(abs(`${slug}.html`))}" />\n` : ""}<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="${esc(abs(`assets/og-${slug}.png`))}" />
+<link rel="icon" type="image/png" href="assets/favicon-64.png" />
+<style>${stubCss}</style>
+</head>
+<body><p><a href="./#${slug}">Continue to ${esc(name)} →</a></p></body>
+</html>
+`);
+}
+
+// ---------- 404.html ----------
+fs.writeFileSync("404.html", `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; base-uri 'self'; form-action 'none'" />
+<meta name="robots" content="noindex" />
+<title>Page not found | ${esc(P.name)}</title>
+<link rel="icon" type="image/png" href="/assets/favicon-64.png" />
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital@0;1&family=Geist+Mono&display=swap" rel="stylesheet" />
+<style>
+:root { --bg: #0c0d11; --ink: #f2ede4; --ink2: #c9c4bb; --ink4: #8d887f; --acc: #d9bf8f; --clay: #dba595; --line: rgba(242,237,228,.17); color-scheme: dark; }
+@media (prefers-color-scheme: light) { :root { --bg: #f5f0e7; --ink: #1a1712; --ink2: #403a31; --ink4: #6b6458; --acc: #7a5a22; --clay: #8e4a3d; --line: rgba(26,23,18,.18); color-scheme: light; } }
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 40px 20px; background: var(--bg); color: var(--ink); font: 17px/1.65 "Libre Caslon Text", "Times New Roman", serif; }
+main { width: min(760px, 100%); }
+.crest { display: inline-grid; place-items: center; width: 56px; height: 56px; border: 1px solid var(--ink4); font: 24px "Libre Caslon Display", serif; text-decoration: none; color: var(--ink); }
+.k { margin: 40px 0 14px; font: 11px "Geist Mono", monospace; letter-spacing: .22em; text-transform: uppercase; color: var(--clay); }
+h1 { margin: 0 0 18px; font: 400 clamp(56px, 10vw, 120px)/.95 "Libre Caslon Display", "Times New Roman", serif; letter-spacing: -.02em; }
+h1 span { color: var(--clay); }
+p { color: var(--ink2); margin: 0 0 34px; }
+nav { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); border-top: 1px solid var(--line); }
+nav a { padding: 16px 0; border-bottom: 1px solid var(--line); color: var(--ink); text-decoration: none; font: 400 22px "Libre Caslon Display", serif; }
+nav a:hover { color: var(--acc); }
+</style>
+</head>
+<body>
+<main>
+<a class="crest" href="/" aria-label="Home">CT</a>
+<p class="k">Error 404</p>
+<h1>This page took a wrong turn<span>.</span></h1>
+<p>The link may be old, or the address mistyped. Everything is still here:</p>
+<nav aria-label="Pages">${["Home", ...Object.values(SHARE).map((x) => x[0])].map((n) => `<a href="/${n === "Home" ? "" : "#" + n.toLowerCase()}">${n}</a>`).join("")}</nav>
+</main>
+</body>
+</html>
+`);
+
 // ---------- index.html: structured data + static résumé + updated date ----------
 let idx = fs.readFileSync("index.html", "utf8");
 const swap = (html, tag, content) => {
@@ -249,4 +326,4 @@ if (base) {
 </urlset>
 `);
 }
-console.log(`Built profile.html, press.html, llms.txt, index.html${base ? ", sitemap.xml" : " (set siteUrl in data.js to add sitemap + absolute URLs)"}: ${iso}`);
+console.log(`Built profile.html, press.html, 404.html, share pages, llms.txt, index.html${base ? ", sitemap.xml" : " (set siteUrl in data.js to add sitemap + absolute URLs)"}: ${iso}`);

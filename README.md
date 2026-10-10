@@ -46,6 +46,8 @@ The Ask page answers visitors' questions in the browser from `js/data.js` (match
 - Set `siteUrl` in `js/data.js` once live, then run `node build.js` for absolute URLs and `sitemap.xml`
 
 ## Link previews
+Each page has a share page (`work.html`, `research.html`…) with its own preview image, so a link to Work shows the Work card on LinkedIn or WhatsApp. The Share button uses them automatically. To redraw the images: `python tools/make-og.py`.
+
 `assets/og.png` is the share image. Once the site has a domain, change `og:image` and `twitter:image` in `index.html` to the full URL (e.g. `https://tejith.in/assets/og.png`); LinkedIn and WhatsApp need absolute URLs.
 
 ## Printing

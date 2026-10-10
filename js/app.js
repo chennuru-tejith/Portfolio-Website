@@ -166,7 +166,9 @@
     }).join("");
 
     renderWriting(); renderRefs();
-    $("#honourList").innerHTML = D.achievements.map((a, i) => `<li class="honour rv ft" data-tags="${esc(((D.achievementTags || [])[i] || []).join(" "))}"><b>${esc(a.year)}</b><p>${esc(a.text)}</p></li>`).join("");
+    $("#honourList").innerHTML = D.achievements.map((a, i) => `<li class="honour proof rv ft" data-tags="${esc(((D.achievementTags || [])[i] || []).join(" "))}">
+      <span class="proof-top"><b>${esc(a.year)}</b><span class="proof-ic" aria-hidden="true">${I(a.icon || "medal", 18)}</span></span><p>${esc(a.text)}</p>
+      ${a.image ? `<button class="proof-view" data-proof="${i}">View certificate <span aria-hidden="true">↗</span></button>` : `<span class="proof-req">Original on request</span>`}</li>`).join("");
     $("#school").innerHTML = `<h3>Education</h3>` + D.education.map((e) => `<div class="edu"><strong>${esc(e.degree)}</strong><span>${esc(e.school)}</span><em>${esc(e.when)} · ${esc(e.score)}</em></div>`).join("") +
       D.certifications.map((c) => `<div class="edu"><strong>${esc(c.name)}</strong><span>${esc(c.issuer)}</span><em>Certification</em>${c.verify ? `<a class="cert-verify" href="${esc(c.verify)}" target="_blank" rel="noopener noreferrer">Verify ↗</a>` : ""}</div>`).join("");
     $("#contactCta").innerHTML = contactButtons();
@@ -707,7 +709,7 @@
   }
 
   // ---------- share card with QR ----------
-  const shareUrl = () => location.origin + location.pathname;
+  const shareUrl = () => { const base = location.origin + location.pathname.replace(/[^/]*$/, ""); return page && page !== "home" ? `${base}${page}.html` : base; };
   // the QR library is only needed here, so it loads on first use
   let qrLib = null;
   function loadQR() {
@@ -873,10 +875,169 @@
     io.observe(car);
   }
 
+  // ---------- 60-second tour ----------
+  const TOUR = [
+    ["top", "Chennuru Tejith: BBA + MBA at O.P. Jindal Global University, working across finance, operations and leadership."],
+    ["stats", "Three internships, a ₹4 Cr CSR build, a 200+ member club, and a CGPA of 7.9 out of 8."],
+    ["story-4cr", "The ₹4 Cr school build: 23 site visits in 7 weeks, every rupee tracked, one discrepancy caught before the sponsor saw it."],
+    ["recon", "This is the weekly check, line by line: contractor figures against what the site supervisor recorded."],
+    ["experience", "Operations at Round Table India, project management at Dr. Reddy's, finance at Ion Exchange."],
+    ["disciplines", "Five arenas: finance, operations, leadership, communication and tech. Each one is backed by real work."],
+    ["writing", "Research as sole author: From SEO to GEO, on how AI search decides what to cite."],
+    ["contact", "Open to internships in December to January and June to July. Thanks for taking the tour."],
+  ];
+  const tour = { i: -1, t: 0, paused: false, left: 0, started: 0 };
+  const STEP = 7500;
+  function tourGo(i) {
+    clearTimeout(tour.t);
+    if (i >= TOUR.length) return tourEnd();
+    tour.i = i; tour.paused = false; $("#tourPause").innerHTML = "❚❚"; $("#tourPause").setAttribute("aria-label", "Pause tour");
+    const [id, text] = TOUR[i];
+    $$(".tour-focus").forEach((e) => e.classList.remove("tour-focus"));
+    location.hash = id === "top" ? "#home" : "#" + id;
+    if (id === "top") window.scrollTo({ top: 0, behavior: still ? "auto" : "smooth" });
+    const el = document.getElementById(id); if (el) setTimeout(() => el.classList.add("tour-focus"), 300);
+    $("#tourStep").textContent = `Stop ${i + 1} of ${TOUR.length}`;
+    $("#tourText").textContent = text;
+    const f = $("#tourFill"); f.style.transition = "none"; f.style.width = (i / TOUR.length) * 100 + "%"; void f.offsetWidth;
+    f.style.transition = `width ${STEP}ms linear`; f.style.width = ((i + 1) / TOUR.length) * 100 + "%";
+    tour.left = STEP; tour.started = Date.now();
+    tour.t = setTimeout(() => tourGo(i + 1), STEP);
+  }
+  function tourPause() {
+    const f = $("#tourFill");
+    if (!tour.paused) {
+      clearTimeout(tour.t); tour.left -= Date.now() - tour.started; tour.paused = true;
+      f.style.transition = "none"; f.style.width = getComputedStyle(f).width;
+      $("#tourPause").innerHTML = "▶"; $("#tourPause").setAttribute("aria-label", "Resume tour");
+    } else {
+      tour.paused = false; tour.started = Date.now();
+      f.style.transition = `width ${tour.left}ms linear`; f.style.width = ((tour.i + 1) / TOUR.length) * 100 + "%";
+      tour.t = setTimeout(() => tourGo(tour.i + 1), tour.left);
+      $("#tourPause").innerHTML = "❚❚"; $("#tourPause").setAttribute("aria-label", "Pause tour");
+    }
+  }
+  function tourEnd() {
+    clearTimeout(tour.t); tour.i = -1;
+    $("#tour").hidden = true; document.body.classList.remove("touring");
+    $$(".tour-focus").forEach((e) => e.classList.remove("tour-focus"));
+  }
+  function wireTour() {
+    $("#tourBtn").addEventListener("click", () => { $("#tour").hidden = false; document.body.classList.add("touring"); tourGo(0); $("#tourPause").focus({ preventScroll: true }); });
+    $("#tourPause").addEventListener("click", tourPause);
+    $("#tourNext").addEventListener("click", () => tourGo(tour.i + 1));
+    $("#tourExit").addEventListener("click", tourEnd);
+    document.addEventListener("visibilitychange", () => { if (tour.i >= 0 && document.hidden && !tour.paused) tourPause(); });
+  }
+
+  // ---------- reconciliation demo (example numbers) ----------
+  const RECON = [["Cement (bags)", 1240, 1240], ["Steel, TMT bars (tonnes)", 18.5, 18.5], ["Bricks (units)", 42000, 38500], ["Sand (cubic metres)", 96, 96], ["Aggregate (cubic metres)", 120, 120]];
+  const num = (n) => n.toLocaleString("en-IN");
+  function renderRecon() {
+    $("#reconRows").innerHTML = RECON.map(([m, c, r]) => `<tr><th scope="row">${esc(m)}</th><td>${num(c)}</td><td>${num(r)}</td><td class="diff">·</td><td class="chk">·</td></tr>`).join("");
+    let running = false;
+    $("#reconRun").addEventListener("click", () => {
+      if (running) return; running = true;
+      const rows = $$("#reconRows tr");
+      rows.forEach((tr) => { tr.className = ""; $(".diff", tr).textContent = "·"; $(".chk", tr).textContent = "·"; });
+      $("#reconOut").textContent = "Checking…";
+      const one = (k) => {
+        if (k === rows.length) {
+          const bad = RECON.filter(([, c, r]) => c !== r);
+          $("#reconOut").innerHTML = bad.length ? `<b>${bad.length} of ${RECON.length} lines ${bad.length === 1 ? "doesn't" : "don't"} match:</b> ${bad.map(([m, c, r]) => `${esc(m.split(" (")[0])}, ${num(c - r)} more reported than recorded on site`).join("; ")}. A gap like this gets traced before anything goes to the sponsor.` : "All lines match.";
+          $("#reconRun").innerHTML = `Run it again <span aria-hidden="true">→</span>`; running = false; return;
+        }
+        const [, c, r] = RECON[k], tr = rows[k], d = c - r;
+        tr.className = "checking";
+        setTimeout(() => {
+          tr.className = d ? "bad" : "ok";
+          $(".diff", tr).textContent = d ? (d > 0 ? "+" : "") + num(d) : "0";
+          $(".chk", tr).textContent = d ? "Flag" : "Match ✓";
+          one(k + 1);
+        }, still ? 0 : 420);
+      };
+      one(0);
+    });
+  }
+
+  // ---------- drag through the years ----------
+  const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const mIndex = (str) => { const m = String(str).match(/([A-Z][a-z]{2}) (\d{4})/); return m ? +m[2] * 12 + MON[m[1]] : null; };
+  function scrubEvents() {
+    const now = new Date(), nowI = now.getFullYear() * 12 + now.getMonth();
+    const range = (when) => { const [a, b] = when.split(" · ")[0].split(" to "); return [mIndex(a), /present/i.test(b || "") ? nowI : mIndex(b || a)]; };
+    const ev = [];
+    const x = D.education.find((e) => /Class X$/.test(e.degree)), xii = D.education.find((e) => /Class XII/.test(e.degree)), ug = D.education[0];
+    if (x) ev.push({ kind: "Milestone", title: `${x.degree} completed, ${x.score}`, org: x.school, from: mIndex(x.when), to: mIndex(x.when) + 2 });
+    if (x && xii) ev.push({ kind: "Studying", title: xii.degree, org: xii.school, from: mIndex(x.when) + 1, to: mIndex(xii.when) });
+    if (ug) { const [a, b] = range(ug.when); ev.push({ kind: "Degree", title: ug.degree.split(",")[0], org: ug.school.split(",")[0], from: a, to: b }); }
+    D.experience.forEach((e) => { const [a, b] = range(e.when); ev.push({ kind: "Internship", title: e.role, org: firstOrg(e.org), from: a, to: b }); });
+    D.leadership.forEach((l) => { const [a, b] = range(l.when); ev.push({ kind: "Leadership", title: l.role, org: l.org, from: a, to: b, open: /present/i.test(l.when) }); });
+    return { ev, nowI };
+  }
+  function renderScrub() {
+    const { ev, nowI } = scrubEvents(); if (!ev.length) { $("#scrub").hidden = true; return; }
+    const lo = Math.min(...ev.map((e) => e.from)), hi = Math.max(...ev.map((e) => e.to));
+    const r = $("#scrubRange"); r.min = lo; r.max = hi; r.step = 1; r.value = Math.min(nowI, hi);
+    const pct = (i) => ((i - lo) / (hi - lo)) * 100;
+    let years = ""; for (let y = Math.ceil(lo / 12); y * 12 <= hi; y++) years += `<span style="left:${pct(y * 12)}%">${y}</span>`;
+    years += `<i class="scrub-today" style="left:${pct(nowI)}%" title="Today"></i>`;
+    years += ev.filter((e) => e.kind === "Internship").map((e) => `<i class="scrub-mark" style="left:${pct(e.from)}%"></i>`).join("");
+    $("#scrubYears").innerHTML = years;
+    const show = () => {
+      const i = +r.value, label = `${MONTHS[i % 12]} ${Math.floor(i / 12)}`;
+      $("#scrubDate").textContent = label;
+      r.setAttribute("aria-valuetext", label);
+      r.style.setProperty("--p", pct(i) + "%");
+      $("#scrubTag").textContent = i > nowI ? "Ahead" : i === nowI ? "Now" : "";
+      const on = ev.filter((e) => i >= e.from && i <= e.to && !(i > nowI && e.open));
+      $("#scrubList").innerHTML = on.length ? on.map((e) => `<li><span class="mono">${e.kind}</span><b>${esc(e.title)}</b><em>${esc(e.org)}</em></li>`).join("") : `<li class="none">Nothing recorded for this month.</li>`;
+      if (i > nowI) $("#scrubList").insertAdjacentHTML("beforeend", `<li class="none">Still to come: more internships, and graduating in Aug 2029.</li>`);
+    };
+    r.addEventListener("input", show); show();
+  }
+
+  // ---------- proof wall lightbox ----------
+  function openProof(i) {
+    const a = D.achievements[i]; if (!a || !a.image) return;
+    $("#lbImg").src = a.image; $("#lbImg").alt = `Certificate: ${a.text}`; $("#lbCap").textContent = `${a.text} (${a.year})`;
+    $("#lightbox").hidden = false; $("#lightbox .share-x").focus();
+  }
+
+  // ---------- reading options: text size and contrast ----------
+  function applyReading() {
+    const d = document.documentElement;
+    d.style.setProperty("--zoom", state.zoom || 1);
+    d.dataset.contrast = state.contrast === "high" ? "high" : "std";
+    $$("#zoomSeg button").forEach((b) => b.setAttribute("aria-pressed", String(+b.dataset.zoom === (state.zoom || 1))));
+    $$("#contrastSeg button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.contrast === d.dataset.contrast)));
+  }
+  function wireReading() {
+    const btn = $("#readBtn"), pop = $("#readPop");
+    const close = () => { pop.hidden = true; btn.setAttribute("aria-expanded", "false"); };
+    btn.addEventListener("click", (e) => { e.stopPropagation(); pop.hidden = !pop.hidden; btn.setAttribute("aria-expanded", String(!pop.hidden)); });
+    document.addEventListener("click", (e) => { if (!pop.hidden && !e.target.closest("#readPop")) close(); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !pop.hidden) { close(); btn.focus(); } });
+    $$("#zoomSeg button").forEach((b) => b.addEventListener("click", () => { state.zoom = +b.dataset.zoom; save(); applyReading(); }));
+    $$("#contrastSeg button").forEach((b) => b.addEventListener("click", () => { state.contrast = b.dataset.contrast; save(); applyReading(); }));
+    applyReading();
+  }
+
+  // ---------- monogram intro, once per visit ----------
+  function intro() {
+    const d = document.documentElement; if (!d.classList.contains("intro")) return;
+    try { sessionStorage.setItem("tejith-intro", "1"); } catch (e) {}
+    let done = false;
+    const end = () => { if (done) return; done = true; d.classList.add("intro-out"); setTimeout(() => d.classList.remove("intro", "intro-out"), 700); };
+    setTimeout(end, 2300);
+    $("#intro").addEventListener("click", end);
+    addEventListener("keydown", end, { once: true });
+  }
+
   // ---------- boot ----------
   applyTheme(state.theme);
   $("#year").textContent = new Date().getFullYear();
-  renderDisciplines(); renderSections(); renderProgress(); renderAvail(); renderMap(); renderFaq(); renderExtras(); renderResume(); renderHeroExtras(); renderAsk(); renderChangelog(); geoBadge(); renderContact(); wireShare(); renderThinking(); renderBaf(); badgeCase(); docsActions(); soundToggle(); voice(); signature(); season(); carDraw();
+  renderDisciplines(); renderSections(); renderProgress(); renderAvail(); renderMap(); renderFaq(); renderExtras(); renderResume(); renderHeroExtras(); renderAsk(); renderChangelog(); geoBadge(); renderRecon(); renderScrub(); wireTour(); wireReading(); intro(); renderContact(); wireShare(); renderThinking(); renderBaf(); badgeCase(); docsActions(); soundToggle(); voice(); signature(); season(); carDraw();
   clock(); cursor(); motion(); countUps(); scrollStory(); mapReveal(); hireTab(); hiddenDetails(); views(); reveal();
 
   document.addEventListener("click", (e) => {
@@ -890,11 +1051,16 @@
     if (e.target.closest("[data-onepager]")) onePager();
     if (e.target.closest("[data-close-share]")) closeShare();
     if (e.target.closest("[data-cite]")) openCite();
+    const pf = e.target.closest("[data-proof]"); if (pf) openProof(+pf.dataset.proof);
+    if (e.target.closest("[data-close-lb]")) $("#lightbox").hidden = true;
     if (e.target.closest("[data-close-cite]")) $("#cite").hidden = true;
   });
   window.addEventListener("keydown", (e) => {
     if (!$("#share").hidden && e.key === "Escape") return closeShare();
     if (!$("#cite").hidden && e.key === "Escape") { $("#cite").hidden = true; return; }
+    if (!$("#lightbox").hidden && e.key === "Escape") { $("#lightbox").hidden = true; return; }
+    if (tour.i >= 0 && e.key === "Escape") return tourEnd();
+    if (tour.i >= 0 && e.key === "ArrowRight" && !e.target.closest("input, textarea")) return tourGo(tour.i + 1);
     if ($("#reader").hidden) return;
     if (e.key === "Escape") return closeCase();
     if (e.key === "Tab") {

@@ -24,10 +24,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Instrument+Serif:ital@0;1&family=Mrs+Saint+Delafield&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-  <link rel="stylesheet" href="css/style.css?v=141" />
-  <script src="js/boot.js?v=141"></script>
+  <link rel="stylesheet" href="css/style.css?v=151" />
+  <script src="js/boot.js?v=151"></script>
 </head>
 <body>
+  <div class="intro" id="intro" aria-hidden="true">
+    <div class="intro-in">
+      <svg class="intro-crest" viewBox="0 0 120 120"><rect class="ic-a" x="1" y="1" width="118" height="118" pathLength="1"/><rect class="ic-b" x="10" y="10" width="100" height="100" pathLength="1"/><text x="60" y="70" text-anchor="middle">CT</text><line class="ic-c" x1="46" y1="88" x2="74" y2="88" pathLength="1"/></svg>
+      <p class="intro-name">Chennuru Tejith</p>
+      <span class="intro-skip">Click to skip</span>
+    </div>
+  </div>
   <div class="backdrop" aria-hidden="true"></div>
   <div class="progress" id="progress" aria-hidden="true"></div>
   <div class="cursor" id="cursor" aria-hidden="true"></div>
@@ -45,6 +52,13 @@
         <a href="#contact">Contact</a>
       </nav>
       <div class="nav-right">
+        <button class="icon-btn read-btn" id="readBtn" aria-expanded="false" aria-controls="readPop" aria-label="Reading options" title="Reading options">Aa</button>
+        <div class="read-pop" id="readPop" hidden role="group" aria-label="Reading options">
+          <p class="mono">Text size</p>
+          <div class="seg" id="zoomSeg"><button data-zoom="1" aria-pressed="true">A</button><button data-zoom="1.12" aria-pressed="false">A+</button><button data-zoom="1.25" aria-pressed="false">A++</button></div>
+          <p class="mono">Contrast</p>
+          <div class="seg" id="contrastSeg"><button data-contrast="std" aria-pressed="true">Standard</button><button data-contrast="high" aria-pressed="false">High</button></div>
+        </div>
         <button class="icon-btn" id="soundBtn" aria-pressed="false" aria-label="Turn interface sounds on" title="Interface sounds"></button>
         <button class="icon-btn" id="themeBtn" aria-label="Switch theme"></button>
         <button class="btn btn-dark btn-sm" data-go="resume" id="resBtn">Résumé</button>
@@ -68,7 +82,10 @@
             <a class="btn btn-primary" href="#work">See my work <span aria-hidden="true">→</span></a>
             <a class="btn btn-ghost" id="cvHero" download>Download CV</a>
           </div>
-          <a class="hero-ask" href="#ask"><span class="hero-ask-dot" aria-hidden="true"></span>Ask me anything <span aria-hidden="true">→</span></a>
+          <div class="hero-links">
+            <button class="hero-ask" id="tourBtn"><span class="hero-play" aria-hidden="true">▶</span>Take the 60-second tour</button>
+            <a class="hero-ask" href="#ask"><span class="hero-ask-dot" aria-hidden="true"></span>Ask me anything <span aria-hidden="true">→</span></a>
+          </div>
           <dl class="hero-facts">
             <div><dt>Based in</dt><dd>Hyderabad · Sonipat</dd></div>
             <div><dt>Languages</dt><dd>English, Telugu, Hindi, French</dd></div>
@@ -148,6 +165,27 @@
       </div>
     </section>
 
+    <section class="sec wrap" id="recon" data-page="work">
+      <header class="sec-head">
+        <p class="kicker">How the check worked</p>
+        <h2>Contractor figures against site records, line by line.</h2>
+        <p class="sub">The weekly check from the school build, shown with example numbers. The project's real figures stay with the project.</p>
+      </header>
+      <div class="recon">
+        <div class="recon-scroll">
+          <table class="recon-t">
+            <thead><tr><th scope="col">Material</th><th scope="col">Contractor reported</th><th scope="col">Supervisor record</th><th scope="col">Difference</th><th scope="col">Check</th></tr></thead>
+            <tbody id="reconRows"></tbody>
+          </table>
+        </div>
+        <div class="recon-foot">
+          <button class="btn btn-primary btn-sm" id="reconRun">Run the check <span aria-hidden="true">→</span></button>
+          <p class="recon-out" id="reconOut" aria-live="polite">Press the button to compare each line.</p>
+        </div>
+        <p class="recon-note mono">Illustration · example numbers</p>
+      </div>
+    </section>
+
     <section class="sec wrap" id="disciplines" data-page="arenas">
       <header class="sec-head">
         <p class="kicker">Arenas</p>
@@ -176,9 +214,24 @@
     </section>
 
 
-    <section class="sec wrap" id="journey" data-page="about">
+    <section class="sec wrap" id="scrub" data-page="about">
       <header class="sec-head">
         <p class="kicker">About</p>
+        <h2>Drag through the years.</h2>
+        <p class="sub">From Class X in Hyderabad to the BBA + MBA at JGU. Move the slider to see what I was doing at any point.</p>
+      </header>
+      <div class="scrub">
+        <div class="scrub-now"><b id="scrubDate"></b><span id="scrubTag"></span></div>
+        <label class="sr" for="scrubRange">Month</label>
+        <input type="range" id="scrubRange" class="scrub-range" />
+        <div class="scrub-years" id="scrubYears" aria-hidden="true"></div>
+        <ul class="scrub-list" id="scrubList" aria-live="polite"></ul>
+      </div>
+    </section>
+
+    <section class="sec wrap" id="journey" data-page="about">
+      <header class="sec-head">
+        <p class="kicker">Journey map</p>
         <h2>Two cities, one direction.</h2>
         <p class="sub">Where the work happened. Select a city to see what I did there.</p>
       </header>
@@ -255,7 +308,7 @@
     </section>
 
     <section class="sec wrap cv-auto" id="honours" data-page="about">
-      <header class="sec-head"><p class="kicker">Recognition &amp; education</p><h2>Honours and schooling.</h2></header>
+      <header class="sec-head"><p class="kicker">Proof wall</p><h2>Honours, and the paper behind them.</h2><p class="sub">Each honour with its certificate or letter. Originals are available on request.</p></header>
       <div class="honours"><ul class="honour-list" id="honourList"></ul><aside class="school" id="school"></aside></div>
     </section>
 
@@ -384,11 +437,29 @@
     </div>
   </div>
 
+  <div class="tour" id="tour" hidden role="region" aria-label="60-second tour">
+    <div class="tour-bar"><i id="tourFill"></i></div>
+    <div class="tour-in">
+      <span class="mono" id="tourStep"></span>
+      <p id="tourText" aria-live="polite"></p>
+      <div class="tour-btns"><button class="icon-btn" id="tourPause" aria-label="Pause tour">❚❚</button><button class="icon-btn" id="tourNext" aria-label="Next stop">→</button><button class="icon-btn" id="tourExit" aria-label="End tour">✕</button></div>
+    </div>
+  </div>
+
+  <div class="share" id="lightbox" hidden>
+    <div class="share-scrim" data-close-lb></div>
+    <figure class="lb" role="dialog" aria-modal="true" aria-labelledby="lbCap">
+      <button class="icon-btn share-x" data-close-lb aria-label="Close">✕</button>
+      <img id="lbImg" alt="" />
+      <figcaption id="lbCap"></figcaption>
+    </figure>
+  </div>
+
   <div class="toast" id="toast" role="status" hidden></div>
 
-  <script src="js/data.js?v=141"></script>
-  <script src="js/icons.js?v=141"></script>
-  <script src="js/india.js?v=141"></script>
-  <script src="js/app.js?v=141"></script>
+  <script src="js/data.js?v=151"></script>
+  <script src="js/icons.js?v=151"></script>
+  <script src="js/india.js?v=151"></script>
+  <script src="js/app.js?v=151"></script>
 </body>
 </html>

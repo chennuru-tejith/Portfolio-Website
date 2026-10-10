@@ -20,6 +20,7 @@ Tick items off as you send them. Each one is a single line in `js/data.js` (show
 - [ ] **Referees** per arena: name, role, organisation and LinkedIn link (`gyms[].referee`)
 - [ ] **Recommendations**: written ones only, with permission to publish (`recommendations`)
 - [ ] **Certificates and letters** for the Documents section, as PDFs (`documents`)
+- [ ] **Scans of your honours** (JPG or PNG) for the proof wall: put them in `assets/proofs/` and add `image` to each honour (`achievements`)
 - [ ] **Coursera verify link** for the Excel certificate; it currently points to LinkedIn (`certifications[0].verify`)
 
 ## Please review

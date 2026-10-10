@@ -308,6 +308,7 @@ window.PORTFOLIO = {
     { degree: "Class X", school: "Geetanjali Olympiad High School, Hyderabad", when: "May 2022", score: "93.1%" },
   ],
 
+  // Add a scan to any honour with  image: "assets/proofs/your-file.jpg"  and it gets a "View certificate" button on the proof wall
   achievements: [
     { year: "2026", icon: "medal", text: "Batch Rank 3 and Certificate of Appreciation for Peer Support & Voluntary Contribution, JGU University Day." },
     { year: "2025", icon: "trophy", text: "Best Leader, Best All-Rounder and Rank 2 in IBM Batch, JGU University Day." },
@@ -388,7 +389,7 @@ window.PORTFOLIO = {
 
   // ---------- Change log (newest first). Add a line whenever the site or your work changes ----------
   changelog: [
-    { month: "Oct 2026", items: ["Site split into separate pages: Work, Arenas, Research, About, Ask and Contact", "Added an Ask page that answers questions about me from this site", "Added a press kit, a citation for the GEO paper and this change log", "Applied my paper's GEO Business Adoption Framework to the site"] },
+    { month: "Oct 2026", items: ["Site split into separate pages: Work, Arenas, Research, About, Ask and Contact", "Added an Ask page that answers questions about me from this site", "Added a press kit, a citation for the GEO paper and this change log", "Applied my paper's GEO Business Adoption Framework to the site", "Added a 60-second tour, a line-by-line reconciliation demo, a slider through the years, a proof wall, reading options and share cards for each page"] },
   ],
 
 
