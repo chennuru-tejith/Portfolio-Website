@@ -359,10 +359,10 @@ window.PORTFOLIO = {
   writing: [
     {
       kind: "Research paper",
-      title: "Generative Engine Optimization",
-      venue: "Independent research",
+      title: "From SEO to GEO: Navigating the Paradigm Shift from Search Engine Optimization to Generative Engine Optimization in the AI-First Search Era",
+      venue: "Sole author · O.P. Jindal Global University",
       date: "2026",
-      summary: "From SEO to GEO: a replication study across five AI assistants (ChatGPT, Claude, Gemini, Grok and Perplexity) on which sources they cite, and how faithfully they disclose them.",
+      summary: "Argues that Generative Engine Optimization replaces SEO rather than evolving from it, and proposes the GEO Business Adoption Framework (GEO-BAF). Primary research compares how ChatGPT, Claude, Gemini, Grok and Perplexity choose and disclose their sources.",
       status: "In progress",
       url: "",
     },
@@ -451,6 +451,14 @@ window.PORTFOLIO = {
     { from: "12-30", to: "01-02", greeting: "Happy New Year", accent: "#d8b4a0" },
     { from: "08-15", to: "08-15", greeting: "Happy Independence Day", accent: "#e0a07a" },
     { from: "11-07", to: "11-09", greeting: "Happy Diwali", accent: "#e8b06a" },
+  ],
+
+  // ---------- My research, applied to this site: GEO-BAF (status: "done" | "next") ----------
+  geoBaf: [
+    { phase: "Readiness audit", status: "done", detail: "Tested what an AI crawler sees without JavaScript. Before: almost nothing. After: about 970 words and 8 of 9 key facts on the home page, 9 of 9 on the text profile." },
+    { phase: "Foundational signals", status: "done", detail: "Plain-HTML profile with question-led headings, llms.txt, ProfilePage / Person / FAQPage structured data, a visible last-updated date, and robots.txt that welcomes AI crawlers." },
+    { phase: "Platform-specific calibration", status: "next", detail: "Once live: Bing Webmaster Tools (feeds ChatGPT search), Google Search Console (Gemini), and consistent facts across LinkedIn and GitHub for corroboration." },
+    { phase: "Measurement and embedding", status: "next", detail: "Re-run the paper's own replication protocol on \"Who is Chennuru Tejith?\" across all five assistants, tracking inclusion, weighting and accuracy." },
   ],
 
   // ---------- Bookshelf (hidden until books are added) ----------

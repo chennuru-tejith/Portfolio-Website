@@ -910,3 +910,16 @@ body { background-color: var(--bg); }
 }
 @media (prefers-reduced-motion: reduce) { .hero h1.name, .sig .script { -webkit-mask-image: none; mask-image: none; } .car path, .car circle { stroke-dashoffset: 0; } }
 @media (max-width: 720px) { .logo-name { display: none; } .nav-right { gap: 8px; } .nav-in { gap: 12px; } }
+
+/* GEO-BAF applied to this site */
+.baf { margin-top: 56px; }
+.baf-h { font: 400 clamp(28px, 2.8vw, 40px)/1.1 "Libre Caslon Display", serif; margin-bottom: 10px; }
+.baf .sub { margin-bottom: 26px; }
+.baf-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line-2); }
+.baf-list li { display: grid; grid-template-columns: 120px 1fr auto; gap: 24px; align-items: start; padding: 22px 0; border-bottom: 1px solid var(--line); }
+.baf-no { font: 400 10.5px "Geist Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; color: var(--clay); padding-top: 5px; }
+.baf-list b { display: block; font-weight: 700; margin-bottom: 4px; }
+.baf-list p { margin: 0; color: var(--ink-2); font-size: 15.5px; }
+.baf-st { font: 400 10px "Geist Mono", monospace; letter-spacing: 0.16em; text-transform: uppercase; padding: 5px 9px; border: 1px solid var(--line-3); color: var(--ink-3); white-space: nowrap; }
+.baf-list li.done .baf-st { color: var(--ok); border-color: var(--ok); }
+@media (max-width: 720px) { .baf-list li { grid-template-columns: 1fr; gap: 6px; } .baf-st { justify-self: start; } }

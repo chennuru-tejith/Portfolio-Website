@@ -18,7 +18,13 @@ Last updated: 2026-10-10
 - Availability: Internship · in person, December – January and June – July, Hyderabad · Anywhere in India
 
 ## Research
-- Generative Engine Optimization (Research paper, In progress): From SEO to GEO: a replication study across five AI assistants (ChatGPT, Claude, Gemini, Grok and Perplexity) on which sources they cite, and how faithfully they disclose them.
+- From SEO to GEO: Navigating the Paradigm Shift from Search Engine Optimization to Generative Engine Optimization in the AI-First Search Era (Research paper, In progress): Argues that Generative Engine Optimization replaces SEO rather than evolving from it, and proposes the GEO Business Adoption Framework (GEO-BAF). Primary research compares how ChatGPT, Claude, Gemini, Grok and Perplexity choose and disclose their sources.
+
+## GEO-BAF applied to this site
+1. Readiness audit (done): Tested what an AI crawler sees without JavaScript. Before: almost nothing. After: about 970 words and 8 of 9 key facts on the home page, 9 of 9 on the text profile.
+2. Foundational signals (done): Plain-HTML profile with question-led headings, llms.txt, ProfilePage / Person / FAQPage structured data, a visible last-updated date, and robots.txt that welcomes AI crawlers.
+3. Platform-specific calibration (next): Once live: Bing Webmaster Tools (feeds ChatGPT search), Google Search Console (Gemini), and consistent facts across LinkedIn and GitHub for corroboration.
+4. Measurement and embedding (next): Re-run the paper's own replication protocol on "Who is Chennuru Tejith?" across all five assistants, tracking inclusion, weighting and accuracy.
 
 ## Pages
 - [Interactive portfolio](./): the main site

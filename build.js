@@ -39,7 +39,7 @@ const person = {
   homeLocation: { "@type": "Place", name: "Hyderabad, Telangana, India" },
   alumniOf: { "@type": "CollegeOrUniversity", name: "O.P. Jindal Global University", address: "Sonipat, Haryana, India" },
   knowsLanguage: ["English", "Telugu", "Hindi", "French"],
-  knowsAbout: [...new Set(D.gyms.flatMap((g) => g.moves))].slice(0, 20),
+  knowsAbout: ["Generative Engine Optimization", ...new Set(D.gyms.flatMap((g) => g.moves))].slice(0, 20),
   hasCredential: D.certifications.map((c) => ({ "@type": "EducationalOccupationalCredential", name: c.name, recognizedBy: { "@type": "Organization", name: c.issuer } })),
   award: D.achievements.map((a) => `${a.text} (${a.year})`),
   hasOccupation: D.experience.map((e) => ({ "@type": "Occupation", name: e.role, description: `${firstOrg(e.org)}, ${e.when}` })),
@@ -115,6 +115,8 @@ ${q("What has he built?", `<ul>${D.projects.map((x) => `<li><strong>${esc(x.name
 
 ${q("What research is he doing?", `<ul>${D.writing.map((w) => `<li><strong>${esc(w.title)}</strong> (${esc(w.kind)}, ${esc(w.date)}${w.status ? `, ${esc(w.status)}` : ""}): ${esc(w.summary)}</li>`).join("")}</ul>`)}
 
+${(D.geoBaf || []).length ? q("How is his research applied to this website?", `<p>The GEO Business Adoption Framework (GEO-BAF) from his paper, run on this portfolio:</p><ol>${D.geoBaf.map((b) => `<li><strong>${esc(b.phase)}</strong> (${b.status === "done" ? "done" : "next"}): ${esc(b.detail)}</li>`).join("")}</ol>`) : ""}
+
 ${q("Education", `<ul>${D.education.map((e) => `<li>${esc(e.degree)}, ${esc(e.school)} (${esc(e.when)}; ${esc(e.score)})</li>`).join("")}${D.certifications.map((c) => `<li>${esc(c.name)} — ${esc(c.issuer)}</li>`).join("")}</ul>`)}
 
 ${q("Awards and recognition", `<ul>${D.achievements.map((x) => `<li>${esc(x.text)} (${esc(x.year)})</li>`).join("")}</ul>`)}
@@ -147,6 +149,9 @@ ${a.windows ? `- Availability: ${a.type}, ${a.windows.join(" and ")}, ${a.locati
 
 ## Research
 ${D.writing.map((w) => `- ${w.title} (${w.kind}, ${w.status || w.date}): ${w.summary}`).join("\n")}
+
+## GEO-BAF applied to this site
+${(D.geoBaf || []).map((b, i) => `${i + 1}. ${b.phase} (${b.status}): ${b.detail}`).join("\n")}
 
 ## Pages
 - [Interactive portfolio](${abs("./") || "./"}): the main site

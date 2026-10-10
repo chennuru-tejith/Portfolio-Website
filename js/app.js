@@ -668,6 +668,13 @@
   }
 
 
+  // ---------- GEO-BAF applied to this site ----------
+  function renderBaf() {
+    const list = D.geoBaf || []; if (!list.length) return;
+    $("#bafList").innerHTML = list.map((b, i) => `<li class="rv ${b.status === "done" ? "done" : ""}"><span class="baf-no">Phase ${i + 1}</span><div><b>${esc(b.phase)}</b><p>${esc(b.detail)}</p></div><span class="baf-st">${b.status === "done" ? "Done ✓" : "Next"}</span></li>`).join("");
+    $("#baf").hidden = false;
+  }
+
   // ---------- GEO paper progress ----------
   function geoTrack() {
     const stages = ["Research", "Draft", "Review", "Published"], at = stages.indexOf(D.geoStage);
@@ -777,7 +784,7 @@
   // ---------- boot ----------
   applyTheme(state.theme);
   $("#year").textContent = new Date().getFullYear();
-  renderDisciplines(); renderSections(); renderProgress(); renderAvail(); renderMap(); renderFaq(); renderExtras(); renderResume(); renderHeroExtras(); renderAsk(); renderContact(); wireShare(); renderThinking(); badgeCase(); docsActions(); soundToggle(); voice(); signature(); season(); carDraw();
+  renderDisciplines(); renderSections(); renderProgress(); renderAvail(); renderMap(); renderFaq(); renderExtras(); renderResume(); renderHeroExtras(); renderAsk(); renderContact(); wireShare(); renderThinking(); renderBaf(); badgeCase(); docsActions(); soundToggle(); voice(); signature(); season(); carDraw();
   clock(); cursor(); motion(); countUps(); scrollStory(); mapReveal(); hireTab(); hiddenDetails(); views(); reveal();
 
   document.addEventListener("click", (e) => {
