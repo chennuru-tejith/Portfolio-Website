@@ -4,7 +4,7 @@ Tick items off as you send them. Each one is a single line in `js/data.js` (show
 
 ## Photos, voice, signature
 - [ ] **Portrait photo** for the hero frame. A well-lit, plain background, shoulders up. Put it in `assets/` (`photo`)
-- [ ] **Signature**: sign your name 3–4 times on white paper with a black pen and send a clear photo. I'll turn the best one into a vector that writes itself (`signature`)
+- [ ] **Signature**: sign your name 3 or 4 times on white paper with a black pen and send a clear photo. I'll turn the best one into a vector that writes itself (`signature`)
 - [ ] **Voice clip**: about 10 seconds of you saying "Hi, I'm Tejith…", recorded on your phone in a quiet room (`voice`)
 - [ ] **One line about Hyderabad**, shown on the map as "Home" (`homeNote`)
 
@@ -16,11 +16,21 @@ Tick items off as you send them. Each one is a single line in `js/data.js` (show
 
 ## Content to send
 - [ ] **GEO paper** progress: tell me when it moves to Draft, Review or Published, and send the final link or PDF (`geoStage`, `writing`)
-- [ ] **4–6 books** with one line each on what they changed for you (`books`)
+- [ ] **4 to 6 books** with one line each on what they changed for you (`books`)
 - [ ] **Referees** per arena: name, role, organisation and LinkedIn link (`gyms[].referee`)
 - [ ] **Recommendations**: written ones only, with permission to publish (`recommendations`)
 - [ ] **Certificates and letters** for the Documents section, as PDFs (`documents`)
 - [ ] **Coursera verify link** for the Excel certificate; it currently points to LinkedIn (`certifications[0].verify`)
+
+## Turn on the AI assistant (Ask AI page)
+- [ ] Create an API key at **console.anthropic.com** and set a monthly **spend limit** there (e.g. $5)
+- [ ] In Vercel: Project, Settings, Environment Variables, add `ANTHROPIC_API_KEY` with that key, then redeploy
+- [ ] Until then the assistant still works, but answers only by quoting the site
+- [ ] *(Optional)* add `ANTHROPIC_MODEL` to use a cheaper model; the default is Claude Opus 5.5
+
+## Please review
+- [ ] The two bios (25 and 100 words) in `bios`, used on the press kit and in llms.txt
+- [ ] The change log (`changelog`): add a line each month
 
 ## Accounts (all free)
 - [ ] **Calendly** booking link for "Book a 15-min call" (`bookingUrl`)

@@ -1,21 +1,27 @@
 # Chennuru Tejith
 
-> Chennuru Tejith is an Indian business student pursuing an integrated BBA (Hons.) + MBA at O.P. Jindal Global University (2024–2029, CGPA 7.9/8), from Hyderabad, with internship experience in operations at Round Table India, project management at Dr. Reddy's Laboratories Ltd. and finance at Ion Exchange India Ltd.
+> Chennuru Tejith is an Indian business student pursuing an integrated BBA (Hons.) + MBA at O.P. Jindal Global University (2024 to 2029, CGPA 7.9/8), from Hyderabad, with internship experience in operations at Round Table India, project management at Dr. Reddy's Laboratories Ltd. and finance at Ion Exchange India Ltd.
 
 Last updated: 2026-10-10
 
+## Short bio (about 25 words)
+Chennuru Tejith is a BBA + MBA student at O.P. Jindal Global University with internships in operations, project management and finance, now writing a research paper on GEO.
+
+## Long bio (about 100 words)
+Chennuru Tejith is an integrated BBA (Hons.) + MBA student at O.P. Jindal Global University (2024 to 2029, CGPA 7.9/8), from Hyderabad. As an operations intern at Round Table India he monitored a ₹4 Cr CSR-funded government school build across 23 site visits in seven weeks, and caught a contractor reporting discrepancy before it reached the sponsor. He has also interned in project management at Dr. Reddy's Laboratories and in finance at Ion Exchange India. On campus he heads outreach for ZAMAC, sits on university committees and directed a 200+ member entrepreneurship club. He is researching Generative Engine Optimization.
+
 ## Key facts
-- Programme: Integrated BBA (Hons.) + MBA, O.P. Jindal Global University, Sonipat (Aug 2024 – Aug 2029), CGPA 7.9 / 8.00
-- Operations Intern, Round Table India (Jun 2026 – Jul 2026 · Hyderabad): Monitored on-site execution of a ₹4 Cr CSR-funded government school construction project (MPPS & ZPHS Integrated School, Phase II) across 23 site visits over 7 weeks, tracking progress against sanctioned drawings.
-- Project Management Intern, Dr. Reddy's Laboratories Ltd. (Jun 2025 – Jul 2025 · Hyderabad): Conducted employee cost analysis across FY2021–FY2025, tracking trends in salaries, share-based payments, and welfare expenses to support cost-optimization discussions.
-- Finance Intern, Ion Exchange India Ltd. (Dec 2024 – Jan 2025 · Hyderabad): Streamlined daily transaction processing, improving departmental workflow efficiency and reducing documentation backlogs.
-- Head of Outreach, ZAMAC — The Marketing Club, JGBS (Feb 2026 – Present)
-- Member, Student Grievance Redressal Committee, Food & Mess Committee, JGBS (Aug 2026 – Present)
-- Student Representative, COGSASH, O.P. Jindal Global University (Nov 2025 – Present)
-- Member, Election Commission, Jindal Global Business School (Apr 2025 – Present)
-- Director, JGU Entrepreneurship Club (200+ members) (Feb 2026 – May 2026)
+- Programme: Integrated BBA (Hons.) + MBA, O.P. Jindal Global University, Sonipat (Aug 2024 to Aug 2029), CGPA 7.9 / 8.00
+- Operations Intern, Round Table India (Jun 2026 to Jul 2026 · Hyderabad): Monitored on-site execution of a ₹4 Cr CSR-funded government school construction project (MPPS & ZPHS Integrated School, Phase II) across 23 site visits over 7 weeks, tracking progress against sanctioned drawings.
+- Project Management Intern, Dr. Reddy's Laboratories Ltd. (Jun 2025 to Jul 2025 · Hyderabad): Conducted employee cost analysis across FY2021 to FY2025, tracking trends in salaries, share-based payments, and welfare expenses to support cost-optimization discussions.
+- Finance Intern, Ion Exchange India Ltd. (Dec 2024 to Jan 2025 · Hyderabad): Streamlined daily transaction processing, improving departmental workflow efficiency and reducing documentation backlogs.
+- Head of Outreach, ZAMAC, The Marketing Club, JGBS (Feb 2026 to Present)
+- Member, Student Grievance Redressal Committee, Food & Mess Committee, JGBS (Aug 2026 to Present)
+- Student Representative, COGSASH, O.P. Jindal Global University (Nov 2025 to Present)
+- Member, Election Commission, Jindal Global Business School (Apr 2025 to Present)
+- Director, JGU Entrepreneurship Club (200+ members) (Feb 2026 to May 2026)
 - Languages: English (Full Professional), Telugu (Native), Hindi (Working), French (Elementary)
-- Availability: Internship · in person, December – January and June – July, Hyderabad · Anywhere in India
+- Availability: Internship · in person, December to January and June to July, Hyderabad · Anywhere in India
 
 ## Research
 - From SEO to GEO: Navigating the Paradigm Shift from Search Engine Optimization to Generative Engine Optimization in the AI-First Search Era (Research paper, In progress): Argues that Generative Engine Optimization replaces SEO rather than evolving from it, and proposes the GEO Business Adoption Framework (GEO-BAF). Primary research compares how ChatGPT, Claude, Gemini, Grok and Perplexity choose and disclose their sources.
@@ -29,7 +35,14 @@ Last updated: 2026-10-10
 ## Pages
 - [Interactive portfolio](./): the main site
 - [Text profile](profile.html): every fact on one plain page
+- [Press kit](press.html): bios, crest and citation
 - [CV (PDF)](assets/Chennuru_Tejith_CV.pdf)
+
+## Change log
+- Oct 2026: Site split into separate pages: Work, Arenas, Research, About, Ask and Contact
+- Oct 2026: Added an AI assistant that answers questions about me from this site
+- Oct 2026: Added a press kit, a citation for the GEO paper and this change log
+- Oct 2026: Applied my paper's GEO Business Adoption Framework to the site
 
 ## Elsewhere
 - [LinkedIn](https://www.linkedin.com/in/chennuru-tejith)

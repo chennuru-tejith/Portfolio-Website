@@ -1,6 +1,6 @@
 // ============================================================
 //  ALL PORTFOLIO CONTENT LIVES HERE.
-//  Edit this file to update the site — no other code changes needed.
+//  Edit this file to update the site, no other code changes needed.
 // ============================================================
 
 window.PORTFOLIO = {
@@ -11,7 +11,7 @@ window.PORTFOLIO = {
     name: "Chennuru Tejith",
     shortName: "Tejith",
     title: "Business Strategist in Training",
-    tagline: "BBA + MBA @ O.P. Jindal Global University · Finance · Operations · Leadership — and a builder of AI tools on the side.",
+    tagline: "BBA + MBA @ O.P. Jindal Global University · Finance · Operations · Leadership, and a builder of AI tools on the side.",
     location: "Hyderabad, India",
     // assembled at runtime so simple scrapers don't harvest the address from the source
     email: ["ch.tejith", "gmail.com"].join("@"),
@@ -43,7 +43,7 @@ window.PORTFOLIO = {
       name: "Ledger Gym",
       domain: "Finance & Analytics",
       type: "Finance",
-      color: "#7f9be6",
+      color: "#c8a96b",
       icon: "coin", medal: "Ledger Badge",
       intro: "Numbers tell stories. I track every rupee and explain every trend.",
       moves: ["Financial Analysis", "Cost Analysis", "Budgeting", "Bookkeeping", "Financial Reporting", "Data Interpretation"],
@@ -51,16 +51,16 @@ window.PORTFOLIO = {
         {
           role: "Project Management Intern",
           org: "Dr. Reddy's Laboratories Ltd.",
-          when: "Jun 2025 – Jul 2025 · Hyderabad",
+          when: "Jun 2025 to Jul 2025 · Hyderabad",
           points: [
-            "Conducted employee cost analysis across FY2021–FY2025, tracking trends in salaries, share-based payments, and welfare expenses to support cost-optimization discussions.",
+            "Conducted employee cost analysis across FY2021 to FY2025, tracking trends in salaries, share-based payments, and welfare expenses to support cost-optimization discussions.",
             "Prepared structured management reports from multi-year workforce data, enabling leadership decisions on headcount budgeting and welfare spending.",
           ],
         },
         {
           role: "Finance Intern",
           org: "Ion Exchange India Ltd.",
-          when: "Dec 2024 – Jan 2025 · Hyderabad",
+          when: "Dec 2024 to Jan 2025 · Hyderabad",
           points: [
             "Streamlined daily transaction processing, improving workflow efficiency and reducing documentation backlogs.",
             "Standardized vendor records and aligned internal financial documentation, enhancing data consistency and audit readiness.",
@@ -80,12 +80,12 @@ window.PORTFOLIO = {
       battles: [
         {
           role: "Operations Intern",
-          org: "Round Table India — Hyderabad Titans Round Table Charitable Trust",
-          when: "Jun 2026 – Jul 2026 · Hyderabad",
+          org: "Round Table India, Hyderabad Titans Round Table Charitable Trust",
+          when: "Jun 2026 to Jul 2026 · Hyderabad",
           points: [
             "Monitored on-site execution of a ₹4 Cr CSR-funded government school construction project (MPPS & ZPHS Integrated School, Phase II) across 23 site visits over 7 weeks.",
             "Tracked CSR fund utilisation against the sanctioned budget and co-drafted progress-and-spend updates for CSR sponsor VST Industries Ltd., including a live sponsor update call.",
-            "Verified contractor-reported material stock and spend against supervisor records — catching and resolving a reporting discrepancy before it reached the sponsor.",
+            "Verified contractor-reported material stock and spend against supervisor records, catching and resolving a reporting discrepancy before it reached the sponsor.",
           ],
         },
       ],
@@ -103,25 +103,25 @@ window.PORTFOLIO = {
         {
           role: "Director",
           org: "JGU Entrepreneurship Club",
-          when: "Feb 2026 – May 2026 · Sonipat",
+          when: "Feb 2026 to May 2026 · Sonipat",
           points: ["Oversaw entrepreneurial programming, mentorship activities, and startup events for a 200+ member student community."],
         },
         {
           role: "Student Representative, COGSASH",
           org: "O.P. Jindal Global University",
-          when: "Nov 2025 – Present · Sonipat",
-          points: ["Elected representative on JGU's Gender Sensitisation Committee — policy deliberations, awareness campaigns, and institutional governance."],
+          when: "Nov 2025 to Present · Sonipat",
+          points: ["Elected representative on JGU's Gender Sensitisation Committee: policy deliberations, awareness campaigns, and institutional governance."],
         },
         {
           role: "Member, Election Commission",
           org: "Jindal Global Business School (JGBS)",
-          when: "Apr 2025 – Present · Sonipat",
+          when: "Apr 2025 to Present · Sonipat",
           points: ["Administer student election processes ensuring compliance, transparency, and fair representation."],
         },
         {
           role: "Member, Student Grievance Redressal Committee",
           org: "Food & Mess Committee, JGBS",
-          when: "Aug 2026 – Present · Sonipat",
+          when: "Aug 2026 to Present · Sonipat",
           points: ["Represent student interests on food and mess service quality, handling grievance resolution and liaison with campus administration."],
         },
       ],
@@ -138,14 +138,14 @@ window.PORTFOLIO = {
       battles: [
         {
           role: "Head of Outreach",
-          org: "ZAMAC — The Marketing Club, JGBS",
-          when: "Feb 2026 – Present · Sonipat (member since Sep 2025)",
+          org: "ZAMAC, The Marketing Club, JGBS",
+          when: "Feb 2026 to Present · Sonipat (member since Sep 2025)",
           points: ["Lead external partnership development and outreach strategy, managing stakeholder relationships and event visibility for the university's marketing club."],
         },
         {
           role: "Business Partner Communications",
           org: "Ion Exchange India Ltd.",
-          when: "Dec 2024 – Jan 2025",
+          when: "Dec 2024 to Jan 2025",
           points: ["Coordinated business partner communications and order confirmations, improving accuracy across stakeholder interactions."],
         },
       ],
@@ -162,7 +162,7 @@ window.PORTFOLIO = {
       battles: [
         {
           role: "Independent Builder",
-          org: "GitHub — chennuru-tejith",
+          org: "GitHub, chennuru-tejith",
           when: "2026",
           points: [
             "Shipped browser extensions for AI-chat productivity (auto-resume queues, chat recovery) and outreach automation.",
@@ -179,7 +179,7 @@ window.PORTFOLIO = {
   projects: [
     {
       id: "reachly",
-      name: "Reachly — AI Networking & Outreach Strategist",
+      name: "Reachly: AI Networking & Outreach Strategist",
       types: ["Comms", "Tech"],
       blurb: "Discover the right people, send personalized outreach, and land internships, jobs and referrals without the spam. Built with Lovable.",
       moves: ["People Discovery", "Personalized Outreach", "Referral Strategy"],
@@ -199,7 +199,7 @@ window.PORTFOLIO = {
     },
     {
       id: "queuebolt",
-      name: "ChatQueue AI — Recycle Hub",
+      name: "ChatQueue AI: Recycle Hub",
       types: ["Tech", "Productivity"],
       blurb: "v2 of ChatQueue AI: adds a recycle bin for deleted AI chats, automatic local chat backups and a multi-platform auto-resume queue (Claude, ChatGPT, Gemini, DeepSeek).",
       moves: ["Chat Recovery", "Local Backup", "Auto-Submit", "Multi-Platform"],
@@ -211,7 +211,7 @@ window.PORTFOLIO = {
       id: "candlox",
       name: "Indian Stock Analyzer",
       types: ["Finance", "Tech"],
-      blurb: "A TradingView indicator & screener suite for NSE/BSE and NIFTY/BANKNIFTY options — 13 confluence engines, a live telemetry dashboard and a backtest companion with ATR-based risk management.",
+      blurb: "A TradingView indicator & screener suite for NSE/BSE and NIFTY/BANKNIFTY options: 13 confluence engines, a live telemetry dashboard and a backtest companion with ATR-based risk management.",
       moves: ["Trend Engine", "VWAP Bands", "Smart-Money Scan", "Backtest"],
       stats: { Impact: 78, Complexity: 92, Polish: 72 },
       repo: "https://github.com/chennuru-tejith/Indian-Stock-Analyzer",
@@ -221,7 +221,7 @@ window.PORTFOLIO = {
       id: "scoutling",
       name: "Outreach CRM & AI Lead Scout",
       types: ["Comms", "Tech"],
-      blurb: "An AI-powered outreach CRM and Chrome extension for job seekers — lead tracking, pitch & cover-letter generator, resume ATS optimizer and a mock-interview simulator.",
+      blurb: "An AI-powered outreach CRM and Chrome extension for job seekers: lead tracking, pitch & cover-letter generator, resume ATS optimizer and a mock-interview simulator.",
       moves: ["Lead Scout", "Pitch Writer", "ATS Check", "Mock Interview"],
       stats: { Impact: 85, Complexity: 80, Polish: 74 },
       repo: "https://github.com/chennuru-tejith/Internship-Outreach",
@@ -229,9 +229,9 @@ window.PORTFOLIO = {
     },
     {
       id: "notewing",
-      name: "Send-A-Note — LinkedIn AI Smart Writer",
+      name: "Send-A-Note: LinkedIn AI Smart Writer",
       types: ["Comms"],
-      blurb: "A Chrome extension spec + build that writes personalized LinkedIn connection notes and messages right inside LinkedIn — no copy-pasting.",
+      blurb: "A Chrome extension spec + build that writes personalized LinkedIn connection notes and messages right inside LinkedIn, no copy-pasting.",
       moves: ["Profile Parse", "Smart Note", "Inline Inject"],
       stats: { Impact: 70, Complexity: 65, Polish: 70 },
       repo: "https://github.com/chennuru-tejith/Send-A-Note",
@@ -241,7 +241,7 @@ window.PORTFOLIO = {
       id: "prismo",
       name: "Personal Portfolio (v1)",
       types: ["Design", "Tech"],
-      blurb: "My first portfolio — glassmorphism UI, particle canvas, an interactive terminal and live GitHub stats. The first version of my personal site.",
+      blurb: "My first portfolio: glassmorphism UI, particle canvas, an interactive terminal and live GitHub stats. The first version of my personal site.",
       moves: ["Glass UI", "Particle Field", "Terminal CLI"],
       stats: { Impact: 60, Complexity: 60, Polish: 78 },
       repo: "https://github.com/chennuru-tejith/Personal-Portfolio-Website",
@@ -253,8 +253,8 @@ window.PORTFOLIO = {
   experience: [
     {
       role: "Operations Intern",
-      org: "Round Table India — Hyderabad Titans Round Table Charitable Trust",
-      when: "Jun 2026 – Jul 2026 · Hyderabad",
+      org: "Round Table India, Hyderabad Titans Round Table Charitable Trust",
+      when: "Jun 2026 to Jul 2026 · Hyderabad",
       points: [
         "Monitored on-site execution of a ₹4 Cr CSR-funded government school construction project (MPPS & ZPHS Integrated School, Phase II) across 23 site visits over 7 weeks, tracking progress against sanctioned drawings.",
         "Tracked CSR fund utilisation against the sanctioned budget and co-drafted progress-and-spend updates for CSR sponsor VST Industries Ltd., including a live sponsor update call.",
@@ -264,9 +264,9 @@ window.PORTFOLIO = {
     {
       role: "Project Management Intern",
       org: "Dr. Reddy's Laboratories Ltd.",
-      when: "Jun 2025 – Jul 2025 · Hyderabad",
+      when: "Jun 2025 to Jul 2025 · Hyderabad",
       points: [
-        "Conducted employee cost analysis across FY2021–FY2025, tracking trends in salaries, share-based payments, and welfare expenses to support cost-optimization discussions.",
+        "Conducted employee cost analysis across FY2021 to FY2025, tracking trends in salaries, share-based payments, and welfare expenses to support cost-optimization discussions.",
         "Prepared structured management reports from multi-year workforce data, enabling leadership decisions on headcount budgeting and welfare spending.",
         "Strengthened financial data interpretation, cost analysis, and reporting using MS Office Suite.",
       ],
@@ -274,7 +274,7 @@ window.PORTFOLIO = {
     {
       role: "Finance Intern",
       org: "Ion Exchange India Ltd.",
-      when: "Dec 2024 – Jan 2025 · Hyderabad",
+      when: "Dec 2024 to Jan 2025 · Hyderabad",
       points: [
         "Streamlined daily transaction processing, improving departmental workflow efficiency and reducing documentation backlogs.",
         "Coordinated business partner communications and order confirmations, improving accuracy across stakeholder interactions.",
@@ -284,11 +284,11 @@ window.PORTFOLIO = {
   ],
 
   leadership: [
-    { role: "Head of Outreach", org: "ZAMAC — The Marketing Club, JGBS", when: "Feb 2026 – Present" },
-    { role: "Member, Student Grievance Redressal Committee", org: "Food & Mess Committee, JGBS", when: "Aug 2026 – Present" },
-    { role: "Student Representative, COGSASH", org: "O.P. Jindal Global University", when: "Nov 2025 – Present" },
-    { role: "Member, Election Commission", org: "Jindal Global Business School", when: "Apr 2025 – Present" },
-    { role: "Director", org: "JGU Entrepreneurship Club (200+ members)", when: "Feb 2026 – May 2026" },
+    { role: "Head of Outreach", org: "ZAMAC, The Marketing Club, JGBS", when: "Feb 2026 to Present" },
+    { role: "Member, Student Grievance Redressal Committee", org: "Food & Mess Committee, JGBS", when: "Aug 2026 to Present" },
+    { role: "Student Representative, COGSASH", org: "O.P. Jindal Global University", when: "Nov 2025 to Present" },
+    { role: "Member, Election Commission", org: "Jindal Global Business School", when: "Apr 2025 to Present" },
+    { role: "Director", org: "JGU Entrepreneurship Club (200+ members)", when: "Feb 2026 to May 2026" },
   ],
 
   skills: [
@@ -301,7 +301,7 @@ window.PORTFOLIO = {
     {
       degree: "Integrated BBA (Hons.) + MBA, Business Administration & Management",
       school: "O.P. Jindal Global University (JGU), Sonipat, Haryana",
-      when: "Aug 2024 – Aug 2029",
+      when: "Aug 2024 to Aug 2029",
       score: "CGPA 7.9 / 8.00",
     },
     { degree: "Class XII, Commerce (MEC)", school: "Avinash College of Commerce, Hyderabad", when: "Apr 2024", score: "88.4%" },
@@ -309,9 +309,9 @@ window.PORTFOLIO = {
   ],
 
   achievements: [
-    { year: "2026", icon: "medal", text: "Batch Rank 3 and Certificate of Appreciation for Peer Support & Voluntary Contribution — JGU University Day." },
-    { year: "2025", icon: "trophy", text: "Best Leader, Best All-Rounder and Rank 2 in IBM Batch — JGU University Day." },
-    { year: "2025", icon: "star", text: "Certificate of Appreciation for volunteer leadership — JGU Alumni Day." },
+    { year: "2026", icon: "medal", text: "Batch Rank 3 and Certificate of Appreciation for Peer Support & Voluntary Contribution, JGU University Day." },
+    { year: "2025", icon: "trophy", text: "Best Leader, Best All-Rounder and Rank 2 in IBM Batch, JGU University Day." },
+    { year: "2025", icon: "star", text: "Certificate of Appreciation for volunteer leadership, JGU Alumni Day." },
     { year: "2024", icon: "scroll", text: "Letter of Appreciation for Exemplary Academic Performance." },
     { year: "2024", icon: "pillar", text: "Letter of Appreciation for the inauguration of India's First Constitution Museum & the National Convention on the Constitution of India." },
   ],
@@ -342,7 +342,7 @@ window.PORTFOLIO = {
       title: "Earn trust, then keep it",
       text: "Responsibility is given to people who have handled it well before.",
       proof: "Elected student representative on JGU's Gender Sensitisation Committee, and trusted to run fair, transparent student elections.",
-      where: "O.P. Jindal Global University · 2025–now",
+      where: "O.P. Jindal Global University · 2025 to now",
     },
   ],
 
@@ -380,20 +380,31 @@ window.PORTFOLIO = {
   // },
   recommendations: [],
 
-  // ---------- Rotating line under the name: "Someone who …" ----------
-  roles: ["verifies every number", "shows up on site", "leads student teams", "builds his own tools", "gives loyalty first"],
+  // ---------- Bios for the press kit and llms.txt (about 25 and 100 words) ----------
+  bios: {
+    short: "Chennuru Tejith is a BBA + MBA student at O.P. Jindal Global University with internships in operations, project management and finance, now writing a research paper on GEO.",
+    long: "Chennuru Tejith is an integrated BBA (Hons.) + MBA student at O.P. Jindal Global University (2024 to 2029, CGPA 7.9/8), from Hyderabad. As an operations intern at Round Table India he monitored a ₹4 Cr CSR-funded government school build across 23 site visits in seven weeks, and caught a contractor reporting discrepancy before it reached the sponsor. He has also interned in project management at Dr. Reddy's Laboratories and in finance at Ion Exchange India. On campus he heads outreach for ZAMAC, sits on university committees and directed a 200+ member entrepreneurship club. He is researching Generative Engine Optimization.",
+  },
+
+  // ---------- Change log (newest first). Add a line whenever the site or your work changes ----------
+  changelog: [
+    { month: "Oct 2026", items: ["Site split into separate pages: Work, Arenas, Research, About, Ask and Contact", "Added an AI assistant that answers questions about me from this site", "Added a press kit, a citation for the GEO paper and this change log", "Applied my paper's GEO Business Adoption Framework to the site"] },
+  ],
+
+  // ---------- AI assistant: the serverless endpoint (needs ANTHROPIC_API_KEY on Vercel). Empty = answers from the site only ----------
+  askEndpoint: "/api/ask",
 
   // ---------- "Currently" line in the hero (leave a field empty to hide it) ----------
   currently: { working: "Generative Engine Optimization research paper", reading: "", learning: "" },
 
   // ---------- Off the clock ----------
-  offClock: "Formula 1 — I follow team strategy and race-day decisions.",
+  offClock: "Formula 1. I follow team strategy and race-day decisions.",
 
   // ---------- Portrait in the hero: put your photo in assets/ and its path here (empty = placeholder frame) ----------
   photo: "",
 
   // ---------- "What's new" strip ----------
-  updates: [{ date: "Oct 2026", text: "Researching how AI search engines choose what to cite", link: "#writing" }],
+  updates: [{ date: "Oct 2026", text: "Researching how AI search engines choose what to cite", link: "#research" }],
 
   // ---------- Booking link for "Book a 15-minute call" (e.g. a free Calendly link). Empty = email request instead ----------
   bookingUrl: "",
@@ -425,7 +436,7 @@ window.PORTFOLIO = {
   // GEO paper progress: one of "Research", "Draft", "Review", "Published"
   geoStage: "Research",
 
-  // "A decision I'd make" — DRAFT written from your principles; please review and rewrite in your words
+  // "A decision I'd make", DRAFT written from your principles; please review and rewrite in your words
   decision: {
     question: "A CSR sponsor asks: should we release the next tranche of funds for Phase III?",
     reasoning: [
@@ -436,7 +447,7 @@ window.PORTFOLIO = {
     draft: true,
   },
 
-  // Notes from the field — DRAFT from your CV; please review before sharing
+  // Notes from the field, DRAFT from your CV; please review before sharing
   notes: [
     {
       title: "What 23 site visits taught me about reports",
@@ -446,7 +457,7 @@ window.PORTFOLIO = {
     },
   ],
 
-  // Seasonal touches (month-day ranges, inclusive). Diwali moves every year — please confirm the date.
+  // Seasonal touches (month-day ranges, inclusive). Diwali moves every year, please confirm the date.
   seasons: [
     { from: "12-30", to: "01-02", greeting: "Happy New Year", accent: "#d8b4a0" },
     { from: "08-15", to: "08-15", greeting: "Happy Independence Day", accent: "#e0a07a" },
@@ -470,11 +481,11 @@ window.PORTFOLIO = {
     { name: "Curriculum Vitae", type: "PDF", url: "assets/Chennuru_Tejith_CV.pdf" },
   ],
 
-  // ---------- Case studies, one per internship (from CV facts; "takeaway" is drafted — edit freely) ----------
+  // ---------- Case studies, one per internship (from CV facts; "takeaway" is drafted, edit freely) ----------
   cases: {
     "Project Management Intern": {
-      context: "Dr. Reddy's Laboratories wanted a clearer view of five years of employee costs (FY2021–FY2025) to support cost-optimization discussions.",
-      actions: ["Analysed trends in salaries, share-based payments and welfare expenses across FY2021–FY2025.", "Turned multi-year workforce data into structured management reports.", "Used the MS Office Suite for analysis and reporting."],
+      context: "Dr. Reddy's Laboratories wanted a clearer view of five years of employee costs (FY2021 to FY2025) to support cost-optimization discussions.",
+      actions: ["Analysed trends in salaries, share-based payments and welfare expenses across FY2021 to FY2025.", "Turned multi-year workforce data into structured management reports.", "Used the MS Office Suite for analysis and reporting."],
       outcome: "Reports that supported leadership decisions on headcount budgeting and welfare spending.",
       takeaway: "Data only helps a decision when it is structured around the question the decision-maker is asking.",
     },
@@ -488,14 +499,14 @@ window.PORTFOLIO = {
 
   // ---------- Availability (confirmed by Tejith) ----------
   availability: {
-    windows: ["December – January", "June – July"],
+    windows: ["December to January", "June to July"],
     type: "Internship · in person",
     roles: ["Finance", "Operations & Project Management", "Consulting & Strategy", "Marketing & Partnerships"],
     locations: "Hyderabad · Anywhere in India",
     response: "Within 48 hours",
   },
 
-  // Programme timeline for the progress bar (from the CV: Aug 2024 – Aug 2029)
+  // Programme timeline for the progress bar (from the CV: Aug 2024 to Aug 2029)
   programme: { name: "Integrated BBA (Hons.) + MBA", start: "2024-08-01", end: "2029-08-31" },
 
   // ---------- Abilities (who I am) vs Moves (what I use) ----------
@@ -521,13 +532,13 @@ window.PORTFOLIO = {
 
   // ---------- Journey map: where the work happened ----------
   places: [
-    { city: "Sonipat", state: "Haryana", lat: 28.99, lon: 77.02, items: ["O.P. Jindal Global University: BBA + MBA (2024–2029)", "Head of Outreach, ZAMAC", "Director, JGU Entrepreneurship Club", "Student Representative, COGSASH", "Election Commission & Grievance Committee"] },
-    { city: "Hyderabad", state: "Telangana", lat: 17.39, lon: 78.49, items: ["Operations Intern, Round Table India (2026)", "Project Management Intern, Dr. Reddy's (2025)", "Finance Intern, Ion Exchange India (2024–25)", "Schooling: Class X & XII"] },
+    { city: "Sonipat", state: "Haryana", lat: 28.99, lon: 77.02, items: ["O.P. Jindal Global University: BBA + MBA (2024 to 2029)", "Head of Outreach, ZAMAC", "Director, JGU Entrepreneurship Club", "Student Representative, COGSASH", "Election Commission & Grievance Committee"] },
+    { city: "Hyderabad", state: "Telangana", lat: 17.39, lon: 78.49, items: ["Operations Intern, Round Table India (2026)", "Project Management Intern, Dr. Reddy's (2025)", "Finance Intern, Ion Exchange India (Dec 2024 to Jan 2025)", "Schooling: Class X & XII"] },
   ],
 
   // ---------- Before → after, per internship (from CV results) ----------
   outcomes: {
-    "Project Management Intern": { before: "Five years of workforce cost data (FY2021–FY2025) spread across records.", after: "Structured management reports supporting decisions on headcount budgeting and welfare spending." },
+    "Project Management Intern": { before: "Five years of workforce cost data (FY2021 to FY2025) spread across records.", after: "Structured management reports supporting decisions on headcount budgeting and welfare spending." },
     "Finance Intern": { before: "Documentation backlogs and inconsistent vendor records.", after: "Streamlined daily transaction processing; standardized, audit-ready vendor records." },
   },
 
@@ -552,10 +563,10 @@ window.PORTFOLIO = {
   },
   achievementTags: [["summit"], ["summit"], ["summit"], [], ["signal"]],
 
-  // ---------- Recruiter Q&A (drafted from the CV — edit to your own words) ----------
+  // ---------- Recruiter Q&A (drafted from the CV, edit to your own words) ----------
   faq: [
     { q: "Can you lead people?", a: "Yes. I directed programming for a 200+ member entrepreneurship club, I lead external outreach for the marketing club, and I was elected to a university committee." },
     { q: "Why business and technology together?", a: "I study business, but I like building the tools myself: a live outreach platform, AI-chat utilities and a stock-screening suite, all on my GitHub." },
-    { q: "What are you looking for?", a: "An internship in finance, operations, consulting or marketing, in December–January or June–July, where I can own a real piece of work and be measured on the result." },
+    { q: "What are you looking for?", a: "An internship in finance, operations, consulting or marketing, in December to January or June to July, where I can own a real piece of work and be measured on the result." },
   ],
 };

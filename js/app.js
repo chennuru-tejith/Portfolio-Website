@@ -1,5 +1,5 @@
 // ============================================================
-//  Chennuru Tejith — professional portfolio
+//  Chennuru Tejith: professional portfolio
 // ============================================================
 (function () {
   const D = window.PORTFOLIO, I = window.ICONS;
@@ -10,6 +10,7 @@
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const pad = (n) => String(n).padStart(2, "0");
+  const firstOrg = (o) => o.split(", ")[0];
   // "?motion=1" forces full motion (used for testing; real visitors follow their system setting)
   const still = matchMedia("(prefers-reduced-motion: reduce)").matches && !/[?&]motion=1/.test(location.search);
 
@@ -29,7 +30,7 @@
     document.documentElement.dataset.theme = t;
     $("#themeBtn").innerHTML = I(t === "dark" ? "sun" : "moon", 17);
     $("#themeBtn").setAttribute("aria-label", t === "dark" ? "Switch to light mode" : "Switch to dark mode");
-    const tc = $('meta[name="theme-color"]'); if (tc) tc.content = t === "dark" ? "#0a1220" : "#f4efe6";
+    const tc = $('meta[name="theme-color"]'); if (tc) tc.content = t === "dark" ? "#0c0d11" : "#f5f0e7";
   }
 
   // ---------- views ----------
@@ -46,7 +47,8 @@
     document.body.classList.toggle("resume-mode", v === "resume");
     $("#resBtn").textContent = v === "resume" ? "Back to site" : "Résumé";
     $("#resBtn").dataset.go = v === "resume" ? "story" : "resume";
-    if (push) { const u = new URL(location.href); v === "resume" ? u.searchParams.set("view", "resume") : u.searchParams.delete("view"); u.hash = ""; history.replaceState(null, "", u); }
+    if (push) { const u = new URL(location.href); v === "resume" ? u.searchParams.set("view", "resume") : u.searchParams.delete("view"); history.replaceState(null, "", u); }
+    if (v === "story") { route(false, true); return; }
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     onScroll();
   }
@@ -59,8 +61,8 @@
     const glyph = I(g.icon, 34).replace("<svg ", '<svg x="33" y="33" ').replace('stroke-width="1.7"', 'stroke-width="1.8"');
     return `<svg class="${cls}" viewBox="0 0 100 100" aria-hidden="true">
       <defs>
-        <linearGradient id="${id}m" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4f7fb"/><stop offset=".45" stop-color="#b9c4d6"/><stop offset=".7" stop-color="#eef2f8"/><stop offset="1" stop-color="#8e9bb2"/></linearGradient>
-        <linearGradient id="${id}c" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${g.color}"/><stop offset="1" style="stop-color:color-mix(in srgb, ${g.color} 55%, #0a1a33)"/></linearGradient>
+        <linearGradient id="${id}m" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8f3ea"/><stop offset=".45" stop-color="#c9bea9"/><stop offset=".7" stop-color="#f2ebdf"/><stop offset="1" stop-color="#9b8f7b"/></linearGradient>
+        <linearGradient id="${id}c" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${g.color}"/><stop offset="1" style="stop-color:color-mix(in srgb, ${g.color} 55%, #17120c)"/></linearGradient>
         <linearGradient id="${id}h" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".45"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient>
       </defs>
       <polygon points="${hex(47)}" fill="url(#${id}m)"/>
@@ -76,7 +78,7 @@
     const ys = g.battles.map((b) => (b.when.match(/\d{4}/g) || [])).flat().map(Number);
     if (!ys.length) return "";
     const lo = Math.min(...ys), hi = Math.max(...ys);
-    return lo === hi ? String(lo) : `${lo}–${hi}`;
+    return lo === hi ? String(lo) : `${lo} to ${hi}`;
   };
   function renderDisciplines() {
     $("#discTabs").innerHTML = G.map((g, i) => `
@@ -140,7 +142,7 @@
       <article class="principle rv"><span class="pr-no">${pad(i + 1)}</span><h3>${esc(p.title)}</h3><p class="pr-text">${esc(p.text)}</p>
       <span class="pr-where">${esc(p.where)}</span></article>`).join("");
     const q = D.profile.quote;
-    if (q) { $("#quoteText").innerHTML = esc(q.text).replace(/\*([^*]+)\*/g, "<em>$1</em>"); $("#quoteBy").textContent = "— " + q.by; } else $(".pq").hidden = true;
+    if (q) { $("#quoteText").innerHTML = esc(q.text).replace(/\*([^*]+)\*/g, "<em>$1</em>"); $("#quoteBy").textContent = q.by; } else $(".pq").hidden = true;
 
     const items = [...D.experience.map((e) => ({ ...e, tag: "Internship" })), ...D.leadership.map((l) => ({ ...l, points: pointsFor(l.role), tag: "Leadership", lead: true }))].sort((a, b) => startOf(b.when) - startOf(a.when));
     $("#journeyList").innerHTML = items.map((s) => `
@@ -186,7 +188,8 @@
     box.innerHTML = items.filter((w) => filter === "All" || w.kind === filter).map((w) => {
       const inner = `<div class="paper-top"><span>${esc(w.kind)}</span><span>${esc(w.date)}</span></div>
         <h3>${esc(w.title)}</h3><p>${esc(w.summary)}</p>
-        ${w.status ? `<span class="paper-status">${esc(w.status)}</span>${geoTrack()}` : `<span class="paper-venue">${esc(w.venue)}${w.url ? " ↗" : ""}</span>`}`;
+        ${w.status ? `<span class="paper-status">${esc(w.status)}</span>${geoTrack()}` : `<span class="paper-venue">${esc(w.venue)}${w.url ? " ↗" : ""}</span>`}
+        ${w === D.writing[0] ? `<button class="cite-btn" data-cite>Cite this <span aria-hidden="true">“ ”</span></button>` : ""}`;
       return w.url ? `<a class="paper" href="${esc(w.url)}" target="_blank" rel="noopener noreferrer">${inner}</a>` : `<div class="paper static">${inner}</div>`;
     }).join("");
   }
@@ -331,11 +334,40 @@
     $("#nav").classList.toggle("solid", scrollY > 20);
     const max = document.documentElement.scrollHeight - innerHeight;
     $("#progress").style.setProperty("--sp", max > 0 ? Math.min(1, scrollY / max).toFixed(4) : 0);
-    if (view !== "story") return;
-    let on = "";
-    ["disciplines", "journey", "experience", "projects", "qa", "references"].forEach((id) => { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top < innerHeight * 0.4) on = id; });
-    $$(".nav-links a").forEach((a) => a.classList.toggle("on", a.getAttribute("href") === "#" + on));
   }
+
+  // ---------- pages: one room at a time (all content stays in the HTML for crawlers) ----------
+  const PAGES = ["home", "work", "arenas", "research", "about", "ask", "contact"];
+  const PAGE_NAME = { home: "Home", work: "Work", arenas: "Arenas", research: "Research", about: "About", ask: "Ask AI", contact: "Contact" };
+  let page = "";
+  function pageFor(id) {
+    if (!id || id === "top") return "home";
+    if (PAGES.includes(id)) return id;
+    const el = document.getElementById(id), sec = el && el.closest("[data-page]");
+    return sec ? sec.dataset.page : "home";
+  }
+  function route(animate = true, force = false) {
+    const id = decodeURIComponent(location.hash.slice(1)), next = pageFor(id);
+    if (view !== "story") setView("story", true);
+    const changed = next !== page || force;
+    if (changed) {
+      page = next;
+      $$("#story [data-page]").forEach((el) => el.classList.toggle("off-page", el.dataset.page !== page));
+      $("#story").dataset.page = page;
+      $$(".nav-links a").forEach((a) => { const on = a.getAttribute("href") === "#" + page; a.classList.toggle("on", on); on ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"); });
+      document.title = page === "home" ? HOME_TITLE : `${PAGE_NAME[page]} | ${D.profile.name}`;
+      const i = PAGES.indexOf(page), nx = PAGES[(i + 1) % PAGES.length];
+      $("#nextPage").innerHTML = page === "home" ? "" : `<a href="#${nx}"><span class="mono">Next</span><b>${esc(PAGE_NAME[nx])}</b><span aria-hidden="true">→</span></a>`;
+      if (animate && !still) { const m = $("#story"); m.classList.remove("page-in"); void m.offsetWidth; m.classList.add("page-in"); }
+      reveal();
+    }
+    const target = id && !PAGES.includes(id) && id !== "top" ? document.getElementById(id) : null;
+    if (target) requestAnimationFrame(() => target.scrollIntoView({ behavior: changed || still ? "auto" : "smooth" }));
+    else if (changed) window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    if (page === "ask" && changed && matchMedia("(pointer: fine)").matches) setTimeout(() => $("#askInput").focus({ preventScroll: true }), 300);
+    onScroll();
+  }
+  const HOME_TITLE = document.title;
 
 
   // ---------- "currently" line ----------
@@ -372,7 +404,7 @@
   function hrText() {
     const p = D.profile, a = D.availability || {};
     return [
-      `${p.name} — ${D.programme ? D.programme.name : "BBA + MBA"}, O.P. Jindal Global University (graduating Aug 2029)`,
+      `${p.name}, ${D.programme ? D.programme.name : "BBA + MBA"}, O.P. Jindal Global University (graduating Aug 2029)`,
       `Experience: Round Table India (Operations, ₹4 Cr CSR project), Dr. Reddy's (Project Management), Ion Exchange (Finance)`,
       a.windows ? `Available: ${a.windows.join(" & ")} · ${a.type} · ${a.locations}` : "",
       `Contact: ${p.email} · ${p.linkedin}`,
@@ -392,7 +424,7 @@
     caseFocus = document.activeElement;
     $("#caseBody").innerHTML = `<div class="cs">
       <p class="kicker cs-kick">Case study</p>
-      <h2 id="caseTitle">${esc(e.org.split(" — ")[0])}</h2>
+      <h2 id="caseTitle">${esc(firstOrg(e.org))}</h2>
       <p class="cs-org">${esc(e.role)} · ${esc(e.when)}</p>
       <div class="cs-block"><h4>Context</h4><p>${esc(c.context)}</p></div>
       <div class="cs-block"><h4>What I did</h4><ul>${c.actions.map((a) => `<li>${esc(a)}</li>`).join("")}</ul></div>
@@ -429,22 +461,6 @@
   }
 
 
-  // ---------- rotating "Someone who …" line ----------
-  function rotate() {
-    const list = D.roles || [], el = $("#rot"); if (!el || !list.length) return;
-    el.innerHTML = `<span>${esc(list[0])}</span>`;
-    if (still || list.length < 2) return;
-    let i = 0;
-    setInterval(() => {
-      if (document.hidden) return;
-      i = (i + 1) % list.length;
-      const old = el.firstElementChild, nx = document.createElement("span");
-      nx.textContent = list[i]; nx.className = "in";
-      old.className = "out"; el.appendChild(nx);
-      setTimeout(() => old.remove(), 700);
-    }, 2600);
-  }
-
   // ---------- hero: portrait, what's new, greeting, word-by-word headline ----------
   function renderHeroExtras() {
     if (D.photo) {
@@ -455,7 +471,6 @@
     }
     const u = (D.updates || [])[0];
     if (u) { const n = $("#news"); n.href = u.link || "#"; n.innerHTML = `<b>Now</b>${esc(u.text)}<i>· ${esc(u.date)}</i>`; n.hidden = false; }
-    rotate();
     const h = new Date().getHours();
     const g = h < 5 ? "Up late? Welcome." : h < 12 ? "Good morning, and welcome." : h < 17 ? "Good afternoon, and welcome." : h < 22 ? "Good evening, and welcome." : "Up late? Welcome.";
     $("#greet").textContent = g;
@@ -520,7 +535,7 @@
   let corpus = null;
   function buildCorpus() {
     const c = [];
-    D.experience.forEach((e) => e.points.forEach((t) => c.push({ src: e.org.split(" — ")[0], t })));
+    D.experience.forEach((e) => e.points.forEach((t) => c.push({ src: firstOrg(e.org), t })));
     D.leadership.forEach((l) => c.push({ src: "Leadership", t: `${l.role}, ${l.org} (${l.when})` }));
     D.principles.forEach((p) => c.push({ src: "How I work", t: p.proof }));
     (D.abilities || []).forEach((a) => c.push({ src: a.name, t: a.proof }));
@@ -532,24 +547,97 @@
     D.education.forEach((e) => c.push({ src: "Education", t: `${e.degree}, ${e.school} (${e.when}, ${e.score})` }));
     return c;
   }
-  function ask(q) {
+  function search(q) {
     corpus = corpus || buildCorpus();
-    const words = q.toLowerCase().replace(/[^\p{L}\p{N}₹\s]/gu, " ").split(/\s+/).filter((w) => w.length > 2 && !["has", "the", "and", "for", "him", "his", "does", "did", "can", "what", "with", "any", "how", "who", "skills"].includes(w));
+    const words = q.toLowerCase().replace(/[^\p{L}\p{N}₹\s]/gu, " ").split(/\s+/).filter((w) => w.length > 2 && !["has", "the", "and", "for", "him", "his", "does", "did", "can", "what", "with", "any", "how", "who", "skills", "tejith", "chennuru"].includes(w));
     const keys = new Set();
     words.forEach((w) => { keys.add(w.slice(0, 5)); Object.values(SYN).forEach((list) => { if (list.some((k) => w.startsWith(k.slice(0, 4)) || k.startsWith(w.slice(0, 4)))) list.forEach((k) => keys.add(k)); }); });
-    const hits = corpus.map((d) => { const low = d.t.toLowerCase(); let sc = 0; keys.forEach((k) => { if (low.includes(k)) sc++; }); return { ...d, sc }; }).filter((d) => d.sc > 0).sort((a, b) => b.sc - a.sc).slice(0, 3);
-    const out = $("#askOut");
-    if (!words.length) { out.innerHTML = ""; return; }
-    if (!hits.length) { out.innerHTML = `<p class="ask-none">Nothing on that yet. Try one of the suggestions, or ask Tejith directly below.</p>`; return; }
-    const mark = (t) => { let h = esc(t); [...keys].filter((k) => k.length > 3).forEach((k) => { h = h.replace(new RegExp("(" + k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "[\\p{L}]*)", "giu"), "<mark>$1</mark>"); }); return h; };
-    out.innerHTML = hits.map((h, i) => `<div class="ask-hit" style="animation-delay:${i * 0.08}s"><span class="mono">${esc(h.src)}</span><p>${mark(h.t)}</p></div>`).join("");
+    return corpus.map((d) => { const low = d.t.toLowerCase(); let sc = 0; keys.forEach((k) => { if (low.includes(k)) sc++; }); return { ...d, sc }; }).filter((d) => d.sc > 0).sort((a, b) => b.sc - a.sc).slice(0, 3);
+  }
+  // used when the AI endpoint isn't available (local preview, or no API key yet)
+  function localAnswer(q) {
+    const low = q.toLowerCase(), bio = D.bios || {};
+    if (/^\s*(hi|hello|hey|namaste)\b/.test(low)) return `Hello! ${bio.short || ""} Ask me about his internships, skills, research or availability.`;
+    if (/\bwho\b|about (him|tejith)|introduce|tell me about/.test(low)) return bio.long || D.profile.summary;
+    const hits = search(q);
+    if (!hits.length) return `I couldn't find that on this site. The quickest way to know is to ask Tejith directly at ${D.profile.email}.`;
+    return "Here is what the portfolio says:\n" + hits.map((h) => `• ${h.src}: ${h.t}`).join("\n");
+  }
+  const chat = { history: [], aiOff: !D.askEndpoint || !/^https?:/.test(location.protocol), busy: false };
+  function bubble(role, html) {
+    const el = document.createElement("div");
+    el.className = "bubble " + role; el.innerHTML = html;
+    $("#chatLog").appendChild(el);
+    $("#chatLog").scrollTop = $("#chatLog").scrollHeight;
+    return el;
+  }
+  const fmt = (t) => esc(t).replace(/\n/g, "<br>");
+  function typeOut(el, text, src) {
+    const foot = `<span class="bubble-src">${src}</span>`;
+    if (still) { el.innerHTML = fmt(text) + foot; return; }
+    const words = text.split(/(\s+)/); let i = 0;
+    el.innerHTML = "<span class='bubble-text'></span>" + foot;
+    const box = $(".bubble-text", el);
+    const step = () => { i = Math.min(words.length, i + 3); box.innerHTML = fmt(words.slice(0, i).join("")); $("#chatLog").scrollTop = $("#chatLog").scrollHeight; if (i < words.length) setTimeout(step, 28); };
+    step();
+  }
+  async function askAI(raw) {
+    const q = String(raw || "").trim().slice(0, 500);
+    if (!q || chat.busy) return;
+    chat.busy = true; $("#askBtn").disabled = true; $("#askInput").value = "";
+    bubble("me", fmt(q));
+    const pending = bubble("ai", `<span class="typing" aria-label="Thinking"><i></i><i></i><i></i></span>`);
+    chat.history.push({ role: "user", content: q });
+    let answer = "", src = "From this portfolio";
+    if (!chat.aiOff) {
+      try {
+        const ctrl = new AbortController(), t = setTimeout(() => ctrl.abort(), 30000);
+        const r = await fetch(D.askEndpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ messages: chat.history.slice(-8) }), signal: ctrl.signal });
+        clearTimeout(t);
+        if (r.ok) { const j = await r.json(); if (j && typeof j.answer === "string") { answer = j.answer.trim(); src = "AI answer, from this portfolio"; } }
+        else if ([404, 405, 501, 503].includes(r.status)) chat.aiOff = true;
+        else if (r.status === 429) { const j = await r.json().catch(() => ({})); answer = j.error || "Too many questions for now. Please try again in a few minutes."; src = "Assistant"; }
+      } catch (e) {}
+    }
+    if (!answer) answer = localAnswer(q);
+    chat.history.push({ role: "assistant", content: answer });
+    typeOut(pending, answer, src);
+    chat.busy = false; $("#askBtn").disabled = false;
   }
   function renderAsk() {
-    const chips = ["Has he handled budgets?", "Can he lead a team?", "When is he available?", "Has he built anything?", "Data and reporting?", "Which languages?"];
+    const chips = ["Who is Tejith?", "Has he handled budgets?", "Can he lead a team?", "When is he available?", "What has he built?", "What is his research about?"];
     $("#askChips").innerHTML = chips.map((c) => `<button type="button">${esc(c)}</button>`).join("");
-    $$("#askChips button").forEach((b) => b.addEventListener("click", () => { $("#askInput").value = b.textContent; ask(b.textContent); }));
-    $("#askBtn").addEventListener("click", () => ask($("#askInput").value));
-    $("#askInput").addEventListener("keydown", (e) => { if (e.key === "Enter") ask(e.target.value); });
+    $$("#askChips button").forEach((b) => b.addEventListener("click", () => askAI(b.textContent)));
+    $("#askBtn").addEventListener("click", () => askAI($("#askInput").value));
+    $("#askInput").addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); askAI(e.target.value); } });
+    bubble("ai", `${fmt(`Hi, I'm Tejith's assistant. I've read everything on this site: his internships, leadership, projects and research. What would you like to know?`)}<span class="bubble-src">Assistant</span>`);
+    const prompt = `Who is ${D.profile.name}?`, enc = encodeURIComponent(prompt);
+    $("#askElsewhere").innerHTML = [["ChatGPT", `https://chatgpt.com/?q=${enc}`], ["Perplexity", `https://www.perplexity.ai/search?q=${enc}`], ["Claude", `https://claude.ai/new?q=${enc}`]]
+      .map(([n, u]) => `<a href="${esc(u)}" target="_blank" rel="noopener noreferrer">${n} ${I("external", 13)}</a>`).join("") + `<span class="mono">Asks “${esc(prompt)}”</span>`;
+  }
+
+  // ---------- change log, citation, GEO readiness ----------
+  function renderChangelog() {
+    const c = D.changelog || [];
+    if (!c.length) { $("#changelog").hidden = true; return; }
+    $("#clogList").innerHTML = c.map((m) => `<li class="rv"><b>${esc(m.month)}</b><ul>${m.items.map((i) => `<li>${esc(i)}</li>`).join("")}</ul></li>`).join("");
+  }
+  function apa() {
+    const w = D.writing[0]; if (!w) return "";
+    const [family, given] = D.profile.name.split(" ");
+    return `${family}, ${given[0]}. (${w.date}). <i>${esc(w.title)}</i>${w.status ? " [Unpublished manuscript]" : ""}. O.P. Jindal Global University.${w.url ? " " + esc(w.url) : ""}`;
+  }
+  function openCite() {
+    $("#citeText").innerHTML = apa();
+    $("#cite").hidden = false; $("#citeCopy").focus();
+  }
+  function geoBadge() {
+    const b = D.geoBaf || []; if (!b.length) return;
+    const done = b.filter((x) => x.status === "done").length;
+    const el = $("#geoBadge");
+    el.innerHTML = `<span class="mono">GEO</span><span class="geo-meter" aria-hidden="true">${b.map((x) => `<i class="${x.status === "done" ? "on" : ""}"></i>`).join("")}</span><span>${done} of ${b.length} phases</span>`;
+    el.setAttribute("aria-label", `GEO readiness: ${done} of ${b.length} framework phases done`);
+    el.hidden = false;
   }
 
   // ---------- smart contact + booking ----------
@@ -577,14 +665,10 @@
 
   // ---------- "Hiring? Let's talk" tab after 60% of the page ----------
   function hireTab() {
-    const tab = $("#hire"); let contactVis = false;
-    new IntersectionObserver(([e]) => { contactVis = e.isIntersecting; upd(); }).observe($("#contact"));
-    const upd = () => {
-      const max = document.documentElement.scrollHeight - innerHeight;
-      tab.hidden = !(view === "story" && max > 0 && scrollY / max > 0.6 && !contactVis);
-    };
-    addEventListener("scroll", upd, { passive: true });
-    tab.addEventListener("click", () => $("#contact").scrollIntoView({ behavior: still ? "auto" : "smooth" }));
+    const tab = $("#hire");
+    const upd = () => { tab.hidden = !(view === "story" && page !== "contact" && page !== "ask" && scrollY > 700); };
+    addEventListener("scroll", upd, { passive: true }); addEventListener("hashchange", upd);
+    tab.addEventListener("click", () => { location.hash = "#contact"; });
   }
 
   // ---------- hidden details ----------
@@ -636,17 +720,17 @@
   function saveCard(qr) {
     const W = 1080, H = 1350, c = document.createElement("canvas"); c.width = W; c.height = H;
     const x = c.getContext("2d");
-    x.fillStyle = "#0a1220"; x.fillRect(0, 0, W, H);
-    x.strokeStyle = "rgba(169,189,240,.25)"; x.strokeRect(40, 40, W - 80, H - 80);
+    x.fillStyle = "#0c0d11"; x.fillRect(0, 0, W, H);
+    x.strokeStyle = "rgba(242,237,228,.22)"; x.strokeRect(40, 40, W - 80, H - 80);
     x.fillStyle = "#d69c77"; x.fillRect(100, 140, 90, 3);
     x.fillStyle = "#f1ece3"; x.font = "400 110px 'Instrument Serif', Georgia, serif"; x.fillText(D.profile.name.split(" ")[0], 96, 330); x.fillText(D.profile.name.split(" ").slice(1).join(" "), 96, 450);
-    x.fillStyle = "#a9bdf0"; x.font = "italic 400 52px 'Instrument Serif', Georgia, serif"; x.fillText("Finance · Operations · Leadership", 100, 560);
-    x.fillStyle = "#8c95a8"; x.font = "400 30px 'Geist', sans-serif"; x.fillText("BBA + MBA, O.P. Jindal Global University", 100, 640); x.fillText(D.profile.email, 100, 690);
+    x.fillStyle = "#d9bf8f"; x.font = "italic 400 52px 'Instrument Serif', Georgia, serif"; x.fillText("Finance · Operations · Leadership", 100, 560);
+    x.fillStyle = "#948f86"; x.font = "400 30px 'Geist', sans-serif"; x.fillText("BBA + MBA, O.P. Jindal Global University", 100, 640); x.fillText(D.profile.email, 100, 690);
     const n = qr.getModuleCount(), size = 380, cell = size / n, ox = W - 100 - size, oy = H - 100 - size;
     x.fillStyle = "#f1ece3"; x.fillRect(ox - 20, oy - 20, size + 40, size + 40);
-    x.fillStyle = "#0a1220";
+    x.fillStyle = "#0c0d11";
     for (let r = 0; r < n; r++) for (let k = 0; k < n; k++) if (qr.isDark(r, k)) x.fillRect(ox + k * cell, oy + r * cell, Math.ceil(cell), Math.ceil(cell));
-    x.fillStyle = "#8c95a8"; x.font = "400 26px 'Geist Mono', monospace"; x.fillText("SCAN TO VIEW PORTFOLIO", 100, H - 110);
+    x.fillStyle = "#948f86"; x.font = "400 26px 'Geist Mono', monospace"; x.fillText("SCAN TO VIEW PORTFOLIO", 100, H - 110);
     c.toBlob((b) => { const a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = "Chennuru-Tejith-card.png"; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); }, "image/png");
   }
   function wireShare() {
@@ -756,9 +840,9 @@
   function onePager() {
     const p = D.profile, a = D.availability || {};
     $("#onepager").innerHTML = `<h1>${esc(p.name)}</h1><p class="op-role">Why Tejith, in one page · ${esc(p.title)}</p>
-      <p>BBA + MBA, O.P. Jindal Global University (2024–2029), CGPA 7.9 / 8. ${esc(p.email)} · ${esc(p.linkedin)}</p>
+      <p>BBA + MBA, O.P. Jindal Global University (2024 to 2029), CGPA 7.9 / 8. ${esc(p.email)} · ${esc(p.linkedin)}</p>
       <h2>Three reasons</h2><ul>${D.principles.slice(0, 3).map((x) => `<li><b>${esc(x.title)}.</b> ${esc(x.proof)}</li>`).join("")}</ul>
-      <h2>Experience</h2><ul>${D.experience.map((e) => `<li><b>${esc(e.role)}</b>, ${esc(e.org.split(" — ")[0])} (${esc(e.when.split(" · ")[0])}): ${esc(e.points[0])}</li>`).join("")}</ul>
+      <h2>Experience</h2><ul>${D.experience.map((e) => `<li><b>${esc(e.role)}</b>, ${esc(firstOrg(e.org))} (${esc(e.when.split(" · ")[0])}): ${esc(e.points[0])}</li>`).join("")}</ul>
       <h2>Leadership</h2><ul>${D.leadership.slice(0, 3).map((l) => `<li>${esc(l.role)}, ${esc(l.org)}</li>`).join("")}</ul>
       ${a.windows ? `<h2>Availability</h2><p>${esc(a.windows.join(" & "))} · ${esc(a.type)} · ${esc(a.locations)} · ${esc(a.roles.join(", "))}</p>` : ""}
       <h2>Portfolio</h2><p>${esc(location.origin + location.pathname)}</p>`;
@@ -784,7 +868,7 @@
   // ---------- boot ----------
   applyTheme(state.theme);
   $("#year").textContent = new Date().getFullYear();
-  renderDisciplines(); renderSections(); renderProgress(); renderAvail(); renderMap(); renderFaq(); renderExtras(); renderResume(); renderHeroExtras(); renderAsk(); renderContact(); wireShare(); renderThinking(); renderBaf(); badgeCase(); docsActions(); soundToggle(); voice(); signature(); season(); carDraw();
+  renderDisciplines(); renderSections(); renderProgress(); renderAvail(); renderMap(); renderFaq(); renderExtras(); renderResume(); renderHeroExtras(); renderAsk(); renderChangelog(); geoBadge(); renderContact(); wireShare(); renderThinking(); renderBaf(); badgeCase(); docsActions(); soundToggle(); voice(); signature(); season(); carDraw();
   clock(); cursor(); motion(); countUps(); scrollStory(); mapReveal(); hireTab(); hiddenDetails(); views(); reveal();
 
   document.addEventListener("click", (e) => {
@@ -797,9 +881,12 @@
     if (e.target.closest("[data-vcard]")) vcard();
     if (e.target.closest("[data-onepager]")) onePager();
     if (e.target.closest("[data-close-share]")) closeShare();
+    if (e.target.closest("[data-cite]")) openCite();
+    if (e.target.closest("[data-close-cite]")) $("#cite").hidden = true;
   });
   window.addEventListener("keydown", (e) => {
     if (!$("#share").hidden && e.key === "Escape") return closeShare();
+    if (!$("#cite").hidden && e.key === "Escape") { $("#cite").hidden = true; return; }
     if ($("#reader").hidden) return;
     if (e.key === "Escape") return closeCase();
     if (e.key === "Tab") {
@@ -808,12 +895,15 @@
       else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
     }
   });
-  $(".logo").addEventListener("click", (e) => { if (view !== "story") { e.preventDefault(); setView("story", true, true); } });
+  $(".logo").addEventListener("click", (e) => { if (view !== "story") { e.preventDefault(); location.hash = "#home"; setView("story", true, true); } });
+  $("#toTop").addEventListener("click", () => window.scrollTo({ top: 0, behavior: still ? "auto" : "smooth" }));
+  $("#citeCopy").addEventListener("click", async () => { try { await navigator.clipboard.writeText($("#citeText").textContent); toast("Citation copied ✓"); } catch (e) {} });
+  addEventListener("hashchange", () => route(true));
   $("#themeBtn").addEventListener("click", () => { state.theme = state.theme === "dark" ? "light" : "dark"; save(); applyTheme(state.theme); });
   $("#copyEmail").addEventListener("click", async () => {
     try { await navigator.clipboard.writeText(D.profile.email); toast("Email copied ✓"); } catch (err) { location.href = "mailto:" + D.profile.email; }
   });
   window.addEventListener("scroll", onScroll, { passive: true });
 
-  setView(new URLSearchParams(location.search).get("view") === "resume" ? "resume" : "story", false);
+  if (new URLSearchParams(location.search).get("view") === "resume") setView("resume", false); else route(false, true);
 })();

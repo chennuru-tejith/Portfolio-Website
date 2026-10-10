@@ -1,0 +1,8 @@
+{
+  "name": "chennuru-tejith-portfolio",
+  "private": true,
+  "description": "Static portfolio with one serverless function (api/ask.mjs) for the AI assistant.",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.133.0"
+  }
+}
