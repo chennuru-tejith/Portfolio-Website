@@ -1734,3 +1734,17 @@ html.motion-off .f1 { display: none; }
    Round 23: realistic portrait, motion switch
    ============================================================ */
 .portrait.has-photo .frame > img { object-fit: cover; object-position: 50% 0%; image-rendering: auto; }
+
+/* ============================================================
+   Round 24: realistic car and night-circuit background
+   ============================================================ */
+.f1 { width: min(520px, 70vw); }
+.f1-car { display: block; width: 100%; height: auto; filter: drop-shadow(0 22px 26px rgba(0, 0, 0, 0.55)); }
+.f1-trail { top: 30%; height: 40%; }
+/* the photograph sits behind everything, darkened so text stays readable */
+.bgphoto { position: absolute; inset: 0; background: url("../assets/bg-circuit.webp") center 30% / cover no-repeat; opacity: 0.55; }
+.bgphoto::after { content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(3, 7, 30, 0.55) 0%, rgba(3, 7, 30, 0.35) 40%, rgba(3, 7, 30, 0.85) 100%),
+              radial-gradient(1200px 700px at 30% 30%, rgba(3, 7, 30, 0.55), transparent 70%); }
+[data-theme="light"] .bgphoto { opacity: 0.18; filter: grayscale(0.4) sepia(0.2); }
+@media (max-width: 720px) { .bgphoto { background-position: 60% 20%; } }

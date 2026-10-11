@@ -57,7 +57,8 @@ Ctrl+P (or "Print / save" on the résumé) always prints the clean one-page rés
 - `js/vendor/gsap.min.js`: GSAP 3.12.5 (GreenSock standard licence, free to use) drives the F1 car delivery and the quote reveal.
 - `js/vendor/lenis.min.js`: Lenis 1.1.13 (MIT) gives smooth scrolling on desktop.
 - Both are stored locally because the Content-Security-Policy only allows the site's own scripts.
-- Portrait tools: `python tools/make-portrait.py photo.jpg` (removes a plain background), then `python tools/make-avatar.py` (illustrated avatar).
+- Portrait: `python tools/make-portrait.py photo.jpg` removes a plain white background.
+- Car and background: generated images; `python tools/make-car.py car.png bg.jpg` cuts the car out of its white page and converts both to WebP.
 
 ## Security & speed
 - Content-Security-Policy in `index.html`; `_headers` (Netlify) and `vercel.json` (Vercel) add HSTS, clickjacking protection, nosniff and caching.
