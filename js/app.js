@@ -663,7 +663,7 @@
   async function openShare() {
     try { await loadQR(); } catch (e) { toast("Couldn't load the QR code"); return; }
     const qr = qrcode(0, "M"); qr.addData(shareUrl()); qr.make();
-    $("#shareCard").innerHTML = `<span class="crest"><span><span class="mc">C</span><span class="mt">T</span></span></span>
+    $("#shareCard").innerHTML = `<span class="crest"><span>CT</span></span>
       <h3 id="shareTitle">${esc(D.profile.name)}</h3>
       <p>Finance · Operations · Leadership</p>
       <div class="sc-row"><span>BBA + MBA, O.P. Jindal Global University<br>${esc(D.profile.email)}</span><div class="sc-qr">${qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true })}</div></div>`;
