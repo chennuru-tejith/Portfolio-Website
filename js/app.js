@@ -956,10 +956,9 @@
   const TOUR = [
     ["top", "Chennuru Tejith: BBA + MBA at O.P. Jindal Global University, working across finance, operations and leadership."],
     ["stats", "Three internships, a ₹4 Cr CSR build, a 200+ member club, and a CGPA of 7.9 out of 8."],
-    ["experience", "Operations at Round Table India, project management at Dr. Reddy's, finance at Ion Exchange."],
-    ["story-4cr", "The ₹4 Cr school build: 23 site visits in 7 weeks, every rupee tracked, one discrepancy caught before the sponsor saw it."],
-    ["recon", "This is the weekly check, line by line: contractor figures against what the site supervisor recorded."],
     ["disciplines", "Five arenas: finance, operations, leadership, communication and tech. Each one is backed by real work."],
+    ["story-4cr", "The ₹4 Cr school build: 23 site visits in 7 weeks, every rupee tracked, one discrepancy caught before the sponsor saw it."],
+    ["projects", "Alongside the degree: an outreach platform, AI-chat tools and market analytics, built from scratch."],
     ["writing", "Research as sole author: From SEO to GEO, on how AI search decides what to cite."],
     ["contact", "Open to internships in December to January and June to July. Thanks for taking the tour."],
   ];

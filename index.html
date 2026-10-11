@@ -24,8 +24,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Tinos:ital,wght@0,400;0,700;1,400&family=Pinyon+Script&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-  <link rel="stylesheet" href="css/style.css?v=390" />
-  <script src="js/boot.js?v=390"></script>
+  <link rel="stylesheet" href="css/style.css?v=400" />
+  <script src="js/boot.js?v=400"></script>
 </head>
 <body>
   <div class="intro" id="intro" aria-hidden="true">
@@ -178,7 +178,7 @@
       </div>
     </section>
 
-    <section class="sec wrap" id="approach" data-page="about">
+    <section class="sec wrap" id="approach" data-page="about" hidden>
       <header class="sec-head">
         <p class="kicker">How I work</p>
         <h2>Four rules I hold myself to.</h2>
@@ -187,7 +187,7 @@
       <div class="principles" id="principleList"></div>
     </section>
 
-    <section class="sec wrap" id="decision" data-page="about">
+    <section class="sec wrap" id="decision" data-page="about" hidden>
       <header class="sec-head"><p class="kicker">How I'd decide</p><h2>A decision I'd make.</h2><p class="sub">One real question, and how I would reason through it.</p></header>
       <div class="decide" id="decide"></div>
     </section>
@@ -255,7 +255,19 @@
       <div class="docs-actions"><button class="btn btn-ghost btn-sm" id="dlAll">Download all</button><button class="btn btn-ghost btn-sm" data-vcard>Save contact (.vcf)</button><button class="btn btn-ghost btn-sm" data-onepager>Print the one-pager</button></div>
     </section>
 
-    <section class="sec wrap cv-auto" id="experience" data-page="work">
+    <section class="sec wrap" id="disciplines" data-page="work">
+      <header class="sec-head">
+        <p class="kicker">Arenas</p>
+        <h2>Five areas of work, each with proof.</h2>
+        <p class="sub">Each credential below is backed by real work you can check: the role, the organisation and what I delivered.</p>
+      </header>
+      <div class="disc">
+        <div class="disc-tabs" role="tablist" aria-label="Disciplines" id="discTabs"></div>
+        <div class="disc-panel" role="tabpanel" id="discPanel" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="sec wrap cv-auto" id="experience" data-page="work" hidden>
       <header class="sec-head">
         <p class="kicker">Experience</p>
         <h2>Internships &amp; leadership.</h2>
@@ -304,7 +316,7 @@
       </div>
     </section>
 
-    <section class="sec wrap" id="recon" data-page="work">
+    <section class="sec wrap" id="recon" data-page="work" hidden>
       <header class="sec-head">
         <p class="kicker">How the check worked</p>
         <h2>Contractor figures against site records, line by line.</h2>
@@ -322,18 +334,6 @@
           <p class="recon-out" id="reconOut" aria-live="polite">Press the button to compare each line.</p>
         </div>
         <p class="recon-note mono">Illustration · example numbers</p>
-      </div>
-    </section>
-
-    <section class="sec wrap" id="disciplines" data-page="work">
-      <header class="sec-head">
-        <p class="kicker">Arenas</p>
-        <h2>Five areas of work, each with proof.</h2>
-        <p class="sub">Each credential below is backed by real work you can check: the role, the organisation and what I delivered.</p>
-      </header>
-      <div class="disc">
-        <div class="disc-tabs" role="tablist" aria-label="Disciplines" id="discTabs"></div>
-        <div class="disc-panel" role="tabpanel" id="discPanel" aria-live="polite"></div>
       </div>
     </section>
 
@@ -526,11 +526,11 @@
 
   <div class="toast" id="toast" role="status" hidden></div>
 
-  <script src="js/data.js?v=390"></script>
-  <script src="js/icons.js?v=390"></script>
-  <script src="js/india.js?v=390"></script>
+  <script src="js/data.js?v=400"></script>
+  <script src="js/icons.js?v=400"></script>
+  <script src="js/india.js?v=400"></script>
   <script src="js/vendor/gsap.min.js?v=3125"></script>
   <script src="js/vendor/lenis.min.js?v=1113"></script>
-  <script src="js/app.js?v=390"></script>
+  <script src="js/app.js?v=400"></script>
 </body>
 </html>
