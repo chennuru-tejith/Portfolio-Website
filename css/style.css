@@ -1813,3 +1813,18 @@ html.motion-off .f1 { display: none; }
 [data-theme="light"] .backdrop { box-shadow: inset 0 0 220px rgba(80, 60, 30, 0.10) !important; }
 @media (max-width: 720px) { .emboss { right: -14vw; font-size: 80vw; } }
 @media print { .weave, .emboss { display: none; } }
+
+/* ============================================================
+   Round 30: logo and watermark alignment
+   ============================================================ */
+/* logo: crest and name centred on one line, crest a touch larger than the icon buttons */
+.logo { align-items: center; gap: 12px; }
+.logo .crest { width: 46px; height: 46px; margin-right: 0; }
+.logo .crest::before { inset: 4px; }
+.logo .crest > span { font-size: 19px; line-height: 1; margin-top: -4px; }
+.logo .crest::after { bottom: 9px; width: 14px; margin-left: -7px; }
+.logo-name { line-height: 1; }
+/* watermark: sized to both width and height so it never spills off-screen, anchored right, clear of the text */
+.emboss { right: 4vw; left: auto; top: 54%; transform: translateY(-50%); font-size: min(34vw, 64vh) !important; line-height: 0.8; white-space: nowrap; }
+@media (max-width: 1100px) { .emboss { right: 3vw; font-size: min(46vw, 40vh) !important; top: auto; bottom: 6vh; transform: none; } }
+@media (max-width: 720px) { .emboss { font-size: 52vw !important; right: 2vw; bottom: 4vh; } }
