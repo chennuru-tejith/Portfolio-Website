@@ -1102,34 +1102,10 @@
     applyReading();
   }
 
-  // ---------- launch: the hero comes in like a car off the line ----------
+  // ---------- launch: the hero arrives ----------
   function launch() {
     if (!heroMotion) return;
     const h = $(".hero"); h.classList.remove("launch"); void h.offsetWidth; h.classList.add("launch");
-    deliver();
-  }
-
-  // ---------- GSAP: a top-view F1 car drives in, drops off the portrait card, and leaves ----------
-  let delivering = null;
-  function deliver() {
-    const gs = window.gsap, car = $("#f1"), card = $("#portrait"), hero = $(".hero");
-    if (!gs || !car || !card || !heroMotion) return;
-    if (delivering) delivering.kill();
-    const hr = hero.getBoundingClientRect(), cr = card.getBoundingClientRect();
-    const carW = car.offsetWidth, carH = car.offsetHeight;
-    const stopX = cr.left - hr.left + cr.width / 2 - carW / 2;          // car centred on the card
-    const y = cr.top - hr.top + cr.height * 0.42 - carH / 2;
-    gs.set(car, { x: hr.width + 40, y, autoAlpha: 1, scaleX: 1, rotation: 0 });
-    gs.set(card, { autoAlpha: 0, scale: 0.55, transformOrigin: "50% 42%" });
-    gs.set(".f1-trail", { scaleX: 1.4, autoAlpha: 0.9 });
-    delivering = gs.timeline({ defaults: { overwrite: "auto" }, onComplete: () => gs.set(car, { autoAlpha: 0 }) })
-      .to(car, { x: stopX, duration: 0.95, ease: "power4.out" })                          // arrive, braking hard
-      .to(".f1-trail", { scaleX: 0.2, autoAlpha: 0, duration: 0.6, ease: "power2.out" }, "<0.35")
-      .to(car, { scaleX: 0.96, duration: 0.12, yoyo: true, repeat: 1, ease: "power1.inOut" }, "-=0.18") // nose dips under braking
-      .to(card, { autoAlpha: 1, scale: 1, duration: 0.7, ease: "back.out(1.6)" }, "-=0.05")  // the card is dropped off
-      .to(car, { x: -carW - Math.max(120, hr.left + 40), duration: 0.75, ease: "power3.in" }, "+=0.15") // and the car pulls away
-      .to(".f1-trail", { scaleX: 1.6, autoAlpha: 0.8, duration: 0.3, ease: "power1.in" }, "<0.1")
-      .set(card, { clearProps: "transform,opacity,visibility" });
   }
 
   // ---------- Lenis: weighted, smooth scrolling on desktop ----------

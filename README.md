@@ -58,7 +58,6 @@ Ctrl+P (or "Print / save" on the résumé) always prints the clean one-page rés
 - `js/vendor/lenis.min.js`: Lenis 1.1.13 (MIT) gives smooth scrolling on desktop.
 - Both are stored locally because the Content-Security-Policy only allows the site's own scripts.
 - Portrait: `python tools/make-portrait.py photo.jpg` removes a plain white background.
-- Car and background: generated images; `python tools/make-car.py car.png bg.jpg` cuts the car out of its white page and converts both to WebP.
 
 ## Security & speed
 - Content-Security-Policy in `index.html`; `_headers` (Netlify) and `vercel.json` (Vercel) add HSTS, clickjacking protection, nosniff and caching.
