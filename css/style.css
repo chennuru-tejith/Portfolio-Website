@@ -522,11 +522,9 @@ body.resume-mode .nav-links { visibility: hidden; }
   .r-sec { grid-template-columns: 1fr; gap: 10px; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after { animation: none !important; transition: none !important; }
-  .js .rv { opacity: 1; transform: none; }
-}
+html.still { scroll-behavior: auto; }
+html.still *, html.still *::before, html.still *::after { animation: none !important; transition: none !important; }
+html.js.still .rv { opacity: 1; transform: none; }
 .dot-c { color: var(--clay); }
 
 /* ============================================================
@@ -769,7 +767,8 @@ body.resume-mode .hire { display: none !important; }
   .detail .tip { max-width: 220px; }
 }
 @media print { .hire, .found, .share { display: none !important; } }
-@media (prefers-reduced-motion: reduce) { .hero h1 .w { opacity: 1; transform: none; filter: none; } .map:not(.drawn) .land-dots, .map:not(.drawn) .pin, .map:not(.drawn) .km { opacity: 1; } }
+html.still .hero h1 .w { opacity: 1; transform: none; filter: none; }
+html.still .map:not(.drawn) .land-dots, html.still .map:not(.drawn) .pin, html.still .map:not(.drawn) .km { opacity: 1; }
 
 /* ============================================================
    Hero: the name as the headline
@@ -900,7 +899,8 @@ body { background-color: var(--bg); }
   .onepager li { margin-bottom: 4pt; font-size: 11pt; }
   .onepager p { font-size: 11pt; margin: 0 0 6pt; }
 }
-@media (prefers-reduced-motion: reduce) { .hero h1.name, .sig .script { -webkit-mask-image: none; mask-image: none; } .car path, .car circle { stroke-dashoffset: 0; } }
+html.still .hero h1.name, html.still .sig .script { -webkit-mask-image: none; mask-image: none; }
+html.still .car path, html.still .car circle { stroke-dashoffset: 0; }
 @media (max-width: 720px) { .logo-name { display: none; } .nav-right { gap: 8px; } .nav-in { gap: 12px; } }
 
 /* GEO-BAF applied to this site */
@@ -1533,7 +1533,7 @@ body:not([data-page="home"]) .circuit .trk-run, body:not([data-page="home"]) .ci
 [data-theme="light"] .circuit .trk-run { stroke: #8f6639; }
 [data-theme="light"] .circuit .trk-glow { stroke: rgba(143, 102, 57, 0.15); }
 @media (max-width: 720px) { .circuit { top: 14vh; right: -30vw; width: 160vw; opacity: 0.55; } }
-@media (prefers-reduced-motion: reduce) { .circuit .trk-run, .circuit .trk-glow { display: none; } }
+html.still .circuit .trk-run, html.still .circuit .trk-glow { display: none; }
 
 /* start lights */
 .lights { display: flex; gap: 14px; padding: 16px 20px; border-radius: 16px; background: #050a20; border: 1px solid rgba(234, 220, 197, 0.12); box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.8); }
@@ -1644,7 +1644,9 @@ html.intro-out .intro { transform: translateX(105%) skewX(-10deg); opacity: 0.4;
 .btn-primary:hover::after { opacity: 0.7; transform: translateY(-4px) rotate(-28deg); }
 [data-theme="dark"] .btn-primary::after, :root .btn-primary::after { color: #e3c28d; }
 
-@media (prefers-reduced-motion: reduce) { .kicker.board, #stats b.flaps .flap { transform: none !important; opacity: 1 !important; } .gauge .g-needle { transform: rotate(var(--deg)); } .flag { display: none; } }
+html.still .kicker.board, html.still #stats b.flaps .flap { transform: none !important; opacity: 1 !important; }
+html.still .gauge .g-needle { transform: rotate(var(--deg)); }
+html.still .flag { display: none; }
 /* the flap characters are spans inside .metric, so undo the small-label styling spans get there */
 #stats b.flaps .flap { font: inherit; letter-spacing: inherit; text-transform: none; color: inherit; position: static; }
 
@@ -1676,7 +1678,7 @@ html.intro-out .intro { transform: translateX(105%) skewX(-10deg); opacity: 0.4;
 @keyframes fxOn { 0%, 100% { opacity: 1; } }
 @keyframes rush { from { transform: translateX(45%); opacity: 1; } to { transform: translateX(-45%); opacity: 0; } }
 @keyframes sheen { from { left: -60%; } to { left: 130%; } }
-@media (prefers-reduced-motion: reduce) { .frame-fx { display: none; } }
+html.still .frame-fx { display: none; }
 /* with a real photo, the quote sits low across the jacket and the bottom edge, never over the face */
 .portrait.has-photo { margin-bottom: 70px; }
 .portrait.has-photo .pq { bottom: -58px; left: -16%; right: 4%; }
@@ -1726,4 +1728,9 @@ html.intro-out .intro { transform: translateX(105%) skewX(-10deg); opacity: 0.4;
     radial-gradient(1000px 760px at -10% 108%, rgba(20, 38, 100, 0.85), transparent 62%),
     radial-gradient(1300px 900px at 40% 40%, rgba(7, 19, 59, 0.7), transparent 72%),
     var(--bg); }
-@media (prefers-reduced-motion: reduce) { .f1 { display: none; } }
+html.motion-off .f1 { display: none; }
+
+/* ============================================================
+   Round 23: realistic portrait, motion switch
+   ============================================================ */
+.portrait.has-photo .frame > img { object-fit: cover; object-position: 50% 0%; image-rendering: auto; }

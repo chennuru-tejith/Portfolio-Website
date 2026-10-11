@@ -37,6 +37,8 @@ mask = Image.frombytes("L", (w, h), bytes(0 if s else 255 for s in seen))
 mask = mask.filter(ImageFilter.MinFilter(3)).filter(ImageFilter.GaussianBlur(1.6))   # soft, clean edge
 out = src.convert("RGBA")
 out.putalpha(mask)
-out = out.resize((900, int(900 * h / w)), Image.LANCZOS)
-out.save("assets/tejith.webp", "WEBP", quality=88, method=6)
+out = out.resize((1200, int(1200 * h / w)), Image.LANCZOS)
+rgb = out.convert("RGB").filter(ImageFilter.UnsharpMask(radius=1.4, percent=60, threshold=2))   # crisp, not crunchy
+rgb.putalpha(out.getchannel("A")); out = rgb
+out.save("assets/tejith.webp", "WEBP", quality=92, method=6)
 print("assets/tejith.webp", out.size)

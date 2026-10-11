@@ -8,9 +8,16 @@
     if (s && s.contrast === "high") d.setAttribute("data-contrast", "high");
     if (s && s.zoom) d.style.setProperty("--zoom", s.zoom);
   } catch (e) {}
-  // the monogram intro plays once per visit, never for reduced motion or the résumé view
+  // Motion: "auto" follows the system setting for decorative effects but still plays the hero entrance;
+  // "full" plays everything; "reduced" switches all motion off. Chosen in the Aa menu.
   try {
-    var still = matchMedia("(prefers-reduced-motion: reduce)").matches && !/[?&]motion=1/.test(location.search);
-    if (!still && !sessionStorage.getItem("tejith-intro") && !/[?&]view=resume/.test(location.search)) d.classList.add("intro-on");
+    var pref = "auto";
+    try { var ss = JSON.parse(localStorage.getItem("tejith-pro-v1")); if (ss && ss.motion) pref = ss.motion; } catch (e) {}
+    var os = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var forced = /[?&]motion=1/.test(location.search);
+    var still = pref === "reduced" || (pref === "auto" && os && !forced);
+    if (still) d.classList.add("still");
+    if (pref === "reduced") d.classList.add("motion-off");
+    if (pref !== "reduced" && !sessionStorage.getItem("tejith-intro") && !/[?&]view=resume/.test(location.search)) d.classList.add("intro-on");
   } catch (e) {}
 })();

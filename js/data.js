@@ -428,9 +428,7 @@ window.PORTFOLIO = {
   offClock: "Formula 1. I follow team strategy and race-day decisions.",
 
   // ---------- Portrait in the hero: put your photo in assets/ and its path here (empty = placeholder frame) ----------
-  photo: "assets/avatar.webp",
-  // The real photo, used for the press kit and in search results
-  photoReal: "assets/tejith.webp",
+  photo: "assets/tejith.webp",
 
   // ---------- "What's new" strip ----------
   updates: [{ date: "Oct 2026", text: "Researching how AI search engines choose what to cite", link: "#research" }],

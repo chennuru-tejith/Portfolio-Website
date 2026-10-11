@@ -12,7 +12,9 @@
   const pad = (n) => String(n).padStart(2, "0");
   const firstOrg = (o) => o.split(", ")[0];
   // "?motion=1" forces full motion (used for testing; real visitors follow their system setting)
-  const still = matchMedia("(prefers-reduced-motion: reduce)").matches && !/[?&]motion=1/.test(location.search);
+  // decided in boot.js: html.still turns decorative motion off; html.motion-off turns all motion off
+  const still = document.documentElement.classList.contains("still");
+  const heroMotion = !document.documentElement.classList.contains("motion-off");
 
   // ---------- saved preferences ----------
   const KEY = "tejith-pro-v1";
@@ -1095,12 +1097,14 @@
     document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !pop.hidden) { close(); btn.focus(); } });
     $$("#zoomSeg button").forEach((b) => b.addEventListener("click", () => { state.zoom = +b.dataset.zoom; save(); applyReading(); }));
     $$("#contrastSeg button").forEach((b) => b.addEventListener("click", () => { state.contrast = b.dataset.contrast; save(); applyReading(); }));
+    const mseg = $$("#motionSeg button"), cur = state.motion || "auto";
+    mseg.forEach((b) => { b.setAttribute("aria-pressed", String(b.dataset.motion === cur)); b.addEventListener("click", () => { if ((state.motion || "auto") === b.dataset.motion) return; state.motion = b.dataset.motion; save(); location.reload(); }); });
     applyReading();
   }
 
   // ---------- launch: the hero comes in like a car off the line ----------
   function launch() {
-    if (still) return;
+    if (!heroMotion) return;
     const h = $(".hero"); h.classList.remove("launch"); void h.offsetWidth; h.classList.add("launch");
     deliver();
   }
@@ -1109,7 +1113,7 @@
   let delivering = null;
   function deliver() {
     const gs = window.gsap, car = $("#f1"), card = $("#portrait"), hero = $(".hero");
-    if (!gs || !car || !card || still) return;
+    if (!gs || !car || !card || !heroMotion) return;
     if (delivering) delivering.kill();
     const hr = hero.getBoundingClientRect(), cr = card.getBoundingClientRect();
     const carW = car.offsetWidth, carH = car.offsetHeight;
