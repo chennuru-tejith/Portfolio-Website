@@ -38,7 +38,8 @@ for name, (kicker, title, lines) in PAGES.items():
     d = ImageDraw.Draw(img)
     # crest
     d.rounded_rectangle((1040, 70, 1120, 150), radius=12, outline=INK3 + (255,), width=1)
-    d.text((1080, 106), "CT", font=serif(34), fill=INK, anchor="mm")
+    d.text((1078, 106), "C", font=italic(34), fill=INK, anchor="rm")
+    d.text((1080, 106), "T", font=serif(34), fill=ACC, anchor="lm")
     d.line([(1070, 132), (1090, 132)], fill=CLAY, width=2)
     # kicker
     d.line([(80, 120), (150, 120)], fill=CLAY, width=2)

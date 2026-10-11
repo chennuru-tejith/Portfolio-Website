@@ -1813,3 +1813,18 @@ html.motion-off .f1 { display: none; }
 [data-theme="light"] .backdrop { box-shadow: inset 0 0 220px rgba(80, 60, 30, 0.10) !important; }
 @media (max-width: 720px) { .emboss { right: -14vw; font-size: 80vw; } }
 @media print { .weave, .emboss { display: none; } }
+
+/* ============================================================
+   Round 29: CT monogram, side by side: an italic linen C and an upright bronze T
+   ============================================================ */
+.mc { font-style: italic; color: var(--ink); }
+.mt { font-style: normal; color: var(--acc); margin-left: 0.1em; }
+.crest > span { display: inline-flex; align-items: baseline; letter-spacing: 0; }
+.crest .mt { margin-left: 0.1em; }
+/* the embossed watermark keeps the two letters distinct too */
+.emboss { display: flex; align-items: baseline; gap: 0.06em; color: transparent; }
+.emboss .mc { color: rgba(234, 220, 197, 0.022); font-style: italic; }
+.emboss .mt { color: rgba(181, 138, 87, 0.035); text-shadow: -1px -1px 0 rgba(255, 230, 190, 0.05), 1px 1px 0 rgba(0, 0, 0, 0.55), 0 0 70px rgba(181, 138, 87, 0.08); }
+[data-theme="light"] .emboss .mc { color: rgba(255, 255, 255, 0.08); }
+[data-theme="light"] .emboss .mt { color: rgba(122, 85, 48, 0.05); text-shadow: -1px -1px 0 rgba(255, 255, 255, 0.5), 1px 1px 0 rgba(80, 60, 30, 0.08); }
+.watermark { display: inline-flex; }
