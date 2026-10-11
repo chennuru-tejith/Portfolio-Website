@@ -3,7 +3,7 @@
 Tick items off as you send them. Each one is a single line in `js/data.js` (shown in brackets); I can add it for you.
 
 ## Photos, voice, signature
-- [ ] **Portrait photo** for the hero frame. A well-lit, plain background, shoulders up. Put it in `assets/` (`photo`)
+- [x] **Portrait photo** for the hero frame. A well-lit, plain background, shoulders up. Put it in `assets/` (`photo`)
 - [ ] **Signature**: sign your name 3 or 4 times on white paper with a black pen and send a clear photo. I'll turn the best one into a vector that writes itself (`signature`)
 - [ ] **Voice clip**: about 10 seconds of you saying "Hi, I'm Tejith…", recorded on your phone in a quiet room (`voice`)
 - [ ] **One line about Hyderabad**, shown on the map as "Home" (`homeNote`)

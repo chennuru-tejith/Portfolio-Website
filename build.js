@@ -35,7 +35,7 @@ const person = {
   description: entity,
   jobTitle: P.title,
   url: base || undefined,
-  image: abs("assets/crest-512.png"),
+  image: abs(D.photo || "assets/crest-512.png"),
   homeLocation: { "@type": "Place", name: "Hyderabad, Telangana, India" },
   alumniOf: { "@type": "CollegeOrUniversity", name: "O.P. Jindal Global University", address: "Sonipat, Haryana, India" },
   knowsLanguage: ["English", "Telugu", "Hindi", "French"],
@@ -210,7 +210,7 @@ ${q("Short bio (about 25 words)", `<blockquote>${esc(bios.short || "")}</blockqu
 
 ${q("Long bio (about 100 words)", `<blockquote>${esc(bios.long || "")}</blockquote>`)}
 
-${q("Crest and photo", `<div class="kit"><img src="assets/crest-512.png" alt="CT crest" width="160" height="160" /><div><p><a href="assets/crest-512.png" download>Download the CT crest (PNG, 512 px)</a></p><p>Portrait photo: coming soon. Email for a high-resolution photo in the meantime.</p></div></div>`)}
+${q("Crest and photo", `<div class="kit">${D.photo ? `<img src="${esc(D.photo)}" alt="Portrait of ${esc(P.name)}" width="160" height="188" style="object-fit:cover;background:#07133b" />` : ""}<img src="assets/crest-512.png" alt="CT crest" width="160" height="160" /><div><p><a href="assets/crest-512.png" download>Download the CT crest (PNG, 512 px)</a></p>${D.photo ? `<p><a href="${esc(D.photo)}" download>Download the portrait (WebP, transparent background)</a></p>` : "<p>Portrait photo: coming soon.</p>"}</div></div>`)}
 
 ${q("Quick facts", `<ul><li>Integrated BBA (Hons.) + MBA, O.P. Jindal Global University, 2024 to 2029, CGPA 7.9 / 8</li>${D.experience.map((e) => `<li>${esc(e.role)}, ${esc(firstOrg(e.org))} (${esc(e.when.split(" · ")[0])})</li>`).join("")}<li>Based in Hyderabad and Sonipat · ${esc(P.languages.map((l) => l.split(" (")[0]).join(", "))}</li></ul>`)}
 

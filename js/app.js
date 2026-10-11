@@ -454,7 +454,8 @@
     if (D.photo) {
       const img = new Image();
       img.alt = `Portrait of ${D.profile.name}`; img.decoding = "async"; img.src = D.photo;
-      img.addEventListener("load", () => { $(".frame-empty").remove(); });
+      img.addEventListener("load", () => { const e = $(".frame-empty"); if (e) e.remove(); });
+      $("#portrait").classList.add("has-photo");
       $("#frame").appendChild(img);
     }
     const u = (D.updates || [])[0];
