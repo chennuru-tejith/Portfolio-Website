@@ -1789,3 +1789,27 @@ html.motion-off .f1 { display: none; }
 [data-theme="light"] .backdrop::after { opacity: 0.06; mix-blend-mode: multiply; }
 [data-theme="light"] .backdrop::before { opacity: 0.05; mix-blend-mode: multiply; }
 @media print { .backdrop::before, .backdrop::after { display: none; } }
+
+/* ============================================================
+   Round 28: formal stationery: linen weave, embossed monogram, soft vignette
+   ============================================================ */
+/* linen weave: fine crossing fibres, like letterhead paper */
+.weave { position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='360'%3E%3Cfilter id='w'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.006 .95' numOctaves='2' seed='3' stitchTiles='stitch' result='h'/%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95 .006' numOctaves='2' seed='9' stitchTiles='stitch' result='v'/%3E%3CfeBlend in='h' in2='v' mode='multiply'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23w)'/%3E%3C/svg%3E"); background-size: 360px 360px; opacity: 0.11; mix-blend-mode: overlay; pointer-events: none; }
+/* an embossed CT watermark, pressed into the page rather than printed on it */
+.emboss { position: absolute; right: -2vw; top: 50%; transform: translateY(-50%); pointer-events: none; user-select: none;
+  font: 400 clamp(320px, 46vw, 760px)/0.8 "Bell MT", "Libre Caslon Display", serif; letter-spacing: -0.04em;
+  color: rgba(234, 220, 197, 0.018);
+  text-shadow: -1px -1px 0 rgba(255, 255, 255, 0.035), 1px 1px 0 rgba(0, 0, 0, 0.55), 0 0 60px rgba(181, 138, 87, 0.05); }
+/* soft edges: the page darkens gently toward the corners */
+.backdrop { background:
+    radial-gradient(1000px 720px at 85% -10%, rgba(181, 138, 87, 0.09), transparent 62%),
+    radial-gradient(1100px 820px at -10% 110%, rgba(20, 38, 100, 0.55), transparent 62%),
+    var(--bg) !important; }
+.backdrop .weave::after { content: ""; position: absolute; inset: 0; }
+.backdrop { box-shadow: inset 0 0 220px rgba(0, 0, 0, 0.55) !important; }
+.backdrop::after { opacity: 0.1; }
+[data-theme="light"] .weave { opacity: 0.08; mix-blend-mode: multiply; }
+[data-theme="light"] .emboss { color: rgba(255, 255, 255, 0.07); text-shadow: -1px -1px 0 rgba(255, 255, 255, 0.45), 1px 1px 0 rgba(80, 60, 30, 0.07); }
+[data-theme="light"] .backdrop { box-shadow: inset 0 0 220px rgba(80, 60, 30, 0.10) !important; }
+@media (max-width: 720px) { .emboss { right: -14vw; font-size: 80vw; } }
+@media print { .weave, .emboss { display: none; } }
