@@ -11,6 +11,6 @@
   // the monogram intro plays once per visit, never for reduced motion or the résumé view
   try {
     var still = matchMedia("(prefers-reduced-motion: reduce)").matches && !/[?&]motion=1/.test(location.search);
-    if (!still && !sessionStorage.getItem("tejith-intro") && !/[?&]view=resume/.test(location.search)) d.classList.add("intro");
+    if (!still && !sessionStorage.getItem("tejith-intro") && !/[?&]view=resume/.test(location.search)) d.classList.add("intro-on");
   } catch (e) {}
 })();

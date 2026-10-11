@@ -1060,7 +1060,7 @@
   // ---------- start lights, once per visit: five on, lights out, go ----------
   function intro() {
     const d = document.documentElement;
-    if (!d.classList.contains("intro")) { launch(); return; }
+    if (!d.classList.contains("intro-on")) { launch(); return; }
     try { sessionStorage.setItem("tejith-intro", "1"); } catch (e) {}
     const lights = $$("#intro .lights span"), timers = [];
     let done = false;
@@ -1069,7 +1069,7 @@
       if (done) return; done = true; timers.forEach(clearTimeout);
       lights.forEach((l) => l.classList.remove("on"));
       d.classList.add("intro-out"); launch();
-      setTimeout(() => d.classList.remove("intro", "intro-out"), 650);
+      setTimeout(() => d.classList.remove("intro-on", "intro-out"), 650);
     };
     timers.push(setTimeout(end, 350 + 4 * 420 + 750)); // hold, then lights out
     $("#intro").addEventListener("click", end);
