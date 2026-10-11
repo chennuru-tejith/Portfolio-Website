@@ -366,6 +366,8 @@
       const i = PAGES.indexOf(page), nx = PAGES[(i + 1) % PAGES.length];
       $("#nextPage").innerHTML = page === "home" ? "" : `<a href="#${nx}"><span class="mono">Next</span><b>${esc(PAGE_NAME[nx])}</b><span aria-hidden="true">→</span></a>`;
       if (animate && !still) { const m = $("#story"); m.classList.remove("page-in"); void m.offsetWidth; m.classList.add("page-in"); }
+      if (animate) wipe();
+      if (animate && page === "home") launch();
       reveal();
     }
     const target = id && !PAGES.includes(id) && id !== "top" ? document.getElementById(id) : null;
@@ -1049,15 +1051,35 @@
     applyReading();
   }
 
-  // ---------- monogram intro, once per visit ----------
+  // ---------- launch: the hero comes in like a car off the line ----------
+  function launch() {
+    if (still) return;
+    const h = $(".hero"); h.classList.remove("launch"); void h.offsetWidth; h.classList.add("launch");
+  }
+
+  // ---------- start lights, once per visit: five on, lights out, go ----------
   function intro() {
-    const d = document.documentElement; if (!d.classList.contains("intro")) return;
+    const d = document.documentElement;
+    if (!d.classList.contains("intro")) { launch(); return; }
     try { sessionStorage.setItem("tejith-intro", "1"); } catch (e) {}
+    const lights = $$("#intro .lights span"), timers = [];
     let done = false;
-    const end = () => { if (done) return; done = true; d.classList.add("intro-out"); setTimeout(() => d.classList.remove("intro", "intro-out"), 700); };
-    setTimeout(end, 2300);
+    lights.forEach((l, i) => timers.push(setTimeout(() => l.classList.add("on"), 350 + i * 420)));
+    const end = () => {
+      if (done) return; done = true; timers.forEach(clearTimeout);
+      lights.forEach((l) => l.classList.remove("on"));
+      d.classList.add("intro-out"); launch();
+      setTimeout(() => d.classList.remove("intro", "intro-out"), 650);
+    };
+    timers.push(setTimeout(end, 350 + 4 * 420 + 750)); // hold, then lights out
     $("#intro").addEventListener("click", end);
     addEventListener("keydown", end, { once: true });
+  }
+
+  // ---------- page change: a fast bronze streak across the screen ----------
+  function wipe() {
+    if (still) return;
+    const w = $("#wipe"); w.classList.remove("go"); void w.offsetWidth; w.classList.add("go");
   }
 
   // ---------- boot ----------
