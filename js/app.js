@@ -361,6 +361,7 @@
       page = next;
       $$("#story [data-page]").forEach((el) => el.classList.toggle("off-page", el.dataset.page !== page));
       $("#story").dataset.page = page;
+      document.body.dataset.page = page; // lets the background pause its lap off the home page
       $$(".nav-links a").forEach((a) => { const on = a.getAttribute("href") === "#" + page; a.classList.toggle("on", on); on ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"); });
       document.title = page === "home" ? HOME_TITLE : `${PAGE_NAME[page]} | ${D.profile.name}`;
       const i = PAGES.indexOf(page), nx = PAGES[(i + 1) % PAGES.length];
@@ -480,14 +481,10 @@
   // ---------- numbers count up when they come into view ----------
   function countUps() {
     const els = $$("#stats b[data-v]");
-    const run = (el) => {
-      const raw = el.dataset.v, m = raw.match(/^([^\d]*)([\d.]+)(.*)$/); if (!m) return;
-      const [, pre, num, post] = m, target = parseFloat(num), dec = (num.split(".")[1] || "").length, t0 = performance.now(), dur = 1500;
-      const step = (t) => { const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3); el.textContent = pre + (target * e).toFixed(dec) + post; if (k < 1) requestAnimationFrame(step); };
-      requestAnimationFrame(step);
-    };
     if (still) return;
-    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { run(e.target); io.unobserve(e.target); } }), { threshold: 0.6 });
+    // split-flap, like a timing screen: each character flips down in turn
+    els.forEach((el) => { el.innerHTML = [...el.dataset.v].map((ch, i) => `<span class="flap" style="--i:${i}">${ch === " " ? "&nbsp;" : esc(ch)}</span>`).join(""); el.classList.add("flaps"); });
+    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("go"); io.unobserve(e.target); } }), { threshold: 0.6 });
     els.forEach((el) => io.observe(el));
   }
 
@@ -642,6 +639,7 @@
       if (type !== "hello" && !body) { err.textContent = "Add a line about the opportunity."; err.hidden = false; $("#msgBody").focus(); return; }
       const subject = { internship: `Internship opportunity: ${org || name}`, project: `Project collaboration: ${org || name}`, hello: `Hello from ${name}` }[type];
       const text = [`Hi Tejith,`, ``, body || `Just wanted to say hello. I came across your portfolio.`, ``, `Best,`, name + (org ? `, ${org}` : "")].join("\n");
+      waveFlag();
       location.href = `mailto:${D.profile.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(text)}`;
     });
     $("#bookCall").addEventListener("click", () => {
@@ -903,6 +901,54 @@
     }));
   }
 
+  // ---------- motion kit: rev lights, gauge, flag, pit boards, tilt (transform and opacity only) ----------
+  // 1. rev-light strip: the scroll bar is drawn as segments; lighting them is a clip, not a resize
+  function revLights() {
+    const bar = $("#progress"); if (!bar) return;
+    bar.innerHTML = Array.from({ length: 15 }, (_, i) => `<i style="--n:${i}"></i>`).join("");
+    bar.classList.add("rev");
+  }
+  // 3. a small gauge beside the CGPA; the needle sweeps when it comes into view
+  function gauge() {
+    const stat = D.profile.stats.findIndex((x) => /cgpa/i.test(x.label)); if (stat < 0) return;
+    const el = $$("#stats .metric")[stat]; if (!el) return;
+    const v = parseFloat(D.profile.stats[stat].value), max = 8, deg = -120 + (v / max) * 240;
+    const ticks = Array.from({ length: 9 }, (_, i) => { const a = (-120 + i * 30) * Math.PI / 180; return `<line x1="${(50 + Math.sin(a) * 36).toFixed(1)}" y1="${(50 - Math.cos(a) * 36).toFixed(1)}" x2="${(50 + Math.sin(a) * 42).toFixed(1)}" y2="${(50 - Math.cos(a) * 42).toFixed(1)}"/>`; }).join("");
+    el.insertAdjacentHTML("beforeend", `<svg class="gauge" viewBox="0 0 100 100" aria-hidden="true"><path class="g-arc" d="M18.8 68 A42 42 0 1 1 81.2 68" pathLength="1"/><g class="g-ticks">${ticks}</g><g class="g-needle" style="--deg:${deg.toFixed(1)}deg"><line x1="50" y1="50" x2="50" y2="16"/><circle cx="50" cy="50" r="4"/></g></svg>`);
+    const g = $(".gauge", el);
+    if (still) { g.classList.add("go"); return; }
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { g.classList.add("go"); io.disconnect(); } }, { threshold: 0.6 });
+    io.observe(g);
+  }
+  // 4. chequered flag
+  function waveFlag() {
+    if (still) return;
+    const f = $("#flag"); f.classList.remove("go"); void f.offsetWidth; f.classList.add("go");
+  }
+  // 6. section labels flip in like pit boards
+  function pitBoards() {
+    const heads = $$(".sec-head .kicker");
+    if (still) return;
+    heads.forEach((k) => k.classList.add("board"));
+    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: 0.8 });
+    heads.forEach((k) => io.observe(k));
+  }
+  // 7. cards lean toward the pointer, like a car into a corner (one rAF per frame at most)
+  function tilt() {
+    if (still || !matchMedia("(pointer: fine)").matches) return;
+    let card = null, raf = 0, rx = 0, ry = 0;
+    const paint = () => { raf = 0; if (card) { card.style.setProperty("--rx", rx.toFixed(2) + "deg"); card.style.setProperty("--ry", ry.toFixed(2) + "deg"); } };
+    document.addEventListener("pointermove", (e) => {
+      const c = e.target.closest && e.target.closest(".tilt");
+      if (c !== card) { if (card) { card.style.setProperty("--rx", "0deg"); card.style.setProperty("--ry", "0deg"); } card = c; }
+      if (!card) return;
+      const r = card.getBoundingClientRect();
+      ry = ((e.clientX - r.left) / r.width - 0.5) * 6; rx = -((e.clientY - r.top) / r.height - 0.5) * 5;
+      if (!raf) raf = requestAnimationFrame(paint);
+    }, { passive: true });
+    $$(".feat, .ch, .proof, .li-card, .proj, .slot, .paper").forEach((c) => c.classList.add("tilt"));
+  }
+
   // ---------- 60-second tour ----------
   const TOUR = [
     ["top", "Chennuru Tejith: BBA + MBA at O.P. Jindal Global University, working across finance, operations and leadership."],
@@ -1085,7 +1131,7 @@
   // ---------- boot ----------
   applyTheme(state.theme);
   $("#year").textContent = new Date().getFullYear();
-  renderDisciplines(); renderSections(); renderProgress(); renderAvail(); renderMap(); renderFaq(); renderExtras(); renderResume(); renderHeroExtras(); renderAsk(); geoBadge(); renderRecon(); renderScrub(); wireSources(); renderBuilding(); renderRefReq(); renderPit(); renderEndorse(); renderPosts(); renderSlots(); renderGuestbook(); wireTour(); wireReading(); intro(); renderContact(); wireShare(); renderThinking(); renderBaf(); docsActions(); voice(); signature(); season(); carDraw();
+  renderDisciplines(); renderSections(); renderProgress(); renderAvail(); renderMap(); renderFaq(); renderExtras(); renderResume(); renderHeroExtras(); renderAsk(); geoBadge(); renderRecon(); renderScrub(); wireSources(); renderBuilding(); renderRefReq(); renderPit(); renderEndorse(); renderPosts(); renderSlots(); renderGuestbook(); wireTour(); wireReading(); intro(); revLights(); gauge(); pitBoards(); tilt(); renderContact(); wireShare(); renderThinking(); renderBaf(); docsActions(); voice(); signature(); season(); carDraw();
   clock(); motion(); countUps(); scrollStory(); mapReveal(); views(); reveal();
 
   document.addEventListener("click", (e) => {
