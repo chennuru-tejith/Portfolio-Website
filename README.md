@@ -53,6 +53,12 @@ Each page has a share page (`work.html`, `research.html`…) with its own previe
 ## Printing
 Ctrl+P (or "Print / save" on the résumé) always prints the clean one-page résumé.
 
+## Motion libraries
+- `js/vendor/gsap.min.js`: GSAP 3.12.5 (GreenSock standard licence, free to use) drives the F1 car delivery and the quote reveal.
+- `js/vendor/lenis.min.js`: Lenis 1.1.13 (MIT) gives smooth scrolling on desktop.
+- Both are stored locally because the Content-Security-Policy only allows the site's own scripts.
+- Portrait tools: `python tools/make-portrait.py photo.jpg` (removes a plain background), then `python tools/make-avatar.py` (illustrated avatar).
+
 ## Security & speed
 - Content-Security-Policy in `index.html`; `_headers` (Netlify) and `vercel.json` (Vercel) add HSTS, clickjacking protection, nosniff and caching.
 - External links use `rel="noopener noreferrer"`; all content is HTML-escaped; the email address is assembled at runtime.

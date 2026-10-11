@@ -373,7 +373,7 @@
     }
     const target = id && !PAGES.includes(id) && id !== "top" ? document.getElementById(id) : null;
     if (target) requestAnimationFrame(() => target.scrollIntoView({ behavior: changed || still ? "auto" : "smooth" }));
-    else if (changed) window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    else if (changed) { if (window.__lenis) window.__lenis.scrollTo(0, { immediate: true }); else window.scrollTo({ top: 0, left: 0, behavior: "instant" }); }
     onScroll();
   }
   const HOME_TITLE = document.title;
@@ -1102,6 +1102,60 @@
   function launch() {
     if (still) return;
     const h = $(".hero"); h.classList.remove("launch"); void h.offsetWidth; h.classList.add("launch");
+    deliver();
+  }
+
+  // ---------- GSAP: a top-view F1 car drives in, drops off the portrait card, and leaves ----------
+  let delivering = null;
+  function deliver() {
+    const gs = window.gsap, car = $("#f1"), card = $("#portrait"), hero = $(".hero");
+    if (!gs || !car || !card || still) return;
+    if (delivering) delivering.kill();
+    const hr = hero.getBoundingClientRect(), cr = card.getBoundingClientRect();
+    const carW = car.offsetWidth, carH = car.offsetHeight;
+    const stopX = cr.left - hr.left + cr.width / 2 - carW / 2;          // car centred on the card
+    const y = cr.top - hr.top + cr.height * 0.42 - carH / 2;
+    gs.set(car, { x: hr.width + 40, y, autoAlpha: 1, scaleX: 1, rotation: 0 });
+    gs.set(card, { autoAlpha: 0, scale: 0.55, transformOrigin: "50% 42%" });
+    gs.set(".f1-trail", { scaleX: 1.4, autoAlpha: 0.9 });
+    delivering = gs.timeline({ defaults: { overwrite: "auto" }, onComplete: () => gs.set(car, { autoAlpha: 0 }) })
+      .to(car, { x: stopX, duration: 0.95, ease: "power4.out" })                          // arrive, braking hard
+      .to(".f1-trail", { scaleX: 0.2, autoAlpha: 0, duration: 0.6, ease: "power2.out" }, "<0.35")
+      .to(car, { scaleX: 0.96, duration: 0.12, yoyo: true, repeat: 1, ease: "power1.inOut" }, "-=0.18") // nose dips under braking
+      .to(card, { autoAlpha: 1, scale: 1, duration: 0.7, ease: "back.out(1.6)" }, "-=0.05")  // the card is dropped off
+      .to(car, { x: -carW - Math.max(120, hr.left + 40), duration: 0.75, ease: "power3.in" }, "+=0.15") // and the car pulls away
+      .to(".f1-trail", { scaleX: 1.6, autoAlpha: 0.8, duration: 0.3, ease: "power1.in" }, "<0.1")
+      .set(card, { clearProps: "transform,opacity,visibility" });
+  }
+
+  // ---------- Lenis: weighted, smooth scrolling on desktop ----------
+  function smoothScroll() {
+    if (still || !window.Lenis || !matchMedia("(pointer: fine)").matches) return;
+    const lenis = new window.Lenis({ lerp: 0.11, smoothWheel: true });
+    if (window.gsap) { window.gsap.ticker.add((t) => lenis.raf(t * 1000)); window.gsap.ticker.lagSmoothing(0); }
+    else { const loop = (t) => { lenis.raf(t); requestAnimationFrame(loop); }; requestAnimationFrame(loop); }
+    window.__lenis = lenis;
+  }
+
+  // ---------- the quote band: words rise in, one after another ----------
+  function creed() {
+    const q = $(".creed-q"); if (!q || still || !window.gsap) return;
+    const walk = (node) => [...node.childNodes].forEach((c) => {
+      if (c.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        c.textContent.split(/(\s+)/).forEach((t) => { if (!t) return; if (/^\s+$/.test(t)) frag.appendChild(document.createTextNode(t)); else { const s = document.createElement("span"); s.className = "cw"; s.textContent = t; frag.appendChild(s); } });
+        c.replaceWith(frag);
+      } else if (c.nodeType === 1) walk(c);
+    });
+    walk(q);
+    const words = $$(".cw", q);
+    window.gsap.set(words, { yPercent: 110, autoAlpha: 0 });
+    const io = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) return; io.disconnect();
+      window.gsap.to(words, { yPercent: 0, autoAlpha: 1, duration: 0.9, ease: "power4.out", stagger: 0.06 });
+      window.gsap.from(".creed-mark", { scale: 0.4, autoAlpha: 0, duration: 1, ease: "back.out(2)" });
+    }, { threshold: 0.4 });
+    io.observe(q);
   }
 
   // ---------- start lights, once per visit: five on, lights out, go ----------
@@ -1132,7 +1186,7 @@
   // ---------- boot ----------
   applyTheme(state.theme);
   $("#year").textContent = new Date().getFullYear();
-  renderDisciplines(); renderSections(); renderProgress(); renderAvail(); renderMap(); renderFaq(); renderExtras(); renderResume(); renderHeroExtras(); renderAsk(); geoBadge(); renderRecon(); renderScrub(); wireSources(); renderBuilding(); renderRefReq(); renderPit(); renderEndorse(); renderPosts(); renderSlots(); renderGuestbook(); wireTour(); wireReading(); intro(); revLights(); gauge(); pitBoards(); tilt(); renderContact(); wireShare(); renderThinking(); renderBaf(); docsActions(); voice(); signature(); season(); carDraw();
+  renderDisciplines(); renderSections(); renderProgress(); renderAvail(); renderMap(); renderFaq(); renderExtras(); renderResume(); renderHeroExtras(); renderAsk(); geoBadge(); renderRecon(); renderScrub(); wireSources(); renderBuilding(); renderRefReq(); renderPit(); renderEndorse(); renderPosts(); renderSlots(); renderGuestbook(); wireTour(); wireReading(); smoothScroll(); creed(); intro(); revLights(); gauge(); pitBoards(); tilt(); renderContact(); wireShare(); renderThinking(); renderBaf(); docsActions(); voice(); signature(); season(); carDraw();
   clock(); motion(); countUps(); scrollStory(); mapReveal(); views(); reveal();
 
   document.addEventListener("click", (e) => {

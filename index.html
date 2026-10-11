@@ -22,11 +22,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Tinos:ital,wght@0,400;0,700;1,400&family=Pinyon+Script&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet" />
-  <link rel="preload" as="image" href="assets/tejith.webp" type="image/webp" />
+  <link rel="preload" as="image" href="assets/avatar.webp" type="image/webp" />
   <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-  <link rel="stylesheet" href="css/style.css?v=301" />
-  <script src="js/boot.js?v=301"></script>
+  <link rel="stylesheet" href="css/style.css?v=310" />
+  <script src="js/boot.js?v=310"></script>
 </head>
 <body>
   <div class="intro" id="intro" aria-hidden="true">
@@ -78,6 +78,44 @@
   <!-- ============ STORY ============ -->
   <main id="story">
     <section class="hero" id="top" data-page="home">
+      <div class="f1" id="f1" aria-hidden="true">
+      <div class="f1-trail"></div>
+      <svg class="f1-car" viewBox="0 0 380 160">
+        <defs>
+          <linearGradient id="f1Body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16307a"/><stop offset=".5" stop-color="#0b1d55"/><stop offset="1" stop-color="#061238"/></linearGradient>
+          <linearGradient id="f1Bronze" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8f6639"/><stop offset=".5" stop-color="#e3c28d"/><stop offset="1" stop-color="#b58a57"/></linearGradient>
+          <radialGradient id="f1Shadow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#000" stop-opacity=".55"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+        </defs>
+        <ellipse cx="190" cy="84" rx="190" ry="66" fill="url(#f1Shadow)"/>
+        <!-- rear wheels -->
+        <rect x="262" y="6" width="58" height="32" rx="7" fill="#0b0b10"/><rect x="262" y="122" width="58" height="32" rx="7" fill="#0b0b10"/>
+        <g stroke="#2a2a33" stroke-width="2"><path d="M270 10v24M282 10v24M294 10v24M306 10v24M270 126v24M282 126v24M294 126v24M306 126v24"/></g>
+        <!-- front wheels -->
+        <rect x="58" y="12" width="46" height="26" rx="6" fill="#0b0b10"/><rect x="58" y="122" width="46" height="26" rx="6" fill="#0b0b10"/>
+        <g stroke="#2a2a33" stroke-width="2"><path d="M66 15v20M78 15v20M90 15v20M66 125v20M78 125v20M90 125v20"/></g>
+        <!-- suspension -->
+        <g stroke="#9aa3b5" stroke-width="2.4" stroke-linecap="round"><path d="M82 38L128 66M82 122L128 94M98 38L140 64M98 122L140 96M290 38L262 62M290 122L262 98"/></g>
+        <!-- front wing -->
+        <path d="M14 22h30q6 0 6 6v104q0 6-6 6H14q-6 0-6-6V28q0-6 6-6z" fill="url(#f1Body)" stroke="url(#f1Bronze)" stroke-width="2"/>
+        <path d="M10 30h34M10 130h34" stroke="#e3c28d" stroke-width="2" opacity=".8"/>
+        <!-- rear wing -->
+        <path d="M330 18h30q8 0 8 8v108q0 8-8 8h-30q-8 0-8-8V26q0-8 8-8z" fill="url(#f1Body)" stroke="url(#f1Bronze)" stroke-width="2"/>
+        <rect x="336" y="26" width="6" height="108" rx="3" fill="url(#f1Bronze)"/>
+        <!-- chassis: nose, cockpit, sidepods with a coke-bottle waist, engine cover -->
+        <path d="M30 80 C40 70 70 66 110 64 C140 62 158 48 186 40 C214 34 246 38 262 52 C276 62 300 64 326 68 L326 92 C300 96 276 98 262 108 C246 122 214 126 186 120 C158 112 140 98 110 96 C70 94 40 90 30 80Z" fill="url(#f1Body)" stroke="#e3c28d" stroke-opacity=".55" stroke-width="1.5"/>
+        <!-- bronze livery stripe down the spine -->
+        <path d="M34 80 C70 76 120 74 170 74 L300 76 L326 78 L326 82 L300 84 L170 86 C120 86 70 84 34 80Z" fill="url(#f1Bronze)"/>
+        <!-- cockpit and halo -->
+        <ellipse cx="170" cy="80" rx="22" ry="13" fill="#03071e" stroke="#9aa3b5" stroke-width="1.5"/>
+        <path d="M150 80 C152 64 186 62 192 80 C186 98 152 96 150 80" fill="none" stroke="#c9ced8" stroke-width="3.2"/>
+        <circle cx="166" cy="80" r="6" fill="#e3c28d"/>
+        <!-- airbox and number -->
+        <path d="M196 72h22q6 0 6 6v4q0 6-6 6h-22z" fill="#03071e"/>
+        <text x="246" y="85" font-family="Times New Roman, serif" font-size="16" font-style="italic" fill="#eadcc5" text-anchor="middle">CT</text>
+        <!-- sidepod inlets -->
+        <path d="M188 50c10-4 22-4 30 0M188 110c10 4 22 4 30 0" stroke="#03071e" stroke-width="5" stroke-linecap="round" fill="none"/>
+      </svg>
+    </div>
       <div class="hero-bg" aria-hidden="true"><span class="blob b1"></span><span class="blob b2"></span><span class="grid"></span></div>
       <div class="hero-in wrap">
         <div class="hero-copy">
@@ -117,6 +155,12 @@
     </section>
 
     <section class="metrics wrap" aria-label="At a glance" data-page="home"><div class="metric-row" id="stats"></div></section>
+
+    <section class="wrap creed" id="creed" data-page="home" aria-label="What I believe">
+      <p class="creed-mark" aria-hidden="true">“</p>
+      <blockquote class="creed-q">Loyalty works both ways. <em>If you ask for it, be ready to give it.</em></blockquote>
+      <p class="creed-by">What I believe</p>
+    </section>
 
     <section class="sec wrap featured" id="featured" data-page="home" aria-label="Featured work">
       <a class="feat" href="#story-4cr">
@@ -407,7 +451,7 @@
         <p class="sub">Type a question the way you'd ask it in an interview. Answers come straight from this site, and it says so when it doesn't know.</p>
       </header>
       <div class="chat" id="chat">
-        <div class="chat-log" id="chatLog" aria-live="polite"></div>
+        <div class="chat-log" id="chatLog" aria-live="polite" data-lenis-prevent></div>
         <div class="ask-chips" id="askChips"></div>
         <div class="chat-row">
           <label class="sr" for="askInput">Your question</label>
@@ -471,7 +515,7 @@
 
   <div class="reader" id="reader" hidden>
     <div class="reader-scrim" data-close-case></div>
-    <article class="reader-panel" role="dialog" aria-modal="true" aria-labelledby="caseTitle">
+    <article class="reader-panel" data-lenis-prevent role="dialog" aria-modal="true" aria-labelledby="caseTitle">
       <button class="icon-btn reader-x" data-close-case aria-label="Close case study">✕</button>
       <div id="caseBody"></div>
     </article>
@@ -523,9 +567,11 @@
 
   <div class="toast" id="toast" role="status" hidden></div>
 
-  <script src="js/data.js?v=301"></script>
-  <script src="js/icons.js?v=301"></script>
-  <script src="js/india.js?v=301"></script>
-  <script src="js/app.js?v=301"></script>
+  <script src="js/data.js?v=310"></script>
+  <script src="js/icons.js?v=310"></script>
+  <script src="js/india.js?v=310"></script>
+  <script src="js/vendor/gsap.min.js?v=3125"></script>
+  <script src="js/vendor/lenis.min.js?v=1113"></script>
+  <script src="js/app.js?v=310"></script>
 </body>
 </html>
