@@ -1845,3 +1845,36 @@ html.motion-off .f1 { display: none; }
 #creed.rising .cw { transform: translateY(110%); opacity: 0; transition: transform 0.9s cubic-bezier(.16, 1, .3, 1), opacity 0.9s ease; transition-delay: calc(var(--i, 0) * 60ms); }
 #creed.rising .creed-mark { transform: scale(0.4); opacity: 0; transition: transform 1s cubic-bezier(.3, 1.6, .5, 1), opacity 0.8s ease; }
 #creed.risen .cw, #creed.risen .creed-mark { transform: none; opacity: 1; }
+
+/* ============================================================
+   Round 33: a human hand. Handwritten margin notes, a wobbly underline,
+   a contents list instead of cards, a colophon.
+   ============================================================ */
+.hand { margin: 0; font: 500 21px/1.15 "Caveat", "Segoe Print", cursive; color: var(--acc); letter-spacing: 0; text-transform: none; }
+.hand-arrow { display: inline-block; width: 44px; height: 30px; vertical-align: -14px; margin-left: 4px; }
+.hand-arrow.left { margin: 0 6px 0 0; vertical-align: -6px; }
+.hand-arrow path { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.hand-stats { text-align: right; transform: rotate(-1.5deg); margin: 0 6% -6px auto; max-width: 360px; }
+.hand-story { transform: rotate(-2deg); margin: -8px 0 10px; }
+.hand-paper { transform: rotate(-1.5deg); margin: -8px 0 10px; }
+.hand-contact { display: inline-block; transform: rotate(1.5deg); margin: 0 0 18px; color: var(--clay); }
+[data-theme="light"] .hand { color: #7a5530; }
+/* the second half of the quote gets a hand-drawn underline */
+.creed-q em { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 14' preserveAspectRatio='none'%3E%3Cpath d='M3 9 C 40 5, 80 11, 130 7 S 220 4, 260 8 S 290 10, 297 6' fill='none' stroke='%23b58a57' stroke-width='2.4' stroke-linecap='round'/%3E%3Cpath d='M18 12 C 70 9, 140 13, 210 10' fill='none' stroke='%23b58a57' stroke-width='1.2' stroke-linecap='round' opacity='.6'/%3E%3C/svg%3E") left 100% / 100% 12px no-repeat; padding-bottom: 6px; }
+/* contents: a book-style list, not a grid of cards */
+.ch-grid.ch-4 { display: block; max-width: 900px; border-top: 1px solid var(--line-2); }
+.ch-grid.ch-4 .ch, .ch-grid.ch-4 .ch + .ch, .ch-grid.ch-4 .ch:nth-child(odd) {
+  display: grid; grid-template-columns: 52px auto 1fr; gap: 0 18px; align-items: baseline; padding: 20px 0; margin: 0;
+  border: 0; border-bottom: 1px solid var(--line); border-radius: 0; background: none !important; transform: none !important; box-shadow: none; }
+.ch-grid.ch-4 .ch b { font-size: clamp(26px, 2.6vw, 34px); }
+.ch-grid.ch-4 .ch > span:last-child { grid-column: 3; color: var(--ink-3); font-size: 15px; max-width: none; }
+.ch-grid.ch-4 .ch::after { top: 26px; right: 0; }
+.ch-grid.ch-4 .ch:hover b { color: var(--acc); }
+@media (max-width: 720px) { .ch-grid.ch-4 .ch, .ch-grid.ch-4 .ch + .ch { grid-template-columns: 40px 1fr; } .ch-grid.ch-4 .ch > span:last-child { grid-column: 2; } }
+/* colophon */
+.colophon { flex-basis: 100%; order: 9; text-transform: none; letter-spacing: 0.02em; font: italic 400 13px "Times New Roman", Tinos, serif; color: var(--ink-4); }
+/* contents rows: number in a fixed column, title and line stacked beside it, every row aligned */
+.ch-grid.ch-4 .ch, .ch-grid.ch-4 .ch + .ch, .ch-grid.ch-4 .ch:nth-child(odd), .ch-grid.ch-4 .ch:not(:nth-child(3n+1)) { grid-template-columns: 52px 1fr; padding-left: 0 !important; padding-right: 40px; }
+.ch-grid.ch-4 .ch .ch-no { grid-column: 1; grid-row: 1 / span 2; align-self: start; padding-top: 12px; }
+.ch-grid.ch-4 .ch b { grid-column: 2; }
+.ch-grid.ch-4 .ch > span:last-child { grid-column: 2; margin-top: 4px; }

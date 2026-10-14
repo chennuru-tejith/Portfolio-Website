@@ -63,8 +63,8 @@ window.PORTFOLIO = {
           org: "Ion Exchange India Ltd.",
           when: "Dec 2024 to Jan 2025 · Hyderabad",
           points: [
-            "Streamlined daily transaction processing, improving workflow efficiency and reducing documentation backlogs.",
-            "Standardized vendor records and aligned internal financial documentation, enhancing data consistency and audit readiness.",
+            "Sped up daily transaction processing and brought down the documentation backlog.",
+            "Standardised vendor records and lined up internal finance documents, so the figures matched and were ready for audit.",
           ],
         },
       ],
@@ -281,9 +281,9 @@ window.PORTFOLIO = {
       org: "Ion Exchange India Ltd.",
       when: "Dec 2024 to Jan 2025 · Hyderabad",
       points: [
-        "Streamlined daily transaction processing, improving departmental workflow efficiency and reducing documentation backlogs.",
+        "Sped up the department's daily transaction processing and brought down the documentation backlog.",
         "Coordinated business partner communications and order confirmations, improving accuracy across stakeholder interactions.",
-        "Standardized vendor records and aligned internal financial documentation, enhancing data consistency and audit readiness.",
+        "Standardised vendor records and lined up internal finance documents, so the figures matched and were ready for audit.",
       ],
     },
   ],
@@ -518,7 +518,7 @@ window.PORTFOLIO = {
     },
     "Finance Intern": {
       context: "Ion Exchange India's finance team handled daily transactions, business-partner communication and vendor documentation.",
-      actions: ["Streamlined daily transaction processing.", "Coordinated business-partner communications and order confirmations.", "Standardized vendor records and aligned internal financial documentation."],
+      actions: ["Sped up daily transaction processing.", "Coordinated business-partner communications and order confirmations.", "Standardized vendor records and aligned internal financial documentation."],
       outcome: "Improved workflow efficiency, fewer documentation backlogs, and records that were more consistent and audit-ready.",
       takeaway: "Clean records upstream save hours of correction downstream.",
     },
@@ -566,7 +566,7 @@ window.PORTFOLIO = {
   // ---------- Before → after, per internship (from CV results) ----------
   outcomes: {
     "Project Management Intern": { before: "Five years of workforce cost data (FY2021 to FY2025) spread across records.", after: "Structured management reports supporting decisions on headcount budgeting and welfare spending." },
-    "Finance Intern": { before: "Documentation backlogs and inconsistent vendor records.", after: "Streamlined daily transaction processing; standardized, audit-ready vendor records." },
+    "Finance Intern": { before: "Documentation backlogs and inconsistent vendor records.", after: "Faster daily transaction processing; vendor records that matched and were ready for audit." },
   },
 
   // ---------- Skill filter: which disciplines each item proves ----------

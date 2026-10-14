@@ -112,7 +112,7 @@
           <p class="mono">CREDENTIAL ${pad(i + 1)} OF ${pad(G.length)}</p>
           <h3>${esc(g.domain)}</h3>
           <p>${esc(g.intro)}</p>
-          <div class="cred-meta"><span class="verified">✓ Backed by real work</span><span>${g.battles.length} record${g.battles.length > 1 ? "s" : ""}</span><span>${esc(yearsOf(g))}</span></div>
+          <div class="cred-meta"><span class="verified">Backed by real work</span><span>${g.battles.length} record${g.battles.length > 1 ? "s" : ""}</span><span>${esc(yearsOf(g))}</span></div>
         </div>
       </div>
       <div class="panel-body">
@@ -142,7 +142,7 @@
     $("#cvHero").href = D.profile.cv;
     const SRC = { cv: ["CV (PDF)", D.profile.cv], linkedin: ["LinkedIn: Experience", D.profile.linkedin.replace(/\/$/, "") + "/details/experience/"] };
     $("#stats").innerHTML = D.profile.stats.map((s, i) => `<div class="metric" tabindex="0"><b data-v="${esc(s.value)}">${esc(s.value)}</b><span>${esc(s.label)}</span>
-      ${s.sources ? `<button class="src-btn" aria-expanded="false" aria-controls="src${i}" title="Where this number comes from">✓ Source</button><div class="src-pop" id="src${i}" hidden>${s.story ? `<p class="src-story">${esc(s.story)}</p>` : ""}<p class="mono">Where this comes from</p><ul>${s.sources.map((k) => SRC[k] ? `<li><a href="${esc(SRC[k][1])}" target="_blank" rel="noopener noreferrer">${esc(SRC[k][0])} ↗</a></li>` : "").join("")}</ul>${s.note ? `<p>${esc(s.note)}</p>` : ""}</div>` : ""}</div>`).join("");
+      ${s.sources ? `<button class="src-btn" aria-expanded="false" aria-controls="src${i}" title="Where this number comes from">Source</button><div class="src-pop" id="src${i}" hidden>${s.story ? `<p class="src-story">${esc(s.story)}</p>` : ""}<p class="mono">Where this comes from</p><ul>${s.sources.map((k) => SRC[k] ? `<li><a href="${esc(SRC[k][1])}" target="_blank" rel="noopener noreferrer">${esc(SRC[k][0])} ↗</a></li>` : "").join("")}</ul>${s.note ? `<p>${esc(s.note)}</p>` : ""}</div>` : ""}</div>`).join("");
     $("#principleList").innerHTML = D.principles.map((p, i) => `
       <article class="principle rv"><span class="pr-no">${pad(i + 1)}</span><h3>${esc(p.title)}</h3><p class="pr-text">${esc(p.text)}</p>
       <span class="pr-where">${esc(p.where)}</span></article>`).join("");
@@ -495,7 +495,7 @@
   function scrollStory() {
     const steps = $$("#stSteps li"); if (!steps.length) return;
     const weeks = $$("#stWeeks span"), pill = $("#stPill"), flag = $("#stFlag");
-    const labels = ["Briefed", "On site", "Budget tracked", "Discrepancy caught", "Reported ✓"];
+    const labels = ["Briefed", "On site", "Budget tracked", "Discrepancy caught", "Reported"];
     const set = (n) => {
       steps.forEach((li, k) => li.classList.toggle("on", k === n));
       weeks.forEach((w, k) => setTimeout(() => w.classList.toggle("on", n >= 1), n >= 1 ? k * 90 : 0));

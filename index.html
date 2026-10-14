@@ -21,11 +21,11 @@
   <!-- BUILD:META --><!-- /BUILD:META -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Tinos:ital,wght@0,400;0,700;1,400&family=Pinyon+Script&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Tinos:ital,wght@0,400;0,700;1,400&family=Pinyon+Script&family=Caveat:wght@500&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-  <link rel="stylesheet" href="css/style.min.css?v=410" />
-  <script src="js/boot.js?v=410"></script>
+  <link rel="stylesheet" href="css/style.min.css?v=421" />
+  <script src="js/boot.js?v=421"></script>
 </head>
 <body>
   <div class="intro" id="intro" aria-hidden="true">
@@ -113,7 +113,7 @@
 
     </section>
 
-    <section class="metrics wrap" aria-label="At a glance" data-page="home"><div class="metric-row" id="stats"></div></section>
+    <section class="metrics wrap" aria-label="At a glance" data-page="home"><p class="hand hand-stats">every number links to where it comes from <svg class="hand-arrow" viewBox="0 0 60 40" aria-hidden="true"><path d="M4 6 C 18 4, 34 10, 42 22 C 46 28, 47 31, 48 34 M40 28 L48 35 L53 26"/></svg></p><div class="metric-row" id="stats"></div></section>
 
     <section class="wrap creed" id="creed" data-page="home" aria-label="What I believe">
       <p class="creed-mark" aria-hidden="true">“</p>
@@ -131,7 +131,7 @@
     </section>
 
     <section class="sec wrap chapters" id="chapters" data-page="home" aria-label="Explore">
-      <header class="sec-head"><p class="kicker">Explore</p><h2>Where to next?</h2></header>
+      <header class="sec-head"><p class="kicker">Contents</p><h2>Where to go from here.</h2></header>
       <div class="ch-grid ch-4">
         <a class="ch" href="#about"><span class="ch-no">01</span><b>About</b><span>Who I am, the years so far, how I work and who can vouch for me.</span></a>
         <a class="ch" href="#work"><span class="ch-no">02</span><b>Work</b><span>Three internships, the ₹4 Cr build step by step, five skill areas and what I've built.</span></a>
@@ -168,7 +168,7 @@
 
     <section class="sec wrap" id="journey" data-page="about">
       <header class="sec-head">
-        <p class="kicker">Journey map</p>
+        <p class="kicker">Where I've worked</p>
         <h2>Where the work happened.</h2>
         <p class="sub">Select a city to see what I did there.</p>
       </header>
@@ -258,7 +258,7 @@
     <section class="sec wrap" id="disciplines" data-page="work">
       <header class="sec-head">
         <p class="kicker">Arenas</p>
-        <h2>Five areas of work, each with proof.</h2>
+        <h2>What I can do, and where I've done it.</h2>
         <p class="sub">Each credential below is backed by real work you can check: the role, the organisation and what I delivered.</p>
       </header>
       <div class="disc">
@@ -277,6 +277,7 @@
 
     <section class="sec wrap story" id="story-4cr" data-page="work">
       <header class="sec-head">
+        <p class="hand hand-story">read this one first <svg class="hand-arrow" viewBox="0 0 60 40" aria-hidden="true"><path d="M4 6 C 18 4, 34 10, 42 22 C 46 28, 47 31, 48 34 M40 28 L48 35 L53 26"/></svg></p>
         <p class="kicker">One project, start to finish</p>
         <h2>How a <em class="grad">₹4 Cr</em> build was kept honest.</h2>
         <p class="sub">Scroll through what happened at the Round Table India school project, step by step.</p>
@@ -353,6 +354,7 @@
 
     <section class="sec wrap cv-auto" id="writing" data-page="research">
       <header class="sec-head">
+        <p class="hand hand-paper">still being written: I update this as it moves <svg class="hand-arrow" viewBox="0 0 60 40" aria-hidden="true"><path d="M4 6 C 18 4, 34 10, 42 22 C 46 28, 47 31, 48 34 M40 28 L48 35 L53 26"/></svg></p>
         <p class="kicker">Research &amp; writing</p>
         <h2>Research and writing.</h2>
       </header>
@@ -377,6 +379,7 @@
         <div class="sig" id="sig" aria-label="Signature"></div>
         <div class="flag" id="flag" aria-hidden="true"><i></i></div>
         <p>Internships, projects, or a conversation about business and the tools behind it.</p>
+        <p class="hand hand-contact"><svg class="hand-arrow left" viewBox="0 0 60 40" aria-hidden="true"><path d="M56 8 C 44 6, 26 10, 16 20 C 12 24, 10 27, 9 30 M6 22 L9 31 L18 28"/></svg> I usually reply within 48 hours</p>
         <div class="msg" id="msg">
           <div class="msg-type" role="radiogroup" aria-label="What is this about?">
             <button role="radio" aria-checked="true" data-t="internship">Internship</button>
@@ -454,6 +457,7 @@
 
     <footer class="foot wrap">
       <span>© <span id="year"></span> Chennuru Tejith · <!-- BUILD:UPDATED --><time datetime="2026-10-14">Updated October 2026</time><!-- /BUILD:UPDATED --> · <a href="profile.html">Text profile</a> · <a href="press.html">Press kit</a></span>
+      <span class="colophon">Every fact on this site is from my CV and checked by me. Set in Bell MT and Times New Roman.</span>
       <a class="geo-badge" id="geoBadge" href="#baf" hidden></a>
       <span class="views" id="views" hidden></span>
       <button class="foot-share" data-share>Share this profile</button>
@@ -464,7 +468,7 @@
   <!-- ============ RÉSUMÉ ============ -->
   <main id="resume" hidden><!-- BUILD:RESUME --><div class="resume"><div class="r-sheet">
 <header class="r-head"><p class="r-name">Chennuru Tejith</p><p class="r-role">Business Strategist in Training · BBA + MBA, O.P. Jindal Global University</p><p>Chennuru Tejith is an Indian business student pursuing an integrated BBA (Hons.) + MBA at O.P. Jindal Global University (2024 to 2029, CGPA 7.9/8), from Hyderabad, with internship experience in operations at Round Table India, project management at Dr. Reddy&#39;s Laboratories Ltd. and finance at Ion Exchange India Ltd.</p></header>
-<section class="r-sec"><h2>Experience</h2><div><div class="r-item"><h3>Operations Intern, Round Table India</h3><p>Jun 2026 to Jul 2026 · Hyderabad</p><ul><li>Monitored on-site execution of a ₹4 Cr CSR-funded government school construction project (MPPS &amp; ZPHS Integrated School, Phase II) across 23 site visits over 7 weeks, tracking progress against sanctioned drawings.</li><li>Tracked CSR fund utilisation against the sanctioned budget and co-drafted progress-and-spend updates for CSR sponsor VST Industries Ltd., including a live sponsor update call.</li><li>Verified contractor-reported material stock and spend figures against supervisor records, catching and resolving a reporting discrepancy before it reached the sponsor.</li></ul></div><div class="r-item"><h3>Project Management Intern, Dr. Reddy&#39;s Laboratories Ltd.</h3><p>Jun 2025 to Jul 2025 · Hyderabad</p><ul><li>Conducted employee cost analysis across FY2021 to FY2025, tracking trends in salaries, share-based payments, and welfare expenses to support cost-optimization discussions.</li><li>Prepared structured management reports from multi-year workforce data, enabling leadership decisions on headcount budgeting and welfare spending.</li><li>Strengthened financial data interpretation, cost analysis, and reporting using MS Office Suite.</li></ul></div><div class="r-item"><h3>Finance Intern, Ion Exchange India Ltd.</h3><p>Dec 2024 to Jan 2025 · Hyderabad</p><ul><li>Streamlined daily transaction processing, improving departmental workflow efficiency and reducing documentation backlogs.</li><li>Coordinated business partner communications and order confirmations, improving accuracy across stakeholder interactions.</li><li>Standardized vendor records and aligned internal financial documentation, enhancing data consistency and audit readiness.</li></ul></div></div></section>
+<section class="r-sec"><h2>Experience</h2><div><div class="r-item"><h3>Operations Intern, Round Table India</h3><p>Jun 2026 to Jul 2026 · Hyderabad</p><ul><li>Monitored on-site execution of a ₹4 Cr CSR-funded government school construction project (MPPS &amp; ZPHS Integrated School, Phase II) across 23 site visits over 7 weeks, tracking progress against sanctioned drawings.</li><li>Tracked CSR fund utilisation against the sanctioned budget and co-drafted progress-and-spend updates for CSR sponsor VST Industries Ltd., including a live sponsor update call.</li><li>Verified contractor-reported material stock and spend figures against supervisor records, catching and resolving a reporting discrepancy before it reached the sponsor.</li></ul></div><div class="r-item"><h3>Project Management Intern, Dr. Reddy&#39;s Laboratories Ltd.</h3><p>Jun 2025 to Jul 2025 · Hyderabad</p><ul><li>Conducted employee cost analysis across FY2021 to FY2025, tracking trends in salaries, share-based payments, and welfare expenses to support cost-optimization discussions.</li><li>Prepared structured management reports from multi-year workforce data, enabling leadership decisions on headcount budgeting and welfare spending.</li><li>Strengthened financial data interpretation, cost analysis, and reporting using MS Office Suite.</li></ul></div><div class="r-item"><h3>Finance Intern, Ion Exchange India Ltd.</h3><p>Dec 2024 to Jan 2025 · Hyderabad</p><ul><li>Sped up the department&#39;s daily transaction processing and brought down the documentation backlog.</li><li>Coordinated business partner communications and order confirmations, improving accuracy across stakeholder interactions.</li><li>Standardised vendor records and lined up internal finance documents, so the figures matched and were ready for audit.</li></ul></div></div></section>
 <section class="r-sec"><h2>Leadership</h2><ul><li>Head of Outreach, ZAMAC, The Marketing Club, JGBS (Feb 2026 to Present)</li><li>Member, Student Grievance Redressal Committee, Food &amp; Mess Committee, JGBS (Aug 2026 to Present)</li><li>Student Representative, COGSASH, O.P. Jindal Global University (Nov 2025 to Present)</li><li>Member, Election Commission, Jindal Global Business School (Apr 2025 to Present)</li><li>Director, JGU Entrepreneurship Club (200+ members) (Feb 2026 to May 2026)</li></ul></section>
 <section class="r-sec"><h2>Education</h2><ul><li>Integrated BBA (Hons.) + MBA, Business Administration &amp; Management, O.P. Jindal Global University (JGU), Sonipat, Haryana (Aug 2024 to Aug 2029, CGPA 7.9 / 8.00)</li><li>Class XII, Commerce (MEC), Avinash College of Commerce, Hyderabad (Apr 2024, 88.4%)</li><li>Class X, Geetanjali Olympiad High School, Hyderabad (May 2022, 93.1%)</li></ul></section>
 <section class="r-sec"><h2>Honours</h2><ul><li>Batch Rank 3 and Certificate of Appreciation for Peer Support &amp; Voluntary Contribution, JGU University Day. (2026)</li><li>Best Leader, Best All-Rounder and Rank 2 in IBM Batch, JGU University Day. (2025)</li><li>Certificate of Appreciation for volunteer leadership, JGU Alumni Day. (2025)</li><li>Letter of Appreciation for Exemplary Academic Performance. (2024)</li><li>Letter of Appreciation for the inauguration of India&#39;s First Constitution Museum &amp; the National Convention on the Constitution of India. (2024)</li></ul></section>
@@ -526,10 +530,10 @@
 
   <div class="toast" id="toast" role="status" hidden></div>
 
-  <script src="js/data.js?v=410"></script>
-  <script src="js/icons.js?v=410"></script>
-  <script src="js/india.js?v=410"></script>
+  <script src="js/data.js?v=421"></script>
+  <script src="js/icons.js?v=421"></script>
+  <script src="js/india.js?v=421"></script>
   <script src="js/vendor/lenis.min.js?v=1113"></script>
-  <script src="js/app.js?v=410"></script>
+  <script src="js/app.js?v=421"></script>
 </body>
 </html>
