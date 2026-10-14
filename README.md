@@ -32,7 +32,7 @@ See [CHECKLIST.md](CHECKLIST.md).
 Add `?motion=1` to the URL to force full animations even if your system asks for reduced motion.
 
 ## After editing
-1. Run `node build.js`. It rewrites `profile.html`, `press.html`, `llms.txt`, the structured data and the static résumé from `js/data.js`, so AI crawlers (which don't run JavaScript) see current facts.
+1. Edit `css/style.css` (never `style.min.css`), then run `node build.js`. It also writes the compressed `css/style.min.css` that the site loads, and It rewrites `profile.html`, `press.html`, `llms.txt`, the structured data and the static résumé from `js/data.js`, so AI crawlers (which don't run JavaScript) see current facts.
 2. Bump the `?v=` number on the css/js links in `index.html` so returning visitors get the new files.
 
 ## Ask page
@@ -54,9 +54,8 @@ Each page has a share page (`work.html`, `research.html`…) with its own previe
 Ctrl+P (or "Print / save" on the résumé) always prints the clean one-page résumé.
 
 ## Motion libraries
-- `js/vendor/gsap.min.js`: GSAP 3.12.5 (GreenSock standard licence, free to use) drives the F1 car delivery and the quote reveal.
 - `js/vendor/lenis.min.js`: Lenis 1.1.13 (MIT) gives smooth scrolling on desktop.
-- Both are stored locally because the Content-Security-Policy only allows the site's own scripts.
+- Lenis is stored locally because the Content-Security-Policy only allows the site's own scripts. Animations otherwise use plain CSS.
 - Portrait: `python tools/make-portrait.py photo.jpg` removes a plain white background.
 
 ## Security & speed

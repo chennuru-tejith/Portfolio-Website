@@ -40,6 +40,11 @@ Tick items off as you send them. Each one is a single line in `js/data.js` (show
 - [ ] **Domain** (e.g. `tejith.in`). After this I'll make the share image and canonical link absolute and add a sitemap
 - [ ] *(Optional)* sign in to GitHub CLI: `& "C:\Program Files\GitHub CLI\gh.exe" auth login --web`
 
+## SEO checklist (from the reel): what still needs you
+- [ ] A domain: sitemap.xml and canonical tags switch on automatically once `siteUrl` is set
+- [ ] Rewrite my drafted text in your own words (About intro, Q&A answers, case takeaways, building-now and next-badge goals): search engines and recruiters both reward genuine writing
+- [ ] Backlinks: your site link on LinkedIn, GitHub, and any JGU or club page that lists you
+
 ## Getting found by AI assistants (after the site is live)
 - [ ] Put the live address in `siteUrl` (js/data.js), run `node build.js`, push
 - [ ] Submit the site to **Google Search Console** and **Bing Webmaster Tools** (Bing feeds ChatGPT search and others)

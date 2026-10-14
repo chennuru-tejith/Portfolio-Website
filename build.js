@@ -54,10 +54,14 @@ const graph = {
   ],
 };
 const jsonld = `<script type="application/ld+json">${JSON.stringify(graph).replace(/</g, "\\u003c")}</script>`;
+const crumbs = (name, path) => `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+  { "@type": "ListItem", position: 1, name: "Home", item: abs("./") || "./" },
+  { "@type": "ListItem", position: 2, name, item: abs(path) },
+] })}</script>`;
 
 // ---------- static résumé (inside #resume, replaced by the app on load) ----------
 const staticResume = `<div class="resume"><div class="r-sheet">
-<header class="r-head"><h1>${esc(P.name)}</h1><p class="r-role">${esc(P.title)} · BBA + MBA, O.P. Jindal Global University</p><p>${esc(entity)}</p></header>
+<header class="r-head"><p class="r-name">${esc(P.name)}</p><p class="r-role">${esc(P.title)} · BBA + MBA, O.P. Jindal Global University</p><p>${esc(entity)}</p></header>
 <section class="r-sec"><h2>Experience</h2><div>${D.experience.map((e) => `<div class="r-item"><h3>${esc(e.role)}, ${esc(firstOrg(e.org))}</h3><p>${esc(e.when)}</p><ul>${e.points.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>`).join("")}</div></section>
 <section class="r-sec"><h2>Leadership</h2><ul>${D.leadership.map((l) => `<li>${esc(l.role)}, ${esc(l.org)} (${esc(l.when)})</li>`).join("")}</ul></section>
 <section class="r-sec"><h2>Education</h2><ul>${D.education.map((e) => `<li>${esc(e.degree)}, ${esc(e.school)} (${esc(e.when)}, ${esc(e.score)})</li>`).join("")}</ul></section>
@@ -83,6 +87,7 @@ ${base ? `<link rel="canonical" href="${esc(abs("profile.html"))}" />` : ""}
 <link rel="icon" type="image/png" href="assets/favicon-64.png" />
 <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Tinos:ital@0;1&display=swap" rel="stylesheet" />
 ${jsonld}
+${crumbs("Text profile", "profile.html")}
 <style>
 :root { color-scheme: dark; }
 body { margin: 0; background: #03071e; color: #eadcc5; font: 17px/1.7 "Times New Roman", Tinos, Times, serif; }
@@ -193,6 +198,7 @@ const press = `<!doctype html>
 ${base ? `<link rel="canonical" href="${esc(abs("press.html"))}" />` : ""}
 <link rel="icon" type="image/png" href="assets/favicon-64.png" />
 <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Tinos:ital@0;1&display=swap" rel="stylesheet" />
+${crumbs("Press kit", "press.html")}
 ${pageStyle(profile).replace("</style>", `.kit { display: grid; grid-template-columns: 160px 1fr; gap: 24px; align-items: center; }
 .kit img { width: 160px; height: 160px; border: 1px solid rgba(234, 220, 197,.2); }
 blockquote, pre { margin: 0; padding: 16px 18px; border-left: 2px solid #d8c3a0; background: rgba(234, 220, 197,.04); white-space: pre-wrap; font: inherit; }
@@ -299,6 +305,15 @@ nav a:hover { color: var(--acc); }
 </html>
 `);
 
+// ---------- css/style.min.css: the stylesheet without comments and spare whitespace ----------
+const css = fs.readFileSync("css/style.css", "utf8")
+  .replace(/\/\*[\s\S]*?\*\//g, "")
+  .replace(/\s+/g, " ")
+  .replace(/\s*([{};:,>])\s*/g, "$1")
+  .replace(/;}/g, "}")
+  .trim();
+fs.writeFileSync("css/style.min.css", css);
+
 // ---------- index.html: structured data + static résumé + updated date ----------
 let idx = fs.readFileSync("index.html", "utf8");
 const swap = (html, tag, content) => {
@@ -324,4 +339,4 @@ if (base) {
 </urlset>
 `);
 }
-console.log(`Built profile.html, press.html, 404.html, share pages, llms.txt, index.html${base ? ", sitemap.xml" : " (set siteUrl in data.js to add sitemap + absolute URLs)"}: ${iso}`);
+console.log(`Built profile.html, press.html, 404.html, share pages, llms.txt, css/style.min.css, index.html${base ? ", sitemap.xml" : " (set siteUrl in data.js to add sitemap + absolute URLs)"}: ${iso}`);

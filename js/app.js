@@ -222,7 +222,7 @@
   function renderResume() {
     const p = D.profile;
     $("#resume").innerHTML = `<div class="resume"><div class="r-sheet">
-      <header class="r-head"><h1>${esc(p.name)}</h1><p class="r-role">${esc(p.title)} · BBA + MBA, O.P. Jindal Global University</p>
+      <header class="r-head"><p class="r-name">${esc(p.name)}</p><p class="r-role">${esc(p.title)} · BBA + MBA, O.P. Jindal Global University</p>
         <div class="r-links"><span>${I("pin", 15)} ${esc(p.location)}</span><a href="mailto:${esc(p.email)}">${I("mail", 15)} ${esc(p.email)}</a>
         <a href="${esc(p.linkedin)}" target="_blank" rel="noopener noreferrer">${I("linkedin", 15)} chennuru-tejith</a><a href="${esc(p.github)}" target="_blank" rel="noopener noreferrer">${I("github", 15)} chennuru-tejith</a></div>
         <div class="r-actions"><a class="btn btn-primary btn-sm" href="${esc(p.cv)}" download>Download PDF</a><button class="btn btn-ghost btn-sm" data-print>Print / save</button><button class="btn btn-ghost btn-sm" data-hr>Copy summary for HR</button><a class="btn btn-ghost btn-sm" href="mailto:${esc(p.email)}">Email</a></div></header>
@@ -773,7 +773,7 @@
   }
   function onePager() {
     const p = D.profile, a = D.availability || {};
-    $("#onepager").innerHTML = `<h1>${esc(p.name)}</h1><p class="op-role">Why Tejith, in one page · ${esc(p.title)}</p>
+    $("#onepager").innerHTML = `<p class="op-name">${esc(p.name)}</p><p class="op-role">Why Tejith, in one page · ${esc(p.title)}</p>
       <p>BBA + MBA, O.P. Jindal Global University (2024 to 2029), CGPA 7.9 / 8. ${esc(p.email)} · ${esc(p.linkedin)}</p>
       <h2>Three reasons</h2><ul>${D.principles.slice(0, 3).map((x) => `<li><b>${esc(x.title)}.</b> ${esc(x.proof)}</li>`).join("")}</ul>
       <h2>Experience</h2><ul>${D.experience.map((e) => `<li><b>${esc(e.role)}</b>, ${esc(firstOrg(e.org))} (${esc(e.when.split(" · ")[0])}): ${esc(e.points[0])}</li>`).join("")}</ul>
@@ -1111,14 +1111,13 @@
   function smoothScroll() {
     if (still || !window.Lenis || !matchMedia("(pointer: fine)").matches) return;
     const lenis = new window.Lenis({ lerp: 0.11, smoothWheel: true });
-    if (window.gsap) { window.gsap.ticker.add((t) => lenis.raf(t * 1000)); window.gsap.ticker.lagSmoothing(0); }
-    else { const loop = (t) => { lenis.raf(t); requestAnimationFrame(loop); }; requestAnimationFrame(loop); }
+    const loop = (t) => { lenis.raf(t); requestAnimationFrame(loop); }; requestAnimationFrame(loop);
     window.__lenis = lenis;
   }
 
   // ---------- the quote band: words rise in, one after another ----------
   function creed() {
-    const q = $(".creed-q"); if (!q || still || !window.gsap) return;
+    const q = $(".creed-q"); if (!q || still) return;
     const walk = (node) => [...node.childNodes].forEach((c) => {
       if (c.nodeType === 3) {
         const frag = document.createDocumentFragment();
@@ -1127,15 +1126,12 @@
       } else if (c.nodeType === 1) walk(c);
     });
     walk(q);
-    const words = $$(".cw", q);
-    window.gsap.set(words, { yPercent: 110, autoAlpha: 0 });
-    const io = new IntersectionObserver(([e]) => {
-      if (!e.isIntersecting) return; io.disconnect();
-      window.gsap.to(words, { yPercent: 0, autoAlpha: 1, duration: 0.9, ease: "power4.out", stagger: 0.06 });
-      window.gsap.from(".creed-mark", { scale: 0.4, autoAlpha: 0, duration: 1, ease: "back.out(2)" });
-    }, { threshold: 0.4 });
+    $$(".cw", q).forEach((w, i) => w.style.setProperty("--i", i));
+    $("#creed").classList.add("rising");
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { $("#creed").classList.add("risen"); io.disconnect(); } }, { threshold: 0.4 });
     io.observe(q);
   }
+
 
   // ---------- start lights, once per visit: five on, lights out, go ----------
   function intro() {
