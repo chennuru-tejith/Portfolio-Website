@@ -325,17 +325,43 @@
     let raf = 0, rx = 0, ry = 0;
     vis.addEventListener("pointermove", (e) => {
       const r = vis.getBoundingClientRect();
-      ry = ((e.clientX - r.left) / r.width - 0.5) * 8; rx = -((e.clientY - r.top) / r.height - 0.5) * 6;
+      ry = ((e.clientX - r.left) / r.width - 0.5) * 5; rx = -((e.clientY - r.top) / r.height - 0.5) * 4;
       if (!raf) raf = requestAnimationFrame(() => { raf = 0; file.style.setProperty("--rx", rx.toFixed(2) + "deg"); file.style.setProperty("--ry", ry.toFixed(2) + "deg"); });
     });
     vis.addEventListener("pointerleave", () => { file.style.setProperty("--rx", "0deg"); file.style.setProperty("--ry", "0deg"); });
   }
 
   // ---------- scroll & reveal ----------
-  let io;
+  // Things that arrive together are dealt out like cards: the gaps shrink as the hand speeds up,
+  // with a few ms of wobble so no two rows land on the same beat. Scrolling up, they come from above.
+  // Flicking past fast, they just appear (nobody wants to wait for a fade they scrolled through).
+  let io, lastY = scrollY, lastT = performance.now(), vel = 0, goingUp = false;
+  addEventListener("scroll", () => {
+    const t = performance.now(), dy = scrollY - lastY;
+    vel = Math.abs(dy) / Math.max(16, t - lastT); goingUp = dy < 0; lastY = scrollY; lastT = t;
+  }, { passive: true });
   function reveal() {
     if (still) { $$(".rv").forEach((e) => e.classList.add("in")); return; }
-    io = io || new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: 0.08 });
+    io = io || new IntersectionObserver((es) => {
+      const fresh = es.filter((e) => e.isIntersecting).map((e) => e.target);
+      if (!fresh.length) return;
+      fresh.sort((a, b) => { const ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect(); return (ra.top - rb.top) || (ra.left - rb.left); });
+      const fast = vel > 2.5;
+      let wait = 0, gap = 95;
+      fresh.forEach((el) => {
+        io.unobserve(el);
+        if (fast) { el.classList.add("quick"); return; }
+        el.style.setProperty("--rd", Math.max(0, Math.round(wait + (Math.random() - 0.5) * 22)) + "ms");
+        wait = Math.min(520, wait + gap); gap = Math.max(38, gap * 0.78);
+        if (goingUp) el.classList.add("from-up");
+      });
+      if (goingUp && !fast) void document.body.offsetWidth; // let "from above" register before it moves
+      fresh.forEach((el) => {
+        el.classList.add("in");
+        // once it has landed, drop the delay so hovers answer at once
+        setTimeout(() => { el.classList.add("rv-done"); el.style.removeProperty("--rd"); }, wait + 1300);
+      });
+    }, { threshold: 0.08, rootMargin: "0px 0px -6% 0px" });
     $$(".rv:not(.in)").forEach((e) => io.observe(e));
   }
   function onScroll() {
@@ -932,9 +958,12 @@
   function pitBoards() {
     const heads = $$(".sec-head .kicker");
     if (still) return;
-    heads.forEach((k) => k.classList.add("board"));
-    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: 0.8 });
-    heads.forEach((k) => io.observe(k));
+    heads.forEach((k) => { k.classList.add("board"); k.parentNode.classList.add("typeset"); });
+    const io = new IntersectionObserver((es) => es.forEach((e) => {
+      if (!e.isIntersecting) return;
+      $(".kicker", e.target).classList.add("in"); e.target.classList.add("set"); io.unobserve(e.target);
+    }), { rootMargin: "0px 0px -12% 0px" });
+    heads.forEach((k) => io.observe(k.parentNode));
   }
   // 7. cards lean toward the pointer, like a car into a corner (one rAF per frame at most)
   function tilt() {
@@ -946,10 +975,29 @@
       if (c !== card) { if (card) { card.style.setProperty("--rx", "0deg"); card.style.setProperty("--ry", "0deg"); } card = c; }
       if (!card) return;
       const r = card.getBoundingClientRect();
-      ry = ((e.clientX - r.left) / r.width - 0.5) * 6; rx = -((e.clientY - r.top) / r.height - 0.5) * 5;
+      ry = ((e.clientX - r.left) / r.width - 0.5) * 3; rx = -((e.clientY - r.top) / r.height - 0.5) * 2.4;
       if (!raf) raf = requestAnimationFrame(paint);
     }, { passive: true });
     $$(".feat, .ch, .proof, .li-card, .proj, .slot, .paper").forEach((c) => c.classList.add("tilt"));
+  }
+
+  // ---------- margin notes are written out, then the arrow is drawn ----------
+  function handwrite() {
+    if (still) return;
+    const notes = $$(".hand").filter((n) => !n.closest(".nudge"));
+    notes.forEach((n) => {
+      const len = n.textContent.trim().length;
+      n.style.setProperty("--wt", Math.round(320 + len * 34) + "ms"); // about 30 letters a second, a quick hand
+      const p = $(".hand-arrow path", n);
+      if (p) n.style.setProperty("--pl", Math.ceil(p.getTotalLength() + 2));
+      n.classList.add("ink");
+    });
+    // a note hidden by its own clip never counts as on screen, so watch the block it sits in
+    const io = new IntersectionObserver((es) => es.forEach((e) => {
+      if (!e.isIntersecting) return;
+      notes.filter((n) => n.parentNode === e.target).forEach((n) => n.classList.add("wrote")); io.unobserve(e.target);
+    }), { rootMargin: "0px 0px -18% 0px" });
+    new Set(notes.map((n) => n.parentNode)).forEach((p) => io.observe(p));
   }
 
   // ---------- the page reacts: to the pointer, to scrolling, to idling, to leaving, to keys ----------
@@ -1256,15 +1304,18 @@
   }
 
   // ---------- page change: a fast bronze streak across the screen ----------
+  let lastWipe = 0;
   function wipe() {
     if (still) return;
+    const now = performance.now(), hurried = now - lastWipe < 700; lastWipe = now;
+    if (hurried) return;
     const w = $("#wipe"); w.classList.remove("go"); void w.offsetWidth; w.classList.add("go");
   }
 
   // ---------- boot ----------
   applyTheme(state.theme);
   $("#year").textContent = new Date().getFullYear();
-  renderDisciplines(); renderSections(); renderProgress(); renderAvail(); renderMap(); renderFaq(); renderExtras(); renderResume(); renderHeroExtras(); renderAsk(); geoBadge(); renderRecon(); renderScrub(); wireSources(); renderBuilding(); renderRefReq(); renderPit(); renderEndorse(); renderPosts(); renderSlots(); renderGuestbook(); wireTour(); wireReading(); smoothScroll(); creed(); reactKit(); intro(); revLights(); gauge(); pitBoards(); tilt(); renderContact(); wireShare(); renderThinking(); renderBaf(); docsActions(); voice(); signature(); season(); carDraw();
+  renderDisciplines(); renderSections(); renderProgress(); renderAvail(); renderMap(); renderFaq(); renderExtras(); renderResume(); renderHeroExtras(); renderAsk(); geoBadge(); renderRecon(); renderScrub(); wireSources(); renderBuilding(); renderRefReq(); renderPit(); renderEndorse(); renderPosts(); renderSlots(); renderGuestbook(); wireTour(); wireReading(); smoothScroll(); creed(); handwrite(); reactKit(); intro(); revLights(); gauge(); pitBoards(); tilt(); renderContact(); wireShare(); renderThinking(); renderBaf(); docsActions(); voice(); signature(); season(); carDraw();
   clock(); motion(); countUps(); scrollStory(); mapReveal(); views(); reveal();
 
   document.addEventListener("click", (e) => {
