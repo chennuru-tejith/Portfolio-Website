@@ -24,8 +24,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Tinos:ital,wght@0,400;0,700;1,400&family=Pinyon+Script&family=Caveat:wght@500&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-  <link rel="stylesheet" href="css/style.min.css?v=421" />
-  <script src="js/boot.js?v=421"></script>
+  <link rel="stylesheet" href="css/style.min.css?v=432" />
+  <script src="js/boot.js?v=432"></script>
 </head>
 <body>
   <div class="intro" id="intro" aria-hidden="true">
@@ -457,7 +457,7 @@
 
     <footer class="foot wrap">
       <span>© <span id="year"></span> Chennuru Tejith · <!-- BUILD:UPDATED --><time datetime="2026-10-14">Updated October 2026</time><!-- /BUILD:UPDATED --> · <a href="profile.html">Text profile</a> · <a href="press.html">Press kit</a></span>
-      <span class="colophon">Every fact on this site is from my CV and checked by me. Set in Bell MT and Times New Roman.</span>
+      <span class="colophon">Every fact on this site is from my CV and checked by me. Set in Bell MT and Times New Roman. Press ? for keyboard shortcuts.</span>
       <a class="geo-badge" id="geoBadge" href="#baf" hidden></a>
       <span class="views" id="views" hidden></span>
       <button class="foot-share" data-share>Share this profile</button>
@@ -528,12 +528,23 @@
     </figure>
   </div>
 
+  <div class="nudge" id="nudge" role="status" hidden>
+    <p class="hand">still here? the 60-second tour shows the best bits</p>
+    <div class="nudge-btns"><button class="btn btn-primary btn-sm" id="nudgeGo">Take the tour</button><button class="icon-btn" id="nudgeX" aria-label="Dismiss">✕</button></div>
+  </div>
+
+  <div class="keys" id="keys" role="dialog" aria-label="Keyboard shortcuts" hidden>
+    <button class="icon-btn keys-x" id="keysX" aria-label="Close">✕</button>
+    <p class="mono">Keyboard shortcuts</p>
+    <dl><div><dt>H</dt><dd>Home</dd></div><div><dt>A</dt><dd>About</dd></div><div><dt>W</dt><dd>Work</dd></div><div><dt>R</dt><dd>Research</dd></div><div><dt>C</dt><dd>Contact</dd></div><div><dt>T</dt><dd>Light or dark</dd></div><div><dt>?</dt><dd>Show or hide this list</dd></div></dl>
+  </div>
+
   <div class="toast" id="toast" role="status" hidden></div>
 
-  <script src="js/data.js?v=421"></script>
-  <script src="js/icons.js?v=421"></script>
-  <script src="js/india.js?v=421"></script>
+  <script src="js/data.js?v=432"></script>
+  <script src="js/icons.js?v=432"></script>
+  <script src="js/india.js?v=432"></script>
   <script src="js/vendor/lenis.min.js?v=1113"></script>
-  <script src="js/app.js?v=421"></script>
+  <script src="js/app.js?v=432"></script>
 </body>
 </html>

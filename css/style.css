@@ -1878,3 +1878,43 @@ html.motion-off .f1 { display: none; }
 .ch-grid.ch-4 .ch .ch-no { grid-column: 1; grid-row: 1 / span 2; align-self: start; padding-top: 12px; }
 .ch-grid.ch-4 .ch b { grid-column: 2; }
 .ch-grid.ch-4 .ch > span:last-child { grid-column: 2; margin-top: 4px; }
+
+/* ============================================================
+   Round 34: the page reacts
+   ============================================================ */
+/* magnetic buttons */
+.magnet { transform: translate(var(--mx, 0px), var(--my, 0px)); transition: transform 0.35s cubic-bezier(.2, .9, .25, 1), background 0.4s, color 0.4s, border-color 0.4s; }
+/* spotlight on cards */
+.has-spot { position: relative; isolation: isolate; }
+.spot { position: absolute; inset: 0; pointer-events: none; z-index: -1; opacity: 0; transition: opacity 0.35s;
+  background: radial-gradient(260px circle at var(--gx, 50%) var(--gy, 50%), rgba(181, 138, 87, 0.13), transparent 65%); border-radius: inherit; }
+.has-spot:hover > .spot { opacity: 1; }
+[data-theme="light"] .spot { background: radial-gradient(260px circle at var(--gx, 50%) var(--gy, 50%), rgba(122, 85, 48, 0.08), transparent 65%); }
+/* the name's letters */
+.hero h1.name .lt { display: inline-block; transition: transform 0.45s cubic-bezier(.2, .9, .25, 1); will-change: transform; }
+/* the watermark drifts */
+.emboss, .emboss[class] { transform: translate(calc(-50% + var(--ex, 0px)), calc(-50% + var(--ey, 0px))) !important; transition: transform 0.9s cubic-bezier(.2, .9, .25, 1); }
+/* ripple */
+.btn { position: relative; overflow: hidden; }
+.btn-primary::after { display: none !important; }   /* the DRS flap retires with the F1 theme */
+.ripple { position: absolute; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%; pointer-events: none;
+  background: currentColor; opacity: 0.35; transform: scale(0); animation: ripple 0.65s ease-out forwards; }
+@keyframes ripple { to { transform: scale(18); opacity: 0; } }
+/* the top bar slims down */
+.nav .nav-in { transition: height 0.35s ease, padding 0.35s ease; }
+@media (min-width: 1101px) { .nav.slim .nav-in { height: 60px; } }
+/* idle nudge */
+.nudge { position: fixed; left: 24px; bottom: 24px; z-index: 85; display: flex; align-items: center; gap: 14px; padding: 14px 16px 14px 20px; max-width: min(460px, calc(100% - 48px));
+  background: var(--bg-1); border: 1px solid var(--line-2); border-radius: 16px; box-shadow: var(--shadow); animation: up2 0.5s cubic-bezier(.16, 1, .3, 1); }
+.nudge .hand { transform: rotate(-1deg); font-size: 20px; }
+.nudge-btns { display: flex; gap: 8px; align-items: center; flex: none; }
+/* keyboard shortcuts */
+.keys { position: fixed; right: 24px; bottom: 24px; z-index: 95; width: 260px; padding: 18px 20px; background: var(--bg-1); border: 1px solid var(--line-2); border-radius: 16px; box-shadow: var(--shadow); }
+.keys .mono { font-size: 10px; margin: 0 0 10px; }
+.keys dl { margin: 0; display: grid; gap: 6px; }
+.keys dl div { display: flex; gap: 12px; align-items: center; }
+.keys dt { min-width: 26px; height: 26px; display: grid; place-items: center; border: 1px solid var(--line-3); border-radius: 6px; font: 400 12px "Times New Roman", serif; color: var(--ink); }
+.keys dd { margin: 0; color: var(--ink-2); font-size: 14px; }
+.keys-x { position: absolute; top: 10px; right: 10px; width: 30px; height: 30px; }
+@media (max-width: 720px) { .nudge { left: 12px; right: 12px; bottom: 12px; max-width: none; } .keys { display: none; } }
+@media print { .nudge, .keys { display: none !important; } }

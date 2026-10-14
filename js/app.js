@@ -952,6 +952,109 @@
     $$(".feat, .ch, .proof, .li-card, .proj, .slot, .paper").forEach((c) => c.classList.add("tilt"));
   }
 
+  // ---------- the page reacts: to the pointer, to scrolling, to idling, to leaving, to keys ----------
+  function reactKit() {
+    const fine = matchMedia("(pointer: fine)").matches, move = fine && !still;
+    // at most one update per frame for each effect (a shared flag would let one effect starve another)
+    const pending = new Set();
+    const once = (fn) => { if (pending.has(fn)) return; pending.add(fn); requestAnimationFrame(() => { pending.delete(fn); fn(); }); };
+
+    // 1. magnetic buttons: they lean a little toward the pointer
+    if (move) $$(".btn, .icon-btn").forEach((b) => {
+      b.classList.add("magnet");
+      b.addEventListener("pointermove", (e) => { const r = b.getBoundingClientRect(); b.style.setProperty("--mx", ((e.clientX - r.left - r.width / 2) * 0.22).toFixed(1) + "px"); b.style.setProperty("--my", ((e.clientY - r.top - r.height / 2) * 0.3).toFixed(1) + "px"); });
+      b.addEventListener("pointerleave", () => { b.style.setProperty("--mx", "0px"); b.style.setProperty("--my", "0px"); });
+    });
+
+    // 2. spotlight: a soft bronze glow follows the pointer across cards
+    if (fine) {
+      const cards = ".feat, .proj, .paper, .metric, .ch, .chat, .slot, .li-card, .proof, .refreq, .gb-form, .pit, .disc-panel, .dt";
+      document.addEventListener("pointermove", (e) => {
+        const c = e.target.closest && e.target.closest(cards); if (!c) return;
+        if (!c.querySelector(":scope > .spot")) { const s = document.createElement("span"); s.className = "spot"; s.setAttribute("aria-hidden", "true"); c.prepend(s); c.classList.add("has-spot"); }
+        const r = c.getBoundingClientRect();
+        c.style.setProperty("--gx", (e.clientX - r.left).toFixed(0) + "px"); c.style.setProperty("--gy", (e.clientY - r.top).toFixed(0) + "px");
+      }, { passive: true });
+    }
+
+    // 3. the name: each letter rises as the pointer passes over it
+    const name = $(".hero h1.name");
+    if (move && name) {
+      const letters = [];
+      const split = (node) => [...node.childNodes].forEach((n) => {
+        if (n.nodeType === 3) { const f = document.createDocumentFragment(); [...n.textContent].forEach((ch) => { const s = document.createElement("span"); s.className = "lt"; s.textContent = ch; f.appendChild(s); letters.push(s); }); n.replaceWith(f); }
+        else if (n.nodeType === 1 && !n.classList.contains("lt")) split(n);
+      });
+      split(name);
+      let px = -9999;
+      const wave = () => letters.forEach((l) => { const r = l.getBoundingClientRect(), d = Math.abs(px - (r.left + r.width / 2)), k = Math.max(0, 1 - d / 160); l.style.transform = k ? `translateY(${(-k * 14).toFixed(1)}px)` : ""; });
+      name.addEventListener("pointermove", (e) => { px = e.clientX; once(wave); });
+      name.addEventListener("pointerleave", () => { px = -9999; once(wave); });
+    }
+
+    // 4. the watermark drifts with the mouse and the scroll
+    const em = $(".emboss");
+    if (move && em) {
+      let mx = 0, my = 0;
+      const place = () => { em.style.setProperty("--ex", (mx * 18).toFixed(1) + "px"); em.style.setProperty("--ey", (my * 14 - Math.min(scrollY, 2000) * 0.04).toFixed(1) + "px"); };
+      addEventListener("pointermove", (e) => { mx = e.clientX / innerWidth - 0.5; my = e.clientY / innerHeight - 0.5; once(place); }, { passive: true });
+      addEventListener("scroll", () => once(place), { passive: true });
+    }
+
+    // 5. a soft ripple where a button is clicked
+    if (!still) document.addEventListener("pointerdown", (e) => {
+      const b = e.target.closest && e.target.closest(".btn"); if (!b) return;
+      const r = b.getBoundingClientRect(), s = document.createElement("span");
+      s.className = "ripple"; s.style.left = e.clientX - r.left + "px"; s.style.top = e.clientY - r.top + "px";
+      b.appendChild(s); setTimeout(() => s.remove(), 650);
+    });
+
+    // 6. the top bar slims down once you scroll
+    addEventListener("scroll", () => $("#nav").classList.toggle("slim", scrollY > 120), { passive: true });
+
+    // 7. idle on Home for 25 seconds: a handwritten nudge toward the tour, once per visit
+    let idleT;
+    const nudge = $("#nudge");
+    const arm = () => {
+      clearTimeout(idleT);
+      idleT = setTimeout(() => {
+        try { if (sessionStorage.getItem("tejith-nudged")) return; sessionStorage.setItem("tejith-nudged", "1"); } catch (e) {}
+        if (page === "home" && !document.hidden && $("#tour").hidden) nudge.hidden = false;
+      }, 25000);
+    };
+    ["pointermove", "keydown", "scroll", "touchstart"].forEach((ev) => addEventListener(ev, arm, { passive: true }));
+    arm();
+    $("#nudgeGo").addEventListener("click", () => { nudge.hidden = true; $("#tourBtn").click(); });
+    $("#nudgeX").addEventListener("click", () => (nudge.hidden = true));
+
+    // 8. leaving the tab
+    let title = document.title;
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) { title = document.title; document.title = "Come back soon · Tejith"; }
+      else document.title = title;
+    });
+
+    // 9. copying text from the page
+    document.addEventListener("copy", (e) => {
+      if (e.target.closest && e.target.closest("input, textarea")) return;
+      const sel = String(getSelection()).trim(); if (sel.length < 20) return;
+      toast("Copied. If you quote it, please credit Chennuru Tejith.");
+    });
+
+    // 10. keyboard shortcuts
+    const KEYS = { h: "#home", a: "#about", w: "#work", r: "#research", c: "#contact" };
+    const help = $("#keys");
+    document.addEventListener("keydown", (e) => {
+      if (e.metaKey || e.ctrlKey || e.altKey || (e.target.closest && e.target.closest("input, textarea, select, [contenteditable]"))) return;
+      const k = e.key.toLowerCase();
+      if (KEYS[k]) { location.hash = KEYS[k]; return; }
+      if (k === "t") { $("#themeBtn").click(); return; }
+      if (e.key === "?") { help.hidden = !help.hidden; return; }
+      if (e.key === "Escape" && !help.hidden) help.hidden = true;
+    });
+    $("#keysX").addEventListener("click", () => (help.hidden = true));
+  }
+
   // ---------- 60-second tour ----------
   const TOUR = [
     ["top", "Chennuru Tejith: BBA + MBA at O.P. Jindal Global University, working across finance, operations and leadership."],
@@ -1161,7 +1264,7 @@
   // ---------- boot ----------
   applyTheme(state.theme);
   $("#year").textContent = new Date().getFullYear();
-  renderDisciplines(); renderSections(); renderProgress(); renderAvail(); renderMap(); renderFaq(); renderExtras(); renderResume(); renderHeroExtras(); renderAsk(); geoBadge(); renderRecon(); renderScrub(); wireSources(); renderBuilding(); renderRefReq(); renderPit(); renderEndorse(); renderPosts(); renderSlots(); renderGuestbook(); wireTour(); wireReading(); smoothScroll(); creed(); intro(); revLights(); gauge(); pitBoards(); tilt(); renderContact(); wireShare(); renderThinking(); renderBaf(); docsActions(); voice(); signature(); season(); carDraw();
+  renderDisciplines(); renderSections(); renderProgress(); renderAvail(); renderMap(); renderFaq(); renderExtras(); renderResume(); renderHeroExtras(); renderAsk(); geoBadge(); renderRecon(); renderScrub(); wireSources(); renderBuilding(); renderRefReq(); renderPit(); renderEndorse(); renderPosts(); renderSlots(); renderGuestbook(); wireTour(); wireReading(); smoothScroll(); creed(); reactKit(); intro(); revLights(); gauge(); pitBoards(); tilt(); renderContact(); wireShare(); renderThinking(); renderBaf(); docsActions(); voice(); signature(); season(); carDraw();
   clock(); motion(); countUps(); scrollStory(); mapReveal(); views(); reveal();
 
   document.addEventListener("click", (e) => {
